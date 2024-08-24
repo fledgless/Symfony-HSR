@@ -19,10 +19,10 @@ class LightCone
     #[ORM\Column(length: 255)]
     private ?string $lcPath = null;
 
-    #[ORM\Column(length: 5000, nullable: true)]
+    #[ORM\Column(length: 2000, nullable: true)]
     private ?string $lcDesc = null;
 
-    #[ORM\Column(length: 5000, nullable: true)]
+    #[ORM\Column(length: 2000, nullable: true)]
     private ?string $lcSuperimposition = null;
 
     #[ORM\Column(nullable: true)]
