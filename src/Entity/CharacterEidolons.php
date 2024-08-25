@@ -72,4 +72,9 @@ class CharacterEidolons
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->characterName;
+    }
 }

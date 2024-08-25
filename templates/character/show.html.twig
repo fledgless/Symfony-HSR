@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="s-container">
+        <div class="character-show">
+            <h1>{{ character.characterName }}</h1>
+            <div class="eidolons">
+                <h2>Eidolons</h2>
+                <h3>Eidolon 1: {{ character.eidolons.eidolonNames|slice(0, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(0, 1)|join('') }}</p>
+                <h3>Eidolon 2: {{ character.eidolons.eidolonNames|slice(1, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(1, 1)|join('') }}</p>
+                <h3>Eidolon 3: {{ character.eidolons.eidolonNames|slice(2, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(2, 1)|join('') }}</p>
+                <h3>Eidolon 4: {{ character.eidolons.eidolonNames|slice(3, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(3, 1)|join('') }}</p>
+                <h3>Eidolon 5: {{ character.eidolons.eidolonNames|slice(4, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(4, 1)|join('') }}</p>
+                <h3>Eidolon 6: {{ character.eidolons.eidolonNames|slice(5, 1)|join('') }}</h3>
+                <p>{{ character.eidolons.eidolonDescriptions|slice(5, 1)|join('') }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

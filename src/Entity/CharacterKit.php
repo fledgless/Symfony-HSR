@@ -193,4 +193,9 @@ class CharacterKit
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->characterName;
+    }
 }
