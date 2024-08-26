@@ -159,18 +159,18 @@ class LightCone
         return $this->media;
     }
 
-    public function addMedium(Media $medium): static
+    public function addMedia(Media $media): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
+        if (!$this->media->contains($media)) {
+            $this->media->add($media);
         }
 
         return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function removeMedia(Media $media): static
     {
-        $this->media->removeElement($medium);
+        $this->media->removeElement($media);
 
         return $this;
     }

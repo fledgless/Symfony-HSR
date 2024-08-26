@@ -22,6 +22,9 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -61,5 +64,22 @@ class Media
         $this->filename = $filename;
 
         return $this;
+    }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(string $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
