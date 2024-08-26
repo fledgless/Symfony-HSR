@@ -34,6 +34,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                 'Nihility' => 'Nihility',
                 'Preservation' => 'Preservation',
                 'Abundance' => 'Abundance',
+                'Unknown' => 'Unknown',
             ]);
         yield ChoiceField::new('characterType')
             ->setChoices([
@@ -44,6 +45,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                 'Wind' => 'Wind',
                 'Quantum' => 'Quantum',
                 'Imaginary' => 'Imaginary',
+                'Unknown' => 'Unknown',
             ]);
     }
 }
