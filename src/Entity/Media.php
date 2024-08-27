@@ -25,6 +25,9 @@ class Media
     #[ORM\Column(length: 255)]
     private ?string $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageRole = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -81,5 +84,17 @@ class Media
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getImageRole(): ?string
+    {
+        return $this->imageRole;
+    }
+
+    public function setImageRole(?string $imageRole): static
+    {
+        $this->imageRole = $imageRole;
+
+        return $this;
     }
 }

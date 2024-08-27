@@ -4,9 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\BaseCharacter;
 use App\Entity\Media;
-use App\Repository\MediaRepository;
-use Doctrine\DBAL\Query\QueryBuilder;
-use Doctrine\ORM\QueryBuilder as ORMQueryBuilder;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
