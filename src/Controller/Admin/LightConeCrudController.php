@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\LightCone;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -18,11 +19,21 @@ class LightConeCrudController extends AbstractCrudController
         return LightCone::class;
     }
 
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setPageTitle('new', 'New light cone');
+    }
+
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addTab('Stats');
-        yield TextField::new('lcName');
-        yield ChoiceField::new('lcPath')
+        yield FormField::addColumn();
+        yield TextField::new('lcName', 'Name');
+        yield AssociationField::new('media');
+
+        yield FormField::addColumn();  
+        yield ChoiceField::new('lcPath', 'Path')
+            ->renderExpanded()
             ->setChoices([
                 'Destruction' => 'Destruction',
                 'The Hunt' => 'The Hunt',
@@ -34,8 +45,6 @@ class LightConeCrudController extends AbstractCrudController
                 'Unknown' => 'Unknown',
             ]);
 
-
-        yield FormField::addTab('Details');
-        yield AssociationField::new('media');
+             
     }
 }

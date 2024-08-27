@@ -27,6 +27,10 @@ class MediaCrudController extends AbstractCrudController
             ->setChoices([
                 'Character' => 'Character',
                 'Light cone' => 'Light cone',
+                'Eidolon' => 'Eidolon',
+                'Trace' => 'Trace',
+                'Relic' => 'Relic',
+                'Ornament' => 'Ornament',
             ]);
         yield ChoiceField::new('imageRole')
             ->setChoices([
