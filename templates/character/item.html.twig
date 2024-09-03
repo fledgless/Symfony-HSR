@@ -1,10 +1,10 @@
-{% set character_show = path('character_show', { characterName: baseCharacter.characterName }) %}
+{% set character_show = path('character_show', { characterName: character.characterName }) %}
 
 <div class="item-character">
-    {% for media in baseCharacter.media|filter(media => media.category is 'Icon') %}
+    {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
         <a href="{{ character_show }}">
-            <img src="/uploads/{{ baseCharacter.media.filename }}" alt="">
+            <img src="/uploads/{{ medium.filename }}" alt="">
         </a>
     {% endfor %}
-    <p>{{ baseCharacter.characterName }}</p>
+    <p>{{ character.characterName }}</p>
 </div>
