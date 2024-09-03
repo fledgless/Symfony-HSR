@@ -1,0 +1,10 @@
+{% set character_show = path('character_show', { characterName: baseCharacter.characterName }) %}
+
+<div class="item-character">
+    {% for media in baseCharacter.media|filter(media => media.category is 'Icon') %}
+        <a href="{{ character_show }}">
+            <img src="/uploads/{{ baseCharacter.media.filename }}" alt="">
+        </a>
+    {% endfor %}
+    <p>{{ baseCharacter.characterName }}</p>
+</div>
