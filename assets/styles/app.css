@@ -139,6 +139,7 @@ body {
     margin: 0;
     min-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
+    font-family: 'DINPro-Bold', sans-serif;
 }
 
 header nav, main, footer {
@@ -146,27 +147,51 @@ header nav, main, footer {
 }
 
 main {
-    background-color: blueviolet;
+    background-color: #282828;
+    color: #FFFFFF;
+    padding-top: 10vh;
+    font-size: 16px;
 }
 
 #container {
     display: grid;
-    min-height: 100vh
+    min-height: 100vh;
+    grid-template-rows: 2fr 8fr;
 }
   
 header {
     position: fixed;
     width: 100%;
     height: 10vh;
-    background-color: #406E8E;
+    background-color: black;
 }
   
 footer {
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 5vh;
-    background-color: #406E8E;
+    background-color: black;
 }
+
+h1 {
+  font-size: 48px;
+  text-transform: uppercase;
+  margin-top: 2vh;
+  margin-bottom: 1vh;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-left: 2vh;
+  margin-bottom: 1vh;
+}
+
+header, footer, h1, h2, li a {
+  color: #DBC291;
+}
+
 
 
 
@@ -182,6 +207,11 @@ header nav .main-nav {
     flex-grow: 1;
     display: flex;
     justify-content: space-around;
+}
+
+header nav .main-nav li a {
+  font-size: 16px;
+  text-decoration: none;
 }
 
 header nav .main-nav .main-nav-link .sub-nav {
