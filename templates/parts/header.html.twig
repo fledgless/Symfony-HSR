@@ -2,16 +2,19 @@
     <p>LOGO</p>
     <nav>
         <ul class="main-nav">
-            <li class="main-nav-link"><a href="/characters">Characters</a></li>
-            <li class="main-nav-link"><a href="/light-cones">Light cones</a></li>
-            <li class="main-nav-link"><a href="#">Building tools</a>
-                <ul class="sub-nav">
-                    <li class="sub-nav-link"><a href="/relic-list">Relics</a></li>
-                    <li class="sub-nav-link"><a href="#">Ornaments</a></li>
-                </ul>
+            <li class="main-nav-link">
+                <img class="main-nav-link-img" src="{{ asset('images/character.png') }}" alt="">
+                <a class="main-nav-link-text" href="/characters">Characters</a></li>
+            <li class="main-nav-link">
+                <img class="main-nav-link-img" src="{{ asset('images/Icon_Light_Cone.webp') }}" alt="">
+                <a class="main-nav-link-text" href="/light-cones">Light cones</a></li>
+            <li class="main-nav-link">
+                <img class="main-nav-link-img" src="{{ asset('images/Icon_Relics.webp') }}" alt="">
+                <a class="main-nav-link-text" href="#">Relics</a>
             </li>
             <li class="main-nav-link">
-                <a href="#">Planning tools</a>
+                <img class="main-nav-link-img" src="{{ asset('images/Icon_Travel_Log.webp') }}" alt="">
+                <a class="main-nav-link-text" href="#">Planning tools</a>
                 <ul class="sub-nav">
                     <li class="sub-nav-link"><a href="#">Character inventory</a></li>
                     <li class="sub-nav-link"><a href="#">Light cone inventory</a></li>
@@ -20,7 +23,8 @@
                 </ul>
             </li>
             <li class="main-nav-link">
-                <a href="#">Materials</a>
+                <img class="main-nav-link-img" src="{{ asset('images/Icon_Upgrade_Materials.webp') }}" alt="">
+                <a class="main-nav-link-text" href="#">Materials</a>
                 <ul class="sub-nav">
                     <li class="sub-nav-link">Normal mats</li>
                     <li class="sub-nav-link">Boss mats</li>
