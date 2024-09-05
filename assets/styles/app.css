@@ -156,7 +156,6 @@ main {
 #container {
     display: grid;
     min-height: 100vh;
-    grid-template-rows: 2fr 8fr;
 }
   
 header {
