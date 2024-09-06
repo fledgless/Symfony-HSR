@@ -16,4 +16,12 @@ class CharactersController extends AbstractController
             'characters' => $characterRepo->findAll(),
         ]);
     }
+
+    // public function searchType(string $characterPath, BaseCharacterRepository $characterRepo): Response
+    // {
+    //     $characters = $characterRepo->findBy(['characterPath' => $characterPath]);
+    //         return $this->render('characters/index.html.twig', [
+    //             'characters' => $characters
+    //         ]);
+    // }
 }
