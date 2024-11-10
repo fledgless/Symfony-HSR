@@ -66,7 +66,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                 'Physical' => 'Physical',
                 'Fire' => 'Fire',
                 'Ice' => 'Ice',
-                'Thunder' => 'Thunder',
+                'Lightning' => 'Lightning',
                 'Wind' => 'Wind',
                 'Quantum' => 'Quantum',
                 'Imaginary' => 'Imaginary',
