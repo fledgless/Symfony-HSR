@@ -296,12 +296,16 @@ main .s-container .character-list .item-character {
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
+  border-radius: 10%;
   transition: 0.4s;
 }
 
-main .s-container .character-list .item-character:hover {
+main .s-container .character-list .five-star:hover {
   background-color: #DBC291;
-  border-radius: 10%;
+}
+
+main .s-container .character-list .four-star:hover {
+  background-color: #623B5A;
 }
 
 main .s-container .character-list .item-character p {
@@ -313,17 +317,32 @@ main .s-container .character-list .item-character p {
   font-size: 20px;
 }
 
+main .s-container .character-list .five-star p {
+  color: #DBC291;
+}
+
+main .s-container .character-list .four-star p {
+  color: #623B5A;
+}
+
 main .s-container .character-list .item-character:hover p {
   color: #282828;
 }
 
 main .s-container .character-list .item-character a img {
   margin-top: 10px;
-  border: 2px solid #DBC291;
   display: flex;
   justify-content: center;
 }
 
-main .s-container .character-list .item-character:hover img {
-  border: 2px solid #282828;
+main .s-container .character-list .five-star a img {
+  border: 3px solid #DBC291;
+}
+
+main .s-container .character-list .four-star a img {
+  border: 3px solid #623B5A;
+}
+
+main .s-container .character-list .item-character:hover a img {
+  border: 3px solid #282828;
 }

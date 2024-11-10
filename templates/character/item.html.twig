@@ -1,6 +1,6 @@
 {% set character_show = path('character_show', { characterName: character.characterName }) %}
 
-<div class="item-character {% if character.characterRarity == "4-star"%}4star {% else %}5star{% endif %}">
+<div class="item-character {% if character.characterRarity == "4-star"%}four-star {% else %}five-star{% endif %}">
     {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
         <a href="{{ character_show }}">
             <img src="/uploads/{{ medium.filename }}" alt="">
