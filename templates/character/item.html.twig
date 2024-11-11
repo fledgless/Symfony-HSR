@@ -2,11 +2,45 @@
 
 <div class="item-character {% if character.characterRarity == "4-star"%}four-star {% else %}five-star{% endif %}">
     {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
-        <figure>
-            <a href="{{ character_show }}">
-                <img src="/uploads/{{ medium.filename }}" alt="">
-                <figcaption>{{ character.characterName }}</figcaption>
-            </a>
-        </figure>
+        <div class="character-path-type">
+            {% if character.characterPath == "Abundance" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Abundance.webp') }}" alt="icon for abundance path">
+            {% elseif character.characterPath == "Destruction" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Destruction.webp') }}" alt="icon for destruction path">
+            {% elseif character.characterPath == "Erudition" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Erudition.webp') }}" alt="icon for erudition path">
+            {% elseif character.characterPath == "Harmony" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Harmony.webp') }}" alt="icon for harmony path">
+            {% elseif character.characterPath == "Nihility" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Nihility.webp') }}" alt="icon for nihility path">
+            {% elseif character.characterPath == "Preservation" %}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Preservation.webp') }}" alt="icon for preservation path">
+            {% elseif character.characterPath == "The Hunt"%}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_The_Hunt.webp') }}" alt="icon for hunt path">
+            {% else %}
+                <img class="character-path" src="{{ asset('images/Character_Unknown.webp') }}" alt="icon for unknown path">
+            {% endif %}
+            {% if character.characterType == "Fire" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Fire.webp') }}" alt="icon for fire elemental type path">
+            {% elseif character.characterType == "Ice" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Ice.webp') }}" alt="icon for ice elemental type path">
+            {% elseif character.characterType == "Imaginary" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Imaginary.webp') }}" alt="icon for imaginary elemental type path">
+            {% elseif character.characterType == "Lightning" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Lightning.webp') }}" alt="icon for lightning elemental type path">
+            {% elseif character.characterType == "Physical" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Physical.webp') }}" alt="icon for physical elemental type path">
+            {% elseif character.characterType == "Quantum" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Quantum.webp') }}" alt="icon for quantum elemental type path">
+            {% elseif character.characterType == "Wind" %}
+                <img class="character-type" src="{{ asset('images/Icon Type/Icon_Wind.webp') }}" alt="icon for wind elemental type path">
+            {% else %}
+                <img class="character-type" src="{{ asset('images/Character_Unknown.webp') }}" alt="icon for unknown elemental type">
+            {% endif %}
+        </div>
+        <a href="{{ character_show }}">
+            <p>{{ character.characterName }}</p>
+            <img src="/uploads/{{ medium.filename }}" alt="">
+        </a>
     {% endfor %}
 </div>

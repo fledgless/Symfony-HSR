@@ -175,8 +175,8 @@ footer {
 h1 {
   font-size: 48px;
   text-transform: uppercase;
-  margin-top: 3vh;
-  margin-bottom: 1vh;
+  margin-top: 5vh;
+  margin-bottom: 3vh;
   text-align: center;
 }
 
@@ -290,11 +290,10 @@ main .s-container .character-list {
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2vh;
 }
 
 main .s-container .character-list .item-character {
-  min-width: 150px;
+  min-width: 130px;
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -305,33 +304,46 @@ main .s-container .character-list .item-character {
 
 main .s-container .character-list .five-star {
   background: rgb(0,0,0);
-  background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
+  background: linear-gradient(210deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
 }
 
 main .s-container .character-list .four-star {
   background: rgb(98,59,90);
-  background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
+  background: linear-gradient(210deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
 
-main .s-container .character-list .item-character figure a figcaption {
+main .s-container .character-list .item-character .character-path-type {
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  margin-right: 3px;
+}
+
+main .s-container .character-list .item-character .character-path-type .character-type,
+main .s-container .character-list .item-character .character-path-type .character-path {
+  width: 25px;
+}
+
+main .s-container .character-list .item-character a p {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  font-size: 20px;
-}
-
-main .s-container .character-list .item-character figure a figcaption {
+  font-size: 16px;
   color: #FFFFFF;
+  margin-bottom: 5px;
 }
 
-main .s-container .character-list .item-character:hover figure a figcaption {
-  color: #282828;
+main .s-container .character-list .five-star:hover {
+  background: #DBC291;
 }
 
-main .s-container .character-list .item-character figure a img {
-  margin-top: 10px;
+main .s-container .character-list .four-star:hover {
+  background: rgba(98,59,90,1);
+}
+
+main .s-container .character-list .item-character a img {
   max-width: 120px;
   display: flex;
   justify-content: center;
+  margin-bottom: 5px;
 }
