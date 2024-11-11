@@ -2,9 +2,11 @@
 
 <div class="item-character {% if character.characterRarity == "4-star"%}four-star {% else %}five-star{% endif %}">
     {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
-        <a href="{{ character_show }}">
-            <img src="/uploads/{{ medium.filename }}" alt="">
-        </a>
+        <figure>
+            <a href="{{ character_show }}">
+                <img src="/uploads/{{ medium.filename }}" alt="">
+                <figcaption>{{ character.characterName }}</figcaption>
+            </a>
+        </figure>
     {% endfor %}
-    <p>{{ character.characterName }}</p>
 </div>

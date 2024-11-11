@@ -186,6 +186,10 @@ h2 {
   margin-bottom: 1vh;
 }
 
+a {
+  text-decoration: none;
+}
+
 header, footer, h1, h2, li a {
   color: #DBC291;
 }
@@ -285,64 +289,49 @@ main .s-container .character-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   margin-top: 2vh;
 }
 
 main .s-container .character-list .item-character {
-  margin: 10px;
-  min-width: 15%;
+  min-width: 150px;
   display: flex;
   flex-direction: column;
   align-content: center;
   flex-wrap: wrap;
-  border-radius: 10%;
   transition: 0.4s;
+  border: 1px solid #282828;
 }
 
-main .s-container .character-list .five-star:hover {
-  background-color: #DBC291;
+main .s-container .character-list .five-star {
+  background: rgb(0,0,0);
+  background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
 }
 
-main .s-container .character-list .four-star:hover {
-  background-color: #623B5A;
+main .s-container .character-list .four-star {
+  background: rgb(98,59,90);
+  background: linear-gradient(360deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
 
-main .s-container .character-list .item-character p {
+main .s-container .character-list .item-character figure a figcaption {
   display: flex;
   justify-content: center;
   margin-top: 5px;
   margin-bottom: 10px;
-  /* text-transform: uppercase; */
   font-size: 20px;
 }
 
-main .s-container .character-list .five-star p {
-  color: #DBC291;
+main .s-container .character-list .item-character figure a figcaption {
+  color: #FFFFFF;
 }
 
-main .s-container .character-list .four-star p {
-  color: #623B5A;
-}
-
-main .s-container .character-list .item-character:hover p {
+main .s-container .character-list .item-character:hover figure a figcaption {
   color: #282828;
 }
 
-main .s-container .character-list .item-character a img {
+main .s-container .character-list .item-character figure a img {
   margin-top: 10px;
+  max-width: 120px;
   display: flex;
   justify-content: center;
-}
-
-main .s-container .character-list .five-star a img {
-  border: 3px solid #DBC291;
-}
-
-main .s-container .character-list .four-star a img {
-  border: 3px solid #623B5A;
-}
-
-main .s-container .character-list .item-character:hover a img {
-  border: 3px solid #282828;
 }
