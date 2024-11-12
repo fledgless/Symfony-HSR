@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BaseCharacterRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BaseCharacterRepository::class)]
@@ -30,6 +32,17 @@ class BaseCharacter
 
     #[ORM\OneToOne(inversedBy: 'characterName', cascade: ['persist', 'remove'])]
     private ?CharacterEidolons $eidolons = null;
+
+    /**
+     * @var Collection<int, Media>
+     */
+    #[ORM\ManyToMany(targetEntity: Media::class)]
+    private Collection $media;
+
+    public function __construct()
+    {
+        $this->media = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -111,5 +124,29 @@ class BaseCharacter
     public function __toString()
     {
         return $this->characterName;
+    }
+
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getMedia(): Collection
+    {
+        return $this->media;
+    }
+
+    public function addMedium(Media $medium): static
+    {
+        if (!$this->media->contains($medium)) {
+            $this->media->add($medium);
+        }
+
+        return $this;
+    }
+
+    public function removeMedium(Media $medium): static
+    {
+        $this->media->removeElement($medium);
+
+        return $this;
     }
 }

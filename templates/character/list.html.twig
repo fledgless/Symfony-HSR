@@ -1,3 +1,3 @@
-{% for character in characters %}
+{% for character in characters | sort((a, b) => a.characterName <=> b.characterName) %}
     {% include "character/item.html.twig" with { character } %}
 {% endfor %}

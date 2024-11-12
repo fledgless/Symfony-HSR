@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class LightConesController extends AbstractController
 {
-    #[Route('/light/cones', name: 'app_light_cones')]
+    #[Route('/light-cones', name: 'app_light_cones')]
     public function index(): Response
     {
         return $this->render('light_cones/index.html.twig', [
