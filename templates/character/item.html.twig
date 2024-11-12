@@ -2,6 +2,11 @@
 
 <div class="item-character {% if character.characterRarity == "4-star"%}four-star {% else %}five-star{% endif %}">
     {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
+        
+        <a href="{{ character_show }}">
+            <img src="/uploads/{{ medium.filename }}" alt="">
+            <p>{{ character.characterName }}</p>
+        </a>
         <div class="character-path-type">
             {% if character.characterPath == "Abundance" %}
                 <img class="character-path" src="{{ asset('images/Icon Path/Icon_Abundance.webp') }}" alt="icon for abundance path">
@@ -38,9 +43,5 @@
                 <img class="character-type" src="{{ asset('images/Character_Unknown.webp') }}" alt="icon for unknown elemental type">
             {% endif %}
         </div>
-        <a href="{{ character_show }}">
-            <p>{{ character.characterName }}</p>
-            <img src="/uploads/{{ medium.filename }}" alt="">
-        </a>
     {% endfor %}
 </div>
