@@ -37,14 +37,14 @@ class CharacterEidolons
     #[ORM\Column(nullable: true)]
     private ?array $eidolonSix = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $stopPoint = null;
+
     /**
      * @var Collection<int, Media>
      */
-    #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'characterEidolons')]
+    #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $media;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $stopPoint = null;
 
     public function __construct()
     {
@@ -155,6 +155,18 @@ class CharacterEidolons
         return $this;
     }
 
+    public function getStopPoint(): ?string
+    {
+        return $this->stopPoint;
+    }
+
+    public function setStopPoint(?string $stopPoint): static
+    {
+        $this->stopPoint = $stopPoint;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Media>
      */
@@ -167,7 +179,6 @@ class CharacterEidolons
     {
         if (!$this->media->contains($medium)) {
             $this->media->add($medium);
-            $medium->setCharacterEidolons($this);
         }
 
         return $this;
@@ -175,24 +186,7 @@ class CharacterEidolons
 
     public function removeMedium(Media $medium): static
     {
-        if ($this->media->removeElement($medium)) {
-            // set the owning side to null (unless already changed)
-            if ($medium->getCharacterEidolons() === $this) {
-                $medium->setCharacterEidolons(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getStopPoint(): ?string
-    {
-        return $this->stopPoint;
-    }
-
-    public function setStopPoint(?string $stopPoint): static
-    {
-        $this->stopPoint = $stopPoint;
+        $this->media->removeElement($medium);
 
         return $this;
     }
