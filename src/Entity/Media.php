@@ -28,6 +28,9 @@ class Media
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageRole = null;
 
+    #[ORM\ManyToOne(inversedBy: 'media')]
+    private ?CharacterEidolons $characterEidolons = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -94,6 +97,18 @@ class Media
     public function setImageRole(?string $imageRole): static
     {
         $this->imageRole = $imageRole;
+
+        return $this;
+    }
+
+    public function getCharacterEidolons(): ?CharacterEidolons
+    {
+        return $this->characterEidolons;
+    }
+
+    public function setCharacterEidolons(?CharacterEidolons $characterEidolons): static
+    {
+        $this->characterEidolons = $characterEidolons;
 
         return $this;
     }
