@@ -1,0 +1,10 @@
+{% set lc_show = path('lc_show', { lcName: lightcone.lcName }) %}
+
+<div class="item-lc">
+    {% for medium in lightcone.media|filter(medium => medium.imageRole == 'Lc Icon') %}
+        <a href="{{ lc_show }}">
+            <img src="/uploads/{{ medium.filename }}" alt="">
+            <p>{{ lightcone.lcName }}</p>
+        </a>
+    {% endfor %}
+</div>

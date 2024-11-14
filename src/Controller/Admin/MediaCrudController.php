@@ -35,7 +35,8 @@ class MediaCrudController extends AbstractCrudController
         yield ChoiceField::new('imageRole')
             ->setChoices([
                 'Character: Icon' => 'Icon',
-                'Character Splash art' => 'Splash art',
+                'Character: Splash art' => 'Splash art',
+                'Light cone: Icon' => 'Lc Icon',
                 'Eidolon: E1' => 'E1',
                 'Eidolon: E2' => 'E2',
                 'Eidolon: E3' => 'E3',

@@ -32,6 +32,13 @@ class LightConeCrudController extends AbstractCrudController
         yield AssociationField::new('media');
 
         yield FormField::addColumn();  
+        yield ChoiceField::new('lcRarity')
+            ->renderExpanded()
+            ->setChoices([
+                '5-star' => '5-star',
+                '4-star' => '4-star',
+                '3-star' => '3-star',
+            ]);
         yield ChoiceField::new('lcPath', 'Path')
             ->renderExpanded()
             ->setChoices([
@@ -43,8 +50,6 @@ class LightConeCrudController extends AbstractCrudController
                 'Preservation' => 'Preservation',
                 'Abundance' => 'Abundance',
                 'Unknown' => 'Unknown',
-            ]);
-
-             
-    }
+            ]);             
+        }
 }
