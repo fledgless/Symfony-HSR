@@ -27,12 +27,14 @@ class LightConeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield FormField::addTab('Base LC');
         yield FormField::addColumn();
         yield TextField::new('lcName', 'Name');
         yield AssociationField::new('media');
+        yield TextEditorField::new('lcStory', 'Story');
 
         yield FormField::addColumn();  
-        yield ChoiceField::new('lcRarity')
+        yield ChoiceField::new('lcRarity', 'Rarity')
             ->renderExpanded()
             ->setChoices([
                 '5-star' => '5-star',
@@ -51,5 +53,13 @@ class LightConeCrudController extends AbstractCrudController
                 'Abundance' => 'Abundance',
                 'Unknown' => 'Unknown',
             ]);             
-        }
+
+        yield FormField::addTab('Skill');
+        yield TextField::new('lcSkillName', 'Skill');
+        yield TextEditorField::new('lcSkillOne', 'S1');
+        yield TextEditorField::new('lcSkillTwo', 'S2');
+        yield TextEditorField::new('lcSkillThree', 'S3');
+        yield TextEditorField::new('lcSkillFour', 'S4');
+        yield TextEditorField::new('lcSkillFive', 'S5');
+    }    
 }
