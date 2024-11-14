@@ -288,7 +288,8 @@ header nav .main-nav .main-nav-link:hover .sub-nav {
 
 /* character list */
 
-main .s-container .character-list {
+main .s-container .character-list,
+main .s-container .lc-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -297,7 +298,8 @@ main .s-container .character-list {
   margin-right: 15px;
 }
 
-main .s-container .character-list .item-character {
+main .s-container .character-list .item-character,
+main .s-container .lc-list .item-lc {
   width: 150px;
   display: flex;
   flex-direction: column;
@@ -308,17 +310,20 @@ main .s-container .character-list .item-character {
   border: 2px solid #282828;
 }
 
-main .s-container .character-list .five-star {
+main .s-container .character-list .five-star,
+main .s-container .lc-list .five-star  {
   background: rgb(0,0,0);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
 }
 
-main .s-container .character-list .four-star {
+main .s-container .character-list .four-star,
+main .s-container .lc-list .four-star {
   background: rgb(98,59,90);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
 
-main .s-container .character-list .item-character .character-path-type {
+main .s-container .character-list .item-character .character-path-type,
+main .s-container .lc-list .item-lc .lc-path-div {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
@@ -328,7 +333,8 @@ main .s-container .character-list .item-character .character-path-type {
 }
 
 main .s-container .character-list .item-character .character-path-type .character-type,
-main .s-container .character-list .item-character .character-path-type .character-path {
+main .s-container .character-list .item-character .character-path-type .character-path,
+main .s-container .lc-list .item-lc .lc-path-div .lc-path {
   width: 20px;
 }
 
@@ -336,7 +342,8 @@ main .s-container .character-list .item-character .character-path-type .characte
   margin-right: 10px;
 }
 
-main .s-container .character-list .item-character a p {
+main .s-container .character-list .item-character a p,
+main .s-container .lc-list .item-lc a p {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -345,15 +352,18 @@ main .s-container .character-list .item-character a p {
   margin-top: 5px;
 }
 
-main .s-container .character-list .five-star:hover {
+main .s-container .character-list .five-star:hover,
+main .s-container .lc-list .five-star:hover {
   background: #DBC291;
 }
 
-main .s-container .character-list .four-star:hover {
+main .s-container .character-list .four-star:hover,
+main .s-container .lc-list .four-star:hover {
   background: rgba(98,59,90,1);
 }
 
-main .s-container .character-list .item-character a img {
+main .s-container .character-list .item-character a img,
+main .s-container .lc-list .item-lc a img {
   width: 140px;
   display: flex;
   justify-content: center;
@@ -361,10 +371,12 @@ main .s-container .character-list .item-character a img {
 }
 
 @media screen and (max-width: 825px) {
-  main .s-container .character-list .item-character {
+  main .s-container .character-list .item-character,
+  main .s-container .lc-list .item-lc {
     width: 100px;
   }
-  main .s-container .character-list .item-character a img {
+  main .s-container .character-list .item-character a img,
+  main .s-container .lc-list .item-lc a img {
     width: 90px;
   }
 }
