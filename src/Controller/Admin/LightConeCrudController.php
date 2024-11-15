@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -31,6 +32,11 @@ class LightConeCrudController extends AbstractCrudController
         yield FormField::addColumn();
         yield TextField::new('lcName', 'Name');
         yield AssociationField::new('media');
+        yield IntegerField::new('lcBaseHp', 'Base HP');
+        yield IntegerField::new('lcBaseAtk', 'Base ATK');
+        yield IntegerField::new('lcBaseDef', 'Base DEF');
+
+        yield FormField::addColumn();
         yield TextEditorField::new('lcStory', 'Story');
 
         yield FormField::addColumn();  
