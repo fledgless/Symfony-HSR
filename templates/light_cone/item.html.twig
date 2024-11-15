@@ -1,6 +1,6 @@
 {% set lc_show = path('lc_show', { lcName: lightcone.lcName }) %}
 
-<div class="item-lc {% if lightcone.lcRarity == "5-star"%}five-star {% elseif lightcone.lcRarity == "4-star" %}four-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
+<div class="item-lc {% if lightcone.lcRarity == "4-star"%}four-star {% elseif lightcone.lcRarity == "5-star" %}five-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
     {% for medium in lightcone.media|filter(medium => medium.imageRole == 'Lc Icon') %}
         <a href="{{ lc_show }}">
             <img src="/uploads/{{ medium.filename }}" alt="">
@@ -24,5 +24,6 @@
             {% else %}
                 <img class="lc-path" src="{{ asset('images/Character_Unknown.webp') }}" alt="icon for unknown path">
             {% endif %}
+        </div>
     {% endfor %}
 </div>

@@ -322,6 +322,11 @@ main .s-container .lc-list .four-star {
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
 
+main .s-container .lc-list .three-star {
+  background: rgb(35,87,137);
+  background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(35,87,137,1) 100%);
+}
+
 main .s-container .character-list .item-character .character-path-type,
 main .s-container .lc-list .item-lc .lc-path-div {
   display: flex;
@@ -362,6 +367,10 @@ main .s-container .lc-list .four-star:hover {
   background: rgba(98,59,90,1);
 }
 
+main .s-container .lc-list .three-star:hover {
+  background: #235789;
+}
+
 main .s-container .character-list .item-character a img,
 main .s-container .lc-list .item-lc a img {
   width: 140px;
@@ -379,4 +388,19 @@ main .s-container .lc-list .item-lc a img {
   main .s-container .lc-list .item-lc a img {
     width: 90px;
   }
+}
+
+
+
+/* light cone show */
+main .s-container .lc-show h1 {
+  font-size: 32px;
+}
+
+main .s-container .lc-show .lightcone-superimposition {
+  display: none;
+}
+
+main .s-container .lc-show .lightcone-superimposition.open {
+  display: block;
 }
