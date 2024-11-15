@@ -203,6 +203,22 @@ header {
   align-items: center;
 }
 
+header .hamburger {
+  display: none;
+  background-color: #282828;
+  height: 40px;
+  width: 40px;
+  border: 2px solid #DBC291;
+  border-radius: 33%;
+  cursor: pointer;
+}
+
+header .hamburger i {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
 header nav {
   display: flex;
   justify-content: space-evenly;
@@ -259,7 +275,12 @@ header nav .main-nav .main-nav-link:hover .sub-nav {
 }
 
 @media screen and (max-width: 1140px) {
-  header nav {
+
+  header .hamburger {
+    display: block;
+  }
+
+  header .header-nav {
     display: none;
   }
 
@@ -282,6 +303,7 @@ header nav .main-nav .main-nav-link:hover .sub-nav {
   header nav.open .main-nav .main-nav-link:hover .sub-nav {
     display: none;
   }
+
 }
 
 
