@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\BaseCharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BaseCharacterRepository::class)]
@@ -39,9 +40,25 @@ class BaseCharacter
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $media;
 
+    /**
+     * @var Collection<int, LightCone>
+     */
+    #[ORM\ManyToMany(targetEntity: LightCone::class, inversedBy: 'recommendedCharacters')]
+    private Collection $recommendedLc;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $releaseDate = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $releaseVersion = null;
+
+    #[ORM\Column]
+    private ?bool $released = null;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
+        $this->recommendedLc = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +163,66 @@ class BaseCharacter
     public function removeMedium(Media $medium): static
     {
         $this->media->removeElement($medium);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LightCone>
+     */
+    public function getRecommendedLc(): Collection
+    {
+        return $this->recommendedLc;
+    }
+
+    public function addRecommendedLc(LightCone $recommendedLc): static
+    {
+        if (!$this->recommendedLc->contains($recommendedLc)) {
+            $this->recommendedLc->add($recommendedLc);
+        }
+
+        return $this;
+    }
+
+    public function removeRecommendedLc(LightCone $recommendedLc): static
+    {
+        $this->recommendedLc->removeElement($recommendedLc);
+
+        return $this;
+    }
+
+    public function getReleaseDate(): ?\DateTimeInterface
+    {
+        return $this->releaseDate;
+    }
+
+    public function setReleaseDate(?\DateTimeInterface $releaseDate): static
+    {
+        $this->releaseDate = $releaseDate;
+
+        return $this;
+    }
+
+    public function getReleaseVersion(): ?string
+    {
+        return $this->releaseVersion;
+    }
+
+    public function setReleaseVersion(string $releaseVersion): static
+    {
+        $this->releaseVersion = $releaseVersion;
+
+        return $this;
+    }
+
+    public function isReleased(): ?bool
+    {
+        return $this->released;
+    }
+
+    public function setReleased(bool $released): static
+    {
+        $this->released = $released;
 
         return $this;
     }

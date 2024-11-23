@@ -57,6 +57,7 @@ class LightConeCrudController extends AbstractCrudController
                 'Nihility' => 'Nihility',
                 'Preservation' => 'Preservation',
                 'Abundance' => 'Abundance',
+                'Remembrance' => 'Remembrance',
                 'Unknown' => 'Unknown',
             ]);             
 
@@ -67,5 +68,7 @@ class LightConeCrudController extends AbstractCrudController
         yield TextEditorField::new('lcSkillThree', 'S3');
         yield TextEditorField::new('lcSkillFour', 'S4');
         yield TextEditorField::new('lcSkillFive', 'S5');
+
+        
     }    
 }

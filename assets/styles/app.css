@@ -442,8 +442,10 @@ main .s-container .lc-show .lc-story {
   margin-top: 2vh;
   margin-right: auto;
   margin-left: auto;
-  font-style: italic;
+  font-style: oblique;
   text-align: justify;
+  background: rgb(40,40,40);
+  background: linear-gradient(164deg, rgba(40,40,40,1) 25%, rgba(0,0,0,1) 75%, rgba(40,40,40,1) 100%);
 }
 
 main .s-container .lc-show .lightcone-superimposition {

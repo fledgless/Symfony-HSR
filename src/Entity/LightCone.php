@@ -61,9 +61,16 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lcSkillName = null;
 
+    /**
+     * @var Collection<int, BaseCharacter>
+     */
+    #[ORM\ManyToMany(targetEntity: BaseCharacter::class, mappedBy: 'recommendedLc')]
+    private Collection $recommendedCharacters;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
+        $this->recommendedCharacters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -247,6 +254,33 @@ class LightCone
     public function setLcSkillName(?string $lcSkillName): static
     {
         $this->lcSkillName = $lcSkillName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BaseCharacter>
+     */
+    public function getRecommendedCharacters(): Collection
+    {
+        return $this->recommendedCharacters;
+    }
+
+    public function addRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    {
+        if (!$this->recommendedCharacters->contains($recommendedCharacter)) {
+            $this->recommendedCharacters->add($recommendedCharacter);
+            $recommendedCharacter->addRecommendedLc($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    {
+        if ($this->recommendedCharacters->removeElement($recommendedCharacter)) {
+            $recommendedCharacter->removeRecommendedLc($this);
+        }
 
         return $this;
     }
