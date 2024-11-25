@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LightConeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LightConeRepository::class)]
@@ -20,12 +21,6 @@ class LightCone
 
     #[ORM\Column(length: 255)]
     private ?string $lcPath = null;
-
-    #[ORM\Column(length: 2000, nullable: true)]
-    private ?string $lcDesc = null;
-
-    #[ORM\Column(length: 2000, nullable: true)]
-    private ?string $lcSuperimposition = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $lcBaseAtk = null;
@@ -45,9 +40,37 @@ class LightCone
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $media;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcStory = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcSkillOne = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcSkillTwo = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcSkillThree = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcSkillFour = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $lcSkillFive = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lcSkillName = null;
+
+    /**
+     * @var Collection<int, BaseCharacter>
+     */
+    #[ORM\ManyToMany(targetEntity: BaseCharacter::class, mappedBy: 'recommendedLc')]
+    private Collection $recommendedCharacters;
+
     public function __construct()
     {
         $this->media = new ArrayCollection();
+        $this->recommendedCharacters = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,30 +98,6 @@ class LightCone
     public function setLcPath(string $lcPath): static
     {
         $this->lcPath = $lcPath;
-
-        return $this;
-    }
-
-    public function getLcDesc(): ?string
-    {
-        return $this->lcDesc;
-    }
-
-    public function setLcDesc(?string $lcDesc): static
-    {
-        $this->lcDesc = $lcDesc;
-
-        return $this;
-    }
-
-    public function getLcSuperimposition(): ?string
-    {
-        return $this->lcSuperimposition;
-    }
-
-    public function setLcSuperimposition(?string $lcSuperimposition): static
-    {
-        $this->lcSuperimposition = $lcSuperimposition;
 
         return $this;
     }
@@ -171,6 +170,117 @@ class LightCone
     public function removeMedia(Media $media): static
     {
         $this->media->removeElement($media);
+
+        return $this;
+    }
+
+    public function getLcStory(): ?string
+    {
+        return $this->lcStory;
+    }
+
+    public function setLcStory(?string $lcStory): static
+    {
+        $this->lcStory = $lcStory;
+
+        return $this;
+    }
+
+    public function getLcSkillOne(): ?string
+    {
+        return $this->lcSkillOne;
+    }
+
+    public function setLcSkillOne(?string $lcSkillOne): static
+    {
+        $this->lcSkillOne = $lcSkillOne;
+
+        return $this;
+    }
+
+    public function getLcSkillTwo(): ?string
+    {
+        return $this->lcSkillTwo;
+    }
+
+    public function setLcSkillTwo(?string $lcSkillTwo): static
+    {
+        $this->lcSkillTwo = $lcSkillTwo;
+
+        return $this;
+    }
+
+    public function getLcSkillThree(): ?string
+    {
+        return $this->lcSkillThree;
+    }
+
+    public function setLcSkillThree(string $lcSkillThree): static
+    {
+        $this->lcSkillThree = $lcSkillThree;
+
+        return $this;
+    }
+
+    public function getLcSkillFour(): ?string
+    {
+        return $this->lcSkillFour;
+    }
+
+    public function setLcSkillFour(?string $lcSkillFour): static
+    {
+        $this->lcSkillFour = $lcSkillFour;
+
+        return $this;
+    }
+
+    public function getLcSkillFive(): ?string
+    {
+        return $this->lcSkillFive;
+    }
+
+    public function setLcSkillFive(?string $lcSkillFive): static
+    {
+        $this->lcSkillFive = $lcSkillFive;
+
+        return $this;
+    }
+
+    public function getLcSkillName(): ?string
+    {
+        return $this->lcSkillName;
+    }
+
+    public function setLcSkillName(?string $lcSkillName): static
+    {
+        $this->lcSkillName = $lcSkillName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BaseCharacter>
+     */
+    public function getRecommendedCharacters(): Collection
+    {
+        return $this->recommendedCharacters;
+    }
+
+    public function addRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    {
+        if (!$this->recommendedCharacters->contains($recommendedCharacter)) {
+            $this->recommendedCharacters->add($recommendedCharacter);
+            $recommendedCharacter->addRecommendedLc($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    {
+        if ($this->recommendedCharacters->removeElement($recommendedCharacter)) {
+            $recommendedCharacter->removeRecommendedLc($this);
+        }
 
         return $this;
     }

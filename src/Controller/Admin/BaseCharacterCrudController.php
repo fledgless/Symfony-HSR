@@ -7,7 +7,9 @@ use App\Entity\Media;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -41,12 +43,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                 '4-star' => '4-star',
                 'Trailblazer' => 'Trailblazer',
             ]);
-        yield AssociationField::new('media');
-
-        yield FormField::addColumn()
-            ->hideOnDetail();
         yield ChoiceField::new('characterPath')
-            ->renderExpanded()
             ->setChoices([
                 'Destruction' => 'Destruction',
                 'The Hunt' => 'The Hunt',
@@ -55,13 +52,10 @@ class BaseCharacterCrudController extends AbstractCrudController
                 'Nihility' => 'Nihility',
                 'Preservation' => 'Preservation',
                 'Abundance' => 'Abundance',
+                'Remembrance' => 'Remembrance',
                 'Unknown' => 'Unknown',
             ]);
-
-        yield FormField::addColumn()
-            ->hideOnDetail();
         yield ChoiceField::new('characterType')
-            ->renderExpanded()
             ->setChoices([
                 'Physical' => 'Physical',
                 'Fire' => 'Fire',
@@ -72,5 +66,32 @@ class BaseCharacterCrudController extends AbstractCrudController
                 'Imaginary' => 'Imaginary',
                 'Unknown' => 'Unknown',
             ]);
+
+        yield FormField::addColumn()
+            ->hideOnDetail();
+        yield BooleanField::new('released');
+        yield ChoiceField::new('releaseVersion')
+            ->setChoices([
+                    '1.0' => '1.0', 
+                    '1.1' => '1.1', 
+                    '1.2' => '1.2', 
+                    '1.3' => '1.3', 
+                    '1.4' => '1.4', 
+                    '1.5' => '1.5', 
+                    '1.6' => '1.6',
+    
+                    '2.0' => '2.0', 
+                    '2.1' => '2.1', 
+                    '2.2' => '2.2', 
+                    '2.3' => '2.3', 
+                    '2.4' => '2.4', 
+                    '2.5' => '2.5', 
+                    '2.6' => '2.6', 
+                    '2.7' => '2.7',
+    
+                    '3.0' => '3.0',
+                ]);
+        yield DateField::new('releaseDate');
+        yield AssociationField::new('media');
     }
 }

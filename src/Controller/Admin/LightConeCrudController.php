@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -27,11 +28,25 @@ class LightConeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield FormField::addTab('Base LC');
         yield FormField::addColumn();
         yield TextField::new('lcName', 'Name');
         yield AssociationField::new('media');
+        yield IntegerField::new('lcBaseHp', 'Base HP');
+        yield IntegerField::new('lcBaseAtk', 'Base ATK');
+        yield IntegerField::new('lcBaseDef', 'Base DEF');
+
+        yield FormField::addColumn();
+        yield TextEditorField::new('lcStory', 'Story');
 
         yield FormField::addColumn();  
+        yield ChoiceField::new('lcRarity', 'Rarity')
+            ->renderExpanded()
+            ->setChoices([
+                '5-star' => '5-star',
+                '4-star' => '4-star',
+                '3-star' => '3-star',
+            ]);
         yield ChoiceField::new('lcPath', 'Path')
             ->renderExpanded()
             ->setChoices([
@@ -42,9 +57,18 @@ class LightConeCrudController extends AbstractCrudController
                 'Nihility' => 'Nihility',
                 'Preservation' => 'Preservation',
                 'Abundance' => 'Abundance',
+                'Remembrance' => 'Remembrance',
                 'Unknown' => 'Unknown',
-            ]);
+            ]);             
 
-             
-    }
+        yield FormField::addTab('Skill');
+        yield TextField::new('lcSkillName', 'Skill');
+        yield TextEditorField::new('lcSkillOne', 'S1');
+        yield TextEditorField::new('lcSkillTwo', 'S2');
+        yield TextEditorField::new('lcSkillThree', 'S3');
+        yield TextEditorField::new('lcSkillFour', 'S4');
+        yield TextEditorField::new('lcSkillFive', 'S5');
+
+        
+    }    
 }

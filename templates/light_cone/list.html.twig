@@ -1,0 +1,3 @@
+{% for lightcone in lightcones | sort((a, b) => a.lcName <=> b.lcName) %}
+    {% include "light_cone/item.html.twig" with { lightcone } %}
+{% endfor %}

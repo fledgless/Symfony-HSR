@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="lc-show {% if lightcone.lcRarity == "4-star"%}four-star {% elseif lightcone.lcRarity == "5-star" %}five-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
+        <div class="lc-basic-info">
+            {% for medium in lightcone.media|filter(medium => medium.imageRole == 'Lc Splash art') %}
+                <div class="lc-basic-info-splash-laptop">
+                    <img src="/uploads/{{ medium.filename }}" alt="">
+                </div>
+            {% endfor %} 
+            <div class="lc-basic-info-text">
+                <h1>{{ lightcone.lcName }}</h1>
+                {% for medium in lightcone.media|filter(medium => medium.imageRole == 'Lc Splash art') %}
+                    <div class="lc-basic-info-splash-mobile">
+                        <img src="/uploads/{{ medium.filename }}" alt="">
+                    </div>
+                {% endfor %} 
+                <div class="lc-basic-info-base-stats">
+                        <h2>Base stats</h2>
+                        <div class="lc-base-stats"> 
+                            <div class="lc-base-hp">
+                                <p>HP</p>
+                                <p class="lc-base-stat-value">{{ lightcone.lcBaseHp }}</p>
+                            </div>
+                            <hr>
+                            <div class="lc-base-atk">
+                                <p>ATK</p>
+                                <p class="lc-base-stat-value">{{ lightcone.lcBaseAtk }}</p>
+                            </div>
+                            <hr>
+                            <div class="lc-base-def">
+                                <p>DEF</p>
+                                <p class="lc-base-stat-value">{{ lightcone.lcBaseDef }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lc-story">{{ lightcone.lcStory|raw }}</div>
+                </div>
+            </div>
+            <div class="skill">
+                <div class="skill-superimposition">
+                    <h2>{{ lightcone.lcSkillName }}</h2>
+                    <nav class="superimposition">
+                        <li class="superimposition-toggle active" id="toggle-sone">S1</li>
+                        <li class="superimposition-toggle" id="toggle-stwo">S2</li>
+                        <li class="superimposition-toggle" id="toggle-sthree">S3</li>
+                        <li class="superimposition-toggle" id="toggle-sfour">S4</li>
+                        <li class="superimposition-toggle" id="toggle-sfive">S5</li>
+                    </nav>
+                    <div class="lightcone-superimposition open" id="superimposition-one">{{ lightcone.lcSkillOne|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-two">{{ lightcone.lcSkillTwo|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-three">{{ lightcone.lcSkillThree|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-four">{{ lightcone.lcSkillFour|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-five">{{ lightcone.lcSkillFive|raw }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

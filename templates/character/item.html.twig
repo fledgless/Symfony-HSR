@@ -1,8 +1,7 @@
 {% set character_show = path('character_show', { characterName: character.characterName }) %}
 
-<div class="item-character {% if character.characterRarity == "4-star"%}four-star {% else %}five-star{% endif %}">
-    {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %}
-        
+<div class="item-character {% if character.characterRarity == "4-star" %}four-star {% else %}five-star{% endif %}">
+    {% for medium in character.media|filter(medium => medium.imageRole == 'Icon') %} 
         <a href="{{ character_show }}">
             <img src="/uploads/{{ medium.filename }}" alt="">
             <p>{{ character.characterName }}</p>
@@ -20,6 +19,8 @@
                 <img class="character-path" src="{{ asset('images/Icon Path/Icon_Nihility.webp') }}" alt="icon for nihility path">
             {% elseif character.characterPath == "Preservation" %}
                 <img class="character-path" src="{{ asset('images/Icon Path/Icon_Preservation.webp') }}" alt="icon for preservation path">
+            {% elseif character.characterPath == "Remembrance"%}
+                <img class="character-path" src="{{ asset('images/Icon Path/Icon_Remembrance.webp') }}" alt="icon for remembrance path">
             {% elseif character.characterPath == "The Hunt"%}
                 <img class="character-path" src="{{ asset('images/Icon Path/Icon_The_Hunt.webp') }}" alt="icon for hunt path">
             {% else %}

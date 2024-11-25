@@ -7,18 +7,50 @@
             {% if character.eidolons %}
                 <div class="eidolons">
                     <h2>Eidolons</h2>
-                    <h3>Eidolon 1: {{ character.eidolons.eidolonNames|slice(0, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(0, 1)|join('') }}</p>
-                    <h3>Eidolon 2: {{ character.eidolons.eidolonNames|slice(1, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(1, 1)|join('') }}</p>
-                    <h3>Eidolon 3: {{ character.eidolons.eidolonNames|slice(2, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(2, 1)|join('') }}</p>
-                    <h3>Eidolon 4: {{ character.eidolons.eidolonNames|slice(3, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(3, 1)|join('') }}</p>
-                    <h3>Eidolon 5: {{ character.eidolons.eidolonNames|slice(4, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(4, 1)|join('') }}</p>
-                    <h3>Eidolon 6: {{ character.eidolons.eidolonNames|slice(5, 1)|join('') }}</h3>
-                    <p>{{ character.eidolons.eidolonDescriptions|slice(5, 1)|join('') }}</p>
+                    {% if character.eidolons.eidolonOne %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E1') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 1: {{ character.eidolons.eidolonOne|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonOne|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    {% if character.eidolons.eidolonTwo %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E2') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 2: {{ character.eidolons.eidolonTwo|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonTwo|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    {% if character.eidolons.eidolonThree %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E3') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 3: {{ character.eidolons.eidolonThree|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonThree|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    {% if character.eidolons.eidolonFour %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E4') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 4: {{ character.eidolons.eidolonFour|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonFour|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    {% if character.eidolons.eidolonFive %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E5') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 5: {{ character.eidolons.eidolonFive|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonFive|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    {% if character.eidolons.eidolonSix %}
+                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E6') %}
+                            <img src="/uploads/{{ medium.filename }}" alt="">
+                        {% endfor %}
+                        <h3>Eidolon 6: {{ character.eidolons.eidolonSix|slice(0, 1)|join('') }}</h3>
+                        <p>{{ character.eidolons.eidolonSix|slice(1, 1)|join('') }}</p>
+                    {% endif %}
+                    <h2>Recommended stopping point for eidolons</h2>
+                    <p>{{ character.eidolons.stopPoint|raw }}</p>
                 </div>
             {% endif %}
         </div>
