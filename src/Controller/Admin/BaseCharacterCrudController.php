@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -36,35 +37,14 @@ class BaseCharacterCrudController extends AbstractCrudController
         yield FormField::addColumn()
             ->hideOnDetail();
         yield TextField::new('characterName');
+        yield SlugField::new('slug')
+            ->setTargetFieldName('characterName');
         yield ChoiceField::new('characterRarity')
             ->renderExpanded()
             ->setChoices([
                 '5-star' => '5-star',
                 '4-star' => '4-star',
                 'Trailblazer' => 'Trailblazer',
-            ]);
-        yield ChoiceField::new('characterPath')
-            ->setChoices([
-                'Destruction' => 'Destruction',
-                'The Hunt' => 'The Hunt',
-                'Erudition' => 'Erudition',
-                'Harmony' => 'Harmony',
-                'Nihility' => 'Nihility',
-                'Preservation' => 'Preservation',
-                'Abundance' => 'Abundance',
-                'Remembrance' => 'Remembrance',
-                'Unknown' => 'Unknown',
-            ]);
-        yield ChoiceField::new('characterType')
-            ->setChoices([
-                'Physical' => 'Physical',
-                'Fire' => 'Fire',
-                'Ice' => 'Ice',
-                'Lightning' => 'Lightning',
-                'Wind' => 'Wind',
-                'Quantum' => 'Quantum',
-                'Imaginary' => 'Imaginary',
-                'Unknown' => 'Unknown',
             ]);
 
         yield FormField::addColumn()

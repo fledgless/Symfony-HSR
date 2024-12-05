@@ -20,7 +20,13 @@ class LightCone
     private ?string $lcName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcPath = null;
+    private ?string $lcSlug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lcRarity = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?Path $lcPath = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $lcBaseAtk = null;
@@ -31,14 +37,11 @@ class LightCone
     #[ORM\Column(nullable: true)]
     private ?int $lcBaseHp = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lcRarity = null;
-
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $media;
+    private Collection $lcIcons;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $lcStory = null;
@@ -61,16 +64,14 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lcSkillName = null;
 
-    /**
-     * @var Collection<int, BaseCharacter>
-     */
-    #[ORM\ManyToMany(targetEntity: BaseCharacter::class, mappedBy: 'recommendedLc')]
-    private Collection $recommendedCharacters;
-
     public function __construct()
     {
-        $this->media = new ArrayCollection();
-        $this->recommendedCharacters = new ArrayCollection();
+        $this->lcIcons = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->lcName;
     }
 
     public function getId(): ?int
@@ -90,12 +91,36 @@ class LightCone
         return $this;
     }
 
-    public function getLcPath(): ?string
+    public function getLcSlug(): ?string
+    {
+        return $this->lcSlug;
+    }
+
+    public function setLcSlug(string $lcSlug): static
+    {
+        $this->lcSlug = $lcSlug;
+
+        return $this;
+    }
+
+    public function getLcRarity(): ?string
+    {
+        return $this->lcRarity;
+    }
+
+    public function setLcRarity(string $lcRarity): static
+    {
+        $this->lcRarity = $lcRarity;
+
+        return $this;
+    }
+
+    public function getLcPath(): ?Path
     {
         return $this->lcPath;
     }
 
-    public function setLcPath(string $lcPath): static
+    public function setLcPath(?Path $lcPath): static
     {
         $this->lcPath = $lcPath;
 
@@ -138,38 +163,26 @@ class LightCone
         return $this;
     }
 
-    public function getLcRarity(): ?string
-    {
-        return $this->lcRarity;
-    }
-
-    public function setLcRarity(string $lcRarity): static
-    {
-        $this->lcRarity = $lcRarity;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Media>
      */
-    public function getMedia(): Collection
+    public function getLcIcons(): Collection
     {
-        return $this->media;
+        return $this->lcIcons;
     }
 
-    public function addMedia(Media $media): static
+    public function addLcIcon(Media $lcIcon): static
     {
-        if (!$this->media->contains($media)) {
-            $this->media->add($media);
+        if (!$this->lcIcons->contains($lcIcon)) {
+            $this->lcIcons->add($lcIcon);
         }
 
         return $this;
     }
 
-    public function removeMedia(Media $media): static
+    public function removeLcIcon(Media $lcIcon): static
     {
-        $this->media->removeElement($media);
+        $this->lcIcons->removeElement($lcIcon);
 
         return $this;
     }
@@ -254,33 +267,6 @@ class LightCone
     public function setLcSkillName(?string $lcSkillName): static
     {
         $this->lcSkillName = $lcSkillName;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, BaseCharacter>
-     */
-    public function getRecommendedCharacters(): Collection
-    {
-        return $this->recommendedCharacters;
-    }
-
-    public function addRecommendedCharacter(BaseCharacter $recommendedCharacter): static
-    {
-        if (!$this->recommendedCharacters->contains($recommendedCharacter)) {
-            $this->recommendedCharacters->add($recommendedCharacter);
-            $recommendedCharacter->addRecommendedLc($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRecommendedCharacter(BaseCharacter $recommendedCharacter): static
-    {
-        if ($this->recommendedCharacters->removeElement($recommendedCharacter)) {
-            $recommendedCharacter->removeRecommendedLc($this);
-        }
 
         return $this;
     }

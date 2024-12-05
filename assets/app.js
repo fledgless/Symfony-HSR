@@ -7,35 +7,17 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-// toggle nav hamburger
-let mainnav = document.querySelector(".header-nav");
-let hamburger = document.querySelector(".hamburger");
-hamburger.addEventListener("click", () => {
-    mainnav.classList.toggle("open");
-    }
-)
-
-let links = document.querySelectorAll(".main-nav-links");
-links.forEach((links) => {
-    links.addEventListener("click", () => {
-        mainnav.classList.remove("open");
-    })
-})
-
 // toggle light cone superimposition
-let superimposition = document.querySelectorAll(".lightcone-superimposition");
-let activeopen = document.querySelector(".open");
-let toggleS1 = document.querySelector("#toggle-sone");
-let toggleS2 = document.querySelector("#toggle-stwo");
-let toggleS3 = document.querySelector("#toggle-sthree");
-let toggleS4 = document.querySelector("#toggle-sfour");
-let toggleS5 = document.querySelector("#toggle-sfive");
-
-let s1 = document.querySelector("#superimposition-one");
-let s2 = document.querySelector("#superimposition-two");
-let s3 = document.querySelector("#superimposition-three");
-let s4 = document.querySelector("#superimposition-four");
-let s5 = document.querySelector("#superimposition-five");
+let toggleS1 = document.querySelector("#toggle-sone"),
+    toggleS2 = document.querySelector("#toggle-stwo"),
+    toggleS3 = document.querySelector("#toggle-sthree"),
+    toggleS4 = document.querySelector("#toggle-sfour"),
+    toggleS5 = document.querySelector("#toggle-sfive"),
+    s1 = document.querySelector("#superimposition-one"),
+    s2 = document.querySelector("#superimposition-two"),
+    s3 = document.querySelector("#superimposition-three"),
+    s4 = document.querySelector("#superimposition-four"),
+    s5 = document.querySelector("#superimposition-five");
 
 toggleS1.addEventListener("click", () => {
     s1.classList.add("open");
