@@ -64,6 +64,21 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lcSkillName = null;
 
+    #[ORM\Column]
+    private ?bool $lcAnnounced = false;
+
+    #[ORM\Column]
+    private ?bool $lcReleased = false;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lcObtainable = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?AscensionMats $lcAscMats = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?TraceMats $lcTraceMats = null;
+
     public function __construct()
     {
         $this->lcIcons = new ArrayCollection();
@@ -267,6 +282,66 @@ class LightCone
     public function setLcSkillName(?string $lcSkillName): static
     {
         $this->lcSkillName = $lcSkillName;
+
+        return $this;
+    }
+
+    public function isLcAnnounced(): ?bool
+    {
+        return $this->lcAnnounced;
+    }
+
+    public function setLcAnnounced(bool $lcAnnounced): static
+    {
+        $this->lcAnnounced = $lcAnnounced;
+
+        return $this;
+    }
+
+    public function isLcReleased(): ?bool
+    {
+        return $this->lcReleased;
+    }
+
+    public function setLcReleased(bool $lcReleased): static
+    {
+        $this->lcReleased = $lcReleased;
+
+        return $this;
+    }
+
+    public function getLcObtainable(): ?string
+    {
+        return $this->lcObtainable;
+    }
+
+    public function setLcObtainable(string $lcObtainable): static
+    {
+        $this->lcObtainable = $lcObtainable;
+
+        return $this;
+    }
+
+    public function getLcAscMats(): ?AscensionMats
+    {
+        return $this->lcAscMats;
+    }
+
+    public function setLcAscMats(?AscensionMats $lcAscMats): static
+    {
+        $this->lcAscMats = $lcAscMats;
+
+        return $this;
+    }
+
+    public function getLcTraceMats(): ?TraceMats
+    {
+        return $this->lcTraceMats;
+    }
+
+    public function setLcTraceMats(?TraceMats $lcTraceMats): static
+    {
+        $this->lcTraceMats = $lcTraceMats;
 
         return $this;
     }

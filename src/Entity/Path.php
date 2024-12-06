@@ -33,10 +33,17 @@ class Path
     #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'lcPath')]
     private Collection $lightCones;
 
+    /**
+     * @var Collection<int, TraceMats>
+     */
+    #[ORM\OneToMany(targetEntity: TraceMats::class, mappedBy: 'traceMatsPath')]
+    private Collection $traceMats;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
         $this->lightCones = new ArrayCollection();
+        $this->traceMats = new ArrayCollection();
     }
 
     public function __toString()
@@ -127,6 +134,36 @@ class Path
             // set the owning side to null (unless already changed)
             if ($lightCone->getLcPath() === $this) {
                 $lightCone->setLcPath(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TraceMats>
+     */
+    public function getTraceMats(): Collection
+    {
+        return $this->traceMats;
+    }
+
+    public function addTraceMat(TraceMats $traceMat): static
+    {
+        if (!$this->traceMats->contains($traceMat)) {
+            $this->traceMats->add($traceMat);
+            $traceMat->setTraceMatsPath($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTraceMat(TraceMats $traceMat): static
+    {
+        if ($this->traceMats->removeElement($traceMat)) {
+            // set the owning side to null (unless already changed)
+            if ($traceMat->getTraceMatsPath() === $this) {
+                $traceMat->setTraceMatsPath(null);
             }
         }
 

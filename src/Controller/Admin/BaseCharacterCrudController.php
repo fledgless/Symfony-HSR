@@ -52,7 +52,7 @@ class BaseCharacterCrudController extends AbstractCrudController
         yield FormField::addColumn()
                 ->hideOnDetail();
             yield BooleanField::new('characterAnnounced', 'Was the character officially announced?');
-            yield BooleanField::new('characterReleased', 'Is the character released?');
+            yield BooleanField::new('characterReleased', 'Is the character released in-game?');
             yield ChoiceField::new('characterReleaseVersion', 'If announced, choose release version:')
                 ->setChoices([
                     '1.0' => '1.0', 

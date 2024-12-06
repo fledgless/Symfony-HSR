@@ -33,10 +33,31 @@ class NormalEnemy
     #[ORM\ManyToMany(targetEntity: AscensionMats::class, mappedBy: 'ascMatsEnemies')]
     private Collection $ascensionMats;
 
+    /**
+     * @var Collection<int, Type>
+     */
+    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'normalEnemies')]
+    private Collection $normalEnemyWeaknesses;
+
+    /**
+     * @var Collection<int, GoldenCalyx>
+     */
+    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'goldenCalyxEnemies')]
+    private Collection $goldenCalyxes;
+
+    /**
+     * @var Collection<int, CrimsonCalyx>
+     */
+    #[ORM\ManyToMany(targetEntity: CrimsonCalyx::class, mappedBy: 'crimsonCalyxEnemies')]
+    private Collection $crimsonCalyxes;
+
     public function __construct()
     {
         $this->normalEnemyLocation = new ArrayCollection();
         $this->ascensionMats = new ArrayCollection();
+        $this->normalEnemyWeaknesses = new ArrayCollection();
+        $this->goldenCalyxes = new ArrayCollection();
+        $this->crimsonCalyxes = new ArrayCollection();
     }
 
     public function __toString()
@@ -119,6 +140,84 @@ class NormalEnemy
     {
         if ($this->ascensionMats->removeElement($ascensionMat)) {
             $ascensionMat->removeAscMatsEnemy($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Type>
+     */
+    public function getNormalEnemyWeaknesses(): Collection
+    {
+        return $this->normalEnemyWeaknesses;
+    }
+
+    public function addNormalEnemyWeakness(Type $normalEnemyWeakness): static
+    {
+        if (!$this->normalEnemyWeaknesses->contains($normalEnemyWeakness)) {
+            $this->normalEnemyWeaknesses->add($normalEnemyWeakness);
+        }
+
+        return $this;
+    }
+
+    public function removeNormalEnemyWeakness(Type $normalEnemyWeakness): static
+    {
+        $this->normalEnemyWeaknesses->removeElement($normalEnemyWeakness);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GoldenCalyx>
+     */
+    public function getGoldenCalyxes(): Collection
+    {
+        return $this->goldenCalyxes;
+    }
+
+    public function addGoldenCalyx(GoldenCalyx $goldenCalyx): static
+    {
+        if (!$this->goldenCalyxes->contains($goldenCalyx)) {
+            $this->goldenCalyxes->add($goldenCalyx);
+            $goldenCalyx->addGoldenCalyxEnemy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGoldenCalyx(GoldenCalyx $goldenCalyx): static
+    {
+        if ($this->goldenCalyxes->removeElement($goldenCalyx)) {
+            $goldenCalyx->removeGoldenCalyxEnemy($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CrimsonCalyx>
+     */
+    public function getCrimsonCalyxes(): Collection
+    {
+        return $this->crimsonCalyxes;
+    }
+
+    public function addCrimsonCalyx(CrimsonCalyx $crimsonCalyx): static
+    {
+        if (!$this->crimsonCalyxes->contains($crimsonCalyx)) {
+            $this->crimsonCalyxes->add($crimsonCalyx);
+            $crimsonCalyx->addCrimsonCalyxEnemy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCrimsonCalyx(CrimsonCalyx $crimsonCalyx): static
+    {
+        if ($this->crimsonCalyxes->removeElement($crimsonCalyx)) {
+            $crimsonCalyx->removeCrimsonCalyxEnemy($this);
         }
 
         return $this;

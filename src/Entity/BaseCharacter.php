@@ -41,16 +41,28 @@ class BaseCharacter
     private Collection $characterIcons;
 
     #[ORM\Column]
-    private ?bool $characterReleased = null;
+    private ?bool $characterReleased = false;
 
     #[ORM\Column]
-    private ?bool $characterAnnounced = null;
+    private ?bool $characterAnnounced = false;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $characterReleaseDate = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $characterReleaseVersion = null;
+
+    #[ORM\ManyToOne(inversedBy: 'baseCharacters')]
+    private ?AscensionMats $characterAscMats = null;
+
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    private ?BossMat $characterBossMat = null;
+
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    private ?WeeklyMat $characterWeeklyMat = null;
+
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    private ?TraceMats $characterTraceMats = null;
 
     public function __construct()
     {
@@ -207,6 +219,54 @@ class BaseCharacter
     public function setCharacterReleaseVersion(string $characterReleaseVersion): static
     {
         $this->characterReleaseVersion = $characterReleaseVersion;
+
+        return $this;
+    }
+
+    public function getCharacterAscMats(): ?AscensionMats
+    {
+        return $this->characterAscMats;
+    }
+
+    public function setCharacterAscMats(?AscensionMats $characterAscMats): static
+    {
+        $this->characterAscMats = $characterAscMats;
+
+        return $this;
+    }
+
+    public function getCharacterBossMat(): ?BossMat
+    {
+        return $this->characterBossMat;
+    }
+
+    public function setCharacterBossMat(?BossMat $characterBossMat): static
+    {
+        $this->characterBossMat = $characterBossMat;
+
+        return $this;
+    }
+
+    public function getCharacterWeeklyMat(): ?WeeklyMat
+    {
+        return $this->characterWeeklyMat;
+    }
+
+    public function setCharacterWeeklyMat(?WeeklyMat $characterWeeklyMat): static
+    {
+        $this->characterWeeklyMat = $characterWeeklyMat;
+
+        return $this;
+    }
+
+    public function getCharacterTraceMats(): ?TraceMats
+    {
+        return $this->characterTraceMats;
+    }
+
+    public function setCharacterTraceMats(?TraceMats $characterTraceMats): static
+    {
+        $this->characterTraceMats = $characterTraceMats;
 
         return $this;
     }

@@ -36,39 +36,39 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         
         yield MenuItem::section('Characters');
-        yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
-            MenuItem::linkToCrud('Eidolons', 'fas fa-person-burst', CharacterEidolons::class),
-            MenuItem::linkToCrud('Add eidolons', 'fas fa-cart-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
-        ]);
+            yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
+                MenuItem::linkToCrud('Eidolons', 'fas fa-person-burst', CharacterEidolons::class),
+                MenuItem::linkToCrud('Add eidolons', 'fas fa-cart-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
+            ]);
         
         yield MenuItem::section('Light cones');
-        yield MenuItem::subMenu('Light cones','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Light cone list', 'fas fa-list', LightCone::class),
-            MenuItem::linkToCrud('New light cone', 'fas fa-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
-        ]);
+            yield MenuItem::subMenu('Light cones','fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Light cone list', 'fas fa-list', LightCone::class),
+                MenuItem::linkToCrud('New light cone', 'fas fa-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
+            ]);
         
         // fill with the actual mats once done and crud created
         yield MenuItem::section('Materials');
-        yield MenuItem::subMenu('Ascension materials','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Boss materials','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Trace materials','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
-        yield MenuItem::subMenu('Weekly boss materials','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
+            yield MenuItem::subMenu('Ascension materials','fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Boss materials','fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Trace materials','fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Weekly boss materials','fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+            ]);
 
         yield MenuItem::section('Enemies');
         yield MenuItem::subMenu('Normal enemies','fas fa-gun')->setSubItems([

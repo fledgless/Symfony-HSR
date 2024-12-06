@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Entity\Location;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -15,14 +17,11 @@ class LocationCrudController extends AbstractCrudController
         return Location::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield TextField::new('locationName');
+        yield TextField::new('locationWorld');
+        yield AssociationField::new('locationIcon');
+        yield BooleanField::new('locationReleased', 'Is the location released in-game?');
     }
-    */
 }

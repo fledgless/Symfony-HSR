@@ -6,6 +6,7 @@ use App\Entity\LightCone;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -48,6 +49,39 @@ class LightConeCrudController extends AbstractCrudController
                 yield TextEditorField::new('lcStory', 'Story');
 
         yield FormField::addColumn();
+            yield BooleanField::new('lcAnnounced', 'Was the Light Cone officially announced?');
+            yield BooleanField::new('lcReleased', 'Is the Light Cone released in-game?');
+            yield ChoiceField::new('lcReleaseVersion', 'If announced, choose release version:')
+                ->setChoices([
+                    '1.0' => '1.0', 
+                    '1.1' => '1.1', 
+                    '1.2' => '1.2', 
+                    '1.3' => '1.3', 
+                    '1.4' => '1.4', 
+                    '1.5' => '1.5', 
+                    '1.6' => '1.6',
+    
+                    '2.0' => '2.0', 
+                    '2.1' => '2.1', 
+                    '2.2' => '2.2', 
+                    '2.3' => '2.3', 
+                    '2.4' => '2.4', 
+                    '2.5' => '2.5', 
+                    '2.6' => '2.6', 
+                    '2.7' => '2.7',
+    
+                    '3.0' => '3.0',
+                    '3.1' => '3.1',
+                ]);
+            yield ChoiceField::new('lcObtainable', 'How can this Light Cone be obtained in game?')
+                ->setChoices([
+                    'Brilliant Fixation Banner',
+                    'Permanent Banner',
+                    'Limited Event Rewards',
+                    "Herta's Shop",
+                    'Battle Pass',
+                    'Forgotten Hall',
+                ]);
             yield IntegerField::new('lcBaseHp', 'Base HP');
             yield IntegerField::new('lcBaseAtk', 'Base ATK');
             yield IntegerField::new('lcBaseDef', 'Base DEF');

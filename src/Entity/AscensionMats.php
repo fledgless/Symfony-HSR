@@ -24,12 +24,11 @@ class AscensionMats
     #[ORM\Column(length: 255)]
     private ?string $ascMatTwoStarName = null;
 
+    #[ORM\Column]
+    private ?bool $ascMatReleased = false;
 
     #[ORM\Column]
-    private ?bool $ascMatReleased = null;
-
-    #[ORM\Column]
-    private ?bool $ascMatAnnounced = null;
+    private ?bool $ascMatAnnounced = false;
 
     /**
      * @var Collection<int, Media>
@@ -43,10 +42,31 @@ class AscensionMats
     #[ORM\ManyToMany(targetEntity: NormalEnemy::class, inversedBy: 'ascensionMats')]
     private Collection $ascMatsEnemies;
 
+    /**
+     * @var Collection<int, GoldenCalyx>
+     */
+    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'goldenCalyxAscMats')]
+    private Collection $goldenCalyxes;
+
+    /**
+     * @var Collection<int, LightCone>
+     */
+    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'lcAscMats')]
+    private Collection $lightCones;
+
+    /**
+     * @var Collection<int, BaseCharacter>
+     */
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterAscMats')]
+    private Collection $characters;
+
     public function __construct()
     {
         $this->ascMatIcons = new ArrayCollection();
         $this->ascMatsEnemies = new ArrayCollection();
+        $this->goldenCalyxes = new ArrayCollection();
+        $this->lightCones = new ArrayCollection();
+        $this->characters = new ArrayCollection();
     }
 
     public function __toString()
@@ -163,6 +183,93 @@ class AscensionMats
     public function removeAscMatsEnemy(NormalEnemy $ascMatsEnemy): static
     {
         $this->ascMatsEnemies->removeElement($ascMatsEnemy);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, GoldenCalyx>
+     */
+    public function getGoldenCalyxes(): Collection
+    {
+        return $this->goldenCalyxes;
+    }
+
+    public function addGoldenCalyx(GoldenCalyx $goldenCalyx): static
+    {
+        if (!$this->goldenCalyxes->contains($goldenCalyx)) {
+            $this->goldenCalyxes->add($goldenCalyx);
+            $goldenCalyx->addGoldenCalyxAscMat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGoldenCalyx(GoldenCalyx $goldenCalyx): static
+    {
+        if ($this->goldenCalyxes->removeElement($goldenCalyx)) {
+            $goldenCalyx->removeGoldenCalyxAscMat($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LightCone>
+     */
+    public function getLightCones(): Collection
+    {
+        return $this->lightCones;
+    }
+
+    public function addLightCone(LightCone $lightCone): static
+    {
+        if (!$this->lightCones->contains($lightCone)) {
+            $this->lightCones->add($lightCone);
+            $lightCone->setLcAscMats($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLightCone(LightCone $lightCone): static
+    {
+        if ($this->lightCones->removeElement($lightCone)) {
+            // set the owning side to null (unless already changed)
+            if ($lightCone->getLcAscMats() === $this) {
+                $lightCone->setLcAscMats(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BaseCharacter>
+     */
+    public function getCharacters(): Collection
+    {
+        return $this->characters;
+    }
+
+    public function addCharacter(BaseCharacter $character): static
+    {
+        if (!$this->characters->contains($character)) {
+            $this->characters->add($character);
+            $character->setCharacterAscMats($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacter(BaseCharacter $character): static
+    {
+        if ($this->characters->removeElement($character)) {
+            // set the owning side to null (unless already changed)
+            if ($character->getCharacterAscMats() === $this) {
+                $character->setCharacterAscMats(null);
+            }
+        }
 
         return $this;
     }
