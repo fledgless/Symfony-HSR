@@ -24,7 +24,7 @@ class NormalEnemy
     /**
      * @var Collection<int, World>
      */
-    #[ORM\ManyToMany(targetEntity: World::class, inversedBy: 'normalEnemies')]
+    #[ORM\ManyToMany(targetEntity: Location::class, inversedBy: 'normalEnemies')]
     private Collection $normalEnemyLocation;
 
     /**
@@ -81,7 +81,7 @@ class NormalEnemy
         return $this->normalEnemyLocation;
     }
 
-    public function addNormalEnemyLocation(World $normalEnemyLocation): static
+    public function addNormalEnemyLocation(Location $normalEnemyLocation): static
     {
         if (!$this->normalEnemyLocation->contains($normalEnemyLocation)) {
             $this->normalEnemyLocation->add($normalEnemyLocation);
@@ -90,7 +90,7 @@ class NormalEnemy
         return $this;
     }
 
-    public function removeNormalEnemyLocation(World $normalEnemyLocation): static
+    public function removeNormalEnemyLocation(Location $normalEnemyLocation): static
     {
         $this->normalEnemyLocation->removeElement($normalEnemyLocation);
 

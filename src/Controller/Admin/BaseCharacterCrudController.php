@@ -37,7 +37,7 @@ class BaseCharacterCrudController extends AbstractCrudController
         yield FormField::addColumn()
             ->hideOnDetail();
         yield TextField::new('characterName');
-        yield SlugField::new('slug')
+        yield SlugField::new('characterSlug')
             ->setTargetFieldName('characterName');
         yield ChoiceField::new('characterRarity')
             ->renderExpanded()
@@ -46,12 +46,15 @@ class BaseCharacterCrudController extends AbstractCrudController
                 '4-star' => '4-star',
                 'Trailblazer' => 'Trailblazer',
             ]);
+        yield AssociationField::new('characterPath');
+        yield AssociationField::new('characterType');
 
-        yield FormField::addColumn()
-            ->hideOnDetail();
-        yield BooleanField::new('released');
-        yield ChoiceField::new('releaseVersion')
-            ->setChoices([
+            yield FormField::addColumn()
+                ->hideOnDetail();
+            yield BooleanField::new('characterAnnounced');
+            yield BooleanField::new('characterReleased');
+            yield ChoiceField::new('characterReleaseVersion')
+                ->setChoices([
                     '1.0' => '1.0', 
                     '1.1' => '1.1', 
                     '1.2' => '1.2', 
@@ -71,7 +74,7 @@ class BaseCharacterCrudController extends AbstractCrudController
     
                     '3.0' => '3.0',
                 ]);
-        yield DateField::new('releaseDate');
-        yield AssociationField::new('media');
+            yield DateField::new('characterReleaseDate');
+            yield AssociationField::new('characterIcons');
     }
 }

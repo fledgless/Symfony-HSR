@@ -163,7 +163,7 @@ class BaseCharacter
         return $this;
     }
 
-    public function isReleased(): ?bool
+    public function isCharacterReleased(): ?bool
     {
         return $this->characterReleased;
     }
@@ -175,7 +175,7 @@ class BaseCharacter
         return $this;
     }
 
-    public function isAnnounced(): ?bool
+    public function isCharacterAnnounced(): ?bool
     {
         return $this->characterAnnounced;
     }

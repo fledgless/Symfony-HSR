@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\CharacterKit;
+use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CharacterKitCrudController extends AbstractCrudController
+class TypeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return CharacterKit::class;
+        return Type::class;
     }
 
     /*

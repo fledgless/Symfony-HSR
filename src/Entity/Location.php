@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: WorldRepository::class)]
-class World
+class Location
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,19 +16,22 @@ class World
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $worldName = null;
+    private ?string $locationName = null;
 
     #[ORM\Column]
-    private ?bool $worldReleased = null;
+    private ?bool $locationReleased = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $worldIcon = null;
+    private ?Media $locationIcon = null;
 
     /**
      * @var Collection<int, NormalEnemy>
      */
     #[ORM\ManyToMany(targetEntity: NormalEnemy::class, mappedBy: 'normalEnemyLocation')]
     private Collection $normalEnemies;
+
+    #[ORM\Column(length: 255)]
+    private ?string $locationWorld = null;
 
     public function __construct()
     {
@@ -37,7 +40,7 @@ class World
 
     public function __toString()
     {
-        return $this->worldName;
+        return $this->locationName;
     }
 
     public function getId(): ?int
@@ -45,38 +48,38 @@ class World
         return $this->id;
     }
 
-    public function getWorldName(): ?string
+    public function getLocationName(): ?string
     {
-        return $this->worldName;
+        return $this->locationName;
     }
 
-    public function setWorldName(string $worldName): static
+    public function setLocationName(string $worldName): static
     {
-        $this->worldName = $worldName;
+        $this->locationName = $worldName;
 
         return $this;
     }
 
-    public function isWorldReleased(): ?bool
+    public function isLocationReleased(): ?bool
     {
-        return $this->worldReleased;
+        return $this->locationReleased;
     }
 
-    public function setWorldReleased(bool $worldReleased): static
+    public function setLocationReleased(bool $worldReleased): static
     {
-        $this->worldReleased = $worldReleased;
+        $this->locationReleased = $worldReleased;
 
         return $this;
     }
 
-    public function getWorldIcon(): ?Media
+    public function getLocationIcon(): ?Media
     {
-        return $this->worldIcon;
+        return $this->locationIcon;
     }
 
-    public function setWorldIcon(?Media $worldIcon): static
+    public function setLocationIcon(?Media $worldIcon): static
     {
-        $this->worldIcon = $worldIcon;
+        $this->locationIcon = $worldIcon;
 
         return $this;
     }
@@ -104,6 +107,18 @@ class World
         if ($this->normalEnemies->removeElement($normalEnemy)) {
             $normalEnemy->removeNormalEnemyLocation($this);
         }
+
+        return $this;
+    }
+
+    public function getLocationWorld(): ?string
+    {
+        return $this->locationWorld;
+    }
+
+    public function setLocationWorld(string $locationWorld): static
+    {
+        $this->locationWorld = $locationWorld;
 
         return $this;
     }
