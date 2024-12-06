@@ -36,24 +36,24 @@ class BaseCharacterCrudController extends AbstractCrudController
     {
         yield FormField::addColumn()
             ->hideOnDetail();
-        yield TextField::new('characterName');
-        yield SlugField::new('characterSlug')
-            ->setTargetFieldName('characterName');
-        yield ChoiceField::new('characterRarity')
-            ->renderExpanded()
-            ->setChoices([
-                '5-star' => '5-star',
-                '4-star' => '4-star',
-                'Trailblazer' => 'Trailblazer',
-            ]);
-        yield AssociationField::new('characterPath');
-        yield AssociationField::new('characterType');
+            yield TextField::new('characterName');
+            yield SlugField::new('characterSlug')
+                ->setTargetFieldName('characterName');
+            yield ChoiceField::new('characterRarity')
+                ->renderExpanded()
+                ->setChoices([
+                    '5-star' => '5-star',
+                    '4-star' => '4-star',
+                    'Trailblazer' => 'Trailblazer',
+                ]);
+            yield AssociationField::new('characterPath');
+            yield AssociationField::new('characterType');
 
-            yield FormField::addColumn()
+        yield FormField::addColumn()
                 ->hideOnDetail();
-            yield BooleanField::new('characterAnnounced');
-            yield BooleanField::new('characterReleased');
-            yield ChoiceField::new('characterReleaseVersion')
+            yield BooleanField::new('characterAnnounced', 'Was the character officially announced?');
+            yield BooleanField::new('characterReleased', 'Is the character released?');
+            yield ChoiceField::new('characterReleaseVersion', 'If announced, choose release version:')
                 ->setChoices([
                     '1.0' => '1.0', 
                     '1.1' => '1.1', 
@@ -73,8 +73,9 @@ class BaseCharacterCrudController extends AbstractCrudController
                     '2.7' => '2.7',
     
                     '3.0' => '3.0',
+                    '3.1' => '3.1',
                 ]);
-            yield DateField::new('characterReleaseDate');
-            yield AssociationField::new('characterIcons');
+            yield DateField::new('characterReleaseDate', 'If released, choose release date:');
+            yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:');
     }
 }

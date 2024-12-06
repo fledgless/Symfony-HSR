@@ -22,27 +22,27 @@ class CharacterEidolonsCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield FormField::addTab('Base');
-        yield AssociationField::new('characterName');
-        yield TextEditorField::new('stopPoint');
-        yield AssociationField::new('media');
+            yield AssociationField::new('characterName', 'Choose the character for this set of eidolons:');
+            yield AssociationField::new('eidolonIcons', "Choose icons for every eidolon in this set:");
+            yield TextEditorField::new('eidolonStopPoint', 'Eidolon recommendations for this character:');
 
         yield FormField::addTab('E1');
-        yield ArrayField::new('eidolonOne');
+            yield ArrayField::new('eidolonOne');
 
         yield FormField::addTab('E2');
-        yield ArrayField::new('eidolonTwo');
+            yield ArrayField::new('eidolonTwo');
 
         yield FormField::addTab('E3');
-        yield ArrayField::new('eidolonThree');
+            yield ArrayField::new('eidolonThree');
 
         yield FormField::addTab('E4');
-        yield ArrayField::new('eidolonFour');
+            yield ArrayField::new('eidolonFour');
 
         yield FormField::addTab('E5');
-        yield ArrayField::new('eidolonFive');
+            yield ArrayField::new('eidolonFive');
 
         yield FormField::addTab('E6');
-        yield ArrayField::new('eidolonSix');
+            yield ArrayField::new('eidolonSix');
     }
     
 }

@@ -38,7 +38,7 @@ class CharacterEidolons
     private ?array $eidolonSix = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $stopPoint = null;
+    private ?string $eidolonStopPoint = null;
 
     /**
      * @var Collection<int, Media>
@@ -155,14 +155,14 @@ class CharacterEidolons
         return $this;
     }
 
-    public function getStopPoint(): ?string
+    public function getEidolonStopPoint(): ?string
     {
-        return $this->stopPoint;
+        return $this->eidolonStopPoint;
     }
 
-    public function setStopPoint(?string $stopPoint): static
+    public function setEidolonStopPoint(?string $eidolonStopPoint): static
     {
-        $this->stopPoint = $stopPoint;
+        $this->eidolonStopPoint = $eidolonStopPoint;
 
         return $this;
     }
