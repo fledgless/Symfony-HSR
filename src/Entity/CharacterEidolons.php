@@ -38,17 +38,22 @@ class CharacterEidolons
     private ?array $eidolonSix = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $stopPoint = null;
+    private ?string $eidolonStopPoint = null;
 
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $media;
+    private Collection $eidolonIcons;
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
+        $this->eidolonIcons = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->characterName;
     }
 
     public function getId(): ?int
@@ -76,11 +81,6 @@ class CharacterEidolons
         $this->characterName = $characterName;
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return $this->characterName;
     }
 
     public function getEidolonOne(): ?array
@@ -155,14 +155,14 @@ class CharacterEidolons
         return $this;
     }
 
-    public function getStopPoint(): ?string
+    public function getEidolonStopPoint(): ?string
     {
-        return $this->stopPoint;
+        return $this->eidolonStopPoint;
     }
 
-    public function setStopPoint(?string $stopPoint): static
+    public function setEidolonStopPoint(?string $eidolonStopPoint): static
     {
-        $this->stopPoint = $stopPoint;
+        $this->eidolonStopPoint = $eidolonStopPoint;
 
         return $this;
     }
@@ -170,23 +170,23 @@ class CharacterEidolons
     /**
      * @return Collection<int, Media>
      */
-    public function getMedia(): Collection
+    public function getEidolonIcons(): Collection
     {
-        return $this->media;
+        return $this->eidolonIcons;
     }
 
-    public function addMedium(Media $medium): static
+    public function addEidolonIcon(Media $eidolonIcon): static
     {
-        if (!$this->media->contains($medium)) {
-            $this->media->add($medium);
+        if (!$this->eidolonIcons->contains($eidolonIcon)) {
+            $this->eidolonIcons->add($eidolonIcon);
         }
 
         return $this;
     }
 
-    public function removeMedium(Media $medium): static
+    public function removeEidolonIcon(Media $eidolonIcon): static
     {
-        $this->media->removeElement($medium);
+        $this->eidolonIcons->removeElement($eidolonIcon);
 
         return $this;
     }

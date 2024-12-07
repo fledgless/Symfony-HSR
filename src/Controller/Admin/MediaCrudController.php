@@ -23,18 +23,19 @@ class MediaCrudController extends AbstractCrudController
     {
         yield FormField::addTab('Stats');
         yield ChoiceField::new('category')
-            ->renderExpanded()
             ->setChoices([
                 'Character' => 'Character',
                 'Light cone' => 'Light cone',
                 'Eidolon' => 'Eidolon',
                 'Trace' => 'Trace',
+                'Path' => 'Path',
+                'Type' => 'Type',
                 'Relic' => 'Relic',
                 'Ornament' => 'Ornament',
             ]);
         yield ChoiceField::new('imageRole')
             ->setChoices([
-                'Character: Icon' => 'Icon',
+                'Character: Icon' => 'Character Icon',
                 'Character: Splash art' => 'Character Splash art',
                 'Light cone: Icon' => 'Lc Icon',
                 'Light cone: Splash art' => 'Lc Splash art',
@@ -44,14 +45,15 @@ class MediaCrudController extends AbstractCrudController
                 'Eidolon: E4' => 'E4',
                 'Eidolon: E5' => 'E5',
                 'Eidolon: E6' => 'E6',
+                'Path: Icon' => 'Path Icon',
+                'Type: Icon' => 'Type Icon'
             ]);
 
         yield FormField::addTab('Upload media');
         $mediaDir = $this->getParameter('medias_directory');
         $uploadDir = $this->getParameter('uploads_directory');
 
-        yield TextField::new('name', 'Nom');
-        yield TextField::new('alttext', 'Texte alternatif');
+        yield TextField::new('mediaName', 'Nom');
 
         $imageField = ImageField::new('filename', 'Image')
             ->setBasePath($uploadDir)

@@ -20,7 +20,13 @@ class LightCone
     private ?string $lcName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcPath = null;
+    private ?string $lcSlug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lcRarity = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?Path $lcPath = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $lcBaseAtk = null;
@@ -31,14 +37,11 @@ class LightCone
     #[ORM\Column(nullable: true)]
     private ?int $lcBaseHp = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $lcRarity = null;
-
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $media;
+    private Collection $lcIcons;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $lcStory = null;
@@ -61,16 +64,29 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lcSkillName = null;
 
-    /**
-     * @var Collection<int, BaseCharacter>
-     */
-    #[ORM\ManyToMany(targetEntity: BaseCharacter::class, mappedBy: 'recommendedLc')]
-    private Collection $recommendedCharacters;
+    #[ORM\Column]
+    private ?bool $lcAnnounced = false;
+
+    #[ORM\Column]
+    private ?bool $lcReleased = false;
+
+    #[ORM\Column(length: 255)]
+    private ?string $lcObtainable = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?AscensionMats $lcAscMats = null;
+
+    #[ORM\ManyToOne(inversedBy: 'lightCones')]
+    private ?TraceMats $lcTraceMats = null;
 
     public function __construct()
     {
-        $this->media = new ArrayCollection();
-        $this->recommendedCharacters = new ArrayCollection();
+        $this->lcIcons = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->lcName;
     }
 
     public function getId(): ?int
@@ -90,12 +106,36 @@ class LightCone
         return $this;
     }
 
-    public function getLcPath(): ?string
+    public function getLcSlug(): ?string
+    {
+        return $this->lcSlug;
+    }
+
+    public function setLcSlug(string $lcSlug): static
+    {
+        $this->lcSlug = $lcSlug;
+
+        return $this;
+    }
+
+    public function getLcRarity(): ?string
+    {
+        return $this->lcRarity;
+    }
+
+    public function setLcRarity(string $lcRarity): static
+    {
+        $this->lcRarity = $lcRarity;
+
+        return $this;
+    }
+
+    public function getLcPath(): ?Path
     {
         return $this->lcPath;
     }
 
-    public function setLcPath(string $lcPath): static
+    public function setLcPath(?Path $lcPath): static
     {
         $this->lcPath = $lcPath;
 
@@ -138,38 +178,26 @@ class LightCone
         return $this;
     }
 
-    public function getLcRarity(): ?string
-    {
-        return $this->lcRarity;
-    }
-
-    public function setLcRarity(string $lcRarity): static
-    {
-        $this->lcRarity = $lcRarity;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Media>
      */
-    public function getMedia(): Collection
+    public function getLcIcons(): Collection
     {
-        return $this->media;
+        return $this->lcIcons;
     }
 
-    public function addMedia(Media $media): static
+    public function addLcIcon(Media $lcIcon): static
     {
-        if (!$this->media->contains($media)) {
-            $this->media->add($media);
+        if (!$this->lcIcons->contains($lcIcon)) {
+            $this->lcIcons->add($lcIcon);
         }
 
         return $this;
     }
 
-    public function removeMedia(Media $media): static
+    public function removeLcIcon(Media $lcIcon): static
     {
-        $this->media->removeElement($media);
+        $this->lcIcons->removeElement($lcIcon);
 
         return $this;
     }
@@ -258,29 +286,62 @@ class LightCone
         return $this;
     }
 
-    /**
-     * @return Collection<int, BaseCharacter>
-     */
-    public function getRecommendedCharacters(): Collection
+    public function isLcAnnounced(): ?bool
     {
-        return $this->recommendedCharacters;
+        return $this->lcAnnounced;
     }
 
-    public function addRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    public function setLcAnnounced(bool $lcAnnounced): static
     {
-        if (!$this->recommendedCharacters->contains($recommendedCharacter)) {
-            $this->recommendedCharacters->add($recommendedCharacter);
-            $recommendedCharacter->addRecommendedLc($this);
-        }
+        $this->lcAnnounced = $lcAnnounced;
 
         return $this;
     }
 
-    public function removeRecommendedCharacter(BaseCharacter $recommendedCharacter): static
+    public function isLcReleased(): ?bool
     {
-        if ($this->recommendedCharacters->removeElement($recommendedCharacter)) {
-            $recommendedCharacter->removeRecommendedLc($this);
-        }
+        return $this->lcReleased;
+    }
+
+    public function setLcReleased(bool $lcReleased): static
+    {
+        $this->lcReleased = $lcReleased;
+
+        return $this;
+    }
+
+    public function getLcObtainable(): ?string
+    {
+        return $this->lcObtainable;
+    }
+
+    public function setLcObtainable(string $lcObtainable): static
+    {
+        $this->lcObtainable = $lcObtainable;
+
+        return $this;
+    }
+
+    public function getLcAscMats(): ?AscensionMats
+    {
+        return $this->lcAscMats;
+    }
+
+    public function setLcAscMats(?AscensionMats $lcAscMats): static
+    {
+        $this->lcAscMats = $lcAscMats;
+
+        return $this;
+    }
+
+    public function getLcTraceMats(): ?TraceMats
+    {
+        return $this->lcTraceMats;
+    }
+
+    public function setLcTraceMats(?TraceMats $lcTraceMats): static
+    {
+        $this->lcTraceMats = $lcTraceMats;
 
         return $this;
     }
