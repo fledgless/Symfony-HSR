@@ -28,6 +28,11 @@ class StagnantShadow
     #[ORM\OneToOne(mappedBy: 'bossMatStagnantShadow', cascade: ['persist', 'remove'])]
     private ?BossMat $bossMat = null;
 
+    public function __toString()
+    {
+        return $this->stagnantShadowName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

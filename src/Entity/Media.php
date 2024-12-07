@@ -25,6 +25,11 @@ class Media
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageRole = null;
 
+    public function __toString()
+    {
+        return $this->mediaName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

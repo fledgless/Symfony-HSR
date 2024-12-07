@@ -41,6 +41,11 @@ class WeeklyMat
         $this->characters = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->weeklyMatName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

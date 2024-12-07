@@ -44,6 +44,11 @@ class BossMat
         $this->characters = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->bossMatName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

@@ -39,6 +39,11 @@ class GoldenCalyx
         $this->goldenCalyxAscMats = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->goldenCalyxName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

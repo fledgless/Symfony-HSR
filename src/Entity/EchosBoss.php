@@ -35,6 +35,11 @@ class EchosBoss
         $this->echoBossWeaknesses = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->echoBossName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

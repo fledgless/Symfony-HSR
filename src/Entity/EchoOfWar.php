@@ -28,6 +28,11 @@ class EchoOfWar
     #[ORM\OneToOne(mappedBy: 'weeklyMatEchoOfWar', cascade: ['persist', 'remove'])]
     private ?WeeklyMat $weeklyMat = null;
 
+    public function __toString()
+    {
+        return $this->echoOfWarName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

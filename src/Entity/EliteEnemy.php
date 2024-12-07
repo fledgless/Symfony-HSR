@@ -35,6 +35,11 @@ class EliteEnemy
         $this->eliteEnemyWeaknesses = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->eliteEnemyName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
