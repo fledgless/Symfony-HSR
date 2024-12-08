@@ -96,7 +96,7 @@ class BaseCharacter
         return $this->characterSlug;
     }
 
-    public function setcCharacterSlug(string $characterSlug): static
+    public function setCharacterSlug(string $characterSlug): static
     {
         $this->characterSlug = $characterSlug;
 
@@ -154,7 +154,7 @@ class BaseCharacter
     /**
      * @return Collection<int, Media>
      */
-    public function getCharacterIcons(): Collection
+    public function getCharacterIcon(): Collection
     {
         return $this->characterIcons;
     }

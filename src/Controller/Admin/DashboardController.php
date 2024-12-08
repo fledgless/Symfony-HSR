@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\AscensionMats;
 use App\Entity\BaseCharacter;
 use App\Entity\CharacterEidolons;
 use App\Entity\CharacterKit;
@@ -50,12 +51,31 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Light cone list', 'fas fa-list', LightCone::class),
                 MenuItem::linkToCrud('New light cone', 'fas fa-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
             ]);
+
+        yield MenuItem::section('Associations');
+            yield MenuItem::subMenu('Paths', 'fas fa-image')->setSubItems([
+                MenuItem::linkToCrud('Path list', 'fas fa-list', Path::class),
+                MenuItem::linkToCrud('New path', 'fas fa-plus', Path::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Types', 'fas fa-image')->setSubItems([
+                MenuItem::linkToCrud('Media list', 'fas fa-list', Type::class),
+                MenuItem::linkToCrud('New media', 'fas fa-plus', Type::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Locations', 'fas fa-image')->setSubItems([
+                MenuItem::linkToCrud('Location list', 'fas fa-list', Location::class),
+                MenuItem::linkToCrud('New location', 'fas fa-plus', Location::class)->setAction(Crud::PAGE_NEW),
+            ]);
+    
+            yield MenuItem::subMenu('Icons', 'fas fa-image')->setSubItems([
+                MenuItem::linkToCrud('Icon list', 'fas fa-list', Media::class),
+                MenuItem::linkToCrud('New icon', 'fas fa-plus', Media::class)->setAction(Crud::PAGE_NEW),
+            ]);
         
         // fill with the actual mats once done and crud created
         yield MenuItem::section('Materials');
             yield MenuItem::subMenu('Ascension materials','fas fa-gun')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Ascension mats list', 'fas fa-list', AscensionMats::class),
+                MenuItem::linkToCrud('New ascension mats', 'fas fa-plus', AscensionMats::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Boss materials','fas fa-gun')->setSubItems([
                 MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
@@ -108,28 +128,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Cavern of Corrosion','fas fa-gun')->setSubItems([
             MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
             MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
-
-
-        yield MenuItem::section('Associations');
-        yield MenuItem::subMenu('Paths', 'fas fa-image')->setSubItems([
-            MenuItem::linkToCrud('Path list', 'fas fa-list', Path::class),
-            MenuItem::linkToCrud('New path', 'fas fa-plus', Path::class)->setAction(Crud::PAGE_NEW),
-        ]);
-
-        yield MenuItem::subMenu('Types', 'fas fa-image')->setSubItems([
-            MenuItem::linkToCrud('Media list', 'fas fa-list', Type::class),
-            MenuItem::linkToCrud('New media', 'fas fa-plus', Type::class)->setAction(Crud::PAGE_NEW),
-        ]);
-
-        yield MenuItem::subMenu('Locations', 'fas fa-image')->setSubItems([
-            MenuItem::linkToCrud('Location list', 'fas fa-list', Location::class),
-            MenuItem::linkToCrud('New location', 'fas fa-plus', Location::class)->setAction(Crud::PAGE_NEW),
-        ]);
-
-        yield MenuItem::subMenu('Icons', 'fas fa-image')->setSubItems([
-            MenuItem::linkToCrud('Icon list', 'fas fa-list', Media::class),
-            MenuItem::linkToCrud('New icon', 'fas fa-plus', Media::class)->setAction(Crud::PAGE_NEW),
         ]);
     }
 }

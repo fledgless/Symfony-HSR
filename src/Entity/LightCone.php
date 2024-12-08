@@ -79,6 +79,9 @@ class LightCone
     #[ORM\ManyToOne(inversedBy: 'lightCones')]
     private ?TraceMats $lcTraceMats = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $lcVersionRelease = null;
+
     public function __construct()
     {
         $this->lcIcons = new ArrayCollection();
@@ -342,6 +345,18 @@ class LightCone
     public function setLcTraceMats(?TraceMats $lcTraceMats): static
     {
         $this->lcTraceMats = $lcTraceMats;
+
+        return $this;
+    }
+
+    public function getLcVersionRelease(): ?string
+    {
+        return $this->lcVersionRelease;
+    }
+
+    public function setLcVersionRelease(?string $lcVersionRelease): static
+    {
+        $this->lcVersionRelease = $lcVersionRelease;
 
         return $this;
     }
