@@ -4,12 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\AscensionMats;
 use App\Entity\BaseCharacter;
+use App\Entity\BossMat;
 use App\Entity\CharacterEidolons;
 use App\Entity\CharacterKit;
 use App\Entity\LightCone;
 use App\Entity\Location;
 use App\Entity\Media;
 use App\Entity\Path;
+use App\Entity\TraceMats;
 use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -78,12 +80,12 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('New ascension mats', 'fas fa-plus', AscensionMats::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Boss materials','fas fa-gun')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Boss materials list', 'fas fa-people-group', BossMat::class),
+                MenuItem::linkToCrud('New boss mat', 'fas fa-person-circle-plus', BossMat::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Trace materials','fas fa-gun')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-                MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Trace materials list', 'fas fa-people-group', TraceMats::class),
+                MenuItem::linkToCrud('New trace mats', 'fas fa-person-circle-plus', TraceMats::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Weekly boss materials','fas fa-gun')->setSubItems([
                 MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
