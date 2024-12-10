@@ -249,12 +249,7 @@ header nav .main-nav li a {
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  width: 150px;
   transition: 0.4s;
-}
-
-header nav .main-nav li a:hover {
-  background-color: #282828;
 }
 
 header nav .main-nav li a img {
@@ -530,7 +525,8 @@ main .s-container .three-star .superimposition-toggle:hover {
 main .s-container .character-list .five-star,
 main .s-container .lc-list .five-star,
 main .s-container .five-star h2,
-main .s-container .five-star .active {
+main .s-container .five-star .active,
+header nav .main-nav li a:hover {
   background: rgb(0,0,0);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
 }

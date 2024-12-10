@@ -64,9 +64,22 @@ class BaseCharacter
     #[ORM\ManyToOne(inversedBy: 'characters')]
     private ?TraceMats $characterTraceMats = null;
 
+    /**
+     * @var Collection<int, CharacterVoiceline>
+     */
+    #[ORM\OneToMany(targetEntity: CharacterVoiceline::class, mappedBy: 'voicelineCharacter')]
+    private Collection $characterVoicelines;
+
+    #[ORM\OneToOne(mappedBy: 'characterStoriesCharacter', cascade: ['persist', 'remove'])]
+    private ?CharacterStories $characterStories = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $characterBannerName = null;
+
     public function __construct()
     {
         $this->characterIcons = new ArrayCollection();
+        $this->characterVoicelines = new ArrayCollection();
     }
 
     public function __toString()
@@ -154,7 +167,7 @@ class BaseCharacter
     /**
      * @return Collection<int, Media>
      */
-    public function getCharacterIcon(): Collection
+    public function getCharacterIcons(): Collection
     {
         return $this->characterIcons;
     }
@@ -267,6 +280,70 @@ class BaseCharacter
     public function setCharacterTraceMats(?TraceMats $characterTraceMats): static
     {
         $this->characterTraceMats = $characterTraceMats;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterVoiceline>
+     */
+    public function getCharacterVoicelines(): Collection
+    {
+        return $this->characterVoicelines;
+    }
+
+    public function addCharacterVoiceline(CharacterVoiceline $characterVoiceline): static
+    {
+        if (!$this->characterVoicelines->contains($characterVoiceline)) {
+            $this->characterVoicelines->add($characterVoiceline);
+            $characterVoiceline->setVoicelineCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterVoiceline(CharacterVoiceline $characterVoiceline): static
+    {
+        if ($this->characterVoicelines->removeElement($characterVoiceline)) {
+            // set the owning side to null (unless already changed)
+            if ($characterVoiceline->getVoicelineCharacter() === $this) {
+                $characterVoiceline->setVoicelineCharacter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCharacterStories(): ?CharacterStories
+    {
+        return $this->characterStories;
+    }
+
+    public function setCharacterStories(?CharacterStories $characterStories): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($characterStories === null && $this->characterStories !== null) {
+            $this->characterStories->setCharacterStoriesCharacter(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($characterStories !== null && $characterStories->getCharacterStoriesCharacter() !== $this) {
+            $characterStories->setCharacterStoriesCharacter($this);
+        }
+
+        $this->characterStories = $characterStories;
+
+        return $this;
+    }
+
+    public function getCharacterBannerName(): ?string
+    {
+        return $this->characterBannerName;
+    }
+
+    public function setCharacterBannerName(?string $characterBannerName): static
+    {
+        $this->characterBannerName = $characterBannerName;
 
         return $this;
     }

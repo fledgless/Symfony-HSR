@@ -7,6 +7,8 @@ use App\Entity\BaseCharacter;
 use App\Entity\BossMat;
 use App\Entity\CharacterEidolons;
 use App\Entity\CharacterKit;
+use App\Entity\CharacterStories;
+use App\Entity\CharacterVoiceline;
 use App\Entity\LightCone;
 use App\Entity\Location;
 use App\Entity\Media;
@@ -46,6 +48,14 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
                 MenuItem::linkToCrud('Eidolons', 'fas fa-person-burst', CharacterEidolons::class),
                 MenuItem::linkToCrud('Add eidolons', 'fas fa-cart-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Character stories','fas fa-person')->setSubItems([
+                MenuItem::linkToCrud('Character stories list', 'fas fa-people-group', CharacterStories::class),
+                MenuItem::linkToCrud('New character stories', 'fas fa-person-circle-plus', CharacterStories::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Character voicelines','fas fa-person')->setSubItems([
+                MenuItem::linkToCrud('Voicelines', 'fas fa-people-group', CharacterVoiceline::class),
+                MenuItem::linkToCrud('New voiceline', 'fas fa-person-circle-plus', CharacterVoiceline::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         yield MenuItem::section('Light cones');

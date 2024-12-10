@@ -76,6 +76,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                     '3.1' => '3.1',
                 ]);
             yield DateField::new('characterReleaseDate', 'If released, choose release date:');
+            yield TextField::new('characterBannerName');
             yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:');
     }
 }

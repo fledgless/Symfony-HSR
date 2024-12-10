@@ -1,7 +1,7 @@
 {% set character_show = path('character_show', { characterSlug: character.characterSlug }) %}
 
 <div class="item-character {% if character.characterRarity == "4-star" %}four-star {% else %}five-star{% endif %}">
-    {% for icon in character.characterIcon|filter(icon => icon.imageRole == 'Character Icon') %} 
+    {% for icon in character.characterIcons|filter(icon => icon.imageRole == 'Character Icon') %} 
         <a href="{{ character_show }}">
             <img src="/uploads/{{ icon.filename }}" alt="">
             <p>{{ character.characterName }}</p>
