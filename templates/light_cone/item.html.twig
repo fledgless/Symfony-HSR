@@ -1,31 +1,13 @@
 {% set lc_show = path('lc_show', { lcName: lightcone.lcName }) %}
 
 <div class="item-lc {% if lightcone.lcRarity == "4-star"%}four-star {% elseif lightcone.lcRarity == "5-star" %}five-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
-    {% for medium in lightcone.media|filter(medium => medium.imageRole == 'Lc Icon') %}
+    {% for icon in lightcone.lcIcons|filter(icon => icon.imageRole == 'Lc Icon') %}
         <a href="{{ lc_show }}">
-            <img src="/uploads/{{ medium.filename }}" alt="">
+            <img src="/uploads/{{ icon.filename }}" alt="">
             <p>{{ lightcone.lcName }}</p>
         </a>
         <div class="lc-path-div">
-            {% if lightcone.lcPath == "Abundance" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Abundance.webp') }}" alt="icon for abundance path">
-            {% elseif lightcone.lcPath == "Destruction" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Destruction.webp') }}" alt="icon for destruction path">
-            {% elseif lightcone.lcPath == "Erudition" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Erudition.webp') }}" alt="icon for erudition path">
-            {% elseif lightcone.lcPath == "Harmony" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Harmony.webp') }}" alt="icon for harmony path">
-            {% elseif lightcone.lcPath == "Nihility" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Nihility.webp') }}" alt="icon for nihility path">
-            {% elseif lightcone.lcPath == "Preservation" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Preservation.webp') }}" alt="icon for preservation path">
-            {% elseif lightcone.lcPath == "Remembrance" %}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_Remembrance.webp') }}" alt="icon for remembrance path">
-            {% elseif lightcone.lcPath == "The Hunt"%}
-                <img class="lc-path" src="{{ asset('images/Icon Path/Icon_The_Hunt.webp') }}" alt="icon for hunt path">
-            {% else %}
-                <img class="lc-path" src="{{ asset('images/Character_Unknown.webp') }}" alt="icon for unknown path">
-            {% endif %}
+            <img class="lc-path" src="/uploads/{{ lightcone.lcPath.pathIcon.filename }}" alt="">
         </div>
     {% endfor %}
 </div>

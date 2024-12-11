@@ -83,3 +83,35 @@ toggleS5.addEventListener("click", () => {
     toggleS4.classList.remove("active");
     toggleS5.classList.add("active");
 })
+
+// toggle character nav
+let traces = document.querySelector('#traces'),
+    eidolons = document.querySelector('#eidolons'),
+    voicelines = document.querySelector('#voicelines'),
+    stories = document.querySelector('#stories'),
+    toggleTraces = document.querySelector('#toggle-traces'),
+    toggleEidolons = document.querySelector('#toggle-eidolons'),
+    toggleVoicelines = document.querySelector('#toggle-voicelines'),
+    toggleStories = document.querySelector('#toggle-stories');
+
+toggleTraces.addEventListener("click", () => {
+    traces.classList.add('open');
+    eidolons.classList.remove('open');
+    voicelines.classList.remove('open');
+    stories.classList.remove('open');
+    toggleTraces.classList.add('active');
+    toggleEidolons.classList.remove('active');
+    toggleVoicelines.classList.remove('active');
+    toggleStories.classList.remove('active');
+})
+
+toggleEidolons.addEventListener("click", () => {
+    traces.classList.remove('open');
+    eidolons.classList.add('open');
+    voicelines.classList.remove('open');
+    stories.classList.remove('open');
+    toggleTraces.classList.remove('active');
+    toggleEidolons.classList.add('active');
+    toggleVoicelines.classList.remove('active');
+    toggleStories.classList.remove('active');
+})

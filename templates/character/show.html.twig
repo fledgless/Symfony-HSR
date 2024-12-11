@@ -2,57 +2,112 @@
 
 {% block body %}
     <div class="s-container">
-        <div class="character-show">
+        <div class="character-show {% if character.characterRarity == "4-star"%}four-star {% elseif character.characterRarity == "5-star" %}five-star{% endif %}">
             <h1>{{ character.characterName }}</h1>
-            {% if character.eidolons %}
-                <div class="eidolons">
-                    <h2>Eidolons</h2>
-                    {% if character.eidolons.eidolonOne %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E1') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 1: {{ character.eidolons.eidolonOne|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonOne|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    {% if character.eidolons.eidolonTwo %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E2') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 2: {{ character.eidolons.eidolonTwo|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonTwo|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    {% if character.eidolons.eidolonThree %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E3') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 3: {{ character.eidolons.eidolonThree|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonThree|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    {% if character.eidolons.eidolonFour %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E4') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 4: {{ character.eidolons.eidolonFour|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonFour|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    {% if character.eidolons.eidolonFive %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E5') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 5: {{ character.eidolons.eidolonFive|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonFive|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    {% if character.eidolons.eidolonSix %}
-                        {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E6') %}
-                            <img src="/uploads/{{ medium.filename }}" alt="">
-                        {% endfor %}
-                        <h3>Eidolon 6: {{ character.eidolons.eidolonSix|slice(0, 1)|join('') }}</h3>
-                        <p>{{ character.eidolons.eidolonSix|slice(1, 1)|join('') }}</p>
-                    {% endif %}
-                    <h2>Recommended stopping point for eidolons</h2>
-                    <p>{{ character.eidolons.stopPoint|raw }}</p>
+            <div class="character-content">
+                <nav>
+                    <ul class="character-nav">
+                        <li class="character-nav-link active" id="toggle-traces">Traces</li>
+                        <li class="character-nav-link" id="toggle-eidolons">Eidolons</li>
+                        <li class="character-nav-link" id="toggle-voicelines">Voicelines</li>
+                        <li class="character-nav-link" id="toggle-stories">Character stories</li>
+                        <li class="character-nav-link">Build</li>
+                    </ul>
+                </nav>
+                <div id="traces" class="section open">
+                    <h2>Traces</h2>
+                    <div class="content">
+                        <p>Traces to be added.</p>
+                    </div>
                 </div>
-            {% endif %}
+                <div id="eidolons" class="section">
+                    <h2>Eidolons</h2>
+                    <div class="content">
+                        {% if character.eidolons %}
+                            <h3>Eidolon 1</h3>
+                            {% if character.eidolons.eidolonOne %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E1') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h4>{{ character.eidolons.eidolonOne|slice(0, 1)|join('') }}</h4>
+                                <p>{{ character.eidolons.eidolonOne|slice(1, 1)|join('') }}</p>
+                            {% else %}
+                                <p>Eidolon to be added.</p>
+                            {% endif %}
+                            <h3>Eidolon 2</h3>
+                            {% if character.eidolons.eidolonTwo %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E2') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h4>{{ character.eidolons.eidolonTwo|slice(0, 1)|join('') }}</h4>
+                                <p>{{ character.eidolons.eidolonTwo|slice(1, 1)|join('') }}</p>
+                            {% else %}
+                                <p>Eidolon to be added.</p>
+                            {% endif %}
+                            <h3>Eidolon 3</h3>
+                            {% if character.eidolons.eidolonThree %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E3') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h4>{{ character.eidolons.eidolonThree|slice(0, 1)|join('') }}</h4>
+                                <p>{{ character.eidolons.eidolonThree|slice(1, 1)|join('') }}</p>
+                            {% else %}
+                                <p>Eidolon to be added.</p>
+                            {% endif %}
+                            <h3>Eidolon 4</h3>
+                            {% if character.eidolons.eidolonFour %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E4') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h3>Eidolon 4: {{ character.eidolons.eidolonFour|slice(0, 1)|join('') }}</h3>
+                                <p>{{ character.eidolons.eidolonFour|slice(1, 1)|join('') }}</p>
+                            {% endif %}
+                            <h3>Eidolon 5</h3>
+                            {% if character.eidolons.eidolonFive %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E5') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h3>Eidolon 5: {{ character.eidolons.eidolonFive|slice(0, 1)|join('') }}</h3>
+                                <p>{{ character.eidolons.eidolonFive|slice(1, 1)|join('') }}</p>
+                            {% else %}
+                                <p>Eidolon to be added.</p>
+                            {% endif %}
+                            <h3>Eidolon 6</h3>
+                            {% if character.eidolons.eidolonSix %}
+                                {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E6') %}
+                                    <img src="/uploads/{{ medium.filename }}" alt="">
+                                {% endfor %}
+                                <h3>Eidolon 6: {{ character.eidolons.eidolonSix|slice(0, 1)|join('') }}</h3>
+                                <p>{{ character.eidolons.eidolonSix|slice(1, 1)|join('') }}</p>
+                            {% else %}
+                                <p>Eidolon to be added.</p>
+                            {% endif %}
+                            <h2>Recommended stopping point for eidolons</h2>
+                            <p>{{ character.eidolons.stopPoint|raw }}</p>
+                        {% else %}
+                            <p>Eidolons to be added.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="voicelines" class="section">
+                    <h2>Voicelines</h2>
+                    <div class="content">
+                        {% if character.characterVoicelines %}
+                        {% else %}
+                        <p>Voicelines to be added.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div id="stories" class="section">
+                    <h2>Character stories</h2>
+                    <div class="content">
+                        {% if character.characterStories %}
+                        {% else %}
+                        <p>Character stories to be added.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
