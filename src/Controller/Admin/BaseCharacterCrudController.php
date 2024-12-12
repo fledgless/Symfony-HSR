@@ -34,49 +34,67 @@ class BaseCharacterCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield FormField::addColumn()
-            ->hideOnDetail();
-            yield TextField::new('characterName');
-            yield SlugField::new('characterSlug')
-                ->setTargetFieldName('characterName');
-            yield ChoiceField::new('characterRarity')
-                ->renderExpanded()
-                ->setChoices([
-                    '5-star' => '5-star',
-                    '4-star' => '4-star',
-                    'Trailblazer' => 'Trailblazer',
-                ]);
-            yield AssociationField::new('characterPath');
-            yield AssociationField::new('characterType');
-
-        yield FormField::addColumn()
+        yield FormField::addTab('Character');
+            yield FormField::addColumn()
                 ->hideOnDetail();
-            yield BooleanField::new('characterAnnounced', 'Was the character officially announced?');
-            yield BooleanField::new('characterReleased', 'Is the character released in-game?');
-            yield ChoiceField::new('characterReleaseVersion', 'If announced, choose release version:')
-                ->setChoices([
-                    '1.0' => '1.0', 
-                    '1.1' => '1.1', 
-                    '1.2' => '1.2', 
-                    '1.3' => '1.3', 
-                    '1.4' => '1.4', 
-                    '1.5' => '1.5', 
-                    '1.6' => '1.6',
-    
-                    '2.0' => '2.0', 
-                    '2.1' => '2.1', 
-                    '2.2' => '2.2', 
-                    '2.3' => '2.3', 
-                    '2.4' => '2.4', 
-                    '2.5' => '2.5', 
-                    '2.6' => '2.6', 
-                    '2.7' => '2.7',
-    
-                    '3.0' => '3.0',
-                    '3.1' => '3.1',
-                ]);
-            yield DateField::new('characterReleaseDate', 'If released, choose release date:');
-            yield TextField::new('characterBannerName');
-            yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:');
+                yield TextField::new('characterName');
+                yield SlugField::new('characterSlug')
+                    ->setTargetFieldName('characterName')
+                    ->hideOnIndex();
+                yield ChoiceField::new('characterRarity')
+                    ->renderExpanded()
+                    ->setChoices([
+                        '5-star' => '5-star',
+                        '4-star' => '4-star',
+                        'Trailblazer' => 'Trailblazer',
+                    ]);
+                yield AssociationField::new('characterPath');
+                yield AssociationField::new('characterType');
+
+            yield FormField::addColumn()
+                    ->hideOnDetail();
+                yield BooleanField::new('characterAnnounced', 'Was the character officially announced?')
+                    ->hideOnIndex();
+                yield BooleanField::new('characterReleased', 'Is the character released in-game?')
+                    ->hideOnIndex();
+                yield ChoiceField::new('characterReleaseVersion', 'If announced, choose release version:')
+                    ->hideOnIndex()
+                    ->setChoices([
+                        '1.0' => '1.0', 
+                        '1.1' => '1.1', 
+                        '1.2' => '1.2', 
+                        '1.3' => '1.3', 
+                        '1.4' => '1.4', 
+                        '1.5' => '1.5', 
+                        '1.6' => '1.6',
+        
+                        '2.0' => '2.0', 
+                        '2.1' => '2.1', 
+                        '2.2' => '2.2', 
+                        '2.3' => '2.3', 
+                        '2.4' => '2.4', 
+                        '2.5' => '2.5', 
+                        '2.6' => '2.6', 
+                        '2.7' => '2.7',
+        
+                        '3.0' => '3.0',
+                        '3.1' => '3.1',
+                    ]);
+                yield DateField::new('characterReleaseDate', 'If released, choose release date:')
+                    ->hideOnIndex();
+                yield TextField::new('characterBannerName')
+                    ->hideOnIndex();
+                yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:')
+                    ->hideOnIndex();
+
+        yield FormField::addTab('Mats');
+            yield AssociationField::new('characterAscMats')
+                ->hideOnIndex();
+            yield AssociationField::new('characterBossMat')
+                ->hideOnIndex();
+            yield AssociationField::new('characterTraceMats')
+                ->hideOnIndex();
+            yield AssociationField::new('characterWeeklyMat')
+                ->hideOnIndex();
     }
 }

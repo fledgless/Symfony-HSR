@@ -75,12 +75,12 @@ class LightConeCrudController extends AbstractCrudController
             //     ]);
             yield ChoiceField::new('lcObtainable', 'How can this Light Cone be obtained in game?')
                 ->setChoices([
-                    'Brilliant Fixation Banner',
-                    'Permanent Banner',
-                    'Limited Event Rewards',
-                    "Herta's Shop",
-                    'Battle Pass',
-                    'Forgotten Hall',
+                    'Brilliant Fixation Banner' => 'Brilliant Fixation Banner',
+                    'Permanent Banner' => 'Permanent Banner',
+                    'Limited Event Rewards' => 'Limited Event Rewards',
+                    "Herta's Shop" => "Herta's Shop",
+                    'Battle Pass' => 'Battle Pass',
+                    'Forgotten Hall' => 'Forgotten Hall',
                 ]);
             yield IntegerField::new('lcBaseHp', 'Base HP');
             yield IntegerField::new('lcBaseAtk', 'Base ATK');
