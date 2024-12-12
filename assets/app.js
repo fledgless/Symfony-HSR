@@ -7,7 +7,7 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-// toggle light cone superimposition
+// toggle character nav
 let toggleTraces = document.querySelector('#toggle-traces'),
     toggleEidolons = document.querySelector('#toggle-eidolons'),
     toggleVoicelines = document.querySelector('#toggle-voicelines'),
@@ -62,6 +62,7 @@ let traces = document.querySelector('#traces'),
         toggleStories.classList.add('active');
     })
 
+    // toggle LC superimposition
 let toggleS1 = document.querySelector("#toggle-sone"),
     toggleS2 = document.querySelector("#toggle-stwo"),
     toggleS3 = document.querySelector("#toggle-sthree"),

@@ -9,13 +9,17 @@ use App\Entity\CharacterEidolons;
 use App\Entity\CharacterKit;
 use App\Entity\CharacterStories;
 use App\Entity\CharacterVoiceline;
+use App\Entity\CrimsonCalyx;
+use App\Entity\EchoOfWar;
 use App\Entity\EchosBoss;
 use App\Entity\EliteEnemy;
+use App\Entity\GoldenCalyx;
 use App\Entity\LightCone;
 use App\Entity\Location;
 use App\Entity\Media;
 use App\Entity\NormalEnemy;
 use App\Entity\Path;
+use App\Entity\StagnantShadow;
 use App\Entity\TraceMats;
 use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -45,7 +49,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Characters');
             yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterName' => 'ASC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
@@ -124,23 +128,23 @@ class DashboardController extends AbstractDashboardController
         ]);
 
         yield MenuItem::section('Domains');
-        yield MenuItem::subMenu('Stagnant Shadow','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Stagnant Shadow','fas fa-dungeon')->setSubItems([
+            MenuItem::linkToCrud('Character list', 'fas fa-people-group', StagnantShadow::class),
+            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', StagnantShadow::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Echo of War','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Echo of War','fas fa-dungeon')->setSubItems([
+            MenuItem::linkToCrud('Character list', 'fas fa-people-group', EchoOfWar::class),
+            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', EchoOfWar::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Crimson Calyx','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Crimson Calyx','fas fa-dungeon')->setSubItems([
+            MenuItem::linkToCrud('Character list', 'fas fa-people-group', CrimsonCalyx::class),
+            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', CrimsonCalyx::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Golden Calyx','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Golden Calyx','fas fa-dungeon')->setSubItems([
+            MenuItem::linkToCrud('Character list', 'fas fa-people-group', GoldenCalyx::class),
+            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', GoldenCalyx::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Cavern of Corrosion','fas fa-gun')->setSubItems([
+        yield MenuItem::subMenu('Cavern of Corrosion','fas fa-dungeon')->setSubItems([
             MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
             MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
         ]);

@@ -1,1 +1,11 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block main %}
+    <h1 style="text-align: center;">Welcome to the dashboard.</h1>
+    <p style="text-align: center;">Don't worry, it only took me months to realise I could add anything in there.</p>
+    <h2 style="margin-top: 30px;">Handling the Database</h2>
+    <div style="text-align: justify; margin: 15px;">
+        <p>Where the real fun begins. The database has a lot of different entities, and they're all associated to other ones. When adding a new character or light cone, I suggest adding first all the other objects related to it, such as icons or materials. Only the actual kit (eidolons, traces) should be created afterwards, as they are the ones with the association to their respective characters.</p>
+        <p>Some entities may never be touched again, like paths and types. But, as 3.0 added a new Path, you'll never know if it won't happen again.</p>
+    </div>
+{% endblock main %}
