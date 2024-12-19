@@ -76,6 +76,9 @@ class BaseCharacter
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $characterBannerName = null;
 
+    #[ORM\ManyToOne(inversedBy: 'locationCharacters')]
+    private ?Location $location = null;
+
     public function __construct()
     {
         $this->characterIcons = new ArrayCollection();
@@ -344,6 +347,18 @@ class BaseCharacter
     public function setCharacterBannerName(?string $characterBannerName): static
     {
         $this->characterBannerName = $characterBannerName;
+
+        return $this;
+    }
+
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?Location $location): static
+    {
+        $this->location = $location;
 
         return $this;
     }
