@@ -203,15 +203,18 @@ h2 {
 
 a {
   text-decoration: none;
+  color: #FFFFFF;
 }
 
 li {
   list-style-type: none;
-  font-family: DinProBold;
 }
 
 header, footer, h1, h2, li a {
   color: #DBC291;
+}
+
+header, footer, h1, h2, li, li a, strong, .lc-base-stat-value {
   font-family: DinProBold;
 }
 
@@ -220,7 +223,7 @@ header, footer, h1, h2, li a {
 
 header .hamburger {
   display: none;
-  background-color: #282828;
+  background-color: #2828287e;
   height: 40px;
   width: 40px;
   border: 2px solid #DBC291;
@@ -404,6 +407,25 @@ main .s-container .lc-show {
   background: linear-gradient(164deg, rgba(40,40,40,1) 25%, rgba(0,0,0,1) 75%, rgba(40,40,40,1) 100%);
 }
 
+.lc-show .lc-path-rarity {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  background: #0000007c;
+  width: 120px;
+  padding: 10px 15px;
+  border-radius: 50px;
+}
+
+.lc-show .lc-path-rarity .lc-path {
+  height: 30px;
+}
+
+.lc-show .lc-path-rarity .lc-rarity {
+  width: 50px;
+}
+
 .lc-show .lightcone-superimposition,
 .character-show .section {
   display: none;
@@ -415,7 +437,10 @@ main .s-container .lc-show {
 }
 
 .lc-show .lc-basic-info-splash-laptop {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .lc-show .lc-basic-info-splash-mobile {
@@ -494,18 +519,24 @@ main .s-container .lc-show {
 .five-star .lc-basic-info-base-stats,
 .five-star .skill-superimposition,
 .five-star .character-content {
-  border: 3px solid #DBC291;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to bottom, #DBC291, black);
+  border-image-slice: 1;
 }
 
 .four-star .lc-basic-info-base-stats,
 .four-star .skill-superimposition,
 .four-star .character-content {
-  border: 3px solid rgb(98,59,90);
+  border: 3px solid transparent;
+  border-image: linear-gradient(to bottom, rgb(98,59,90), black);
+  border-image-slice: 1;
 }
 
 .three-star .lc-basic-info-base-stats,
 .three-star .skill-superimposition {
-  border: 3px solid #235789;
+  border: 3px solid transparent;
+  border-image: linear-gradient(to bottom, #235789, black);
+  border-image-slice: 1;
 }
 
 .lc-show .superimposition-toggle
@@ -555,19 +586,19 @@ main .s-container .lc-show {
 .lc-list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
-.ascmat .four-star:hover {
+.ascmat:hover .four-star {
   background: rgba(98,59,90,1);
   font-family: DinProBold;
 }
 
 .lc-list .three-star:hover,
 .three-star .superimposition-toggle:hover,
-.ascmat .three-star:hover {
+.ascmat:hover .three-star {
   background: #235789;
   font-family: DinProBold;
 }
 
-.ascmat .two-star:hover {
+.ascmat:hover .two-star {
   background: #3f6b4e;
   font-family: DinProBold;
 }
@@ -609,28 +640,27 @@ main .s-container .lc-show {
   align-content: center;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #000000;
+  background-color: #000000b2;
   padding: 20px;
   margin: 20px;
 }
 
 .ascmat {
-  background-color: #2828285d;
   border-radius: 15px;
   padding: 3px;
   display: flex;
   justify-content: space-evenly;
   flex-direction: row;
-  margin: 1px;
+  margin: 4px;
   text-align: center;
   width: 350px;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .ascmat .item-asc-mat {
   padding: 15px;
   border-radius: 25px;
-  margin: 3px;
+  margin: 2px;
   width: 100px;
   height: 125px;
   display: flex;

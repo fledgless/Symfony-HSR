@@ -1,4 +1,4 @@
-<div class="ascmat">
+<a href="#" class="ascmat">
     {% for icon in ascmat.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 4-star icon') %} 
         <div class="item-asc-mat four-star">
             <img src="/uploads/{{ icon.filename }}" alt="">
@@ -17,4 +17,4 @@
             <p>{{ ascmat.ascMatTwoStarName }}</p>
         </div>
     {% endfor %}
-</div>
+</a>
