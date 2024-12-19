@@ -32,6 +32,11 @@ class MediaCrudController extends AbstractCrudController
                 'Type' => 'Type',
                 'Relic' => 'Relic',
                 'Ornament' => 'Ornament',
+                'Location' => 'Location',
+                'Ascension mats' => 'Ascension mats',
+                'Boss mat' => 'Boss mat',
+                'Trace mats' => 'Trace mats',
+                'Weekly mat' => 'Weekly mat'
             ]);
         yield ChoiceField::new('imageRole')
             ->setChoices([
@@ -46,7 +51,16 @@ class MediaCrudController extends AbstractCrudController
                 'Eidolon: E5' => 'E5',
                 'Eidolon: E6' => 'E6',
                 'Path: Icon' => 'Path Icon',
-                'Type: Icon' => 'Type Icon'
+                'Type: Icon' => 'Type Icon',
+                'Area' => 'Area',
+                'Ascension mat: 4-star icon' => 'Ascension mat: 4-star icon',
+                'Ascension mat: 3-star icon' => 'Ascension mat: 3-star icon',
+                'Ascension mat: 2-star icon' => 'Ascension mat: 2-star icon',
+                'Boss mat: icon' => 'Boss mat: icon',
+                'Trace mat: 4-star icon' => 'Trace mat: 4-star icon',
+                'Trace mat: 3-star icon' => 'Trace mat: 3-star icon',
+                'Trace mat: 2-star icon' => 'Trace mat: 2-star icon',
+                'Weekly mat: icon' => 'Weekly mat: icon',
             ]);
 
         yield FormField::addTab('Upload media');

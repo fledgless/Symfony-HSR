@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\WorldRepository;
+use App\Repository\LocationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: WorldRepository::class)]
+#[ORM\Entity(repositoryClass: LocationRepository::class)]
 class Location
 {
     #[ORM\Id]
@@ -57,6 +58,15 @@ class Location
     #[ORM\OneToMany(targetEntity: EchoOfWar::class, mappedBy: 'echoOfWarLocation')]
     private Collection $echoOfWars;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $locationDescription = null;
+
+    /**
+     * @var Collection<int, BaseCharacter>
+     */
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'location')]
+    private Collection $locationCharacters;
+
     public function __construct()
     {
         $this->normalEnemies = new ArrayCollection();
@@ -64,6 +74,7 @@ class Location
         $this->goldenCalyxes = new ArrayCollection();
         $this->crimsonCalyxes = new ArrayCollection();
         $this->echoOfWars = new ArrayCollection();
+        $this->locationCharacters = new ArrayCollection();
     }
 
     public function __toString()
@@ -265,6 +276,48 @@ class Location
             // set the owning side to null (unless already changed)
             if ($echoOfWar->getEchoOfWarLocation() === $this) {
                 $echoOfWar->setEchoOfWarLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getLocationDescription(): ?string
+    {
+        return $this->locationDescription;
+    }
+
+    public function setLocationDescription(?string $locationDescription): static
+    {
+        $this->locationDescription = $locationDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BaseCharacter>
+     */
+    public function getLocationCharacters(): Collection
+    {
+        return $this->locationCharacters;
+    }
+
+    public function addLocationCharacter(BaseCharacter $locationCharacter): static
+    {
+        if (!$this->locationCharacters->contains($locationCharacter)) {
+            $this->locationCharacters->add($locationCharacter);
+            $locationCharacter->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocationCharacter(BaseCharacter $locationCharacter): static
+    {
+        if ($this->locationCharacters->removeElement($locationCharacter)) {
+            // set the owning side to null (unless already changed)
+            if ($locationCharacter->getLocation() === $this) {
+                $locationCharacter->setLocation(null);
             }
         }
 

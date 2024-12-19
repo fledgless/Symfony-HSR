@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Materials{% endblock %}
+
+{% block body %}
+    <h1>Materials</h1>
+    <div class="materials">
+        <h2>Ascension materials</h2>
+        <div class="ascension-materials-list">
+            {% include "ascension-materials/list.html.twig" with { ascmats } %}
+        </div>
+    </div>
+{% endblock %}
