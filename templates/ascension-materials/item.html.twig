@@ -1,0 +1,20 @@
+<div class="ascmat">
+    {% for icon in ascmat.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 4-star icon') %} 
+        <div class="item-asc-mat four-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ ascmat.ascMatFourStarName }}</p>
+        </div>
+    {% endfor %}
+    {% for icon in ascmat.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 3-star icon') %} 
+        <div class="item-asc-mat three-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ ascmat.ascMatThreeStarName }}</p>
+        </div>
+    {% endfor %}
+    {% for icon in ascmat.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 2-star icon') %} 
+        <div class="item-asc-mat two-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ ascmat.ascMatTwoStarName }}</p>
+        </div>
+    {% endfor %}
+</div>

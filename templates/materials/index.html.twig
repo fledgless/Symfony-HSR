@@ -1,20 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MaterialsController!{% endblock %}
+{% block title %}Materials{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Projets/projets_symfony/star_rail/src/Controller/MaterialsController.php</code></li>
-        <li>Your template at <code>C:/Projets/projets_symfony/star_rail/templates/materials/index.html.twig</code></li>
-    </ul>
-</div>
+    <h1>Materials</h1>
+    <div class="materials">
+        <h2>Ascension materials</h2>
+        <div class="ascension-materials-list">
+            {% include "ascension-materials/list.html.twig" with { ascmats } %}
+        </div>
+    </div>
 {% endblock %}

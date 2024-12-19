@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AscensionMatsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -9,10 +10,10 @@ use Symfony\Component\Routing\Attribute\Route;
 class MaterialsController extends AbstractController
 {
     #[Route('/materials', name: 'app_materials')]
-    public function index(): Response
+    public function index(AscensionMatsRepository $ascMatRepo): Response
     {
         return $this->render('materials/index.html.twig', [
-            'controller_name' => 'MaterialsController',
+            'ascmats' => $ascMatRepo->findAll(),
         ]);
     }
 }
