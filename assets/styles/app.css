@@ -335,10 +335,9 @@ header nav .main-nav li a img {
   margin-right: 3px;
 }
 
-.character-list .item-character .character-path-type .character-type,
-.character-list .item-character .character-path-type .character-path,
-.lc-list .item-lc .lc-path-div .lc-path {
-  width: 20px;
+.character-type, .character-path, .lc-path, .bossmat .bossmat-type {
+  height: 20px;
+  margin: 5px;
 }
 
 .character-list .item-character .character-path-type .character-type {
@@ -703,7 +702,7 @@ main .s-container .lc-show {
 .bossmat {
   border-radius: 25px;
   text-align: center;
-  width: 100px;
+  width: 130px;
   height: 125px;
   padding: 15px;
   font-size: 14px;
@@ -715,5 +714,5 @@ main .s-container .lc-show {
 
 .ascmat img, .bossmat img {
   height: 75px;
-  margin-bottom: 2px;
 }
+
