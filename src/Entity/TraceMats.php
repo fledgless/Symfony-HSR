@@ -54,6 +54,9 @@ class TraceMats
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterTraceMats')]
     private Collection $characters;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->traceMatsIcons = new ArrayCollection();
@@ -235,6 +238,18 @@ class TraceMats
                 $character->setCharacterTraceMats(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

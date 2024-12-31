@@ -214,7 +214,7 @@ header, footer, h1, h2, li a {
   color: #DBC291;
 }
 
-header, footer, h1, h2, li, li a, strong, .lc-base-stat-value {
+header, footer, h1, h2, li, li a, strong, button, .lc-base-stat-value {
   font-family: DinProBold;
 }
 
@@ -271,6 +271,36 @@ header nav .main-nav li a img {
   height: 50px;
 }
 
+
+
+.sign-in-form, .sign-in-form div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sign-in-form div input {
+  margin: 5px 0px 10px;
+  width: 300px;
+  padding: 5px;
+  text-align: center;
+  font-family: DinPro;
+  background-color: #DBC291;
+}
+
+.sign-in-form button {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-size: 16px;
+  margin: 15px;
+  padding: 5px 10px;
+}
+
+.sign-in-form button:hover {
+  background-color: #DBC291;
+  color: #282828;
+  transition: 0.4s;
+}
 
 
 /* character list */
@@ -520,7 +550,7 @@ main .s-container .lc-show {
 .five-star .skill-superimposition,
 .five-star .character-content {
   border: 3px solid transparent;
-  border-image: linear-gradient(to bottom, #DBC291, black);
+  border-image: linear-gradient(to right, #DBC291, black);
   border-image-slice: 1;
 }
 
@@ -528,14 +558,14 @@ main .s-container .lc-show {
 .four-star .skill-superimposition,
 .four-star .character-content {
   border: 3px solid transparent;
-  border-image: linear-gradient(to bottom, rgb(98,59,90), black);
+  border-image: linear-gradient(to right, rgb(98,59,90), black);
   border-image-slice: 1;
 }
 
 .three-star .lc-basic-info-base-stats,
 .three-star .skill-superimposition {
   border: 3px solid transparent;
-  border-image: linear-gradient(to bottom, #235789, black);
+  border-image: linear-gradient(to right, #235789, black);
   border-image-slice: 1;
 }
 
