@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -25,6 +26,9 @@ class TraceMatsCrudController extends AbstractCrudController
             yield TextField::new('traceMatsFourStarName', '4-star trace mat');
             yield TextField::new('traceMatsThreeStarName', '3-star trace mat');
             yield TextField::new('traceMatsTwoStarName', '2-star trace mat');
+            yield SlugField::new('slug')
+                ->setTargetFieldName('traceMatsFourStarName')
+                ->hideOnIndex();
             yield AssociationField::new('traceMatsPath', 'Path for the mats');
             yield AssociationField::new('traceMatsIcons', 'Choose icons for each stage of the trace mats:');
 

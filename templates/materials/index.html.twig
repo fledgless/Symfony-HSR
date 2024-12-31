@@ -3,11 +3,15 @@
 {% block title %}Materials{% endblock %}
 
 {% block body %}
-    <h1>Materials</h1>
+    <h1>Ascension materials</h1>
     <div class="materials">
-        <h2>Ascension materials</h2>
+        <h2>Enemy materials</h2>
         <div class="ascension-materials-list">
-            {% include "ascension-materials/list.html.twig" with { ascmats } %}
+            {% include "materials/ascension-materials/list.html.twig" with { ascmats } %}
+        </div>
+        <h2>Stagnant Shadow materials</h2>
+        <div class="boss-materials-list">
+            {% include "materials/boss-materials/list.html.twig" with { bossmats } %}
         </div>
     </div>
 {% endblock %}

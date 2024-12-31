@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -23,12 +24,20 @@ class BossMatCrudController extends AbstractCrudController
         yield FormField::addColumn()
             ->hideOnDetail();
             yield TextField::new('bossMatName', 'Boss mat name');
+            yield SlugField::new('slug')
+                ->setTargetFieldName('bossMatName')
+                ->hideOnIndex();
+            yield AssociationField::new('bossMatType');
             yield AssociationField::new('bossMatIcon', 'Choose icon for the boss mats:');
+    
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('bossMatAnnounced', 'Were the mats announced?');
-            yield BooleanField::new('bossMatReleased', 'Were the mats released?');
-            yield AssociationField::new('weeklyMatEchoOfWar', '(Optional) Stagnant Shadow that drops the mats:');
+            yield BooleanField::new('bossMatAnnounced', 'Were the mats announced?')
+                ->hideOnIndex();
+            yield BooleanField::new('bossMatReleased', 'Were the mats released?')
+                ->hideOnIndex();
+            yield AssociationField::new('bossMatStagnantShadow', '(Optional) Stagnant Shadow that drops the mats:')
+                ->hideOnIndex();
     }
 }

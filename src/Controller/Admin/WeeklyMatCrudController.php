@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -23,12 +24,18 @@ class WeeklyMatCrudController extends AbstractCrudController
         yield FormField::addColumn()
             ->hideOnDetail();
             yield TextField::new('weeklyMatName', 'Weekly boss mat name');
+            yield SlugField::new('slug')
+                ->setTargetFieldName('weeklyMatName')
+                ->hideOnIndex();
             yield AssociationField::new('weeklyMatIcon', 'Choose icon for weekly boss mats:');
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('weeklyMatAnnounced', 'Were the mats announced?');
-            yield BooleanField::new('weeklyMatReleased', 'Were the mats released?');
-            yield AssociationField::new('weeklyMatEchoOfWar', '(Optional) Echo of War that drops the mats:');
+            yield BooleanField::new('weeklyMatAnnounced', 'Were the mats announced?')
+                ->hideOnIndex();
+            yield BooleanField::new('weeklyMatReleased', 'Were the mats released?')
+                ->hideOnIndex();
+            yield AssociationField::new('weeklyMatEchoOfWar', '(Optional) Echo of War that drops the mats:')
+                ->hideOnIndex();
     }
 }

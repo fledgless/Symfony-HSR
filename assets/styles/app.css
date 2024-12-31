@@ -616,7 +616,8 @@ main .s-container .lc-show {
 .lc-list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
-.ascmat:hover .four-star {
+.ascmat:hover .four-star,
+.bossmat:hover {
   background: rgba(98,59,90,1);
   font-family: DinProBold;
 }
@@ -646,7 +647,8 @@ main .s-container .lc-show {
 .lc-list .four-star,
 .four-star h2,
 .four-star .active,
-.ascmat .four-star {
+.ascmat .four-star,
+.bossmat {
   background: rgb(98,59,90);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
@@ -664,7 +666,7 @@ main .s-container .lc-show {
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
 }
 
-.ascension-materials-list {
+.ascension-materials-list, .boss-materials-list {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -698,6 +700,20 @@ main .s-container .lc-show {
   justify-content: center;
 }
 
-.ascmat img {
+.bossmat {
+  border-radius: 25px;
+  text-align: center;
+  width: 100px;
+  height: 125px;
+  padding: 15px;
+  font-size: 14px;
+  margin: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ascmat img, .bossmat img {
   height: 75px;
+  margin-bottom: 2px;
 }

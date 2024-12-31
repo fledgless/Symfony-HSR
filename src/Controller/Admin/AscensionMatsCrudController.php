@@ -9,6 +9,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -35,6 +36,9 @@ class AscensionMatsCrudController extends AbstractCrudController
             yield TextField::new('ascMatFourStarName', '4-star ascension mat');
             yield TextField::new('ascMatThreeStarName', '3-star ascension mat');
             yield TextField::new('ascMatTwoStarName', '2-star ascension mat');
+            yield SlugField::new('slug')
+                ->setTargetFieldName('ascMatFourStarName')
+                ->hideOnIndex();
             yield AssociationField::new('ascMatIcons', 'Choose icons for each stage of the ascension mats:')
                 ->hideOnIndex();
 
