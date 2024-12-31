@@ -22,6 +22,7 @@ use App\Entity\Path;
 use App\Entity\StagnantShadow;
 use App\Entity\TraceMats;
 use App\Entity\Type;
+use App\Entity\WeeklyMat;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -105,8 +106,8 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('New trace mats', 'fas fa-wrench', TraceMats::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Weekly boss materials','fas fa-screwdriver-wrench')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-toolbox', BaseCharacter::class),
-                MenuItem::linkToCrud('New character', 'fas fa-wrench', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Weekly boss mat list', 'fas fa-toolbox', WeeklyMat::class),
+                MenuItem::linkToCrud('New weekly boss mat', 'fas fa-wrench', WeeklyMat::class)->setAction(Crud::PAGE_NEW),
             ]);
 
         yield MenuItem::section('Enemies');

@@ -198,7 +198,14 @@ h1 {
 h2 {
   font-size: 24px;
   margin-left: 2vh;
-  margin-bottom: 1vh;
+  margin-bottom: 4vh;
+}
+
+h3 {
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-left: 8vh;
+  font-family: DinProBold;
 }
 
 a {
@@ -616,7 +623,7 @@ main .s-container .lc-show {
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
 .ascmat:hover .four-star,
-.bossmat:hover {
+.bossmat:hover, .echomat:hover {
   background: rgba(98,59,90,1);
   font-family: DinProBold;
 }
@@ -647,7 +654,7 @@ main .s-container .lc-show {
 .four-star h2,
 .four-star .active,
 .ascmat .four-star,
-.bossmat {
+.bossmat, .echomat {
   background: rgb(98,59,90);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
 }
@@ -665,7 +672,7 @@ main .s-container .lc-show {
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
 }
 
-.ascension-materials-list, .boss-materials-list {
+.ascension-materials-list, .boss-materials-list, .weekly-boss-materials-list {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -699,7 +706,7 @@ main .s-container .lc-show {
   justify-content: center;
 }
 
-.bossmat {
+.bossmat, .echomat {
   border-radius: 25px;
   text-align: center;
   width: 130px;
@@ -712,7 +719,7 @@ main .s-container .lc-show {
   justify-content: center;
 }
 
-.ascmat img, .bossmat img {
+.ascmat img, .bossmat img, .echomat img {
   height: 75px;
 }
 
