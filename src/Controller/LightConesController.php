@@ -16,4 +16,17 @@ class LightConesController extends AbstractController
             'lightcones' => $lcRepo->findAll(),
         ]);
     }
+
+    #[Route('/light-cones/{lcSlug}', name: 'lc_show', methods: ['GET'])]
+    public function show(string $lcSlug, LightConeRepository $lcRepo): Response
+    {
+        $lightcone = $lcRepo->findOneBy(['lcSlug' => $lcSlug]);
+        if (!$lightcone) {
+            return $this->redirectToRoute('app_light_cones');
+        } else {
+            return $this->render('light_cones/light_cone/show.html.twig', [
+                'lightcone' => $lightcone
+            ]);
+        }
+    }
 }

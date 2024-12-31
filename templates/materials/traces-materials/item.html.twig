@@ -1,0 +1,20 @@
+<a href="#" class="tracemat">
+    {% for icon in tracemat.traceMatIcons|filter(icon => icon.imageRole == 'Trace mat: 4-star icon') %} 
+        <div class="item-trace-mat four-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ tracemat.traceMatFourStarName }}</p>
+        </div>
+    {% endfor %}
+    {% for icon in tracemat.traceMatIcons|filter(icon => icon.imageRole == 'Trace mat: 3-star icon') %} 
+        <div class="item-trace-mat three-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ tracemat.traceMatThreeStarName }}</p>
+        </div>
+    {% endfor %}
+    {% for icon in tracemat.traceMatIcons|filter(icon => icon.imageRole == 'Trace mat: 2-star icon') %} 
+        <div class="item-trace-mat two-star">
+            <img src="/uploads/{{ icon.filename }}" alt="">
+            <p>{{ tracemat.traceMatTwoStarName }}</p>
+        </div>
+    {% endfor %}
+</a>

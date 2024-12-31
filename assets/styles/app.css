@@ -672,7 +672,7 @@ main .s-container .lc-show {
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
 }
 
-.ascension-materials-list, .boss-materials-list, .weekly-boss-materials-list {
+.ascension-materials-list, .boss-materials-list, .traces-materials-list, .weekly-boss-materials-list {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -683,7 +683,7 @@ main .s-container .lc-show {
   margin: 20px;
 }
 
-.ascmat {
+.ascmat, .tracemat {
   border-radius: 15px;
   padding: 3px;
   display: flex;
@@ -695,7 +695,7 @@ main .s-container .lc-show {
   font-size: 14px;
 }
 
-.ascmat .item-asc-mat {
+.ascmat .item-asc-mat, .tracemat .item-trace-mat {
   padding: 15px;
   border-radius: 25px;
   margin: 2px;
