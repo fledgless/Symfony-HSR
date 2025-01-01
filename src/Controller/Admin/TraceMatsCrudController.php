@@ -30,12 +30,16 @@ class TraceMatsCrudController extends AbstractCrudController
                 ->setTargetFieldName('traceMatsFourStarName')
                 ->hideOnIndex();
             yield AssociationField::new('traceMatsPath', 'Path for the mats');
-            yield AssociationField::new('traceMatsIcons', 'Choose icons for each stage of the trace mats:');
+            yield AssociationField::new('traceMatsIcons', 'Choose icons for each stage of the trace mats:')
+                ->hideOnIndex();
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('traceMatsAnnounced', 'Were the mats announced?');
-            yield BooleanField::new('traceMatsReleased', 'Were the mats released?');
-            yield AssociationField::new('traceMatsCrimsonCalyx', '(Optional) Crimson Calyx that drops the mats:');
+            yield BooleanField::new('traceMatsAnnounced', 'Were the mats announced?')
+                ->hideOnIndex();
+            yield BooleanField::new('traceMatsReleased', 'Were the mats released?')
+                ->hideOnIndex();
+            yield AssociationField::new('traceMatsCrimsonCalyx', '(Optional) Crimson Calyx that drops the mats:')
+                ->hideOnIndex();
     }
 }
