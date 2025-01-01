@@ -148,6 +148,7 @@ body {
     padding: 0;
     margin: 0;
     font-family: DinPro;
+    width: 100%;
 }
 
 header nav, main, footer {
@@ -161,7 +162,7 @@ main {
     padding-bottom: 50px;
     margin-left: 100px;
     font-size: 16px;
-    min-height: 90vh;
+    min-height: 70vh;
 }
 
 #container {
@@ -172,6 +173,9 @@ header {
     position: fixed;
     height: 100%;
     width: 100px;
+}
+
+header, footer {
     background-color: black;
     display: flex;
     align-items: center;
@@ -182,8 +186,13 @@ header {
 footer {
     position: relative;
     bottom: 0;
-    height: 50px;
-    background-color: black;
+    height: 90px;
+    padding: 5px;
+    text-align: center;
+}
+
+footer p {
+  margin: 5px 0px 5px 100px;
 }
 
 h1 {
@@ -622,7 +631,7 @@ main .s-container .lc-show {
 .lc-list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
-.ascmat:hover .four-star,
+.ascmat:hover .four-star, .tracemat:hover .four-star,
 .bossmat:hover, .echomat:hover {
   background: rgba(98,59,90,1);
   font-family: DinProBold;
@@ -630,12 +639,12 @@ main .s-container .lc-show {
 
 .lc-list .three-star:hover,
 .three-star .superimposition-toggle:hover,
-.ascmat:hover .three-star {
+.ascmat:hover .three-star, .tracemat:hover .three-star {
   background: #235789;
   font-family: DinProBold;
 }
 
-.ascmat:hover .two-star {
+.ascmat:hover .two-star, .tracemat:hover .two-star {
   background: #3f6b4e;
   font-family: DinProBold;
 }
@@ -653,7 +662,7 @@ main .s-container .lc-show {
 .lc-list .four-star,
 .four-star h2,
 .four-star .active,
-.ascmat .four-star,
+.ascmat .four-star, .tracemat .four-star,
 .bossmat, .echomat {
   background: rgb(98,59,90);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
@@ -662,12 +671,12 @@ main .s-container .lc-show {
 .lc-list .three-star,
 .three-star h2,
 .three-star .active,
-.ascmat .three-star {
+.ascmat .three-star, .tracemat .three-star {
   background: rgb(35,87,137);
   background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(35,87,137,1) 100%);
 }
 
-.ascmat .two-star {
+.ascmat .two-star, .tracemat .two-star {
   background: rgb(63,107,78);
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
 }
