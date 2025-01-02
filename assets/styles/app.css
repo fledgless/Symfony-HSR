@@ -4,87 +4,7 @@
    License: none (public domain)
 */
 
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -93,34 +13,19 @@ video {
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block;
 }
 body {
   line-height: 1;
 }
-ol,
-ul {
+ol, ul {
   list-style: none;
 }
-blockquote,
-q {
+blockquote, q {
   quotes: none;
 }
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after, q:before, q:after {
   content: "";
   content: none;
 }
@@ -133,6 +38,8 @@ table {
     --vh: 1vh;
 }
 
+
+
 @font-face {
   font-family: DinPro;
   src: url(/public/fonts/DinPro/dinpro.otf);
@@ -142,6 +49,7 @@ table {
   font-family: DinProBold;
   src: url(/public/fonts/DinPro/dinpro_bold.otf);
 }
+
 
 
 body {
@@ -156,7 +64,6 @@ header nav, main, footer {
 }
 
 main {
-    background-color: #282828;
     color: #FFFFFF;
     padding-top: 50px;
     padding-bottom: 50px;
@@ -214,7 +121,6 @@ h3 {
   text-transform: uppercase;
   font-size: 16px;
   margin-left: 8vh;
-  font-family: DinProBold;
 }
 
 a {
@@ -230,8 +136,12 @@ header, footer, h1, h2, li a {
   color: #DBC291;
 }
 
-header, footer, h1, h2, li, li a, strong, button, .lc-base-stat-value {
+header, footer, h1, h2, h3, li, li a, strong, button, .lc-base-stat-value {
   font-family: DinProBold;
+}
+
+main, header .hamburger {
+  background-color: #282828;
 }
 
 
@@ -239,7 +149,6 @@ header, footer, h1, h2, li, li a, strong, button, .lc-base-stat-value {
 
 header .hamburger {
   display: none;
-  background-color: #2828287e;
   height: 40px;
   width: 40px;
   border: 2px solid #DBC291;
@@ -289,6 +198,7 @@ header nav .main-nav li a img {
 }
 
 
+/* login form */
 
 .sign-in-form, .sign-in-form div {
   display: flex;
@@ -320,18 +230,18 @@ header nav .main-nav li a img {
 }
 
 
-/* character list */
 
-.character-list,
-.lc-list {
+/* character and lc list */
+
+.character-list, .lc-list {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
 }
 
-.character-list .item-character,
-.lc-list .item-lc {
+.character-list .item-character, .lc-list .item-lc {
+  height: 265px;
   width: 150px;
   display: flex;
   flex-direction: column;
@@ -342,13 +252,15 @@ header nav .main-nav li a img {
   border: 2px solid #282828;
 }
 
-.character-list .item-character .character-path-type,
-.lc-list .item-lc .lc-path-div {
+.lc-list .item-lc {
+  height: 225px;
+}
+
+.character-list .item-character .character-path-type, .lc-list .item-lc .lc-path-div {
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
   margin-top: 5px;
-  margin-bottom: 10px;
   margin-right: 3px;
 }
 
@@ -361,8 +273,7 @@ header nav .main-nav li a img {
   margin-right: 10px;
 }
 
-.character-list .item-character a p,
-.lc-list .item-lc a p {
+.character-list .item-character a p, .lc-list .item-lc a p {
   display: flex;
   justify-content: center;
   text-align: center;
@@ -371,28 +282,29 @@ header nav .main-nav li a img {
   margin-top: 5px;
 }
 
-.character-list .item-character a img,
-.lc-list .item-lc a img {
+.character-list .item-character a .character-icon, .lc-list .item-lc a img {
   width: 140px;
   display: flex;
   justify-content: center;
-  margin: 5px;
 }
 
-@media screen and (max-width: 825px) {
-  .character-list .item-character,
-  .lc-list .item-lc {
-    width: 120px;
-  }
-  .character-list .item-character a img,
-  .lc-list .item-lc a img {
-    width: 110px;
-  }
+.character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a img {
+  width: 150px;
+  transition: 0.4s;
+}
+
+.upcoming, .new {
+  position: absolute;
+  background-color: #000000a4;
+  padding: 5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: DinProBold;
 }
 
 
 
-/* light cone show */
+/* character and light cone show */
 
 main .s-container {
   margin: 2vh 5vh 2vh 5vh;
@@ -418,8 +330,7 @@ main .s-container .lc-show {
   margin-right: auto;
 }
 
-.lc-show h2,
-.character-show h2 {
+.lc-show h2, .character-show h2 {
   font-size: 20px;
   color: #FFFFFF;
   border-radius: 1% 1% 0% 0%;
@@ -472,13 +383,11 @@ main .s-container .lc-show {
   width: 50px;
 }
 
-.lc-show .lightcone-superimposition,
-.character-show .section {
+.lc-show .lightcone-superimposition, .character-show .section {
   display: none;
 }
 
-.lc-show .lightcone-superimposition.open,
-.character-show .open {
+.lc-show .lightcone-superimposition.open, .character-show .open {
   display: block;
 }
 
@@ -558,6 +467,67 @@ main .s-container .lc-show {
 }
 
 
+/* materials list */
+
+.ascension-materials-list, .boss-materials-list, .traces-materials-list, .weekly-boss-materials-list {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #0000007e;
+  padding: 20px;
+  margin: 20px;
+}
+
+.ascmat, .tracemat {
+  padding: 3px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  margin: 5px 4px;
+  width: 350px;
+}
+
+.ascmat .item-asc-mat, .tracemat .item-trace-mat, .bossmat, .echomat {
+  padding: 15px;
+  font-size: 12px;
+  margin: 2px;
+  width: 100px;
+  height: 125px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.bossmat, .echomat {
+  margin: 5px 3px;  
+}
+
+.tracemat-div, .bossmat-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tracemat-path, .bossmat-type {
+  background-color: #282828;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  width: 85px;
+}
+
+.tracemat-path {
+  width: 300px;
+}
+
+.ascmat img, .bossmat img, .echomat img, .tracemat img {
+  height: 75px;
+}
+
+
 
 
 /* colors */
@@ -626,6 +596,7 @@ main .s-container .lc-show {
 .five-star .character-nav-link:hover {
   background: #DBC291;
   font-family: DinProBold;
+  transition: 0.4s;
 }
 
 .character-list .four-star:hover,
@@ -636,6 +607,7 @@ main .s-container .lc-show {
 .bossmat:hover, .echomat:hover {
   background: rgba(98,59,90,1);
   font-family: DinProBold;
+  transition: 0.4s;
 }
 
 .lc-list .three-star:hover,
@@ -643,11 +615,13 @@ main .s-container .lc-show {
 .ascmat:hover .three-star, .tracemat:hover .three-star {
   background: #235789;
   font-family: DinProBold;
+  transition: 0.4s;
 }
 
 .ascmat:hover .two-star, .tracemat:hover .two-star {
   background: #3f6b4e;
   font-family: DinProBold;
+  transition: 0.4s;
 }
 
 .character-list .five-star,
@@ -680,66 +654,5 @@ main .s-container .lc-show {
 .ascmat .two-star, .tracemat .two-star {
   background: rgb(63,107,78);
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
-}
-
-.ascension-materials-list, .boss-materials-list, .traces-materials-list, .weekly-boss-materials-list {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #0000007e;
-  padding: 20px;
-  margin: 20px;
-}
-
-.ascmat, .tracemat {
-  padding: 3px;
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  margin: 5px 4px;
-  text-align: center;
-  width: 350px;
-  font-size: 12px;
-}
-
-.ascmat .item-asc-mat, .tracemat .item-trace-mat, .bossmat, .echomat {
-  padding: 15px;
-  
-  font-size: 12px;
-  margin: 2px;
-  width: 100px;
-  height: 125px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-
-.bossmat, .echomat {
-  margin: 5px 3px;  
-}
-
-.tracemat-div, .bossmat-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.tracemat-path, .bossmat-type {
-  background-color: #282828;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  width: 85px;
-}
-
-.tracemat-path {
-  width: 300px;
-}
-
-.ascmat img, .bossmat img, .echomat img, .tracemat img {
-  height: 75px;
 }
 

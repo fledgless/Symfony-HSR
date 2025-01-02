@@ -4,6 +4,36 @@
     <div class="s-container">
         <div class="character-show {% if character.characterRarity == "4-star"%}four-star {% elseif character.characterRarity == "5-star" %}five-star{% endif %}">
             <h1>{{ character.characterName }}</h1>
+            <div class="character-asc-mats">
+                {% if character.characterAscMats %}
+                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 4-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 3-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 2-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                {% endif %}
+                {% if character.characterBossMat %}
+                    <img src="/uploads/{{ character.characterBossMat.bossMatIcon.filename }}" alt="">
+                {% endif %}
+                {% if character.characterTraceMats %}
+                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 4-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 3-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 2-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                {% endif %}
+                {% if character.characterWeeklyMat %}
+                    <img src="/uploads/{{ character.characterWeeklyMat.weeklyMatIcon.filename }}" alt="">
+                {% endif %}
+            </div>
             <div class="character-content">
                 <nav>
                     <ul class="character-nav">
