@@ -252,6 +252,12 @@ header nav .main-nav li a img {
   border: 2px solid #282828;
 }
 
+.character-list .item-character a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .lc-list .item-lc {
   height: 225px;
 }
@@ -277,15 +283,13 @@ header nav .main-nav li a img {
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   color: #FFFFFF;
   margin-top: 5px;
 }
 
 .character-list .item-character a .character-icon, .lc-list .item-lc a img {
   width: 140px;
-  display: flex;
-  justify-content: center;
 }
 
 .character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a img {
@@ -300,6 +304,13 @@ header nav .main-nav li a img {
   font-size: 12px;
   text-transform: uppercase;
   font-family: DinProBold;
+  margin-top: 170px;
+}
+
+.character-list .item-character:hover .upcoming, .character-list .item-character:hover .new {
+  font-size: 14px;
+  margin-top: 180px;
+  transition: 0.4s;
 }
 
 
@@ -469,7 +480,7 @@ main .s-container .lc-show {
 
 /* materials list */
 
-.ascension-materials-list, .boss-materials-list, .traces-materials-list, .weekly-boss-materials-list {
+.materials section {
   display: flex;
   flex-direction: row;
   align-content: center;
