@@ -80,7 +80,7 @@ class LightCone
     private ?TraceMats $lcTraceMats = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $lcVersionRelease = null;
+    private ?string $lcReleaseVersion = null;
 
     public function __construct()
     {
@@ -349,14 +349,14 @@ class LightCone
         return $this;
     }
 
-    public function getLcVersionRelease(): ?string
+    public function getLcReleaseVersion(): ?string
     {
-        return $this->lcVersionRelease;
+        return $this->lcReleaseVersion;
     }
 
-    public function setLcVersionRelease(?string $lcVersionRelease): static
+    public function setLcReleaseVersion(?string $lcReleaseVersion): static
     {
-        $this->lcVersionRelease = $lcVersionRelease;
+        $this->lcReleaseVersion = $lcReleaseVersion;
 
         return $this;
     }

@@ -601,16 +601,15 @@ main .s-container .lc-show {
   color: #235789;
 }
 
-.character-list .five-star:hover,
+.character-list .item-character:hover,
 .lc-list .five-star:hover,
 .five-star .superimposition-toggle:hover,
 .five-star .character-nav-link:hover {
-  background: #DBC291;
+  background: #000000;
   font-family: DinProBold;
   transition: 0.4s;
 }
 
-.character-list .four-star:hover,
 .lc-list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
