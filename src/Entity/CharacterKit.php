@@ -32,29 +32,17 @@ class CharacterKit
     #[ORM\Column(nullable: true)]
     private ?int $baseSpd = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mainTraceNameOne = null;
+    #[ORM\Column(nullable: true)]
+    private ?array $mainTraceOne = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $mainTraceDescOne = null;
+    #[ORM\Column(nullable: true)]
+    private ?array $mainTraceTwo = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mainTraceNameTwo = null;
+    #[ORM\Column(nullable: true)]
+    private ?array $mainTraceThree = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $mainTraceDescTwo = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $mainTraceNameThree = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $mainTraceDescThree = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $techniqueName = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $techniqueDesc = null;
+    #[ORM\Column(nullable: true)]
+    private ?array $technique = null;
 
     /**
      * @var Collection<int, Media>
@@ -62,9 +50,16 @@ class CharacterKit
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $icons;
 
+    /**
+     * @var Collection<int, CharacterBasicAtk>
+     */
+    #[ORM\OneToMany(targetEntity: CharacterBasicAtk::class, mappedBy: 'characterKit')]
+    private Collection $characterBasicAtks;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
+        $this->characterBasicAtks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,103 +126,7 @@ class CharacterKit
 
         return $this;
     }
-
-    public function getMainTraceNameOne(): ?string
-    {
-        return $this->mainTraceNameOne;
-    }
-
-    public function setMainTraceNameOne(?string $mainTraceNameOne): static
-    {
-        $this->mainTraceNameOne = $mainTraceNameOne;
-
-        return $this;
-    }
-
-    public function getMainTraceDescOne(): ?string
-    {
-        return $this->mainTraceDescOne;
-    }
-
-    public function setMainTraceDescOne(?string $mainTraceDescOne): static
-    {
-        $this->mainTraceDescOne = $mainTraceDescOne;
-
-        return $this;
-    }
-
-    public function getMainTraceNameTwo(): ?string
-    {
-        return $this->mainTraceNameTwo;
-    }
-
-    public function setMainTraceNameTwo(?string $mainTraceNameTwo): static
-    {
-        $this->mainTraceNameTwo = $mainTraceNameTwo;
-
-        return $this;
-    }
-
-    public function getMainTraceDescTwo(): ?string
-    {
-        return $this->mainTraceDescTwo;
-    }
-
-    public function setMainTraceDescTwo(?string $mainTraceDescTwo): static
-    {
-        $this->mainTraceDescTwo = $mainTraceDescTwo;
-
-        return $this;
-    }
-
-    public function getMainTraceNameThree(): ?string
-    {
-        return $this->mainTraceNameThree;
-    }
-
-    public function setMainTraceNameThree(?string $mainTraceNameThree): static
-    {
-        $this->mainTraceNameThree = $mainTraceNameThree;
-
-        return $this;
-    }
-
-    public function getMainTraceDescThree(): ?string
-    {
-        return $this->mainTraceDescThree;
-    }
-
-    public function setMainTraceDescThree(?string $mainTraceDescThree): static
-    {
-        $this->mainTraceDescThree = $mainTraceDescThree;
-
-        return $this;
-    }
-
-    public function getTechniqueName(): ?string
-    {
-        return $this->techniqueName;
-    }
-
-    public function setTechniqueName(?string $techniqueName): static
-    {
-        $this->techniqueName = $techniqueName;
-
-        return $this;
-    }
-
-    public function getTechniqueDesc(): ?string
-    {
-        return $this->techniqueDesc;
-    }
-
-    public function setTechniqueDesc(?string $techniqueDesc): static
-    {
-        $this->techniqueDesc = $techniqueDesc;
-
-        return $this;
-    }
-
+    
     /**
      * @return Collection<int, Media>
      */
@@ -248,6 +147,84 @@ class CharacterKit
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
+
+        return $this;
+    }
+
+    public function getMainTraceOne(): ?array
+    {
+        return $this->mainTraceOne;
+    }
+
+    public function setMainTraceOne(?array $mainTraceOne): static
+    {
+        $this->mainTraceOne = $mainTraceOne;
+
+        return $this;
+    }
+
+    public function getMainTraceTwo(): ?array
+    {
+        return $this->mainTraceTwo;
+    }
+
+    public function setMainTraceTwo(?array $mainTraceTwo): static
+    {
+        $this->mainTraceTwo = $mainTraceTwo;
+
+        return $this;
+    }
+
+    public function getMainTraceThree(): ?array
+    {
+        return $this->mainTraceThree;
+    }
+
+    public function setMainTraceThree(?array $mainTraceThree): static
+    {
+        $this->mainTraceThree = $mainTraceThree;
+
+        return $this;
+    }
+
+    public function getTechnique(): ?array
+    {
+        return $this->technique;
+    }
+
+    public function setTechnique(?array $technique): static
+    {
+        $this->technique = $technique;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterBasicAtk>
+     */
+    public function getCharacterBasicAtks(): Collection
+    {
+        return $this->characterBasicAtks;
+    }
+
+    public function addCharacterBasicAtk(CharacterBasicAtk $characterBasicAtk): static
+    {
+        if (!$this->characterBasicAtks->contains($characterBasicAtk)) {
+            $this->characterBasicAtks->add($characterBasicAtk);
+            $characterBasicAtk->setCharacterKit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterBasicAtk(CharacterBasicAtk $characterBasicAtk): static
+    {
+        if ($this->characterBasicAtks->removeElement($characterBasicAtk)) {
+            // set the owning side to null (unless already changed)
+            if ($characterBasicAtk->getCharacterKit() === $this) {
+                $characterBasicAtk->setCharacterKit(null);
+            }
+        }
 
         return $this;
     }

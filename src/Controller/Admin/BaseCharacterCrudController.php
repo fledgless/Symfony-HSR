@@ -37,28 +37,25 @@ class BaseCharacterCrudController extends AbstractCrudController
         yield FormField::addTab('Character');
             yield FormField::addColumn()
                 ->hideOnDetail();
-                yield TextField::new('characterName');
-                yield SlugField::new('characterSlug')
+                yield TextField::new('characterName', 'Name');
+                yield SlugField::new('characterSlug', 'Slug')
                     ->setTargetFieldName('characterName')
                     ->hideOnIndex();
-                yield ChoiceField::new('characterRarity')
+                yield ChoiceField::new('characterRarity', 'Rarity')
                     ->renderExpanded()
                     ->setChoices([
                         '5-star' => '5-star',
                         '4-star' => '4-star',
                         'Trailblazer' => 'Trailblazer',
                     ]);
-                yield AssociationField::new('characterPath');
-                yield AssociationField::new('characterType');
+                yield AssociationField::new('characterPath', 'Path');
+                yield AssociationField::new('characterType', 'Type');
 
             yield FormField::addColumn()
                     ->hideOnDetail();
-                yield BooleanField::new('characterAnnounced', 'Was the character officially announced?')
-                    ->hideOnIndex();
-                yield BooleanField::new('characterReleased', 'Is the character released in-game?')
-                    ->hideOnIndex();
-                yield ChoiceField::new('characterReleaseVersion', 'If announced, choose release version:')
-                    ->hideOnIndex()
+                yield BooleanField::new('characterAnnounced', 'Announced?');
+                yield BooleanField::new('characterReleased', 'Released?');
+                yield ChoiceField::new('characterReleaseVersion', 'Version')
                     ->setChoices([
                         '1.0' => '1.0', 
                         '1.1' => '1.1', 
@@ -80,8 +77,7 @@ class BaseCharacterCrudController extends AbstractCrudController
                         '3.0' => '3.0',
                         '3.1' => '3.1',
                     ]);
-                yield DateField::new('characterReleaseDate', 'If released, choose release date:')
-                    ->hideOnIndex();
+                yield DateField::new('characterReleaseDate', 'Release date');
                 yield TextField::new('characterBannerName')
                     ->hideOnIndex();
                 yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:')

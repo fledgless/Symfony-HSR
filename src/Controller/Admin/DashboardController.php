@@ -50,7 +50,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Characters');
             yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterName' => 'ASC']),
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterReleaseVersion' => 'DESC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
