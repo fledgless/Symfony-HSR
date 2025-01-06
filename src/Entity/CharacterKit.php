@@ -56,10 +56,23 @@ class CharacterKit
     #[ORM\OneToMany(targetEntity: CharacterBasicAtk::class, mappedBy: 'characterKit')]
     private Collection $characterBasicAtks;
 
+    /**
+     * @var Collection<int, CharacterSkill>
+     */
+    #[ORM\OneToMany(targetEntity: CharacterSkill::class, mappedBy: 'characterKit')]
+    private Collection $characterSkills;
+
+    /**
+     * @var Collection<int, CharacterUltimate>
+     */
+    #[ORM\OneToMany(targetEntity: CharacterUltimate::class, mappedBy: 'characterKit')]
+    private Collection $characterUltimates;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
         $this->characterBasicAtks = new ArrayCollection();
+        $this->characterSkills = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -223,6 +236,66 @@ class CharacterKit
             // set the owning side to null (unless already changed)
             if ($characterBasicAtk->getCharacterKit() === $this) {
                 $characterBasicAtk->setCharacterKit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterSkill>
+     */
+    public function getCharacterSkills(): Collection
+    {
+        return $this->characterSkills;
+    }
+
+    public function addCharacterSkill(CharacterSkill $characterSkill): static
+    {
+        if (!$this->characterSkills->contains($characterSkill)) {
+            $this->characterSkills->add($characterSkill);
+            $characterSkill->setCharacterKit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterSkill(CharacterSkill $characterSkill): static
+    {
+        if ($this->characterSkills->removeElement($characterSkill)) {
+            // set the owning side to null (unless already changed)
+            if ($characterSkill->getCharacterKit() === $this) {
+                $characterSkill->setCharacterKit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CharacterUltimate>
+     */
+    public function getCharacterUltimates(): Collection
+    {
+        return $this->characterUltimates;
+    }
+
+    public function addCharacterUltimate(CharacterUltimate $characterUltimate): static
+    {
+        if (!$this->characterUltimates->contains($characterUltimate)) {
+            $this->characterUltimates->add($characterUltimate);
+            $characterUltimate->setCharacterKit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCharacterUltimate(CharacterUltimate $characterUltimate): static
+    {
+        if ($this->characterUltimates->removeElement($characterUltimate)) {
+            // set the owning side to null (unless already changed)
+            if ($characterUltimate->getCharacterKit() === $this) {
+                $characterUltimate->setCharacterKit(null);
             }
         }
 

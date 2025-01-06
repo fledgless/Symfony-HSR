@@ -70,7 +70,7 @@ class CharacterSkill
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelTwelve = null;
 
-    #[ORM\ManyToOne(inversedBy: 'characterBasicAtks')]
+    #[ORM\ManyToOne(inversedBy: 'characterSkills')]
     private ?CharacterKit $characterKit = null;
 
     /**

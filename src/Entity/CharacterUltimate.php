@@ -70,7 +70,7 @@ class CharacterUltimate
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelTwelve = null;
 
-    #[ORM\ManyToOne(inversedBy: 'characterBasicAtks')]
+    #[ORM\ManyToOne(inversedBy: 'characterUltimates')]
     private ?CharacterKit $characterKit = null;
 
     /**
