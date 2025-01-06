@@ -79,9 +79,18 @@ class CharacterUltimate
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $icons;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $ultCost = null;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        $ultimateName = $this->characterKit + " - Ultimate - " + $this->name;
+        return $ultimateName;
     }
 
     public function getId(): ?int
@@ -337,6 +346,18 @@ class CharacterUltimate
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
+
+        return $this;
+    }
+
+    public function getUltCost(): ?int
+    {
+        return $this->ultCost;
+    }
+
+    public function setUltCost(?int $ultCost): static
+    {
+        $this->ultCost = $ultCost;
 
         return $this;
     }

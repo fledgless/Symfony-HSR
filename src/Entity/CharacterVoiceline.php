@@ -26,6 +26,12 @@ class CharacterVoiceline
     #[ORM\ManyToOne(inversedBy: 'characterVoicelines')]
     private ?BaseCharacter $voicelineCharacter = null;
 
+    public function __toString()
+    {
+        $voicelineName = $this->voicelineCharacter + " - Voiceline - " + $this->voicelineName;
+        return $voicelineName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

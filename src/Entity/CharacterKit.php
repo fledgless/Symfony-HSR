@@ -68,11 +68,42 @@ class CharacterKit
     #[ORM\OneToMany(targetEntity: CharacterUltimate::class, mappedBy: 'characterKit')]
     private Collection $characterUltimates;
 
+    #[ORM\OneToOne(inversedBy: 'characterKit')]
+    private ?CharacterTalent $characterTalent = null;
+
+    #[ORM\OneToOne(mappedBy: 'characterName', cascade: ['persist', 'remove'])]
+    private ?CharacterMinorTraces $characterMinorTraces = null;
+
+    /**
+     * @var Collection<int, Stat>
+     */
+    #[ORM\ManyToMany(targetEntity: Stat::class)]
+    private Collection $stats;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $statOneValue = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $statTwoValue = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $statThreeValue = null;
+
+    #[ORM\OneToOne(mappedBy: 'memomaster', cascade: ['persist', 'remove'])]
+    private ?Memosprite $memosprite = null;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
         $this->characterBasicAtks = new ArrayCollection();
         $this->characterSkills = new ArrayCollection();
+        $this->stats = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        $kitName = $this->characterName + " - Kit";
+        return $kitName;
     }
 
     public function getId(): ?int
@@ -298,6 +329,117 @@ class CharacterKit
                 $characterUltimate->setCharacterKit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCharacterTalent(): ?CharacterTalent
+    {
+        return $this->characterTalent;
+    }
+
+    public function setCharacterTalent(?CharacterTalent $characterTalent): static
+    {
+        $this->characterTalent = $characterTalent;
+
+        return $this;
+    }
+
+    public function getCharacterMinorTraces(): ?CharacterMinorTraces
+    {
+        return $this->characterMinorTraces;
+    }
+
+    public function setCharacterMinorTraces(CharacterMinorTraces $characterMinorTraces): static
+    {
+        // set the owning side of the relation if necessary
+        if ($characterMinorTraces->getCharacterName() !== $this) {
+            $characterMinorTraces->setCharacterName($this);
+        }
+
+        $this->characterMinorTraces = $characterMinorTraces;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Stat>
+     */
+    public function getStats(): Collection
+    {
+        return $this->stats;
+    }
+
+    public function addStat(Stat $stat): static
+    {
+        if (!$this->stats->contains($stat)) {
+            $this->stats->add($stat);
+        }
+
+        return $this;
+    }
+
+    public function removeStat(Stat $stat): static
+    {
+        $this->stats->removeElement($stat);
+
+        return $this;
+    }
+
+    public function getStatOneValue(): ?int
+    {
+        return $this->statOneValue;
+    }
+
+    public function setStatOneValue(?int $statOneValue): static
+    {
+        $this->statOneValue = $statOneValue;
+
+        return $this;
+    }
+
+    public function getStatTwoValue(): ?int
+    {
+        return $this->statTwoValue;
+    }
+
+    public function setStatTwoValue(?int $statTwoValue): static
+    {
+        $this->statTwoValue = $statTwoValue;
+
+        return $this;
+    }
+
+    public function getStatThreeValue(): ?int
+    {
+        return $this->statThreeValue;
+    }
+
+    public function setStatThreeValue(?int $statThreeValue): static
+    {
+        $this->statThreeValue = $statThreeValue;
+
+        return $this;
+    }
+
+    public function getMemosprite(): ?Memosprite
+    {
+        return $this->memosprite;
+    }
+
+    public function setMemosprite(?Memosprite $memosprite): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($memosprite === null && $this->memosprite !== null) {
+            $this->memosprite->setMemomaster(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($memosprite !== null && $memosprite->getMemomaster() !== $this) {
+            $memosprite->setMemomaster($this);
+        }
+
+        $this->memosprite = $memosprite;
 
         return $this;
     }

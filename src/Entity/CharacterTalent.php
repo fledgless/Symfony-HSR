@@ -84,6 +84,12 @@ class CharacterTalent
         $this->icons = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        $talentName = $this->characterKit + " - Talent - " + $this->name;
+        return $talentName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

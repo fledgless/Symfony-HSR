@@ -32,6 +32,12 @@ class CharacterStories
     #[ORM\OneToOne(inversedBy: 'characterStories', cascade: ['persist', 'remove'])]
     private ?BaseCharacter $characterStoriesCharacter = null;
 
+    public function __toString()
+    {
+        $characterStoriesName = $this->characterStoriesCharacter + " - Character stories";
+        return $characterStoriesName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

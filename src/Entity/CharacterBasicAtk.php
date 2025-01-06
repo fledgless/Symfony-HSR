@@ -69,6 +69,12 @@ class CharacterBasicAtk
         $this->icons = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        $basicAtkName = $this->characterKit + " - Basic ATK - " + $this->name;
+        return $basicAtkName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
