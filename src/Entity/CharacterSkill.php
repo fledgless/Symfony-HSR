@@ -73,16 +73,8 @@ class CharacterSkill
     #[ORM\ManyToOne(inversedBy: 'characterSkills')]
     private ?CharacterKit $characterKit = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
-
-    public function __construct()
-    {
-        $this->icons = new ArrayCollection();
-    }
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Media $icon = null;
 
     public function __toString()
     {
@@ -323,26 +315,14 @@ class CharacterSkill
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
+    public function getIcon(): ?Media
     {
-        return $this->icons;
+        return $this->icon;
     }
 
-    public function addIcon(Media $icon): static
+    public function setIcon(?Media $icon): static
     {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
+        $this->icon = $icon;
 
         return $this;
     }

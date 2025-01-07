@@ -33,6 +33,12 @@ class Memosprite
     #[ORM\OneToMany(targetEntity: MemospriteSkill::class, mappedBy: 'memosprite')]
     private Collection $skills;
 
+    /**
+     * @var Collection<int, MemospriteTalent>
+     */
+    #[ORM\OneToMany(targetEntity: MemospriteTalent::class, mappedBy: 'memosprite')]
+    private Collection $talents;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
@@ -121,6 +127,36 @@ class Memosprite
             // set the owning side to null (unless already changed)
             if ($skill->getMemosprite() === $this) {
                 $skill->setMemosprite(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MemospriteTalent>
+     */
+    public function getTalents(): Collection
+    {
+        return $this->talents;
+    }
+
+    public function addTalent(MemospriteTalent $talent): static
+    {
+        if (!$this->talents->contains($talent)) {
+            $this->talents->add($talent);
+            $talent->setMemosprite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTalent(MemospriteTalent $talent): static
+    {
+        if ($this->talents->removeElement($talent)) {
+            // set the owning side to null (unless already changed)
+            if ($talent->getMemosprite() === $this) {
+                $talent->setMemosprite(null);
             }
         }
 

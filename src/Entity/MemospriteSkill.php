@@ -62,6 +62,12 @@ class MemospriteSkill
     #[ORM\ManyToOne(inversedBy: 'skills')]
     private ?Memosprite $memosprite = null;
 
+    public function __toString()
+    {
+        $skillName = $this->memosprite + " - Skill - " + $this->name;
+        return $skillName;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
