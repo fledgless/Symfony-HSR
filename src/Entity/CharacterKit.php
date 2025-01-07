@@ -92,6 +92,12 @@ class CharacterKit
     #[ORM\OneToOne(mappedBy: 'memomaster', cascade: ['persist', 'remove'])]
     private ?Memosprite $memosprite = null;
 
+    #[ORM\Column]
+    private ?bool $leaks = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $betaVersion = null;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
@@ -440,6 +446,30 @@ class CharacterKit
         }
 
         $this->memosprite = $memosprite;
+
+        return $this;
+    }
+
+    public function isLeaks(): ?bool
+    {
+        return $this->leaks;
+    }
+
+    public function setLeaks(bool $leaks): static
+    {
+        $this->leaks = $leaks;
+
+        return $this;
+    }
+
+    public function getBetaVersion(): ?string
+    {
+        return $this->betaVersion;
+    }
+
+    public function setBetaVersion(?string $betaVersion): static
+    {
+        $this->betaVersion = $betaVersion;
 
         return $this;
     }
