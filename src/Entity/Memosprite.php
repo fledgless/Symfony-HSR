@@ -27,9 +27,16 @@ class Memosprite
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $icons;
 
+    /**
+     * @var Collection<int, MemospriteSkill>
+     */
+    #[ORM\OneToMany(targetEntity: MemospriteSkill::class, mappedBy: 'memosprite')]
+    private Collection $skills;
+
     public function __construct()
     {
         $this->icons = new ArrayCollection();
+        $this->skills = new ArrayCollection();
     }
 
     public function __toString()
@@ -86,6 +93,36 @@ class Memosprite
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MemospriteSkill>
+     */
+    public function getSkills(): Collection
+    {
+        return $this->skills;
+    }
+
+    public function addSkill(MemospriteSkill $skill): static
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+            $skill->setMemosprite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(MemospriteSkill $skill): static
+    {
+        if ($this->skills->removeElement($skill)) {
+            // set the owning side to null (unless already changed)
+            if ($skill->getMemosprite() === $this) {
+                $skill->setMemosprite(null);
+            }
+        }
 
         return $this;
     }
