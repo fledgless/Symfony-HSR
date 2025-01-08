@@ -1,17 +1,16 @@
 <header>
-    <p>LOGO</p>
+    <a href="/">LOGO</a>
     <nav class="header-nav">
         <ul class="main-nav">
-            <li class="main-nav-link">
-                <a class="main-nav-link-text" href="/characters"><img class="main-nav-link-img" src="{{ asset('images/character.png') }}" alt=""></a></li>
-            <li class="main-nav-link">
-                <a class="main-nav-link-text" href="/light-cones"><img class="main-nav-link-img" src="{{ asset('images/Icon_Light_Cone.webp') }}" alt=""></a></li>
-            <li class="main-nav-link">
-                <a class="main-nav-link-text" href="#"><img class="main-nav-link-img" src="{{ asset('images/Icon_Relics.webp') }}" alt=""></a>
-            </li>
-            <li class="main-nav-link">
-                <a class="main-nav-link-text" href="/materials"><img class="main-nav-link-img" src="{{ asset('images/Icon_Upgrade_Materials.webp') }}" alt=""></a>
-            </li>
+            <li class="main-nav-link"><a class="main-nav-link-text" href="/characters"><img class="main-nav-link-img" src="{{ asset('images/character.png') }}" alt=""></a></li>
+            <li class="main-nav-link"><a class="main-nav-link-text" href="/light-cones"><img class="main-nav-link-img" src="{{ asset('images/Icon_Light_Cone.webp') }}" alt=""></a></li>
+            <li class="main-nav-link"><a class="main-nav-link-text" href="#"><img class="main-nav-link-img" src="{{ asset('images/Icon_Relics.webp') }}" alt=""></a></li>
+            <li class="main-nav-link"><a class="main-nav-link-text" href="/materials"><img class="main-nav-link-img" src="{{ asset('images/Icon_Upgrade_Materials.webp') }}" alt=""></a></li>
         </ul>
     </nav>
+    {% if is_granted('ROLE_USER') %}
+        <a href="/logout">Log out</a>
+    {% else %}
+        <a href="/login">Log in</a>
+    {% endif %}
 </header>

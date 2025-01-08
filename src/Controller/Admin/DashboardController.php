@@ -22,6 +22,7 @@ use App\Entity\Path;
 use App\Entity\StagnantShadow;
 use App\Entity\TraceMats;
 use App\Entity\Type;
+use App\Entity\WeeklyMat;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -49,7 +50,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Characters');
             yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterName' => 'ASC']),
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterReleaseVersion' => 'DESC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
@@ -105,8 +106,8 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('New trace mats', 'fas fa-wrench', TraceMats::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Weekly boss materials','fas fa-screwdriver-wrench')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-toolbox', BaseCharacter::class),
-                MenuItem::linkToCrud('New character', 'fas fa-wrench', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Weekly boss mat list', 'fas fa-toolbox', WeeklyMat::class),
+                MenuItem::linkToCrud('New weekly boss mat', 'fas fa-wrench', WeeklyMat::class)->setAction(Crud::PAGE_NEW),
             ]);
 
         yield MenuItem::section('Enemies');

@@ -60,6 +60,9 @@ class AscensionMats
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterAscMats')]
     private Collection $characters;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->ascMatIcons = new ArrayCollection();
@@ -270,6 +273,18 @@ class AscensionMats
                 $character->setCharacterAscMats(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

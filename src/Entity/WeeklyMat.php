@@ -36,6 +36,9 @@ class WeeklyMat
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterWeeklyMat')]
     private Collection $characters;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -137,6 +140,18 @@ class WeeklyMat
                 $character->setCharacterWeeklyMat(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

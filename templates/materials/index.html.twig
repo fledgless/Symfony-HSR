@@ -6,8 +6,22 @@
     <h1>Materials</h1>
     <div class="materials">
         <h2>Ascension materials</h2>
-        <div class="ascension-materials-list">
-            {% include "ascension-materials/list.html.twig" with { ascmats } %}
-        </div>
+        <h3>Enemy drops</h3>
+        <section class="ascension-materials-list">
+            {% include "materials/ascension-materials/list.html.twig" with { ascmats } %}
+        </section>
+        <h3>Stagnant Shadow drops</h3>
+        <section class="boss-materials-list">
+            {% include "materials/boss-materials/list.html.twig" with { bossmats } %}
+        </section>
+        <h2>Trace materials</h2>
+        <h3>Crimson Calyx drops</h3>
+        <section class="traces-materials-list">
+            {% include "materials/traces-materials/list.html.twig" with { tracemats } %}
+        </section>
+        <h3>Echo of War drops</h3>
+        <section class="weekly-boss-materials-list">
+            {% include "materials/weekly-boss-materials/list.html.twig" with { echomats } %}
+        </section>
     </div>
 {% endblock %}

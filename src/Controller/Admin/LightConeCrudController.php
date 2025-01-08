@@ -51,28 +51,28 @@ class LightConeCrudController extends AbstractCrudController
         yield FormField::addColumn();
             yield BooleanField::new('lcAnnounced', 'Was the LC officially announced?');
             yield BooleanField::new('lcReleased', 'Is the LC released in-game?');
-            // yield ChoiceField::new('lcReleaseVersion', 'If announced, choose release version:')
-            //     ->setChoices([
-            //         '1.0' => '1.0', 
-            //         '1.1' => '1.1', 
-            //         '1.2' => '1.2', 
-            //         '1.3' => '1.3', 
-            //         '1.4' => '1.4', 
-            //         '1.5' => '1.5', 
-            //         '1.6' => '1.6',
+            yield ChoiceField::new('lcReleaseVersion', 'If announced, choose release version:')
+                ->setChoices([
+                    '1.0' => '1.0', 
+                    '1.1' => '1.1', 
+                    '1.2' => '1.2', 
+                    '1.3' => '1.3', 
+                    '1.4' => '1.4', 
+                    '1.5' => '1.5', 
+                    '1.6' => '1.6',
     
-            //         '2.0' => '2.0', 
-            //         '2.1' => '2.1', 
-            //         '2.2' => '2.2', 
-            //         '2.3' => '2.3', 
-            //         '2.4' => '2.4', 
-            //         '2.5' => '2.5', 
-            //         '2.6' => '2.6', 
-            //         '2.7' => '2.7',
+                    '2.0' => '2.0', 
+                    '2.1' => '2.1', 
+                    '2.2' => '2.2', 
+                    '2.3' => '2.3', 
+                    '2.4' => '2.4', 
+                    '2.5' => '2.5', 
+                    '2.6' => '2.6', 
+                    '2.7' => '2.7',
     
-            //         '3.0' => '3.0',
-            //         '3.1' => '3.1',
-            //     ]);
+                    '3.0' => '3.0',
+                    '3.1' => '3.1',
+                ]);
             yield ChoiceField::new('lcObtainable', 'How can this Light Cone be obtained in game?')
                 ->setChoices([
                     'Brilliant Fixation Banner' => 'Brilliant Fixation Banner',
@@ -96,6 +96,10 @@ class LightConeCrudController extends AbstractCrudController
                 yield TextEditorField::new('lcSkillFour', 'Superimposition 4');
                 yield TextEditorField::new('lcSkillFive', 'Superimposition 5');
 
-        
+        yield FormField::addTab('Mats');
+            yield AssociationField::new('lcAscMats')
+                ->hideOnIndex();
+            yield AssociationField::new('lcTraceMats')
+                ->hideOnIndex();
     }    
 }

@@ -24,7 +24,7 @@ class CharactersController extends AbstractController
         if (!$character) {
             return $this->redirectToRoute('app_characters');
         } else {
-            return $this->render('character/show.html.twig', [
+            return $this->render('characters/character/show.html.twig', [
                 'character' => $character
             ]);
         }

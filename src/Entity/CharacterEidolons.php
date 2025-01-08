@@ -53,7 +53,8 @@ class CharacterEidolons
 
     public function __toString()
     {
-        return $this->characterName;
+        $eidolonsName = $this->characterName + " - Eidolons";
+        return $eidolonsName;
     }
 
     public function getId(): ?int
