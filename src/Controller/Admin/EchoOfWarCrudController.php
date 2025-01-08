@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\EchoOfWar;
+use App\Entity\Domains\EchoOfWar;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
