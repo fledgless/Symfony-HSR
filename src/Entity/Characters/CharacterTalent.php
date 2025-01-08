@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
-use App\Repository\MemospriteSkillRepository;
+use App\Repository\CharacterTalentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MemospriteSkillRepository::class)]
-class MemospriteSkill
+#[ORM\Entity(repositoryClass: CharacterTalentRepository::class)]
+class CharacterTalent
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,10 +19,7 @@ class MemospriteSkill
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
@@ -33,10 +32,7 @@ class MemospriteSkill
     private ?int $breakAdjacentTargets = null;
 
     #[ORM\Column]
-    private ?bool $levelUp = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descUnique = null;
+    private ?bool $enhanced = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelOne = null;
@@ -59,13 +55,31 @@ class MemospriteSkill
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
-    #[ORM\ManyToOne(inversedBy: 'skills')]
-    private ?Memosprite $memosprite = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelEight = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelNine = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelTen = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelEleven = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelTwelve = null;
+
+    #[ORM\OneToOne(inversedBy: 'characterTalent')]
+    private ?CharacterKit $characterKit = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Media $icon = null;
 
     public function __toString()
     {
-        $skillName = $this->memosprite + " - Skill - " + $this->name;
-        return $skillName;
+        $talentName = $this->characterKit + " - Talent - " + $this->name;
+        return $talentName;
     }
 
     public function getId(): ?int
@@ -85,24 +99,12 @@ class MemospriteSkill
         return $this;
     }
 
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(?string $type): static
+    public function setType(string $type): static
     {
         $this->type = $type;
 
@@ -145,26 +147,14 @@ class MemospriteSkill
         return $this;
     }
 
-    public function isLevelUp(): ?bool
+    public function isEnhanced(): ?bool
     {
-        return $this->levelUp;
+        return $this->enhanced;
     }
 
-    public function setLevelUp(bool $levelUp): static
+    public function setEnhanced(bool $enhanced): static
     {
-        $this->levelUp = $levelUp;
-
-        return $this;
-    }
-
-    public function getDescUnique(): ?string
-    {
-        return $this->descUnique;
-    }
-
-    public function setDescUnique(?string $descUnique): static
-    {
-        $this->descUnique = $descUnique;
+        $this->enhanced = $enhanced;
 
         return $this;
     }
@@ -253,14 +243,86 @@ class MemospriteSkill
         return $this;
     }
 
-    public function getMemosprite(): ?Memosprite
+    public function getDescLevelEight(): ?string
     {
-        return $this->memosprite;
+        return $this->descLevelEight;
     }
 
-    public function setMemosprite(?Memosprite $memosprite): static
+    public function setDescLevelEight(?string $descLevelEight): static
     {
-        $this->memosprite = $memosprite;
+        $this->descLevelEight = $descLevelEight;
+
+        return $this;
+    }
+
+    public function getDescLevelNine(): ?string
+    {
+        return $this->descLevelNine;
+    }
+
+    public function setDescLevelNine(?string $descLevelNine): static
+    {
+        $this->descLevelNine = $descLevelNine;
+
+        return $this;
+    }
+
+    public function getDescLevelTen(): ?string
+    {
+        return $this->descLevelTen;
+    }
+
+    public function setDescLevelTen(?string $descLevelTen): static
+    {
+        $this->descLevelTen = $descLevelTen;
+
+        return $this;
+    }
+
+    public function getDescLevelEleven(): ?string
+    {
+        return $this->descLevelEleven;
+    }
+
+    public function setDescLevelEleven(?string $descLevelEleven): static
+    {
+        $this->descLevelEleven = $descLevelEleven;
+
+        return $this;
+    }
+
+    public function getDescLevelTwelve(): ?string
+    {
+        return $this->descLevelTwelve;
+    }
+
+    public function setDescLevelTwelve(?string $descLevelTwelve): static
+    {
+        $this->descLevelTwelve = $descLevelTwelve;
+
+        return $this;
+    }
+
+    public function getCharacterKit(): ?CharacterKit
+    {
+        return $this->characterKit;
+    }
+
+    public function setCharacterKit(?CharacterKit $characterKit): static
+    {
+        $this->characterKit = $characterKit;
+
+        return $this;
+    }
+
+    public function getIcon(): ?Media
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?Media $icon): static
+    {
+        $this->icon = $icon;
 
         return $this;
     }

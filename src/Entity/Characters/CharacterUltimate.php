@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
-use App\Repository\CharacterTalentRepository;
+use App\Repository\CharacterUltimateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CharacterTalentRepository::class)]
-class CharacterTalent
+#[ORM\Entity(repositoryClass: CharacterUltimateRepository::class)]
+class CharacterUltimate
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -70,16 +70,19 @@ class CharacterTalent
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelTwelve = null;
 
-    #[ORM\OneToOne(inversedBy: 'characterTalent')]
+    #[ORM\ManyToOne(inversedBy: 'characterUltimates')]
     private ?CharacterKit $characterKit = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Media $icon = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $ultCost = null;
+
     public function __toString()
     {
-        $talentName = $this->characterKit + " - Talent - " + $this->name;
-        return $talentName;
+        $ultimateName = $this->characterKit + " - Ultimate - " + $this->name;
+        return $ultimateName;
     }
 
     public function getId(): ?int
@@ -323,6 +326,18 @@ class CharacterTalent
     public function setIcon(?Media $icon): static
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getUltCost(): ?int
+    {
+        return $this->ultCost;
+    }
+
+    public function setUltCost(?int $ultCost): static
+    {
+        $this->ultCost = $ultCost;
 
         return $this;
     }

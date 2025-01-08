@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
 use App\Repository\CharacterMinorTracesRepository;
 use Doctrine\ORM\Mapping as ORM;

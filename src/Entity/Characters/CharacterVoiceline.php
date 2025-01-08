@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
 use App\Repository\CharacterVoicelineRepository;
 use Doctrine\DBAL\Types\Types;

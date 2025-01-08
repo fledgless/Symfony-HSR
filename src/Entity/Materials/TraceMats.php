@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Materials;
 
 use App\Repository\TraceMatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;

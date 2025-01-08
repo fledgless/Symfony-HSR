@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
 use App\Repository\CharacterEidolonsRepository;
 use Doctrine\Common\Collections\ArrayCollection;

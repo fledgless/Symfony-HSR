@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Memosprites;
 
-use App\Repository\CharacterUltimateRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\MemospriteTalentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CharacterUltimateRepository::class)]
-class CharacterUltimate
+#[ORM\Entity(repositoryClass: MemospriteTalentRepository::class)]
+class MemospriteTalent
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,7 +17,10 @@ class CharacterUltimate
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Media $icon = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
@@ -32,7 +33,10 @@ class CharacterUltimate
     private ?int $breakAdjacentTargets = null;
 
     #[ORM\Column]
-    private ?bool $enhanced = null;
+    private ?bool $levelUp = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descUnique = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelOne = null;
@@ -55,34 +59,13 @@ class CharacterUltimate
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descLevelEight = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descLevelNine = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descLevelTen = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descLevelEleven = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descLevelTwelve = null;
-
-    #[ORM\ManyToOne(inversedBy: 'characterUltimates')]
-    private ?CharacterKit $characterKit = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $ultCost = null;
+    #[ORM\ManyToOne(inversedBy: 'talents')]
+    private ?Memosprite $memosprite = null;
 
     public function __toString()
     {
-        $ultimateName = $this->characterKit + " - Ultimate - " + $this->name;
-        return $ultimateName;
+        $talentName = $this->memosprite + " - Talent - " + $this->name;
+        return $talentName;
     }
 
     public function getId(): ?int
@@ -102,12 +85,24 @@ class CharacterUltimate
         return $this;
     }
 
+    public function getIcon(): ?Media
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?Media $icon): static
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(string $type): static
+    public function setType(?string $type): static
     {
         $this->type = $type;
 
@@ -150,14 +145,26 @@ class CharacterUltimate
         return $this;
     }
 
-    public function isEnhanced(): ?bool
+    public function isLevelUp(): ?bool
     {
-        return $this->enhanced;
+        return $this->levelUp;
     }
 
-    public function setEnhanced(bool $enhanced): static
+    public function setLevelUp(bool $levelUp): static
     {
-        $this->enhanced = $enhanced;
+        $this->levelUp = $levelUp;
+
+        return $this;
+    }
+
+    public function getDescUnique(): ?string
+    {
+        return $this->descUnique;
+    }
+
+    public function setDescUnique(?string $descUnique): static
+    {
+        $this->descUnique = $descUnique;
 
         return $this;
     }
@@ -246,98 +253,14 @@ class CharacterUltimate
         return $this;
     }
 
-    public function getDescLevelEight(): ?string
+    public function getMemosprite(): ?Memosprite
     {
-        return $this->descLevelEight;
+        return $this->memosprite;
     }
 
-    public function setDescLevelEight(?string $descLevelEight): static
+    public function setMemosprite(?Memosprite $memosprite): static
     {
-        $this->descLevelEight = $descLevelEight;
-
-        return $this;
-    }
-
-    public function getDescLevelNine(): ?string
-    {
-        return $this->descLevelNine;
-    }
-
-    public function setDescLevelNine(?string $descLevelNine): static
-    {
-        $this->descLevelNine = $descLevelNine;
-
-        return $this;
-    }
-
-    public function getDescLevelTen(): ?string
-    {
-        return $this->descLevelTen;
-    }
-
-    public function setDescLevelTen(?string $descLevelTen): static
-    {
-        $this->descLevelTen = $descLevelTen;
-
-        return $this;
-    }
-
-    public function getDescLevelEleven(): ?string
-    {
-        return $this->descLevelEleven;
-    }
-
-    public function setDescLevelEleven(?string $descLevelEleven): static
-    {
-        $this->descLevelEleven = $descLevelEleven;
-
-        return $this;
-    }
-
-    public function getDescLevelTwelve(): ?string
-    {
-        return $this->descLevelTwelve;
-    }
-
-    public function setDescLevelTwelve(?string $descLevelTwelve): static
-    {
-        $this->descLevelTwelve = $descLevelTwelve;
-
-        return $this;
-    }
-
-    public function getCharacterKit(): ?CharacterKit
-    {
-        return $this->characterKit;
-    }
-
-    public function setCharacterKit(?CharacterKit $characterKit): static
-    {
-        $this->characterKit = $characterKit;
-
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    public function getUltCost(): ?int
-    {
-        return $this->ultCost;
-    }
-
-    public function setUltCost(?int $ultCost): static
-    {
-        $this->ultCost = $ultCost;
+        $this->memosprite = $memosprite;
 
         return $this;
     }

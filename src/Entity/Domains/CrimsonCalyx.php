@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Domains;
 
 use App\Repository\CrimsonCalyxRepository;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Enemies;
 
 use App\Repository\EliteEnemyRepository;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
 use App\Repository\CharacterKitRepository;
 use Doctrine\Common\Collections\ArrayCollection;

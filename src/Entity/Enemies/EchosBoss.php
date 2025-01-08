@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Enemies;
 
 use App\Repository\EchosBossRepository;
 use Doctrine\Common\Collections\ArrayCollection;

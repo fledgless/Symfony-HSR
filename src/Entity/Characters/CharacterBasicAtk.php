@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
-use App\Repository\MemospriteTalentRepository;
+use App\Repository\CharacterBasicAtkRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MemospriteTalentRepository::class)]
-class MemospriteTalent
+#[ORM\Entity(repositoryClass: CharacterBasicAtkRepository::class)]
+class CharacterBasicAtk
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -17,10 +19,7 @@ class MemospriteTalent
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(length: 255)]
     private ?string $type = null;
 
     #[ORM\Column(nullable: true)]
@@ -33,10 +32,7 @@ class MemospriteTalent
     private ?int $breakAdjacentTargets = null;
 
     #[ORM\Column]
-    private ?bool $levelUp = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $descUnique = null;
+    private ?bool $enhanced = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelOne = null;
@@ -59,13 +55,24 @@ class MemospriteTalent
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
-    #[ORM\ManyToOne(inversedBy: 'talents')]
-    private ?Memosprite $memosprite = null;
+    #[ORM\ManyToOne(inversedBy: 'characterBasicAtks')]
+    private ?CharacterKit $characterKit = null;
+
+    /**
+     * @var Collection<int, Media>
+     */
+    #[ORM\ManyToMany(targetEntity: Media::class)]
+    private Collection $icons;
+
+    public function __construct()
+    {
+        $this->icons = new ArrayCollection();
+    }
 
     public function __toString()
     {
-        $talentName = $this->memosprite + " - Talent - " + $this->name;
-        return $talentName;
+        $basicAtkName = $this->characterKit + " - Basic ATK - " + $this->name;
+        return $basicAtkName;
     }
 
     public function getId(): ?int
@@ -85,24 +92,12 @@ class MemospriteTalent
         return $this;
     }
 
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
     public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function setType(?string $type): static
+    public function setType(string $type): static
     {
         $this->type = $type;
 
@@ -145,26 +140,14 @@ class MemospriteTalent
         return $this;
     }
 
-    public function isLevelUp(): ?bool
+    public function isEnhanced(): ?bool
     {
-        return $this->levelUp;
+        return $this->enhanced;
     }
 
-    public function setLevelUp(bool $levelUp): static
+    public function setEnhanced(bool $enhanced): static
     {
-        $this->levelUp = $levelUp;
-
-        return $this;
-    }
-
-    public function getDescUnique(): ?string
-    {
-        return $this->descUnique;
-    }
-
-    public function setDescUnique(?string $descUnique): static
-    {
-        $this->descUnique = $descUnique;
+        $this->enhanced = $enhanced;
 
         return $this;
     }
@@ -253,14 +236,38 @@ class MemospriteTalent
         return $this;
     }
 
-    public function getMemosprite(): ?Memosprite
+    public function getCharacterKit(): ?CharacterKit
     {
-        return $this->memosprite;
+        return $this->characterKit;
     }
 
-    public function setMemosprite(?Memosprite $memosprite): static
+    public function setCharacterKit(?CharacterKit $characterKit): static
     {
-        $this->memosprite = $memosprite;
+        $this->characterKit = $characterKit;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Media>
+     */
+    public function getIcons(): Collection
+    {
+        return $this->icons;
+    }
+
+    public function addIcon(Media $icon): static
+    {
+        if (!$this->icons->contains($icon)) {
+            $this->icons->add($icon);
+        }
+
+        return $this;
+    }
+
+    public function removeIcon(Media $icon): static
+    {
+        $this->icons->removeElement($icon);
 
         return $this;
     }

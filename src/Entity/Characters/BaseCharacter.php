@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
+use App\Entity\Location;
 use App\Repository\BaseCharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
 
 #[ORM\Entity(repositoryClass: BaseCharacterRepository::class)]
 class BaseCharacter

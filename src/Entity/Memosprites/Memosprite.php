@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Memosprites;
 
 use App\Repository\MemospriteRepository;
 use Doctrine\Common\Collections\ArrayCollection;

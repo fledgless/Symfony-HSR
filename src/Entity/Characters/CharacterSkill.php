@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Characters;
 
-use App\Repository\CharacterBasicAtkRepository;
+use App\Repository\CharacterSkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CharacterBasicAtkRepository::class)]
-class CharacterBasicAtk
+#[ORM\Entity(repositoryClass: CharacterSkillRepository::class)]
+class CharacterSkill
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -55,24 +55,31 @@ class CharacterBasicAtk
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
-    #[ORM\ManyToOne(inversedBy: 'characterBasicAtks')]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelEight = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelNine = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelTen = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelEleven = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $descLevelTwelve = null;
+
+    #[ORM\ManyToOne(inversedBy: 'characterSkills')]
     private ?CharacterKit $characterKit = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
-
-    public function __construct()
-    {
-        $this->icons = new ArrayCollection();
-    }
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Media $icon = null;
 
     public function __toString()
     {
-        $basicAtkName = $this->characterKit + " - Basic ATK - " + $this->name;
-        return $basicAtkName;
+        $skillName = $this->characterKit + " - Skill - " + $this->name;
+        return $skillName;
     }
 
     public function getId(): ?int
@@ -236,6 +243,66 @@ class CharacterBasicAtk
         return $this;
     }
 
+    public function getDescLevelEight(): ?string
+    {
+        return $this->descLevelEight;
+    }
+
+    public function setDescLevelEight(?string $descLevelEight): static
+    {
+        $this->descLevelEight = $descLevelEight;
+
+        return $this;
+    }
+
+    public function getDescLevelNine(): ?string
+    {
+        return $this->descLevelNine;
+    }
+
+    public function setDescLevelNine(?string $descLevelNine): static
+    {
+        $this->descLevelNine = $descLevelNine;
+
+        return $this;
+    }
+
+    public function getDescLevelTen(): ?string
+    {
+        return $this->descLevelTen;
+    }
+
+    public function setDescLevelTen(?string $descLevelTen): static
+    {
+        $this->descLevelTen = $descLevelTen;
+
+        return $this;
+    }
+
+    public function getDescLevelEleven(): ?string
+    {
+        return $this->descLevelEleven;
+    }
+
+    public function setDescLevelEleven(?string $descLevelEleven): static
+    {
+        $this->descLevelEleven = $descLevelEleven;
+
+        return $this;
+    }
+
+    public function getDescLevelTwelve(): ?string
+    {
+        return $this->descLevelTwelve;
+    }
+
+    public function setDescLevelTwelve(?string $descLevelTwelve): static
+    {
+        $this->descLevelTwelve = $descLevelTwelve;
+
+        return $this;
+    }
+
     public function getCharacterKit(): ?CharacterKit
     {
         return $this->characterKit;
@@ -248,26 +315,14 @@ class CharacterBasicAtk
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
+    public function getIcon(): ?Media
     {
-        return $this->icons;
+        return $this->icon;
     }
 
-    public function addIcon(Media $icon): static
+    public function setIcon(?Media $icon): static
     {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
+        $this->icon = $icon;
 
         return $this;
     }
