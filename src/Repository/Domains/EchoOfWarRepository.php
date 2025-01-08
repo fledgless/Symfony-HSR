@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\EchoOfWar;
+use App\Entity\Domains\EchoOfWar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

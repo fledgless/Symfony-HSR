@@ -2,6 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Enemies\EchosBoss;
+use App\Entity\Enemies\EliteEnemy;
+use App\Entity\Enemies\NormalEnemy;
+use App\Entity\Materials\BossMat;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

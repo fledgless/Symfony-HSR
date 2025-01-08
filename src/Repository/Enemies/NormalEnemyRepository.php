@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\NormalEnemy;
+use App\Entity\Enemies\NormalEnemy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

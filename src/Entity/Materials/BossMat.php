@@ -2,6 +2,10 @@
 
 namespace App\Entity\Materials;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\StagnantShadow;
+use App\Entity\Media;
+use App\Entity\Type;
 use App\Repository\BossMatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

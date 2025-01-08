@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Materials\TraceMats;
 use App\Repository\PathRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

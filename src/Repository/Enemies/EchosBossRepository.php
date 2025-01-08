@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\EchosBoss;
+use App\Entity\Enemies\EchosBoss;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -2,6 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CrimsonCalyx;
+use App\Entity\Domains\EchoOfWar;
+use App\Entity\Domains\GoldenCalyx;
+use App\Entity\Domains\StagnantShadow;
+use App\Entity\Enemies\NormalEnemy;
 use App\Repository\LocationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

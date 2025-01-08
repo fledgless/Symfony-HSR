@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CharacterBasicAtk;
+use App\Entity\Characters\CharacterBasicAtk;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\AscensionMats;
+use App\Entity\Materials\AscensionMats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

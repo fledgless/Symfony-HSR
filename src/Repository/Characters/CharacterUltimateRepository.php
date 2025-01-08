@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CharacterUltimate;
+use App\Entity\Characters\CharacterUltimate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

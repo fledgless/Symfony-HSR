@@ -2,6 +2,11 @@
 
 namespace App\Entity\Materials;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CrimsonCalyx;
+use App\Entity\LightCone;
+use App\Entity\Media;
+use App\Entity\Path;
 use App\Repository\TraceMatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

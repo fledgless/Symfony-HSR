@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CharacterVoiceline;
+use App\Entity\Characters\CharacterVoiceline;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

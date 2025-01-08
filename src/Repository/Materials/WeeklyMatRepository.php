@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\WeeklyMat;
+use App\Entity\Materials\WeeklyMat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -2,6 +2,10 @@
 
 namespace App\Entity\Domains;
 
+use App\Entity\Enemies\EchosBoss;
+use App\Entity\Location;
+use App\Entity\Materials\WeeklyMat;
+use App\Entity\Media;
 use App\Repository\EchoOfWarRepository;
 use Doctrine\ORM\Mapping as ORM;
 

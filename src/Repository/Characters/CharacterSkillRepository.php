@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CharacterSkill;
+use App\Entity\Characters\CharacterSkill;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

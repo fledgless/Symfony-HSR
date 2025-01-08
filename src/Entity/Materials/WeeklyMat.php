@@ -2,6 +2,9 @@
 
 namespace App\Entity\Materials;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\EchoOfWar;
+use App\Entity\Media;
 use App\Repository\WeeklyMatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

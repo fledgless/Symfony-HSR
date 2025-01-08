@@ -2,6 +2,8 @@
 
 namespace App\Entity\Memosprites;
 
+use App\Entity\Characters\CharacterKit;
+use App\Entity\Media;
 use App\Repository\MemospriteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

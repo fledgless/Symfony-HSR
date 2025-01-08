@@ -3,6 +3,13 @@
 namespace App\Entity\Characters;
 
 use App\Entity\Location;
+use App\Entity\Materials\AscensionMats;
+use App\Entity\Materials\BossMat;
+use App\Entity\Materials\TraceMats;
+use App\Entity\Materials\WeeklyMat;
+use App\Entity\Media;
+use App\Entity\Path;
+use App\Entity\Type;
 use App\Repository\BaseCharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

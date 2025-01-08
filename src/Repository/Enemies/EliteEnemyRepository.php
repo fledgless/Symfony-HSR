@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\EliteEnemy;
+use App\Entity\Enemies\EliteEnemy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

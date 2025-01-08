@@ -2,6 +2,9 @@
 
 namespace App\Entity\Domains;
 
+use App\Entity\Enemies\NormalEnemy;
+use App\Entity\Location;
+use App\Entity\Materials\TraceMats;
 use App\Repository\CrimsonCalyxRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

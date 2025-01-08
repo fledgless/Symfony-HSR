@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CrimsonCalyx;
+use App\Entity\Domains\CrimsonCalyx;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

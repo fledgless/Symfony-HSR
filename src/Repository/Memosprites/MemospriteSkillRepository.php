@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\MemospriteSkill;
+use App\Entity\Memosprites\MemospriteSkill;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\CharacterMinorTraces;
+use App\Entity\Characters\CharacterMinorTraces;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

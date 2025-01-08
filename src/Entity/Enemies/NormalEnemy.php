@@ -2,6 +2,12 @@
 
 namespace App\Entity\Enemies;
 
+use App\Entity\Domains\CrimsonCalyx;
+use App\Entity\Domains\GoldenCalyx;
+use App\Entity\Location;
+use App\Entity\Materials\AscensionMats;
+use App\Entity\Media;
+use App\Entity\Type;
 use App\Repository\NormalEnemyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

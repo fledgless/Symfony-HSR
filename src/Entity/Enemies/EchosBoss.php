@@ -2,6 +2,9 @@
 
 namespace App\Entity\Enemies;
 
+use App\Entity\Domains\EchoOfWar;
+use App\Entity\Media;
+use App\Entity\Type;
 use App\Repository\EchosBossRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

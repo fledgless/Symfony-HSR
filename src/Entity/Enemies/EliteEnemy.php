@@ -2,6 +2,9 @@
 
 namespace App\Entity\Enemies;
 
+use App\Entity\Domains\StagnantShadow;
+use App\Entity\Media;
+use App\Entity\Type;
 use App\Repository\EliteEnemyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

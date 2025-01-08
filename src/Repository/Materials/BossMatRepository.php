@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\BossMat;
+use App\Entity\Materials\BossMat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

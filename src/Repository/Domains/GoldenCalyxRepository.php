@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\GoldenCalyx;
+use App\Entity\Domains\GoldenCalyx;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

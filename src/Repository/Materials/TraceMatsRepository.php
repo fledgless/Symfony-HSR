@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\TraceMats;
+use App\Entity\Materials\TraceMats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

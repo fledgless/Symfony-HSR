@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\StagnantShadow;
+use App\Entity\Domains\StagnantShadow;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
