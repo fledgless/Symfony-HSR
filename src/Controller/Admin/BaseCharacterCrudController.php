@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\BaseCharacter;
+use App\Entity\Characters\BaseCharacter;
 use App\Entity\Media;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
