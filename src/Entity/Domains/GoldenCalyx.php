@@ -5,7 +5,7 @@ namespace App\Entity\Domains;
 use App\Entity\Enemies\NormalEnemy;
 use App\Entity\Location;
 use App\Entity\Materials\AscensionMats;
-use App\Repository\GoldenCalyxRepository;
+use App\Repository\Domains\GoldenCalyxRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

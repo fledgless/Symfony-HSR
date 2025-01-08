@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Characters;
 
 use App\Entity\Characters\CharacterSkill;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

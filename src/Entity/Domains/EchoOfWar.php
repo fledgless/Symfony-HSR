@@ -6,7 +6,7 @@ use App\Entity\Enemies\EchosBoss;
 use App\Entity\Location;
 use App\Entity\Materials\WeeklyMat;
 use App\Entity\Media;
-use App\Repository\EchoOfWarRepository;
+use App\Repository\Domains\EchoOfWarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EchoOfWarRepository::class)]

@@ -2,7 +2,7 @@
 
 namespace App\Entity\Characters;
 
-use App\Repository\CharacterMinorTracesRepository;
+use App\Repository\Characters\CharacterMinorTracesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: CharacterMinorTracesRepository::class)]

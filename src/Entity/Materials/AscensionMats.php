@@ -7,7 +7,7 @@ use App\Entity\Domains\GoldenCalyx;
 use App\Entity\Enemies\NormalEnemy;
 use App\Entity\LightCone;
 use App\Entity\Media;
-use App\Repository\AscensionMatsRepository;
+use App\Repository\Materials\AscensionMatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

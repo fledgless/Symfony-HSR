@@ -3,7 +3,7 @@
 namespace App\Entity\Characters;
 
 use App\Entity\Media;
-use App\Repository\CharacterSkillRepository;
+use App\Repository\Characters\CharacterSkillRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

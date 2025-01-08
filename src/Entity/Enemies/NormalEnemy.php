@@ -8,7 +8,7 @@ use App\Entity\Location;
 use App\Entity\Materials\AscensionMats;
 use App\Entity\Media;
 use App\Entity\Type;
-use App\Repository\NormalEnemyRepository;
+use App\Repository\Enemies\NormalEnemyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

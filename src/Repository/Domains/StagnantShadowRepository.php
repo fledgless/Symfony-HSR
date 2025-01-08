@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Domains;
 
 use App\Entity\Domains\StagnantShadow;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Materials;
 
 use App\Entity\Materials\TraceMats;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

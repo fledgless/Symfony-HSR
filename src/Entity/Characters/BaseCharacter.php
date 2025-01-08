@@ -10,7 +10,7 @@ use App\Entity\Materials\WeeklyMat;
 use App\Entity\Media;
 use App\Entity\Path;
 use App\Entity\Type;
-use App\Repository\BaseCharacterRepository;
+use App\Repository\Characters\BaseCharacterRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

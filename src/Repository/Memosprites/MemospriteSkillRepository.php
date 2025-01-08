@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Memosprites;
 
 use App\Entity\Memosprites\MemospriteSkill;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

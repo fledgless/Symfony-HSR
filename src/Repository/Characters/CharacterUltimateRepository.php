@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Characters;
 
 use App\Entity\Characters\CharacterUltimate;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

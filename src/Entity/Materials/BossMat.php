@@ -6,7 +6,7 @@ use App\Entity\Characters\BaseCharacter;
 use App\Entity\Domains\StagnantShadow;
 use App\Entity\Media;
 use App\Entity\Type;
-use App\Repository\BossMatRepository;
+use App\Repository\Materials\BossMatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

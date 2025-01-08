@@ -6,7 +6,7 @@ use App\Entity\Enemies\EliteEnemy;
 use App\Entity\Location;
 use App\Entity\Materials\BossMat;
 use App\Entity\Media;
-use App\Repository\StagnantShadowRepository;
+use App\Repository\Domains\StagnantShadowRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StagnantShadowRepository::class)]

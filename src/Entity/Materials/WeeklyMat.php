@@ -5,7 +5,7 @@ namespace App\Entity\Materials;
 use App\Entity\Characters\BaseCharacter;
 use App\Entity\Domains\EchoOfWar;
 use App\Entity\Media;
-use App\Repository\WeeklyMatRepository;
+use App\Repository\Materials\WeeklyMatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

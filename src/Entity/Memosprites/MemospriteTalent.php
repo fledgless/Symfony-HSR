@@ -3,7 +3,7 @@
 namespace App\Entity\Memosprites;
 
 use App\Entity\Media;
-use App\Repository\MemospriteTalentRepository;
+use App\Repository\Memosprites\MemospriteTalentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

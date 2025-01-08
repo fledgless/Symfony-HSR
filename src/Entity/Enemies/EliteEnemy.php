@@ -5,7 +5,7 @@ namespace App\Entity\Enemies;
 use App\Entity\Domains\StagnantShadow;
 use App\Entity\Media;
 use App\Entity\Type;
-use App\Repository\EliteEnemyRepository;
+use App\Repository\Enemies\EliteEnemyRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

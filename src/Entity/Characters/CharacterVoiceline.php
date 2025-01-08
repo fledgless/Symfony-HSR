@@ -2,7 +2,7 @@
 
 namespace App\Entity\Characters;
 
-use App\Repository\CharacterVoicelineRepository;
+use App\Repository\Characters\CharacterVoicelineRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 

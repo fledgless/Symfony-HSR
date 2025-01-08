@@ -5,7 +5,7 @@ namespace App\Entity\Characters;
 use App\Entity\Media;
 use App\Entity\Memosprites\Memosprite;
 use App\Entity\Stat;
-use App\Repository\CharacterKitRepository;
+use App\Repository\Characters\CharacterKitRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;

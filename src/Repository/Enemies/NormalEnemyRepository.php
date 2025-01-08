@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Enemies;
 
 use App\Entity\Enemies\NormalEnemy;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

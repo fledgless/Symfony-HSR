@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Materials;
 
 use App\Entity\Materials\BossMat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
