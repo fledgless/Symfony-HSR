@@ -19,24 +19,24 @@ class WeeklyMat
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $weeklyMatName = null;
+    private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $weeklyMatReleased = null;
+    private ?bool $released = null;
 
     #[ORM\Column]
-    private ?bool $weeklyMatAnnounced = null;
+    private ?bool $announced = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $weeklyMatIcon = null;
+    private ?Media $icon = null;
 
     #[ORM\OneToOne(inversedBy: 'weeklyMat', cascade: ['persist', 'remove'])]
-    private ?EchoOfWar $weeklyMatEchoOfWar = null;
+    private ?EchoOfWar $echoOfWar = null;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
-    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterWeeklyMat')]
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'weeklyMat')]
     private Collection $characters;
 
     #[ORM\Column(length: 255)]
@@ -49,7 +49,7 @@ class WeeklyMat
 
     public function __toString()
     {
-        return $this->weeklyMatName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -57,63 +57,58 @@ class WeeklyMat
         return $this->id;
     }
 
-    public function getWeeklyMatName(): ?string
+    public function getName(): ?string
     {
-        return $this->weeklyMatName;
+        return $this->name;
     }
 
-    public function setWeeklyMatName(string $weeklyMatName): static
+    public function setName(string $name): static
     {
-        $this->weeklyMatName = $weeklyMatName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function isWeeklyMatReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->weeklyMatReleased;
+        return $this->released;
     }
 
-    public function setWeeklyMatReleased(bool $weeklyMatReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->weeklyMatReleased = $weeklyMatReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function isWeeklyMatAnnounced(): ?bool
+    public function isAnnounced(): ?bool
     {
-        return $this->weeklyMatAnnounced;
+        return $this->announced;
     }
 
-    public function setWeeklyMatAnnounced(bool $weeklyMatAnnounced): static
+    public function setAnnounced(bool $announced): static
     {
-        $this->weeklyMatAnnounced = $weeklyMatAnnounced;
-
+        $this->announced = $announced;
         return $this;
     }
 
-    public function getWeeklyMatIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->weeklyMatIcon;
+        return $this->icon;
     }
 
-    public function setWeeklyMatIcon(?Media $weeklyMatIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->weeklyMatIcon = $weeklyMatIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
-    public function getWeeklyMatEchoOfWar(): ?EchoOfWar
+    public function getEchoOfWar(): ?EchoOfWar
     {
-        return $this->weeklyMatEchoOfWar;
+        return $this->echoOfWar;
     }
 
-    public function setWeeklyMatEchoOfWar(?EchoOfWar $weeklyMatEchoOfWar): static
+    public function setEchoOfWar(?EchoOfWar $echoOfWar): static
     {
-        $this->weeklyMatEchoOfWar = $weeklyMatEchoOfWar;
-
+        $this->echoOfWar = $echoOfWar;
         return $this;
     }
 
@@ -129,9 +124,8 @@ class WeeklyMat
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterWeeklyMat($this);
+            $character->setWeeklyMat($this);
         }
-
         return $this;
     }
 
@@ -139,11 +133,10 @@ class WeeklyMat
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterWeeklyMat() === $this) {
-                $character->setCharacterWeeklyMat(null);
+            if ($character->getWeeklyMat() === $this) {
+                $character->setWeeklyMat(null);
             }
         }
-
         return $this;
     }
 
@@ -155,7 +148,6 @@ class WeeklyMat
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 }

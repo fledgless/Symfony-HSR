@@ -18,23 +18,23 @@ class EchoOfWar
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $echoOfWarName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $echoOfWarIcon = null;
+    private ?Media $icon = null;
 
     #[ORM\OneToOne(inversedBy: 'echoOfWar', cascade: ['persist', 'remove'])]
-    private ?EchosBoss $echoOfWarBoss = null;
+    private ?EchosBoss $boss = null;
 
     #[ORM\ManyToOne(inversedBy: 'echoOfWars')]
-    private ?Location $echoOfWarLocation = null;
+    private ?Location $location = null;
 
     #[ORM\OneToOne(mappedBy: 'weeklyMatEchoOfWar', cascade: ['persist', 'remove'])]
     private ?WeeklyMat $weeklyMat = null;
 
     public function __toString()
     {
-        return $this->echoOfWarName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -42,51 +42,48 @@ class EchoOfWar
         return $this->id;
     }
 
-    public function getEchoOfWarName(): ?string
+    public function getName(): ?string
     {
-        return $this->echoOfWarName;
+        return $this->name;
     }
 
-    public function setEchoOfWarName(string $echoOfWarName): static
+    public function setName(string $echoOfWarName): static
     {
-        $this->echoOfWarName = $echoOfWarName;
+        $this->name = $echoOfWarName;
 
         return $this;
     }
 
-    public function getEchoOfWarIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->echoOfWarIcon;
+        return $this->icon;
     }
 
-    public function setEchoOfWarIcon(?Media $echoOfWarIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->echoOfWarIcon = $echoOfWarIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
-    public function getEchoOfWarBoss(): ?EchosBoss
+    public function getBoss(): ?EchosBoss
     {
-        return $this->echoOfWarBoss;
+        return $this->boss;
     }
 
-    public function setEchoOfWarBoss(?EchosBoss $echoOfWarBoss): static
+    public function setBoss(?EchosBoss $boss): static
     {
-        $this->echoOfWarBoss = $echoOfWarBoss;
-
+        $this->boss = $boss;
         return $this;
     }
 
-    public function getEchoOfWarLocation(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->echoOfWarLocation;
+        return $this->location;
     }
 
-    public function setEchoOfWarLocation(?Location $echoOfWarLocation): static
+    public function setLocation(?Location $location): static
     {
-        $this->echoOfWarLocation = $echoOfWarLocation;
-
+        $this->location = $location;
         return $this;
     }
 
@@ -99,16 +96,13 @@ class EchoOfWar
     {
         // unset the owning side of the relation if necessary
         if ($weeklyMat === null && $this->weeklyMat !== null) {
-            $this->weeklyMat->setWeeklyMatEchoOfWar(null);
+            $this->weeklyMat->setEchoOfWar(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($weeklyMat !== null && $weeklyMat->getWeeklyMatEchoOfWar() !== $this) {
-            $weeklyMat->setWeeklyMatEchoOfWar($this);
+        if ($weeklyMat !== null && $weeklyMat->getEchoOfWar() !== $this) {
+            $weeklyMat->setEchoOfWar($this);
         }
-
         $this->weeklyMat = $weeklyMat;
-
         return $this;
     }
 }

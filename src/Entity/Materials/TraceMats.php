@@ -21,42 +21,42 @@ class TraceMats
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $traceMatsFourStarName = null;
+    private ?string $fourStarName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $traceMatsThreeStarName = null;
+    private ?string $threeStarName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $traceMatsTwoStarName = null;
+    private ?string $twoStarName = null;
 
     #[ORM\Column]
-    private ?bool $traceMatsReleased = null;
+    private ?bool $released = null;
 
     #[ORM\Column]
-    private ?bool $traceMatsAnnounced = null;
+    private ?bool $announced = null;
 
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $traceMatsIcons;
+    private Collection $icons;
 
     #[ORM\ManyToOne(inversedBy: 'traceMats')]
-    private ?Path $traceMatsPath = null;
+    private ?Path $path = null;
 
     #[ORM\OneToOne(inversedBy: 'traceMats', cascade: ['persist', 'remove'])]
-    private ?CrimsonCalyx $traceMatsCrimsonCalyx = null;
+    private ?CrimsonCalyx $crimsonCalyx = null;
 
     /**
      * @var Collection<int, LightCone>
      */
-    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'lcTraceMats')]
+    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'traceMats')]
     private Collection $lightCones;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
-    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterTraceMats')]
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'traceMats')]
     private Collection $characters;
 
     #[ORM\Column(length: 255)]
@@ -64,14 +64,14 @@ class TraceMats
 
     public function __construct()
     {
-        $this->traceMatsIcons = new ArrayCollection();
+        $this->icons = new ArrayCollection();
         $this->lightCones = new ArrayCollection();
         $this->characters = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->traceMatsFourStarName;
+        return $this->fourStarName;
     }
 
     public function getId(): ?int
@@ -79,111 +79,102 @@ class TraceMats
         return $this->id;
     }
 
-    public function getTraceMatsFourStarName(): ?string
+    public function getFourStarName(): ?string
     {
-        return $this->traceMatsFourStarName;
+        return $this->fourStarName;
     }
 
-    public function setTraceMatsFourStarName(string $traceMatsFourStarName): static
+    public function setFourStarName(string $fourStarName): static
     {
-        $this->traceMatsFourStarName = $traceMatsFourStarName;
-
+        $this->fourStarName = $fourStarName;
         return $this;
     }
 
-    public function getTraceMatsThreeStarName(): ?string
+    public function getThreeStarName(): ?string
     {
-        return $this->traceMatsThreeStarName;
+        return $this->threeStarName;
     }
 
-    public function setTraceMatsThreeStarName(string $traceMatsThreeStarName): static
+    public function setThreeStarName(string $threeStarName): static
     {
-        $this->traceMatsThreeStarName = $traceMatsThreeStarName;
-
+        $this->threeStarName = $threeStarName;
         return $this;
     }
 
-    public function getTraceMatsTwoStarName(): ?string
+    public function getTwoStarName(): ?string
     {
-        return $this->traceMatsTwoStarName;
+        return $this->twoStarName;
     }
 
-    public function setTraceMatsTwoStarName(string $traceMatsTwoStarName): static
+    public function setTwoStarName(string $twoStarName): static
     {
-        $this->traceMatsTwoStarName = $traceMatsTwoStarName;
-
+        $this->twoStarName = $twoStarName;
         return $this;
     }
 
-    public function isTraceMatsReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->traceMatsReleased;
+        return $this->released;
     }
 
-    public function setTraceMatsReleased(bool $traceMatsReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->traceMatsReleased = $traceMatsReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function isTraceMatsAnnounced(): ?bool
+    public function isAnnounced(): ?bool
     {
-        return $this->traceMatsAnnounced;
+        return $this->announced;
     }
 
-    public function setTraceMatsAnnounced(bool $traceMatsAnnounced): static
+    public function setAnnounced(bool $announced): static
     {
-        $this->traceMatsAnnounced = $traceMatsAnnounced;
-
+        $this->announced = $announced;
         return $this;
     }
 
     /**
      * @return Collection<int, Media>
      */
-    public function getTraceMatsIcons(): Collection
+    public function getIcons(): Collection
     {
-        return $this->traceMatsIcons;
+        return $this->icons;
     }
 
-    public function addTraceMatsIcon(Media $traceMatsIcon): static
+    public function addIcon(Media $icon): static
     {
-        if (!$this->traceMatsIcons->contains($traceMatsIcon)) {
-            $this->traceMatsIcons->add($traceMatsIcon);
+        if (!$this->icons->contains($icon)) {
+            $this->icons->add($icon);
         }
-
         return $this;
     }
 
-    public function removeTraceMatsIcon(Media $traceMatsIcon): static
+    public function removeIcon(Media $icon): static
     {
-        $this->traceMatsIcons->removeElement($traceMatsIcon);
-
+        $this->icons->removeElement($icon);
         return $this;
     }
 
-    public function getTraceMatsPath(): ?Path
+    public function getPath(): ?Path
     {
-        return $this->traceMatsPath;
+        return $this->path;
     }
 
-    public function setTraceMatsPath(?Path $traceMatsPath): static
+    public function setPath(?Path $path): static
     {
-        $this->traceMatsPath = $traceMatsPath;
-
+        $this->path = $path;
         return $this;
     }
 
-    public function getTraceMatsCrimsonCalyx(): ?CrimsonCalyx
+    public function getCrimsonCalyc(): ?CrimsonCalyx
     {
-        return $this->traceMatsCrimsonCalyx;
+        return $this->crimsonCalyx;
     }
 
-    public function setTraceMatsCrimsonCalyx(?CrimsonCalyx $traceMatsCrimsonCalyx): static
+    public function setCrimsonCalyx(?CrimsonCalyx $crimsonCalyx): static
     {
-        $this->traceMatsCrimsonCalyx = $traceMatsCrimsonCalyx;
-
+        $this->crimsonCalyx = $crimsonCalyx;
         return $this;
     }
 
@@ -199,9 +190,8 @@ class TraceMats
     {
         if (!$this->lightCones->contains($lightCone)) {
             $this->lightCones->add($lightCone);
-            $lightCone->setLcTraceMats($this);
+            $lightCone->setTraceMats($this);
         }
-
         return $this;
     }
 
@@ -209,11 +199,10 @@ class TraceMats
     {
         if ($this->lightCones->removeElement($lightCone)) {
             // set the owning side to null (unless already changed)
-            if ($lightCone->getLcTraceMats() === $this) {
-                $lightCone->setLcTraceMats(null);
+            if ($lightCone->getTraceMats() === $this) {
+                $lightCone->setTraceMats(null);
             }
         }
-
         return $this;
     }
 
@@ -229,9 +218,8 @@ class TraceMats
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterTraceMats($this);
+            $character->setTraceMats($this);
         }
-
         return $this;
     }
 
@@ -239,11 +227,10 @@ class TraceMats
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterTraceMats() === $this) {
-                $character->setCharacterTraceMats(null);
+            if ($character->getTraceMats() === $this) {
+                $character->setTraceMats(null);
             }
         }
-
         return $this;
     }
 
@@ -255,7 +242,6 @@ class TraceMats
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 }

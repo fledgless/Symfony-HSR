@@ -19,32 +19,32 @@ class GoldenCalyx
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $goldenCalyxName = null;
+    private ?string $name = null;
 
     /**
      * @var Collection<int, NormalEnemy>
      */
     #[ORM\ManyToMany(targetEntity: NormalEnemy::class, inversedBy: 'goldenCalyxes')]
-    private Collection $goldenCalyxEnemies;
+    private Collection $enemies;
 
     /**
      * @var Collection<int, AscensionMats>
      */
     #[ORM\ManyToMany(targetEntity: AscensionMats::class, inversedBy: 'goldenCalyxes')]
-    private Collection $goldenCalyxAscMats;
+    private Collection $ascMats;
 
     #[ORM\ManyToOne(inversedBy: 'goldenCalyxes')]
-    private ?Location $goldenCalyxLocation = null;
+    private ?Location $location = null;
 
     public function __construct()
     {
-        $this->goldenCalyxEnemies = new ArrayCollection();
-        $this->goldenCalyxAscMats = new ArrayCollection();
+        $this->enemies = new ArrayCollection();
+        $this->ascMats = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->goldenCalyxName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -52,75 +52,69 @@ class GoldenCalyx
         return $this->id;
     }
 
-    public function getGoldenCalyxName(): ?string
+    public function getName(): ?string
     {
-        return $this->goldenCalyxName;
+        return $this->name;
     }
 
-    public function setGoldenCalyxName(string $goldenCalyxName): static
+    public function setName(string $name): static
     {
-        $this->goldenCalyxName = $goldenCalyxName;
-
+        $this->name = $name;
         return $this;
     }
 
     /**
      * @return Collection<int, NormalEnemy>
      */
-    public function getGoldenCalyxEnemies(): Collection
+    public function getEnemies(): Collection
     {
-        return $this->goldenCalyxEnemies;
+        return $this->enemies;
     }
 
-    public function addGoldenCalyxEnemy(NormalEnemy $goldenCalyxEnemy): static
+    public function addEnemy(NormalEnemy $enemy): static
     {
-        if (!$this->goldenCalyxEnemies->contains($goldenCalyxEnemy)) {
-            $this->goldenCalyxEnemies->add($goldenCalyxEnemy);
+        if (!$this->enemies->contains($enemy)) {
+            $this->enemies->add($enemy);
         }
-
         return $this;
     }
 
-    public function removeGoldenCalyxEnemy(NormalEnemy $goldenCalyxEnemy): static
+    public function removeEnemy(NormalEnemy $enemy): static
     {
-        $this->goldenCalyxEnemies->removeElement($goldenCalyxEnemy);
-
+        $this->enemies->removeElement($enemy);
         return $this;
     }
 
     /**
      * @return Collection<int, AscensionMats>
      */
-    public function getGoldenCalyxAscMats(): Collection
+    public function getAscMats(): Collection
     {
-        return $this->goldenCalyxAscMats;
+        return $this->ascMats;
     }
 
-    public function addGoldenCalyxAscMat(AscensionMats $goldenCalyxAscMat): static
+    public function addAscMat(AscensionMats $ascMat): static
     {
-        if (!$this->goldenCalyxAscMats->contains($goldenCalyxAscMat)) {
-            $this->goldenCalyxAscMats->add($goldenCalyxAscMat);
+        if (!$this->ascMats->contains($ascMat)) {
+            $this->ascMats->add($ascMat);
         }
-
         return $this;
     }
 
-    public function removeGoldenCalyxAscMat(AscensionMats $goldenCalyxAscMat): static
+    public function removeAscMat(AscensionMats $ascMat): static
     {
-        $this->goldenCalyxAscMats->removeElement($goldenCalyxAscMat);
-
+        $this->ascMats->removeElement($ascMat);
         return $this;
     }
 
-    public function getGoldenCalyxLocation(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->goldenCalyxLocation;
+        return $this->location;
     }
 
-    public function setGoldenCalyxLocation(?Location $goldenCalyxLocation): static
+    public function setLocation(?Location $location): static
     {
-        $this->goldenCalyxLocation = $goldenCalyxLocation;
-
+        $this->location = $location;
         return $this;
     }
 }

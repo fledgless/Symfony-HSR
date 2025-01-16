@@ -19,28 +19,28 @@ class EchosBoss
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $echoBossName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $echoBossIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, Type>
      */
     #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'echosBosses')]
-    private Collection $echoBossWeaknesses;
+    private Collection $weaknesses;
 
-    #[ORM\OneToOne(mappedBy: 'echoOfWarBoss', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'boss', cascade: ['persist', 'remove'])]
     private ?EchoOfWar $echoOfWar = null;
 
     public function __construct()
     {
-        $this->echoBossWeaknesses = new ArrayCollection();
+        $this->weaknesses = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->echoBossName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -48,51 +48,47 @@ class EchosBoss
         return $this->id;
     }
 
-    public function getEchoBossName(): ?string
+    public function getName(): ?string
     {
-        return $this->echoBossName;
+        return $this->name;
     }
 
-    public function setEchoBossName(string $echoBossName): static
+    public function setName(string $name): static
     {
-        $this->echoBossName = $echoBossName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getEchoBossIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->echoBossIcon;
+        return $this->icon;
     }
 
-    public function setEchoBossIcon(?Media $echoBossIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->echoBossIcon = $echoBossIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
     /**
      * @return Collection<int, Type>
      */
-    public function getEchoBossWeaknesses(): Collection
+    public function getWeaknesses(): Collection
     {
-        return $this->echoBossWeaknesses;
+        return $this->weaknesses;
     }
 
-    public function addEchoBossWeakness(Type $echoBossWeakness): static
+    public function addWeakness(Type $weakness): static
     {
-        if (!$this->echoBossWeaknesses->contains($echoBossWeakness)) {
-            $this->echoBossWeaknesses->add($echoBossWeakness);
+        if (!$this->weaknesses->contains($weakness)) {
+            $this->weaknesses->add($weakness);
         }
-
         return $this;
     }
 
-    public function removeEchoBossWeakness(Type $echoBossWeakness): static
+    public function removeWeakness(Type $weakness): static
     {
-        $this->echoBossWeaknesses->removeElement($echoBossWeakness);
-
+        $this->weaknesses->removeElement($weakness);
         return $this;
     }
 
@@ -105,16 +101,13 @@ class EchosBoss
     {
         // unset the owning side of the relation if necessary
         if ($echoOfWar === null && $this->echoOfWar !== null) {
-            $this->echoOfWar->setEchoOfWarBoss(null);
+            $this->echoOfWar->setBoss(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($echoOfWar !== null && $echoOfWar->getEchoOfWarBoss() !== $this) {
-            $echoOfWar->setEchoOfWarBoss($this);
+        if ($echoOfWar !== null && $echoOfWar->getBoss() !== $this) {
+            $echoOfWar->setBoss($this);
         }
-
         $this->echoOfWar = $echoOfWar;
-
         return $this;
     }
 }

@@ -20,27 +20,27 @@ class BossMat
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $bossMatName = null;
+    private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $bossMatReleased = false;
+    private ?bool $released = false;
 
     #[ORM\Column]
-    private ?bool $bossMatAnnounced = false;
+    private ?bool $announced = false;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $bossMatIcon = null;
+    private ?Media $icon = null;
 
     #[ORM\OneToOne(inversedBy: 'bossMat', cascade: ['persist', 'remove'])]
-    private ?StagnantShadow $bossMatStagnantShadow = null;
+    private ?StagnantShadow $stagnantShadow = null;
 
     #[ORM\ManyToOne(inversedBy: 'bossMats')]
-    private ?Type $bossMatType = null;
+    private ?Type $type = null;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
-    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterBossMat')]
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'bossMat')]
     private Collection $characters;
 
     #[ORM\Column(length: 255)]
@@ -53,7 +53,7 @@ class BossMat
 
     public function __toString()
     {
-        return $this->bossMatName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -61,75 +61,69 @@ class BossMat
         return $this->id;
     }
 
-    public function getBossMatName(): ?string
+    public function getName(): ?string
     {
-        return $this->bossMatName;
+        return $this->name;
     }
 
-    public function setBossMatName(string $bossMatName): static
+    public function setName(string $name): static
     {
-        $this->bossMatName = $bossMatName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function isBossMatReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->bossMatReleased;
+        return $this->released;
     }
 
-    public function setBossMatReleased(bool $bossMatReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->bossMatReleased = $bossMatReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function isBossMatAnnounced(): ?bool
+    public function isAnnounced(): ?bool
     {
-        return $this->bossMatAnnounced;
+        return $this->announced;
     }
 
-    public function setBossMatAnnounced(bool $bossMatAnnounced): static
+    public function setAnnounced(bool $announced): static
     {
-        $this->bossMatAnnounced = $bossMatAnnounced;
-
+        $this->announced = $announced;
         return $this;
     }
 
-    public function getBossMatIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->bossMatIcon;
+        return $this->icon;
     }
 
-    public function setBossMatIcon(?Media $bossMatIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->bossMatIcon = $bossMatIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
-    public function getBossMatStagnantShadow(): ?StagnantShadow
+    public function getStagnantShadow(): ?StagnantShadow
     {
-        return $this->bossMatStagnantShadow;
+        return $this->stagnantShadow;
     }
 
-    public function setBossMatStagnantShadow(?StagnantShadow $bossMatStagnantShadow): static
+    public function setStagnantShadow(?StagnantShadow $stagnantShadow): static
     {
-        $this->bossMatStagnantShadow = $bossMatStagnantShadow;
-
+        $this->stagnantShadow = $stagnantShadow;
         return $this;
     }
 
-    public function getBossMatType(): ?Type
+    public function getType(): ?Type
     {
-        return $this->bossMatType;
+        return $this->type;
     }
 
-    public function setBossMatType(?Type $bossMatType): static
+    public function setType(?Type $type): static
     {
-        $this->bossMatType = $bossMatType;
-
+        $this->type = $type;
         return $this;
     }
 
@@ -145,7 +139,7 @@ class BossMat
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterBossMat($this);
+            $character->setBossMat($this);
         }
 
         return $this;
@@ -155,11 +149,10 @@ class BossMat
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterBossMat() === $this) {
-                $character->setCharacterBossMat(null);
+            if ($character->getBossMat() === $this) {
+                $character->setBossMat(null);
             }
         }
-
         return $this;
     }
 
@@ -171,7 +164,6 @@ class BossMat
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 }

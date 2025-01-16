@@ -21,48 +21,48 @@ class AscensionMats
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $ascMatFourStarName = null;
+    private ?string $fourStarName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $ascMatThreeStarName = null;
+    private ?string $threeStarName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $ascMatTwoStarName = null;
+    private ?string $twoStarName = null;
 
     #[ORM\Column]
-    private ?bool $ascMatReleased = false;
+    private ?bool $released = false;
 
     #[ORM\Column]
-    private ?bool $ascMatAnnounced = false;
+    private ?bool $announced = false;
 
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $ascMatIcons;
+    private Collection $icons;
 
     /**
      * @var Collection<int, NormalEnemy>
      */
-    #[ORM\ManyToMany(targetEntity: NormalEnemy::class, inversedBy: 'ascensionMats')]
-    private Collection $ascMatsEnemies;
+    #[ORM\ManyToMany(targetEntity: NormalEnemy::class, inversedBy: 'ascMats')]
+    private Collection $enemies;
 
     /**
      * @var Collection<int, GoldenCalyx>
      */
-    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'goldenCalyxAscMats')]
+    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'ascMats')]
     private Collection $goldenCalyxes;
 
     /**
      * @var Collection<int, LightCone>
      */
-    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'lcAscMats')]
+    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'ascMats')]
     private Collection $lightCones;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
-    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterAscMats')]
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'ascMats')]
     private Collection $characters;
 
     #[ORM\Column(length: 255)]
@@ -70,8 +70,8 @@ class AscensionMats
 
     public function __construct()
     {
-        $this->ascMatIcons = new ArrayCollection();
-        $this->ascMatsEnemies = new ArrayCollection();
+        $this->icons = new ArrayCollection();
+        $this->enemies = new ArrayCollection();
         $this->goldenCalyxes = new ArrayCollection();
         $this->lightCones = new ArrayCollection();
         $this->characters = new ArrayCollection();
@@ -79,7 +79,7 @@ class AscensionMats
 
     public function __toString()
     {
-        return $this->ascMatFourStarName;
+        return $this->fourStarName;
     }
 
     public function getId(): ?int
@@ -87,111 +87,102 @@ class AscensionMats
         return $this->id;
     }
 
-    public function getAscMatFourStarName(): ?string
+    public function getFourStarName(): ?string
     {
-        return $this->ascMatFourStarName;
+        return $this->fourStarName;
     }
 
-    public function setAscMatFourStarName(string $ascMatFourStarName): static
+    public function setFourStarName(string $fourStarName): static
     {
-        $this->ascMatFourStarName = $ascMatFourStarName;
-
+        $this->fourStarName = $fourStarName;
         return $this;
     }
 
-    public function getAscMatThreeStarName(): ?string
+    public function getThreeStarName(): ?string
     {
-        return $this->ascMatThreeStarName;
+        return $this->threeStarName;
     }
 
-    public function setAscMatThreeStarName(string $ascMatThreeStarName): static
+    public function setThreeStarName(string $threeStarName): static
     {
-        $this->ascMatThreeStarName = $ascMatThreeStarName;
-
+        $this->threeStarName = $threeStarName;
         return $this;
     }
 
-    public function getAscMatTwoStarName(): ?string
+    public function getTwoStarName(): ?string
     {
-        return $this->ascMatTwoStarName;
+        return $this->twoStarName;
     }
 
-    public function setAscMatTwoStarName(string $ascMatTwoStarName): static
+    public function setTwoStarName(string $twoStarName): static
     {
-        $this->ascMatTwoStarName = $ascMatTwoStarName;
-
+        $this->twoStarName = $twoStarName;
         return $this;
     }
 
-    public function isAscMatReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->ascMatReleased;
+        return $this->released;
     }
 
-    public function setAscMatReleased(bool $ascMatReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->ascMatReleased = $ascMatReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function isAscMatAnnounced(): ?bool
+    public function isAnnounced(): ?bool
     {
-        return $this->ascMatAnnounced;
+        return $this->announced;
     }
 
-    public function setAscMatAnnounced(bool $ascMatAnnounced): static
+    public function setAnnounced(bool $announced): static
     {
-        $this->ascMatAnnounced = $ascMatAnnounced;
-
+        $this->announced = $announced;
         return $this;
     }
 
     /**
      * @return Collection<int, Media>
      */
-    public function getAscMatIcons(): Collection
+    public function getIcons(): Collection
     {
-        return $this->ascMatIcons;
+        return $this->icons;
     }
 
-    public function addAscMatIcon(Media $ascMatIcon): static
+    public function addIcon(Media $icon): static
     {
-        if (!$this->ascMatIcons->contains($ascMatIcon)) {
-            $this->ascMatIcons->add($ascMatIcon);
+        if (!$this->icons->contains($icon)) {
+            $this->icons->add($icon);
         }
-
         return $this;
     }
 
-    public function removeAscMatIcon(Media $ascMatIcon): static
+    public function removeIcon(Media $icon): static
     {
-        $this->ascMatIcons->removeElement($ascMatIcon);
-
+        $this->icons->removeElement($icon);
         return $this;
     }
 
     /**
      * @return Collection<int, NormalEnemy>
      */
-    public function getAscMatsEnemies(): Collection
+    public function getEnemies(): Collection
     {
-        return $this->ascMatsEnemies;
+        return $this->enemies;
     }
 
-    public function addAscMatsEnemy(NormalEnemy $ascMatsEnemy): static
+    public function addEnemy(NormalEnemy $enemy): static
     {
-        if (!$this->ascMatsEnemies->contains($ascMatsEnemy)) {
-            $this->ascMatsEnemies->add($ascMatsEnemy);
+        if (!$this->enemies->contains($enemy)) {
+            $this->enemies->add($enemy);
         }
-
         return $this;
     }
 
-    public function removeAscMatsEnemy(NormalEnemy $ascMatsEnemy): static
+    public function removeEnemy(NormalEnemy $enemy): static
     {
-        $this->ascMatsEnemies->removeElement($ascMatsEnemy);
-
+        $this->enemies->removeElement($enemy);
         return $this;
     }
 
@@ -207,18 +198,16 @@ class AscensionMats
     {
         if (!$this->goldenCalyxes->contains($goldenCalyx)) {
             $this->goldenCalyxes->add($goldenCalyx);
-            $goldenCalyx->addGoldenCalyxAscMat($this);
+            $goldenCalyx->addAscMat($this);
         }
-
         return $this;
     }
 
     public function removeGoldenCalyx(GoldenCalyx $goldenCalyx): static
     {
         if ($this->goldenCalyxes->removeElement($goldenCalyx)) {
-            $goldenCalyx->removeGoldenCalyxAscMat($this);
+            $goldenCalyx->removeAscMat($this);
         }
-
         return $this;
     }
 
@@ -234,9 +223,8 @@ class AscensionMats
     {
         if (!$this->lightCones->contains($lightCone)) {
             $this->lightCones->add($lightCone);
-            $lightCone->setLcAscMats($this);
+            $lightCone->setAscMats($this);
         }
-
         return $this;
     }
 
@@ -244,11 +232,10 @@ class AscensionMats
     {
         if ($this->lightCones->removeElement($lightCone)) {
             // set the owning side to null (unless already changed)
-            if ($lightCone->getLcAscMats() === $this) {
-                $lightCone->setLcAscMats(null);
+            if ($lightCone->getAscMats() === $this) {
+                $lightCone->setAscMats(null);
             }
         }
-
         return $this;
     }
 
@@ -264,9 +251,8 @@ class AscensionMats
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterAscMats($this);
+            $character->setAscMats($this);
         }
-
         return $this;
     }
 
@@ -274,11 +260,10 @@ class AscensionMats
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterAscMats() === $this) {
-                $character->setCharacterAscMats(null);
+            if ($character->getAscMats() === $this) {
+                $character->setAscMats(null);
             }
         }
-
         return $this;
     }
 
@@ -290,7 +275,6 @@ class AscensionMats
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
-
         return $this;
     }
 }

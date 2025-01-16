@@ -19,28 +19,28 @@ class EliteEnemy
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $eliteEnemyName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $eliteEnemyIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, Type>
      */
     #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'eliteEnemies')]
-    private Collection $eliteEnemyWeaknesses;
+    private Collection $weaknesses;
 
     #[ORM\OneToOne(mappedBy: 'stagnantShadowBoss', cascade: ['persist', 'remove'])]
     private ?StagnantShadow $stagnantShadow = null;
 
     public function __construct()
     {
-        $this->eliteEnemyWeaknesses = new ArrayCollection();
+        $this->weaknesses = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->eliteEnemyName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -48,51 +48,47 @@ class EliteEnemy
         return $this->id;
     }
 
-    public function getEliteEnemyName(): ?string
+    public function getName(): ?string
     {
-        return $this->eliteEnemyName;
+        return $this->name;
     }
 
-    public function setEliteEnemyName(string $eliteEnemyName): static
+    public function setName(string $name): static
     {
-        $this->eliteEnemyName = $eliteEnemyName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getEliteEnemyIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->eliteEnemyIcon;
+        return $this->icon;
     }
 
-    public function setEliteEnemyIcon(?Media $eliteEnemyIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->eliteEnemyIcon = $eliteEnemyIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
     /**
      * @return Collection<int, Type>
      */
-    public function getEliteEnemyWeaknesses(): Collection
+    public function getWeaknesses(): Collection
     {
-        return $this->eliteEnemyWeaknesses;
+        return $this->weaknesses;
     }
 
-    public function addEliteEnemyWeakness(Type $eliteEnemyWeakness): static
+    public function addWeakness(Type $weakness): static
     {
-        if (!$this->eliteEnemyWeaknesses->contains($eliteEnemyWeakness)) {
-            $this->eliteEnemyWeaknesses->add($eliteEnemyWeakness);
+        if (!$this->weaknesses->contains($weakness)) {
+            $this->weaknesses->add($weakness);
         }
-
         return $this;
     }
 
-    public function removeEliteEnemyWeakness(Type $eliteEnemyWeakness): static
+    public function removeWeakness(Type $weakness): static
     {
-        $this->eliteEnemyWeaknesses->removeElement($eliteEnemyWeakness);
-
+        $this->weaknesses->removeElement($weakness);
         return $this;
     }
 
@@ -105,16 +101,13 @@ class EliteEnemy
     {
         // unset the owning side of the relation if necessary
         if ($stagnantShadow === null && $this->stagnantShadow !== null) {
-            $this->stagnantShadow->setStagnantShadowBoss(null);
+            $this->stagnantShadow->setBoss(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($stagnantShadow !== null && $stagnantShadow->getStagnantShadowBoss() !== $this) {
-            $stagnantShadow->setStagnantShadowBoss($this);
+        if ($stagnantShadow !== null && $stagnantShadow->getBoss() !== $this) {
+            $stagnantShadow->setBoss($this);
         }
-
         $this->stagnantShadow = $stagnantShadow;
-
         return $this;
     }
 }

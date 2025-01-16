@@ -18,23 +18,23 @@ class StagnantShadow
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $stagnantShadowName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $stagnantShadowIcon = null;
+    private ?Media $icon = null;
 
     #[ORM\OneToOne(inversedBy: 'stagnantShadow', cascade: ['persist', 'remove'])]
-    private ?EliteEnemy $stagnantShadowBoss = null;
+    private ?EliteEnemy $boss = null;
 
     #[ORM\ManyToOne(inversedBy: 'stagnantShadows')]
-    private ?Location $stagnantShadowLocation = null;
+    private ?Location $location = null;
 
     #[ORM\OneToOne(mappedBy: 'bossMatStagnantShadow', cascade: ['persist', 'remove'])]
     private ?BossMat $bossMat = null;
 
     public function __toString()
     {
-        return $this->stagnantShadowName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -42,51 +42,47 @@ class StagnantShadow
         return $this->id;
     }
 
-    public function getStagnantShadowName(): ?string
+    public function getName(): ?string
     {
-        return $this->stagnantShadowName;
+        return $this->name;
     }
 
-    public function setStagnantShadowName(string $stagnantShadowName): static
+    public function setName(string $name): static
     {
-        $this->stagnantShadowName = $stagnantShadowName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getStagnantShadowIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->stagnantShadowIcon;
+        return $this->icon;
     }
 
-    public function setStagnantShadowIcon(?Media $stagnantShadowIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->stagnantShadowIcon = $stagnantShadowIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
-    public function getStagnantShadowBoss(): ?EliteEnemy
+    public function getBoss(): ?EliteEnemy
     {
-        return $this->stagnantShadowBoss;
+        return $this->boss;
     }
 
-    public function setStagnantShadowBoss(?EliteEnemy $stagnantShadowBoss): static
+    public function setBoss(?EliteEnemy $boss): static
     {
-        $this->stagnantShadowBoss = $stagnantShadowBoss;
-
+        $this->boss = $boss;
         return $this;
     }
 
-    public function getStagnantShadowLocation(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->stagnantShadowLocation;
+        return $this->location;
     }
 
-    public function setStagnantShadowLocation(?Location $stagnantShadowLocation): static
+    public function setLocation(?Location $location): static
     {
-        $this->stagnantShadowLocation = $stagnantShadowLocation;
-
+        $this->location = $location;
         return $this;
     }
 
@@ -99,16 +95,13 @@ class StagnantShadow
     {
         // unset the owning side of the relation if necessary
         if ($bossMat === null && $this->bossMat !== null) {
-            $this->bossMat->setBossMatStagnantShadow(null);
+            $this->bossMat->setStagnantShadow(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($bossMat !== null && $bossMat->getBossMatStagnantShadow() !== $this) {
-            $bossMat->setBossMatStagnantShadow($this);
+        if ($bossMat !== null && $bossMat->getStagnantShadow() !== $this) {
+            $bossMat->setStagnantShadow($this);
         }
-
         $this->bossMat = $bossMat;
-
         return $this;
     }
 }

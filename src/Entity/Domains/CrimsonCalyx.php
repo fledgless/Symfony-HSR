@@ -19,28 +19,28 @@ class CrimsonCalyx
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $crimsonCalyxName = null;
+    private ?string $name = null;
 
     /**
      * @var Collection<int, NormalEnemy>
      */
     #[ORM\ManyToMany(targetEntity: NormalEnemy::class, inversedBy: 'crimsonCalyxes')]
-    private Collection $crimsonCalyxEnemies;
+    private Collection $enemies;
 
     #[ORM\ManyToOne(inversedBy: 'crimsonCalyxes')]
-    private ?Location $crimsonCalyxLocation = null;
+    private ?Location $location = null;
 
-    #[ORM\OneToOne(mappedBy: 'traceMatsCrimsonCalyx', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'crimsonCalyx', cascade: ['persist', 'remove'])]
     private ?TraceMats $traceMats = null;
 
     public function __construct()
     {
-        $this->crimsonCalyxEnemies = new ArrayCollection();
+        $this->enemies = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->crimsonCalyxName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -48,51 +48,47 @@ class CrimsonCalyx
         return $this->id;
     }
 
-    public function getCrimsonCalyxName(): ?string
+    public function getName(): ?string
     {
-        return $this->crimsonCalyxName;
+        return $this->name;
     }
 
-    public function setCrimsonCalyxName(string $crimsonCalyxName): static
+    public function setName(string $name): static
     {
-        $this->crimsonCalyxName = $crimsonCalyxName;
-
+        $this->name = $name;
         return $this;
     }
 
     /**
      * @return Collection<int, NormalEnemy>
      */
-    public function getCrimsonCalyxEnemies(): Collection
+    public function getEnemies(): Collection
     {
-        return $this->crimsonCalyxEnemies;
+        return $this->enemies;
     }
 
-    public function addCrimsonCalyxEnemy(NormalEnemy $crimsonCalyxEnemy): static
+    public function addEnemy(NormalEnemy $enemy): static
     {
-        if (!$this->crimsonCalyxEnemies->contains($crimsonCalyxEnemy)) {
-            $this->crimsonCalyxEnemies->add($crimsonCalyxEnemy);
+        if (!$this->enemies->contains($enemy)) {
+            $this->enemies->add($enemy);
         }
-
         return $this;
     }
 
-    public function removeCrimsonCalyxEnemy(NormalEnemy $crimsonCalyxEnemy): static
+    public function removeEnemy(NormalEnemy $enemy): static
     {
-        $this->crimsonCalyxEnemies->removeElement($crimsonCalyxEnemy);
-
+        $this->enemies->removeElement($enemy);
         return $this;
     }
 
-    public function getCrimsonCalyxLocation(): ?Location
+    public function getLocation(): ?Location
     {
-        return $this->crimsonCalyxLocation;
+        return $this->location;
     }
 
-    public function setCrimsonCalyxLocation(?Location $crimsonCalyxLocation): static
+    public function setLocation(?Location $location): static
     {
-        $this->crimsonCalyxLocation = $crimsonCalyxLocation;
-
+        $this->location = $location;
         return $this;
     }
 
@@ -105,16 +101,13 @@ class CrimsonCalyx
     {
         // unset the owning side of the relation if necessary
         if ($traceMats === null && $this->traceMats !== null) {
-            $this->traceMats->setTraceMatsCrimsonCalyx(null);
+            $this->traceMats->setCrimsonCalyx(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($traceMats !== null && $traceMats->getTraceMatsCrimsonCalyx() !== $this) {
-            $traceMats->setTraceMatsCrimsonCalyx($this);
+        if ($traceMats !== null && $traceMats->getCrimsonCalyx() !== $this) {
+            $traceMats->setCrimsonCalyx($this);
         }
-
         $this->traceMats = $traceMats;
-
         return $this;
     }
 }

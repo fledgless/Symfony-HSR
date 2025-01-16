@@ -22,53 +22,53 @@ class NormalEnemy
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $normalEnemyName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $normalEnemyIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, World>
      */
     #[ORM\ManyToMany(targetEntity: Location::class, inversedBy: 'normalEnemies')]
-    private Collection $normalEnemyLocation;
+    private Collection $locations;
 
     /**
      * @var Collection<int, AscensionMats>
      */
     #[ORM\ManyToMany(targetEntity: AscensionMats::class, mappedBy: 'ascMatsEnemies')]
-    private Collection $ascensionMats;
+    private Collection $ascMats;
 
     /**
      * @var Collection<int, Type>
      */
-    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'normalEnemies')]
-    private Collection $normalEnemyWeaknesses;
+    #[ORM\ManyToMany(targetEntity: Type::class, inversedBy: 'enemies')]
+    private Collection $weaknesses;
 
     /**
      * @var Collection<int, GoldenCalyx>
      */
-    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'goldenCalyxEnemies')]
+    #[ORM\ManyToMany(targetEntity: GoldenCalyx::class, mappedBy: 'enemies')]
     private Collection $goldenCalyxes;
 
     /**
      * @var Collection<int, CrimsonCalyx>
      */
-    #[ORM\ManyToMany(targetEntity: CrimsonCalyx::class, mappedBy: 'crimsonCalyxEnemies')]
+    #[ORM\ManyToMany(targetEntity: CrimsonCalyx::class, mappedBy: 'enemies')]
     private Collection $crimsonCalyxes;
 
     public function __construct()
     {
-        $this->normalEnemyLocation = new ArrayCollection();
-        $this->ascensionMats = new ArrayCollection();
-        $this->normalEnemyWeaknesses = new ArrayCollection();
+        $this->locations = new ArrayCollection();
+        $this->ascMats = new ArrayCollection();
+        $this->weaknesses = new ArrayCollection();
         $this->goldenCalyxes = new ArrayCollection();
         $this->crimsonCalyxes = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->normalEnemyName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -76,102 +76,94 @@ class NormalEnemy
         return $this->id;
     }
 
-    public function getNormalEnemyName(): ?string
+    public function getName(): ?string
     {
-        return $this->normalEnemyName;
+        return $this->name;
     }
 
-    public function setNormalEnemyName(string $normalEnemyName): static
+    public function setName(string $name): static
     {
-        $this->normalEnemyName = $normalEnemyName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getNormalEnemyIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->normalEnemyIcon;
+        return $this->icon;
     }
 
-    public function setNormalEnemyIcon(?Media $normalEnemyIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->normalEnemyIcon = $normalEnemyIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
     /**
      * @return Collection<int, World>
      */
-    public function getNormalEnemyLocation(): Collection
+    public function getLocations(): Collection
     {
-        return $this->normalEnemyLocation;
+        return $this->locations;
     }
 
-    public function addNormalEnemyLocation(Location $normalEnemyLocation): static
+    public function addLocation(Location $location): static
     {
-        if (!$this->normalEnemyLocation->contains($normalEnemyLocation)) {
-            $this->normalEnemyLocation->add($normalEnemyLocation);
+        if (!$this->locations->contains($location)) {
+            $this->locations->add($location);
         }
-
         return $this;
     }
 
-    public function removeNormalEnemyLocation(Location $normalEnemyLocation): static
+    public function removeLocation(Location $location): static
     {
-        $this->normalEnemyLocation->removeElement($normalEnemyLocation);
-
+        $this->locations->removeElement($location);
         return $this;
     }
 
     /**
      * @return Collection<int, AscensionMats>
      */
-    public function getAscensionMats(): Collection
+    public function getAscMats(): Collection
     {
-        return $this->ascensionMats;
+        return $this->ascMats;
     }
 
-    public function addAscensionMat(AscensionMats $ascensionMat): static
+    public function addAscMat(AscensionMats $ascMat): static
     {
-        if (!$this->ascensionMats->contains($ascensionMat)) {
-            $this->ascensionMats->add($ascensionMat);
-            $ascensionMat->addAscMatsEnemy($this);
+        if (!$this->ascMats->contains($ascMat)) {
+            $this->ascMats->add($ascMat);
+            $ascMat->addAscMatsEnemy($this);
         }
-
         return $this;
     }
 
-    public function removeAscensionMat(AscensionMats $ascensionMat): static
+    public function removeAscMat(AscensionMats $ascMat): static
     {
-        if ($this->ascensionMats->removeElement($ascensionMat)) {
-            $ascensionMat->removeAscMatsEnemy($this);
+        if ($this->ascMats->removeElement($ascMat)) {
+            $ascMat->removeAscMatsEnemy($this);
         }
-
         return $this;
     }
 
     /**
      * @return Collection<int, Type>
      */
-    public function getNormalEnemyWeaknesses(): Collection
+    public function getWeaknesses(): Collection
     {
-        return $this->normalEnemyWeaknesses;
+        return $this->weaknesses;
     }
 
-    public function addNormalEnemyWeakness(Type $normalEnemyWeakness): static
+    public function addWeakness(Type $weakness): static
     {
-        if (!$this->normalEnemyWeaknesses->contains($normalEnemyWeakness)) {
-            $this->normalEnemyWeaknesses->add($normalEnemyWeakness);
+        if (!$this->weaknesses->contains($weakness)) {
+            $this->weaknesses->add($weakness);
         }
-
         return $this;
     }
 
-    public function removeNormalEnemyWeakness(Type $normalEnemyWeakness): static
+    public function removeWeakness(Type $weakness): static
     {
-        $this->normalEnemyWeaknesses->removeElement($normalEnemyWeakness);
-
+        $this->weaknesses->removeElement($weakness);
         return $this;
     }
 
@@ -187,18 +179,16 @@ class NormalEnemy
     {
         if (!$this->goldenCalyxes->contains($goldenCalyx)) {
             $this->goldenCalyxes->add($goldenCalyx);
-            $goldenCalyx->addGoldenCalyxEnemy($this);
+            $goldenCalyx->addEnemy($this);
         }
-
         return $this;
     }
 
     public function removeGoldenCalyx(GoldenCalyx $goldenCalyx): static
     {
         if ($this->goldenCalyxes->removeElement($goldenCalyx)) {
-            $goldenCalyx->removeGoldenCalyxEnemy($this);
+            $goldenCalyx->removeEnemy($this);
         }
-
         return $this;
     }
 
@@ -214,18 +204,16 @@ class NormalEnemy
     {
         if (!$this->crimsonCalyxes->contains($crimsonCalyx)) {
             $this->crimsonCalyxes->add($crimsonCalyx);
-            $crimsonCalyx->addCrimsonCalyxEnemy($this);
+            $crimsonCalyx->addEnemy($this);
         }
-
         return $this;
     }
 
     public function removeCrimsonCalyx(CrimsonCalyx $crimsonCalyx): static
     {
         if ($this->crimsonCalyxes->removeElement($crimsonCalyx)) {
-            $crimsonCalyx->removeCrimsonCalyxEnemy($this);
+            $crimsonCalyx->removeEnemy($this);
         }
-
         return $this;
     }
 }
