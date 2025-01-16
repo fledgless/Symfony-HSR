@@ -37,7 +37,6 @@ class Stat
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -49,7 +48,6 @@ class Stat
     public function setIcon(?Media $icon): static
     {
         $this->icon = $icon;
-
         return $this;
     }
 }

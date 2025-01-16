@@ -18,21 +18,21 @@ class Path
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $pathName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $pathIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
-    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'characterPath')]
+    #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'path')]
     private Collection $characters;
 
     /**
      * @var Collection<int, LightCone>
      */
-    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'lcPath')]
+    #[ORM\OneToMany(targetEntity: LightCone::class, mappedBy: 'path')]
     private Collection $lightCones;
 
     /**
@@ -50,7 +50,7 @@ class Path
 
     public function __toString()
     {
-        return $this->pathName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -58,27 +58,25 @@ class Path
         return $this->id;
     }
 
-    public function getPathName(): ?string
+    public function getName(): ?string
     {
-        return $this->pathName;
+        return $this->name;
     }
 
-    public function setPathName(string $pathName): static
+    public function setName(string $name): static
     {
-        $this->pathName = $pathName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getPathIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->pathIcon;
+        return $this->icon;
     }
 
-    public function setPathIcon(?Media $pathIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->pathIcon = $pathIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
@@ -94,9 +92,8 @@ class Path
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterPath($this);
+            $character->setPath($this);
         }
-
         return $this;
     }
 
@@ -104,11 +101,10 @@ class Path
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterPath() === $this) {
-                $character->setCharacterPath(null);
+            if ($character->getPath() === $this) {
+                $character->setPath(null);
             }
         }
-
         return $this;
     }
 
@@ -124,9 +120,8 @@ class Path
     {
         if (!$this->lightCones->contains($lightCone)) {
             $this->lightCones->add($lightCone);
-            $lightCone->setLcPath($this);
+            $lightCone->setPath($this);
         }
-
         return $this;
     }
 
@@ -134,11 +129,10 @@ class Path
     {
         if ($this->lightCones->removeElement($lightCone)) {
             // set the owning side to null (unless already changed)
-            if ($lightCone->getLcPath() === $this) {
-                $lightCone->setLcPath(null);
+            if ($lightCone->getPath() === $this) {
+                $lightCone->setPath(null);
             }
         }
-
         return $this;
     }
 
@@ -154,9 +148,8 @@ class Path
     {
         if (!$this->traceMats->contains($traceMat)) {
             $this->traceMats->add($traceMat);
-            $traceMat->setTraceMatsPath($this);
+            $traceMat->setPath($this);
         }
-
         return $this;
     }
 
@@ -164,11 +157,10 @@ class Path
     {
         if ($this->traceMats->removeElement($traceMat)) {
             // set the owning side to null (unless already changed)
-            if ($traceMat->getTraceMatsPath() === $this) {
-                $traceMat->setTraceMatsPath(null);
+            if ($traceMat->getPath() === $this) {
+                $traceMat->setPath(null);
             }
         }
-
         return $this;
     }
 }

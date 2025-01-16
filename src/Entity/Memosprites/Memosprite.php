@@ -65,7 +65,6 @@ class Memosprite
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -77,7 +76,6 @@ class Memosprite
     public function setMemomaster(?CharacterKit $memomaster): static
     {
         $this->memomaster = $memomaster;
-
         return $this;
     }
 
@@ -101,7 +99,6 @@ class Memosprite
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
-
         return $this;
     }
 
@@ -131,7 +128,6 @@ class Memosprite
                 $skill->setMemosprite(null);
             }
         }
-
         return $this;
     }
 
@@ -149,7 +145,6 @@ class Memosprite
             $this->talents->add($talent);
             $talent->setMemosprite($this);
         }
-
         return $this;
     }
 
@@ -161,7 +156,6 @@ class Memosprite
                 $talent->setMemosprite(null);
             }
         }
-
         return $this;
     }
 }

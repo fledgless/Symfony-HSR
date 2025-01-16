@@ -132,7 +132,7 @@ class NormalEnemy
     {
         if (!$this->ascMats->contains($ascMat)) {
             $this->ascMats->add($ascMat);
-            $ascMat->addAscMatsEnemy($this);
+            $ascMat->addEnemy($this);
         }
         return $this;
     }
@@ -140,7 +140,7 @@ class NormalEnemy
     public function removeAscMat(AscensionMats $ascMat): static
     {
         if ($this->ascMats->removeElement($ascMat)) {
-            $ascMat->removeAscMatsEnemy($this);
+            $ascMat->removeEnemy($this);
         }
         return $this;
     }

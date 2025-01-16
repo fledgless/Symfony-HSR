@@ -82,7 +82,6 @@ class MemospriteTalent
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -94,7 +93,6 @@ class MemospriteTalent
     public function setIcon(?Media $icon): static
     {
         $this->icon = $icon;
-
         return $this;
     }
 
@@ -106,7 +104,6 @@ class MemospriteTalent
     public function setType(?string $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -118,7 +115,6 @@ class MemospriteTalent
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
-
         return $this;
     }
 
@@ -130,7 +126,6 @@ class MemospriteTalent
     public function setBreakMainTarget(?int $breakMainTarget): static
     {
         $this->breakMainTarget = $breakMainTarget;
-
         return $this;
     }
 
@@ -142,7 +137,6 @@ class MemospriteTalent
     public function setBreakAdjacentTargets(?int $breakAdjacentTargets): static
     {
         $this->breakAdjacentTargets = $breakAdjacentTargets;
-
         return $this;
     }
 
@@ -154,7 +148,6 @@ class MemospriteTalent
     public function setLevelUp(bool $levelUp): static
     {
         $this->levelUp = $levelUp;
-
         return $this;
     }
 
@@ -166,7 +159,6 @@ class MemospriteTalent
     public function setDescUnique(?string $descUnique): static
     {
         $this->descUnique = $descUnique;
-
         return $this;
     }
 
@@ -178,7 +170,6 @@ class MemospriteTalent
     public function setDescLevelOne(?string $descLevelOne): static
     {
         $this->descLevelOne = $descLevelOne;
-
         return $this;
     }
 
@@ -190,7 +181,6 @@ class MemospriteTalent
     public function setDescLevelTwo(?string $descLevelTwo): static
     {
         $this->descLevelTwo = $descLevelTwo;
-
         return $this;
     }
 
@@ -202,7 +192,6 @@ class MemospriteTalent
     public function setDescLevelThree(?string $descLevelThree): static
     {
         $this->descLevelThree = $descLevelThree;
-
         return $this;
     }
 
@@ -214,7 +203,6 @@ class MemospriteTalent
     public function setDescLevelFour(?string $descLevelFour): static
     {
         $this->descLevelFour = $descLevelFour;
-
         return $this;
     }
 
@@ -226,7 +214,6 @@ class MemospriteTalent
     public function setDescLevelFive(?string $descLevelFive): static
     {
         $this->descLevelFive = $descLevelFive;
-
         return $this;
     }
 
@@ -238,7 +225,6 @@ class MemospriteTalent
     public function setDescLevelSix(?string $descLevelSix): static
     {
         $this->descLevelSix = $descLevelSix;
-
         return $this;
     }
 
@@ -250,7 +236,6 @@ class MemospriteTalent
     public function setDescLevelSeven(?string $descLevelSeven): static
     {
         $this->descLevelSeven = $descLevelSeven;
-
         return $this;
     }
 
@@ -262,7 +247,6 @@ class MemospriteTalent
     public function setMemosprite(?Memosprite $memosprite): static
     {
         $this->memosprite = $memosprite;
-
         return $this;
     }
 }

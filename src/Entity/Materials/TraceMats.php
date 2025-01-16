@@ -167,7 +167,7 @@ class TraceMats
         return $this;
     }
 
-    public function getCrimsonCalyc(): ?CrimsonCalyx
+    public function getCrimsonCalyx(): ?CrimsonCalyx
     {
         return $this->crimsonCalyx;
     }
