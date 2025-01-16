@@ -71,7 +71,7 @@ class CharacterTalent
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelTwelve = null;
 
-    #[ORM\OneToOne(inversedBy: 'characterTalent')]
+    #[ORM\OneToOne(inversedBy: 'talent')]
     private ?CharacterKit $characterKit = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -96,7 +96,6 @@ class CharacterTalent
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -108,7 +107,6 @@ class CharacterTalent
     public function setType(string $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -120,7 +118,6 @@ class CharacterTalent
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
-
         return $this;
     }
 
@@ -132,7 +129,6 @@ class CharacterTalent
     public function setBreakMainTarget(?int $breakMainTarget): static
     {
         $this->breakMainTarget = $breakMainTarget;
-
         return $this;
     }
 
@@ -144,7 +140,6 @@ class CharacterTalent
     public function setBreakAdjacentTargets(?int $breakAdjacentTargets): static
     {
         $this->breakAdjacentTargets = $breakAdjacentTargets;
-
         return $this;
     }
 
@@ -156,7 +151,6 @@ class CharacterTalent
     public function setEnhanced(bool $enhanced): static
     {
         $this->enhanced = $enhanced;
-
         return $this;
     }
 
@@ -168,7 +162,6 @@ class CharacterTalent
     public function setDescLevelOne(?string $descLevelOne): static
     {
         $this->descLevelOne = $descLevelOne;
-
         return $this;
     }
 
@@ -180,7 +173,6 @@ class CharacterTalent
     public function setDescLevelTwo(?string $descLevelTwo): static
     {
         $this->descLevelTwo = $descLevelTwo;
-
         return $this;
     }
 
@@ -192,7 +184,6 @@ class CharacterTalent
     public function setDescLevelThree(?string $descLevelThree): static
     {
         $this->descLevelThree = $descLevelThree;
-
         return $this;
     }
 
@@ -204,7 +195,6 @@ class CharacterTalent
     public function setDescLevelFour(?string $descLevelFour): static
     {
         $this->descLevelFour = $descLevelFour;
-
         return $this;
     }
 
@@ -216,7 +206,6 @@ class CharacterTalent
     public function setDescLevelFive(?string $descLevelFive): static
     {
         $this->descLevelFive = $descLevelFive;
-
         return $this;
     }
 
@@ -228,7 +217,6 @@ class CharacterTalent
     public function setDescLevelSix(?string $descLevelSix): static
     {
         $this->descLevelSix = $descLevelSix;
-
         return $this;
     }
 
@@ -240,7 +228,6 @@ class CharacterTalent
     public function setDescLevelSeven(?string $descLevelSeven): static
     {
         $this->descLevelSeven = $descLevelSeven;
-
         return $this;
     }
 
@@ -252,7 +239,6 @@ class CharacterTalent
     public function setDescLevelEight(?string $descLevelEight): static
     {
         $this->descLevelEight = $descLevelEight;
-
         return $this;
     }
 
@@ -264,7 +250,6 @@ class CharacterTalent
     public function setDescLevelNine(?string $descLevelNine): static
     {
         $this->descLevelNine = $descLevelNine;
-
         return $this;
     }
 
@@ -276,7 +261,6 @@ class CharacterTalent
     public function setDescLevelTen(?string $descLevelTen): static
     {
         $this->descLevelTen = $descLevelTen;
-
         return $this;
     }
 
@@ -288,7 +272,6 @@ class CharacterTalent
     public function setDescLevelEleven(?string $descLevelEleven): static
     {
         $this->descLevelEleven = $descLevelEleven;
-
         return $this;
     }
 
@@ -300,7 +283,6 @@ class CharacterTalent
     public function setDescLevelTwelve(?string $descLevelTwelve): static
     {
         $this->descLevelTwelve = $descLevelTwelve;
-
         return $this;
     }
 
@@ -312,7 +294,6 @@ class CharacterTalent
     public function setCharacterKit(?CharacterKit $characterKit): static
     {
         $this->characterKit = $characterKit;
-
         return $this;
     }
 
@@ -324,7 +305,6 @@ class CharacterTalent
     public function setIcon(?Media $icon): static
     {
         $this->icon = $icon;
-
         return $this;
     }
 }

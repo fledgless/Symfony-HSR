@@ -30,12 +30,12 @@ class CharacterStories
     private ?string $characterStoryPartFour = null;
 
     #[ORM\OneToOne(inversedBy: 'characterStories', cascade: ['persist', 'remove'])]
-    private ?BaseCharacter $characterStoriesCharacter = null;
+    private ?BaseCharacter $character = null;
 
     public function __toString()
     {
-        $characterStoriesName = $this->characterStoriesCharacter + " - Character stories";
-        return $characterStoriesName;
+        $name = $this->character + " - Character stories";
+        return $name;
     }
 
     public function getId(): ?int
@@ -51,7 +51,6 @@ class CharacterStories
     public function setCharacterDetails(?string $characterDetails): static
     {
         $this->characterDetails = $characterDetails;
-
         return $this;
     }
 
@@ -63,7 +62,6 @@ class CharacterStories
     public function setCharacterStoryPartOne(?string $characterStoryPartOne): static
     {
         $this->characterStoryPartOne = $characterStoryPartOne;
-
         return $this;
     }
 
@@ -75,7 +73,6 @@ class CharacterStories
     public function setCharacterStoryPartTwo(?string $characterStoryPartTwo): static
     {
         $this->characterStoryPartTwo = $characterStoryPartTwo;
-
         return $this;
     }
 
@@ -87,7 +84,6 @@ class CharacterStories
     public function setCharacterStoryPartThree(?string $characterStoryPartThree): static
     {
         $this->characterStoryPartThree = $characterStoryPartThree;
-
         return $this;
     }
 
@@ -99,19 +95,17 @@ class CharacterStories
     public function setCharacterStoryPartFour(?string $characterStoryPartFour): static
     {
         $this->characterStoryPartFour = $characterStoryPartFour;
-
         return $this;
     }
 
-    public function getCharacterStoriesCharacter(): ?BaseCharacter
+    public function getCharacter(): ?BaseCharacter
     {
-        return $this->characterStoriesCharacter;
+        return $this->character;
     }
 
-    public function setCharacterStoriesCharacter(?BaseCharacter $characterStoriesCharacter): static
+    public function setCharacter(?BaseCharacter $character): static
     {
-        $this->characterStoriesCharacter = $characterStoriesCharacter;
-
+        $this->character = $character;
         return $this;
     }
 }

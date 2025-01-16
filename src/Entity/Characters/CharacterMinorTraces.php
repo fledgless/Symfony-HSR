@@ -13,7 +13,7 @@ class CharacterMinorTraces
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(inversedBy: 'characterMinorTraces', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'minorTraces', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?CharacterKit $characterName = null;
 
@@ -66,7 +66,6 @@ class CharacterMinorTraces
     public function setCharacterName(CharacterKit $characterName): static
     {
         $this->characterName = $characterName;
-
         return $this;
     }
 
@@ -78,7 +77,6 @@ class CharacterMinorTraces
     public function setLevelOneTrace(?string $levelOneTrace): static
     {
         $this->levelOneTrace = $levelOneTrace;
-
         return $this;
     }
 
@@ -90,7 +88,6 @@ class CharacterMinorTraces
     public function setAscensionTwoTrace(?string $ascensionTwoTrace): static
     {
         $this->ascensionTwoTrace = $ascensionTwoTrace;
-
         return $this;
     }
 
@@ -102,7 +99,6 @@ class CharacterMinorTraces
     public function setAscensionThreeTraceOne(?string $ascensionThreeTraceOne): static
     {
         $this->ascensionThreeTraceOne = $ascensionThreeTraceOne;
-
         return $this;
     }
 
@@ -114,7 +110,6 @@ class CharacterMinorTraces
     public function setAscensionThreeTraceTwo(?string $ascensionThreeTraceTwo): static
     {
         $this->ascensionThreeTraceTwo = $ascensionThreeTraceTwo;
-
         return $this;
     }
 
@@ -126,7 +121,6 @@ class CharacterMinorTraces
     public function setAscensionFourTrace(?string $ascensionFourTrace): static
     {
         $this->ascensionFourTrace = $ascensionFourTrace;
-
         return $this;
     }
 
@@ -138,7 +132,6 @@ class CharacterMinorTraces
     public function setAscensionFiveTraceOne(?string $ascensionFiveTraceOne): static
     {
         $this->ascensionFiveTraceOne = $ascensionFiveTraceOne;
-
         return $this;
     }
 
@@ -150,7 +143,6 @@ class CharacterMinorTraces
     public function setAscensionFiveTraceTwo(?string $ascensionFiveTraceTwo): static
     {
         $this->ascensionFiveTraceTwo = $ascensionFiveTraceTwo;
-
         return $this;
     }
 
@@ -162,7 +154,6 @@ class CharacterMinorTraces
     public function setAscensionSixTrace(?string $ascensionSixTrace): static
     {
         $this->ascensionSixTrace = $ascensionSixTrace;
-
         return $this;
     }
 
@@ -174,7 +165,6 @@ class CharacterMinorTraces
     public function setLevelSeventyFiveTrace(?string $levelSeventyFiveTrace): static
     {
         $this->levelSeventyFiveTrace = $levelSeventyFiveTrace;
-
         return $this;
     }
 
@@ -186,7 +176,6 @@ class CharacterMinorTraces
     public function setLevelEightyTrace(?string $levelEightyTrace): static
     {
         $this->levelEightyTrace = $levelEightyTrace;
-
         return $this;
     }
 }

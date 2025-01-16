@@ -71,7 +71,7 @@ class CharacterUltimate
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelTwelve = null;
 
-    #[ORM\ManyToOne(inversedBy: 'characterUltimates')]
+    #[ORM\ManyToOne(inversedBy: 'ultimates')]
     private ?CharacterKit $characterKit = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
@@ -99,7 +99,6 @@ class CharacterUltimate
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -111,7 +110,6 @@ class CharacterUltimate
     public function setType(string $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -123,7 +121,6 @@ class CharacterUltimate
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
-
         return $this;
     }
 
@@ -135,7 +132,6 @@ class CharacterUltimate
     public function setBreakMainTarget(?int $breakMainTarget): static
     {
         $this->breakMainTarget = $breakMainTarget;
-
         return $this;
     }
 
@@ -147,7 +143,6 @@ class CharacterUltimate
     public function setBreakAdjacentTargets(?int $breakAdjacentTargets): static
     {
         $this->breakAdjacentTargets = $breakAdjacentTargets;
-
         return $this;
     }
 
@@ -159,7 +154,6 @@ class CharacterUltimate
     public function setEnhanced(bool $enhanced): static
     {
         $this->enhanced = $enhanced;
-
         return $this;
     }
 
@@ -171,7 +165,6 @@ class CharacterUltimate
     public function setDescLevelOne(?string $descLevelOne): static
     {
         $this->descLevelOne = $descLevelOne;
-
         return $this;
     }
 
@@ -183,7 +176,6 @@ class CharacterUltimate
     public function setDescLevelTwo(?string $descLevelTwo): static
     {
         $this->descLevelTwo = $descLevelTwo;
-
         return $this;
     }
 
@@ -195,7 +187,6 @@ class CharacterUltimate
     public function setDescLevelThree(?string $descLevelThree): static
     {
         $this->descLevelThree = $descLevelThree;
-
         return $this;
     }
 
@@ -207,7 +198,6 @@ class CharacterUltimate
     public function setDescLevelFour(?string $descLevelFour): static
     {
         $this->descLevelFour = $descLevelFour;
-
         return $this;
     }
 
@@ -219,7 +209,6 @@ class CharacterUltimate
     public function setDescLevelFive(?string $descLevelFive): static
     {
         $this->descLevelFive = $descLevelFive;
-
         return $this;
     }
 
@@ -231,7 +220,6 @@ class CharacterUltimate
     public function setDescLevelSix(?string $descLevelSix): static
     {
         $this->descLevelSix = $descLevelSix;
-
         return $this;
     }
 
@@ -243,7 +231,6 @@ class CharacterUltimate
     public function setDescLevelSeven(?string $descLevelSeven): static
     {
         $this->descLevelSeven = $descLevelSeven;
-
         return $this;
     }
 
@@ -255,7 +242,6 @@ class CharacterUltimate
     public function setDescLevelEight(?string $descLevelEight): static
     {
         $this->descLevelEight = $descLevelEight;
-
         return $this;
     }
 
@@ -267,7 +253,6 @@ class CharacterUltimate
     public function setDescLevelNine(?string $descLevelNine): static
     {
         $this->descLevelNine = $descLevelNine;
-
         return $this;
     }
 
@@ -279,7 +264,6 @@ class CharacterUltimate
     public function setDescLevelTen(?string $descLevelTen): static
     {
         $this->descLevelTen = $descLevelTen;
-
         return $this;
     }
 
@@ -291,7 +275,6 @@ class CharacterUltimate
     public function setDescLevelEleven(?string $descLevelEleven): static
     {
         $this->descLevelEleven = $descLevelEleven;
-
         return $this;
     }
 
@@ -303,7 +286,6 @@ class CharacterUltimate
     public function setDescLevelTwelve(?string $descLevelTwelve): static
     {
         $this->descLevelTwelve = $descLevelTwelve;
-
         return $this;
     }
 
@@ -315,7 +297,6 @@ class CharacterUltimate
     public function setCharacterKit(?CharacterKit $characterKit): static
     {
         $this->characterKit = $characterKit;
-
         return $this;
     }
 
@@ -327,7 +308,6 @@ class CharacterUltimate
     public function setIcon(?Media $icon): static
     {
         $this->icon = $icon;
-
         return $this;
     }
 
@@ -339,7 +319,6 @@ class CharacterUltimate
     public function setUltCost(?int $ultCost): static
     {
         $this->ultCost = $ultCost;
-
         return $this;
     }
 }

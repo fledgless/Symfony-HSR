@@ -89,7 +89,6 @@ class CharacterBasicAtk
     public function setName(string $name): static
     {
         $this->name = $name;
-
         return $this;
     }
 
@@ -101,7 +100,6 @@ class CharacterBasicAtk
     public function setType(string $type): static
     {
         $this->type = $type;
-
         return $this;
     }
 
@@ -113,7 +111,6 @@ class CharacterBasicAtk
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
-
         return $this;
     }
 
@@ -125,7 +122,6 @@ class CharacterBasicAtk
     public function setBreakMainTarget(?int $breakMainTarget): static
     {
         $this->breakMainTarget = $breakMainTarget;
-
         return $this;
     }
 
@@ -149,7 +145,6 @@ class CharacterBasicAtk
     public function setEnhanced(bool $enhanced): static
     {
         $this->enhanced = $enhanced;
-
         return $this;
     }
 
@@ -161,7 +156,6 @@ class CharacterBasicAtk
     public function setDescLevelOne(?string $descLevelOne): static
     {
         $this->descLevelOne = $descLevelOne;
-
         return $this;
     }
 
@@ -173,7 +167,6 @@ class CharacterBasicAtk
     public function setDescLevelTwo(?string $descLevelTwo): static
     {
         $this->descLevelTwo = $descLevelTwo;
-
         return $this;
     }
 
@@ -185,7 +178,6 @@ class CharacterBasicAtk
     public function setDescLevelThree(?string $descLevelThree): static
     {
         $this->descLevelThree = $descLevelThree;
-
         return $this;
     }
 
@@ -197,7 +189,6 @@ class CharacterBasicAtk
     public function setDescLevelFour(?string $descLevelFour): static
     {
         $this->descLevelFour = $descLevelFour;
-
         return $this;
     }
 
@@ -209,7 +200,6 @@ class CharacterBasicAtk
     public function setDescLevelFive(?string $descLevelFive): static
     {
         $this->descLevelFive = $descLevelFive;
-
         return $this;
     }
 
@@ -221,7 +211,6 @@ class CharacterBasicAtk
     public function setDescLevelSix(?string $descLevelSix): static
     {
         $this->descLevelSix = $descLevelSix;
-
         return $this;
     }
 
@@ -233,7 +222,6 @@ class CharacterBasicAtk
     public function setDescLevelSeven(?string $descLevelSeven): static
     {
         $this->descLevelSeven = $descLevelSeven;
-
         return $this;
     }
 
@@ -245,7 +233,6 @@ class CharacterBasicAtk
     public function setCharacterKit(?CharacterKit $characterKit): static
     {
         $this->characterKit = $characterKit;
-
         return $this;
     }
 
@@ -262,14 +249,12 @@ class CharacterBasicAtk
         if (!$this->icons->contains($icon)) {
             $this->icons->add($icon);
         }
-
         return $this;
     }
 
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
-
         return $this;
     }
 }

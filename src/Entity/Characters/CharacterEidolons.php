@@ -4,8 +4,6 @@ namespace App\Entity\Characters;
 
 use App\Entity\Media;
 use App\Repository\Characters\CharacterEidolonsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,179 +15,106 @@ class CharacterEidolons
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(mappedBy: 'eidolons', cascade: ['persist', 'remove'])]
-    private ?BaseCharacter $characterName = null;
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonOne = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $number = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonTwo = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonThree = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonFour = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonFive = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?array $eidolonSix = null;
+    #[ORM\ManyToOne(inversedBy: 'eidolons')]
+    private ?CharacterKit $characterKit = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $eidolonStopPoint = null;
+    private ?string $description = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $eidolonIcons;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pullWorth = null;
 
-    public function __construct()
-    {
-        $this->eidolonIcons = new ArrayCollection();
-    }
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $recommendation = null;
 
-    public function __toString()
-    {
-        $eidolonsName = $this->characterName + " - Eidolons";
-        return $eidolonsName;
-    }
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Media $icon = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCharacterName(): ?BaseCharacter
+    public function getName(): ?string
     {
-        return $this->characterName;
+        return $this->name;
     }
 
-    public function setCharacterName(?BaseCharacter $characterName): static
+    public function setName(string $name): static
     {
-        // unset the owning side of the relation if necessary
-        if ($characterName === null && $this->characterName !== null) {
-            $this->characterName->setEidolons(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($characterName !== null && $characterName->getEidolons() !== $this) {
-            $characterName->setEidolons($this);
-        }
-
-        $this->characterName = $characterName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getEidolonOne(): ?array
+    public function getNumber(): ?string
     {
-        return $this->eidolonOne;
+        return $this->number;
     }
 
-    public function setEidolonOne(?array $eidolonOne): static
+    public function setNumber(?string $number): static
     {
-        $this->eidolonOne = $eidolonOne;
-
+        $this->number = $number;
         return $this;
     }
 
-    public function getEidolonTwo(): ?array
+    public function getCharacterKit(): ?CharacterKit
     {
-        return $this->eidolonTwo;
+        return $this->characterKit;
     }
 
-    public function setEidolonTwo(?array $eidolonTwo): static
+    public function setCharacterKit(?CharacterKit $characterKit): static
     {
-        $this->eidolonTwo = $eidolonTwo;
-
+        $this->characterKit = $characterKit;
         return $this;
     }
 
-    public function getEidolonThree(): ?array
+    public function getDescription(): ?string
     {
-        return $this->eidolonThree;
+        return $this->description;
     }
 
-    public function setEidolonThree(?array $eidolonThree): static
+    public function setDescription(string $description): static
     {
-        $this->eidolonThree = $eidolonThree;
-
+        $this->description = $description;
         return $this;
     }
 
-    public function getEidolonFour(): ?array
+    public function getPullWorth(): ?string
     {
-        return $this->eidolonFour;
+        return $this->pullWorth;
     }
 
-    public function setEidolonFour(?array $eidolonFour): static
+    public function setPullWorth(string $pullWorth): static
     {
-        $this->eidolonFour = $eidolonFour;
-
+        $this->pullWorth = $pullWorth;
         return $this;
     }
 
-    public function getEidolonFive(): ?array
+    public function getRecommendation(): ?string
     {
-        return $this->eidolonFive;
+        return $this->recommendation;
     }
 
-    public function setEidolonFive(?array $eidolonFive): static
+    public function setRecommendation(string $recommendation): static
     {
-        $this->eidolonFive = $eidolonFive;
-
+        $this->recommendation = $recommendation;
         return $this;
     }
 
-    public function getEidolonSix(): ?array
+    public function getIcon(): ?Media
     {
-        return $this->eidolonSix;
+        return $this->icon;
     }
 
-    public function setEidolonSix(?array $eidolonSix): static
+    public function setIcon(?Media $icon): static
     {
-        $this->eidolonSix = $eidolonSix;
-
-        return $this;
-    }
-
-    public function getEidolonStopPoint(): ?string
-    {
-        return $this->eidolonStopPoint;
-    }
-
-    public function setEidolonStopPoint(?string $eidolonStopPoint): static
-    {
-        $this->eidolonStopPoint = $eidolonStopPoint;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getEidolonIcons(): Collection
-    {
-        return $this->eidolonIcons;
-    }
-
-    public function addEidolonIcon(Media $eidolonIcon): static
-    {
-        if (!$this->eidolonIcons->contains($eidolonIcon)) {
-            $this->eidolonIcons->add($eidolonIcon);
-        }
-
-        return $this;
-    }
-
-    public function removeEidolonIcon(Media $eidolonIcon): static
-    {
-        $this->eidolonIcons->removeElement($eidolonIcon);
-
+        $this->icon = $icon;
         return $this;
     }
 }

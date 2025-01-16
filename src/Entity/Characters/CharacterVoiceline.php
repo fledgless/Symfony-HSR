@@ -15,21 +15,21 @@ class CharacterVoiceline
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $voicelineName = null;
+    private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $voicelineContent = null;
+    private ?string $content = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $voicelineCategory = null;
+    private ?string $category = null;
 
-    #[ORM\ManyToOne(inversedBy: 'characterVoicelines')]
-    private ?BaseCharacter $voicelineCharacter = null;
+    #[ORM\ManyToOne(inversedBy: 'voicelines')]
+    private ?BaseCharacter $character = null;
 
     public function __toString()
     {
-        $voicelineName = $this->voicelineCharacter + " - Voiceline - " + $this->voicelineName;
-        return $voicelineName;
+        $name = $this->character + " - Voiceline - " + $this->name;
+        return $name;
     }
 
     public function getId(): ?int
@@ -37,51 +37,47 @@ class CharacterVoiceline
         return $this->id;
     }
 
-    public function getVoicelineName(): ?string
+    public function getName(): ?string
     {
-        return $this->voicelineName;
+        return $this->name;
     }
 
-    public function setVoicelineName(string $voicelineName): static
+    public function setName(string $name): static
     {
-        $this->voicelineName = $voicelineName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getVoicelineContent(): ?string
+    public function getContent(): ?string
     {
-        return $this->voicelineContent;
+        return $this->content;
     }
 
-    public function setVoicelineContent(?string $voicelineContent): static
+    public function setContent(?string $content): static
     {
-        $this->voicelineContent = $voicelineContent;
-
+        $this->content = $content;
         return $this;
     }
 
-    public function getVoicelineCategory(): ?string
+    public function getCategory(): ?string
     {
-        return $this->voicelineCategory;
+        return $this->category;
     }
 
-    public function setVoicelineCategory(?string $voicelineCategory): static
+    public function setCategory(?string $category): static
     {
-        $this->voicelineCategory = $voicelineCategory;
-
+        $this->category = $category;
         return $this;
     }
 
-    public function getVoicelineCharacter(): ?BaseCharacter
+    public function getCharacter(): ?BaseCharacter
     {
-        return $this->voicelineCharacter;
+        return $this->character;
     }
 
-    public function setVoicelineCharacter(?BaseCharacter $voicelineCharacter): static
+    public function setCharacter(?BaseCharacter $character): static
     {
-        $this->voicelineCharacter = $voicelineCharacter;
-
+        $this->character = $character;
         return $this;
     }
 }

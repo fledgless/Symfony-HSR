@@ -26,77 +26,74 @@ class BaseCharacter
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $characterName = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $characterSlug = null;
+    private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $characterRarity = null;
+    private ?string $rarity = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
-    private ?Path $characterPath = null;
+    private ?Path $path = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
-    private ?Type $characterType = null;
-
-    #[ORM\OneToOne(inversedBy: 'characterName', cascade: ['persist', 'remove'])]
-    private ?CharacterEidolons $eidolons = null;
+    private ?Type $type = null;
 
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $characterIcons;
+    private Collection $icons;
 
     #[ORM\Column]
-    private ?bool $characterReleased = false;
+    private ?bool $released = false;
 
     #[ORM\Column]
-    private ?bool $characterAnnounced = false;
+    private ?bool $announced = false;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $characterReleaseDate = null;
+    private ?\DateTimeInterface $releaseDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $characterReleaseVersion = null;
-
-    #[ORM\ManyToOne(inversedBy: 'baseCharacters')]
-    private ?AscensionMats $characterAscMats = null;
+    private ?string $releaseVersion = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
-    private ?BossMat $characterBossMat = null;
+    private ?AscensionMats $ascMats = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
-    private ?WeeklyMat $characterWeeklyMat = null;
+    private ?BossMat $bossMat = null;
 
     #[ORM\ManyToOne(inversedBy: 'characters')]
-    private ?TraceMats $characterTraceMats = null;
+    private ?WeeklyMat $weeklyMat = null;
+
+    #[ORM\ManyToOne(inversedBy: 'characters')]
+    private ?TraceMats $traceMats = null;
 
     /**
      * @var Collection<int, CharacterVoiceline>
      */
-    #[ORM\OneToMany(targetEntity: CharacterVoiceline::class, mappedBy: 'voicelineCharacter')]
-    private Collection $characterVoicelines;
+    #[ORM\OneToMany(targetEntity: CharacterVoiceline::class, mappedBy: 'character')]
+    private Collection $voicelines;
 
-    #[ORM\OneToOne(mappedBy: 'characterStoriesCharacter', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'character', cascade: ['persist', 'remove'])]
     private ?CharacterStories $characterStories = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $characterBannerName = null;
+    private ?string $bannerName = null;
 
     #[ORM\ManyToOne(inversedBy: 'locationCharacters')]
     private ?Location $location = null;
 
     public function __construct()
     {
-        $this->characterIcons = new ArrayCollection();
-        $this->characterVoicelines = new ArrayCollection();
+        $this->icons = new ArrayCollection();
+        $this->voicelines = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->characterName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -104,225 +101,196 @@ class BaseCharacter
         return $this->id;
     }
 
-    public function getCharacterName(): ?string
+    public function getName(): ?string
     {
-        return $this->characterName;
+        return $this->name;
     }
 
-    public function setCharacterName(string $characterName): static
+    public function setName(string $name): static
     {
-        $this->characterName = $characterName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getCharacterSlug(): ?string
+    public function getSlug(): ?string
     {
-        return $this->characterSlug;
+        return $this->slug;
     }
 
-    public function setCharacterSlug(string $characterSlug): static
+    public function setSlug(string $slug): static
     {
-        $this->characterSlug = $characterSlug;
-
+        $this->slug = $slug;
         return $this;
     }
 
-    public function getCharacterRarity(): ?string
+    public function getRarity(): ?string
     {
-        return $this->characterRarity;
+        return $this->rarity;
     }
 
-    public function setCharacterRarity(string $characterRarity): static
+    public function setRarity(string $rarity): static
     {
-        $this->characterRarity = $characterRarity;
-
+        $this->rarity = $rarity;
         return $this;
     }
 
-    public function getCharacterPath(): ?Path
+    public function getPath(): ?Path
     {
-        return $this->characterPath;
+        return $this->path;
     }
 
-    public function setCharacterPath(?Path $characterPath): static
+    public function setPath(?Path $path): static
     {
-        $this->characterPath = $characterPath;
-
+        $this->path = $path;
         return $this;
     }
 
-    public function getCharacterType(): ?Type
+    public function getType(): ?Type
     {
-        return $this->characterType;
+        return $this->type;
     }
 
-    public function setCharacterType(?Type $characterType): static
+    public function setType(?Type $type): static
     {
-        $this->characterType = $characterType;
-
-        return $this;
-    }
-
-    public function getEidolons(): ?CharacterEidolons
-    {
-        return $this->eidolons;
-    }
-
-    public function setEidolons(?CharacterEidolons $eidolons): static
-    {
-        $this->eidolons = $eidolons;
-
+        $this->type = $type;
         return $this;
     }
 
     /**
      * @return Collection<int, Media>
      */
-    public function getCharacterIcons(): Collection
+    public function getIcons(): Collection
     {
-        return $this->characterIcons;
+        return $this->icons;
     }
 
-    public function addCharacterIcon(Media $characterIcon): static
+    public function addIcon(Media $icon): static
     {
-        if (!$this->characterIcons->contains($characterIcon)) {
-            $this->characterIcons->add($characterIcon);
+        if (!$this->icons->contains($icon)) {
+            $this->icons->add($icon);
         }
-
         return $this;
     }
 
-    public function removeCharacterIcon(Media $characterIcon): static
+    public function removeIcon(Media $icon): static
     {
-        $this->characterIcons->removeElement($characterIcon);
-
+        $this->icons->removeElement($icon);
         return $this;
     }
 
-    public function isCharacterReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->characterReleased;
+        return $this->released;
     }
 
-    public function setCharacterReleased(bool $characterReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->characterReleased = $characterReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function isCharacterAnnounced(): ?bool
+    public function isAnnounced(): ?bool
     {
-        return $this->characterAnnounced;
+        return $this->announced;
     }
 
-    public function setCharacterAnnounced(bool $characterAnnounced): static
+    public function setAnnounced(bool $announced): static
     {
-        $this->characterAnnounced = $characterAnnounced;
-
+        $this->announced = $announced;
         return $this;
     }
 
-    public function getCharacterReleaseDate(): ?\DateTimeInterface
+    public function getReleaseDate(): ?\DateTimeInterface
     {
-        return $this->characterReleaseDate;
+        return $this->releaseDate;
     }
 
-    public function setCharacterReleaseDate(?\DateTimeInterface $characterReleaseDate): static
+    public function setReleaseDate(?\DateTimeInterface $releaseDate): static
     {
-        $this->characterReleaseDate = $characterReleaseDate;
-
+        $this->releaseDate = $releaseDate;
         return $this;
     }
 
-    public function getCharacterReleaseVersion(): ?string
+    public function getReleaseVersion(): ?string
     {
-        return $this->characterReleaseVersion;
+        return $this->releaseVersion;
     }
 
-    public function setCharacterReleaseVersion(string $characterReleaseVersion): static
+    public function setReleaseVersion(string $releaseVersion): static
     {
-        $this->characterReleaseVersion = $characterReleaseVersion;
-
+        $this->releaseVersion = $releaseVersion;
         return $this;
     }
 
-    public function getCharacterAscMats(): ?AscensionMats
+    public function getAscMats(): ?AscensionMats
     {
-        return $this->characterAscMats;
+        return $this->ascMats;
     }
 
-    public function setCharacterAscMats(?AscensionMats $characterAscMats): static
+    public function setAscMats(?AscensionMats $ascMats): static
     {
-        $this->characterAscMats = $characterAscMats;
-
+        $this->ascMats = $ascMats;
         return $this;
     }
 
-    public function getCharacterBossMat(): ?BossMat
+    public function getBossMat(): ?BossMat
     {
-        return $this->characterBossMat;
+        return $this->bossMat;
     }
 
-    public function setCharacterBossMat(?BossMat $characterBossMat): static
+    public function setBossMat(?BossMat $bossMat): static
     {
-        $this->characterBossMat = $characterBossMat;
-
+        $this->bossMat = $bossMat;
         return $this;
     }
 
-    public function getCharacterWeeklyMat(): ?WeeklyMat
+    public function getWeeklyMat(): ?WeeklyMat
     {
-        return $this->characterWeeklyMat;
+        return $this->weeklyMat;
     }
 
-    public function setCharacterWeeklyMat(?WeeklyMat $characterWeeklyMat): static
+    public function setWeeklyMat(?WeeklyMat $weeklyMat): static
     {
-        $this->characterWeeklyMat = $characterWeeklyMat;
-
+        $this->weeklyMat = $weeklyMat;
         return $this;
     }
 
-    public function getCharacterTraceMats(): ?TraceMats
+    public function getTraceMats(): ?TraceMats
     {
-        return $this->characterTraceMats;
+        return $this->traceMats;
     }
 
-    public function setCharacterTraceMats(?TraceMats $characterTraceMats): static
+    public function setTraceMats(?TraceMats $traceMats): static
     {
-        $this->characterTraceMats = $characterTraceMats;
-
+        $this->traceMats = $traceMats;
         return $this;
     }
 
     /**
      * @return Collection<int, CharacterVoiceline>
      */
-    public function getCharacterVoicelines(): Collection
+    public function getVoicelines(): Collection
     {
-        return $this->characterVoicelines;
+        return $this->voicelines;
     }
 
-    public function addCharacterVoiceline(CharacterVoiceline $characterVoiceline): static
+    public function addVoiceline(CharacterVoiceline $voiceline): static
     {
-        if (!$this->characterVoicelines->contains($characterVoiceline)) {
-            $this->characterVoicelines->add($characterVoiceline);
-            $characterVoiceline->setVoicelineCharacter($this);
+        if (!$this->voicelines->contains($voiceline)) {
+            $this->voicelines->add($voiceline);
+            $voiceline->setCharacter($this);
         }
-
         return $this;
     }
 
-    public function removeCharacterVoiceline(CharacterVoiceline $characterVoiceline): static
+    public function removeVoiceline(CharacterVoiceline $voiceline): static
     {
-        if ($this->characterVoicelines->removeElement($characterVoiceline)) {
+        if ($this->voicelines->removeElement($voiceline)) {
             // set the owning side to null (unless already changed)
-            if ($characterVoiceline->getVoicelineCharacter() === $this) {
-                $characterVoiceline->setVoicelineCharacter(null);
+            if ($voiceline->getCharacter() === $this) {
+                $voiceline->setCharacter(null);
             }
         }
-
         return $this;
     }
 
@@ -335,28 +303,24 @@ class BaseCharacter
     {
         // unset the owning side of the relation if necessary
         if ($characterStories === null && $this->characterStories !== null) {
-            $this->characterStories->setCharacterStoriesCharacter(null);
+            $this->characterStories->setCharacter(null);
         }
-
         // set the owning side of the relation if necessary
-        if ($characterStories !== null && $characterStories->getCharacterStoriesCharacter() !== $this) {
-            $characterStories->setCharacterStoriesCharacter($this);
+        if ($characterStories !== null && $characterStories->getCharacter() !== $this) {
+            $characterStories->setCharacter($this);
         }
-
         $this->characterStories = $characterStories;
-
         return $this;
     }
 
-    public function getCharacterBannerName(): ?string
+    public function getBannerName(): ?string
     {
-        return $this->characterBannerName;
+        return $this->bannerName;
     }
 
-    public function setCharacterBannerName(?string $characterBannerName): static
+    public function setBannerName(?string $bannerName): static
     {
-        $this->characterBannerName = $characterBannerName;
-
+        $this->bannerName = $bannerName;
         return $this;
     }
 
@@ -368,7 +332,6 @@ class BaseCharacter
     public function setLocation(?Location $location): static
     {
         $this->location = $location;
-
         return $this;
     }
 }

@@ -57,25 +57,31 @@ class CharacterKit
      * @var Collection<int, CharacterBasicAtk>
      */
     #[ORM\OneToMany(targetEntity: CharacterBasicAtk::class, mappedBy: 'characterKit')]
-    private Collection $characterBasicAtks;
+    private Collection $basicAtks;
 
     /**
      * @var Collection<int, CharacterSkill>
      */
     #[ORM\OneToMany(targetEntity: CharacterSkill::class, mappedBy: 'characterKit')]
-    private Collection $characterSkills;
+    private Collection $skills;
 
     /**
      * @var Collection<int, CharacterUltimate>
      */
     #[ORM\OneToMany(targetEntity: CharacterUltimate::class, mappedBy: 'characterKit')]
-    private Collection $characterUltimates;
+    private Collection $ultimates;
 
     #[ORM\OneToOne(inversedBy: 'characterKit')]
-    private ?CharacterTalent $characterTalent = null;
+    private ?CharacterTalent $talent = null;
 
     #[ORM\OneToOne(mappedBy: 'characterName', cascade: ['persist', 'remove'])]
-    private ?CharacterMinorTraces $characterMinorTraces = null;
+    private ?CharacterMinorTraces $minorTraces = null;
+
+    /**
+     * @var Collection<int, CharacterEidolons>
+     */
+    #[ORM\OneToMany(targetEntity: CharacterEidolons::class, mappedBy: 'characterKit')]
+    private Collection $eidolons;
 
     /**
      * @var Collection<int, Stat>
@@ -104,8 +110,8 @@ class CharacterKit
     public function __construct()
     {
         $this->icons = new ArrayCollection();
-        $this->characterBasicAtks = new ArrayCollection();
-        $this->characterSkills = new ArrayCollection();
+        $this->basicAtks = new ArrayCollection();
+        $this->skills = new ArrayCollection();
         $this->stats = new ArrayCollection();
     }
 
@@ -128,7 +134,6 @@ class CharacterKit
     public function setCharacterName(BaseCharacter $characterName): static
     {
         $this->characterName = $characterName;
-
         return $this;
     }
 
@@ -140,7 +145,6 @@ class CharacterKit
     public function setBaseHp(?int $baseHp): static
     {
         $this->baseHp = $baseHp;
-
         return $this;
     }
 
@@ -152,7 +156,6 @@ class CharacterKit
     public function setBaseAtk(?int $baseAtk): static
     {
         $this->baseAtk = $baseAtk;
-
         return $this;
     }
 
@@ -164,7 +167,6 @@ class CharacterKit
     public function setBaseDef(?int $baseDef): static
     {
         $this->baseDef = $baseDef;
-
         return $this;
     }
 
@@ -176,7 +178,6 @@ class CharacterKit
     public function setBaseSpd(?int $baseSpd): static
     {
         $this->baseSpd = $baseSpd;
-
         return $this;
     }
     
@@ -193,14 +194,12 @@ class CharacterKit
         if (!$this->icons->contains($icon)) {
             $this->icons->add($icon);
         }
-
         return $this;
     }
 
     public function removeIcon(Media $icon): static
     {
         $this->icons->removeElement($icon);
-
         return $this;
     }
 
@@ -212,7 +211,6 @@ class CharacterKit
     public function setMainTraceOne(?array $mainTraceOne): static
     {
         $this->mainTraceOne = $mainTraceOne;
-
         return $this;
     }
 
@@ -224,7 +222,6 @@ class CharacterKit
     public function setMainTraceTwo(?array $mainTraceTwo): static
     {
         $this->mainTraceTwo = $mainTraceTwo;
-
         return $this;
     }
 
@@ -236,7 +233,6 @@ class CharacterKit
     public function setMainTraceThree(?array $mainTraceThree): static
     {
         $this->mainTraceThree = $mainTraceThree;
-
         return $this;
     }
 
@@ -248,126 +244,144 @@ class CharacterKit
     public function setTechnique(?array $technique): static
     {
         $this->technique = $technique;
-
         return $this;
     }
 
     /**
      * @return Collection<int, CharacterBasicAtk>
      */
-    public function getCharacterBasicAtks(): Collection
+    public function getBasicAtks(): Collection
     {
-        return $this->characterBasicAtks;
+        return $this->basicAtks;
     }
 
-    public function addCharacterBasicAtk(CharacterBasicAtk $characterBasicAtk): static
+    public function addBasicAtk(CharacterBasicAtk $basicAtk): static
     {
-        if (!$this->characterBasicAtks->contains($characterBasicAtk)) {
-            $this->characterBasicAtks->add($characterBasicAtk);
-            $characterBasicAtk->setCharacterKit($this);
+        if (!$this->basicAtks->contains($basicAtk)) {
+            $this->basicAtks->add($basicAtk);
+            $basicAtk->setCharacterKit($this);
         }
-
         return $this;
     }
 
-    public function removeCharacterBasicAtk(CharacterBasicAtk $characterBasicAtk): static
+    public function removeBasicAtk(CharacterBasicAtk $basicAtk): static
     {
-        if ($this->characterBasicAtks->removeElement($characterBasicAtk)) {
+        if ($this->basicAtks->removeElement($basicAtk)) {
             // set the owning side to null (unless already changed)
-            if ($characterBasicAtk->getCharacterKit() === $this) {
-                $characterBasicAtk->setCharacterKit(null);
+            if ($basicAtk->getCharacterKit() === $this) {
+                $basicAtk->setCharacterKit(null);
             }
         }
-
         return $this;
     }
 
     /**
      * @return Collection<int, CharacterSkill>
      */
-    public function getCharacterSkills(): Collection
+    public function getSkills(): Collection
     {
-        return $this->characterSkills;
+        return $this->skills;
     }
 
-    public function addCharacterSkill(CharacterSkill $characterSkill): static
+    public function addSkill(CharacterSkill $skill): static
     {
-        if (!$this->characterSkills->contains($characterSkill)) {
-            $this->characterSkills->add($characterSkill);
-            $characterSkill->setCharacterKit($this);
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+            $skill->setCharacterKit($this);
         }
-
         return $this;
     }
 
-    public function removeCharacterSkill(CharacterSkill $characterSkill): static
+    public function removeSkill(CharacterSkill $skill): static
     {
-        if ($this->characterSkills->removeElement($characterSkill)) {
+        if ($this->skills->removeElement($skill)) {
             // set the owning side to null (unless already changed)
-            if ($characterSkill->getCharacterKit() === $this) {
-                $characterSkill->setCharacterKit(null);
+            if ($skill->getCharacterKit() === $this) {
+                $skill->setCharacterKit(null);
             }
         }
-
         return $this;
     }
 
     /**
      * @return Collection<int, CharacterUltimate>
      */
-    public function getCharacterUltimates(): Collection
+    public function getUltimates(): Collection
     {
-        return $this->characterUltimates;
+        return $this->ultimates;
     }
 
-    public function addCharacterUltimate(CharacterUltimate $characterUltimate): static
+    public function addUltimate(CharacterUltimate $ultimate): static
     {
-        if (!$this->characterUltimates->contains($characterUltimate)) {
-            $this->characterUltimates->add($characterUltimate);
-            $characterUltimate->setCharacterKit($this);
+        if (!$this->ultimates->contains($ultimate)) {
+            $this->ultimates->add($ultimate);
+            $ultimate->setCharacterKit($this);
         }
-
         return $this;
     }
 
-    public function removeCharacterUltimate(CharacterUltimate $characterUltimate): static
+    public function removeUltimate(CharacterUltimate $ultimate): static
     {
-        if ($this->characterUltimates->removeElement($characterUltimate)) {
+        if ($this->ultimates->removeElement($ultimate)) {
             // set the owning side to null (unless already changed)
-            if ($characterUltimate->getCharacterKit() === $this) {
-                $characterUltimate->setCharacterKit(null);
+            if ($ultimate->getCharacterKit() === $this) {
+                $ultimate->setCharacterKit(null);
             }
         }
-
         return $this;
     }
 
-    public function getCharacterTalent(): ?CharacterTalent
+    public function getTalent(): ?CharacterTalent
     {
-        return $this->characterTalent;
+        return $this->talent;
     }
 
-    public function setCharacterTalent(?CharacterTalent $characterTalent): static
+    public function setTalent(?CharacterTalent $talent): static
     {
-        $this->characterTalent = $characterTalent;
-
+        $this->talent = $talent;
         return $this;
     }
 
-    public function getCharacterMinorTraces(): ?CharacterMinorTraces
+    public function getMinorTraces(): ?CharacterMinorTraces
     {
-        return $this->characterMinorTraces;
+        return $this->minorTraces;
     }
 
-    public function setCharacterMinorTraces(CharacterMinorTraces $characterMinorTraces): static
+    public function setMinorTraces(CharacterMinorTraces $minorTraces): static
     {
         // set the owning side of the relation if necessary
-        if ($characterMinorTraces->getCharacterName() !== $this) {
-            $characterMinorTraces->setCharacterName($this);
+        if ($minorTraces->getCharacterName() !== $this) {
+            $minorTraces->setCharacterName($this);
         }
+        $this->minorTraces = $minorTraces;
+        return $this;
+    }
 
-        $this->characterMinorTraces = $characterMinorTraces;
+    /**
+     * @return Collection<int, CharacterEidolons>
+     */
+    public function getEidolons(): Collection
+    {
+        return $this->eidolons;
+    }
 
+    public function addEidolon(CharacterEidolons $eidolon): static
+    {
+        if (!$this->eidolons->contains($eidolon)) {
+            $this->eidolons->add($eidolon);
+            $eidolon->setCharacterKit($this);
+        }
+        return $this;
+    }
+
+    public function removeEidolon(CharacterEidolons $eidolon): static
+    {
+        if ($this->eidolons->removeElement($eidolon)) {
+            // set the owning side to null (unless already changed)
+            if ($eidolon->getCharacterKit() === $this) {
+                $eidolon->setCharacterKit(null);
+            }
+        }
         return $this;
     }
 
@@ -384,14 +398,12 @@ class CharacterKit
         if (!$this->stats->contains($stat)) {
             $this->stats->add($stat);
         }
-
         return $this;
     }
 
     public function removeStat(Stat $stat): static
     {
         $this->stats->removeElement($stat);
-
         return $this;
     }
 
@@ -403,7 +415,6 @@ class CharacterKit
     public function setStatOneValue(?int $statOneValue): static
     {
         $this->statOneValue = $statOneValue;
-
         return $this;
     }
 
@@ -415,7 +426,6 @@ class CharacterKit
     public function setStatTwoValue(?int $statTwoValue): static
     {
         $this->statTwoValue = $statTwoValue;
-
         return $this;
     }
 
@@ -427,7 +437,6 @@ class CharacterKit
     public function setStatThreeValue(?int $statThreeValue): static
     {
         $this->statThreeValue = $statThreeValue;
-
         return $this;
     }
 
@@ -447,9 +456,7 @@ class CharacterKit
         if ($memosprite !== null && $memosprite->getMemomaster() !== $this) {
             $memosprite->setMemomaster($this);
         }
-
         $this->memosprite = $memosprite;
-
         return $this;
     }
 
@@ -461,7 +468,6 @@ class CharacterKit
     public function setLeaks(bool $leaks): static
     {
         $this->leaks = $leaks;
-
         return $this;
     }
 
@@ -473,7 +479,6 @@ class CharacterKit
     public function setBetaVersion(?string $betaVersion): static
     {
         $this->betaVersion = $betaVersion;
-
         return $this;
     }
 }
