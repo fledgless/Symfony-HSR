@@ -6,7 +6,7 @@
             {% if character.characterReleased == 0 and character.characterAnnounced == 1 %}
                 <div class="upcoming">Upcoming in {{ character.characterReleaseVersion }}</div>
             {% endif %}
-            {% if character.characterReleased == 1 and character.characterReleaseVersion == "2.7" %}
+            {% if character.characterReleased == 1 and character.characterReleaseVersion == "3.0" %}
                 <div class="new">New in {{ character.characterReleaseVersion }}</div>
             {% endif %}
             <img class="character-icon" src="/uploads/{{ icon.filename }}" alt="">

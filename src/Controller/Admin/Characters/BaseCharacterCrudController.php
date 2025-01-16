@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Characters;
 
 use App\Entity\Characters\BaseCharacter;
 use App\Entity\Media;
