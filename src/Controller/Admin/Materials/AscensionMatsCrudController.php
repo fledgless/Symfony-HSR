@@ -44,10 +44,8 @@ class AscensionMatsCrudController extends AbstractCrudController
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('announced', 'Announced?')
-                ->hideOnIndex();
-            yield BooleanField::new('released', 'Released?')
-                ->hideOnIndex();
+            yield BooleanField::new('announced', 'Announced?');
+            yield BooleanField::new('released', 'Released?');
             yield AssociationField::new('enemies', '(Optional) Enemies that drop the mats:')
                 ->hideOnIndex();
             yield AssociationField::new('goldenCalyxes', '(Optional) Golden Calyxes that drop the mats:')

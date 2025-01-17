@@ -20,11 +20,11 @@ class LocationCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('locationName');
-        yield TextField::new('locationWorld');
-        yield TextareaField::new('locationDescription');
-        yield AssociationField::new('locationIcon');
-        yield BooleanField::new('locationReleased', 'Is the location released in-game?');
-        yield AssociationField::new('locationCharacters', 'Playable characters that can be found in this area:');
+        yield TextField::new('name');
+        yield TextField::new('world');
+        yield TextareaField::new('description');
+        yield AssociationField::new('icon');
+        yield BooleanField::new('released', 'Released?');
+        yield AssociationField::new('characters', 'Playable characters that can be found in this area:')->hideOnIndex();
     }
 }

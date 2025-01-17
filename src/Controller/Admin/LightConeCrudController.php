@@ -32,26 +32,28 @@ class LightConeCrudController extends AbstractCrudController
     {
         yield FormField::addTab('Base LC');
             yield FormField::addColumn();
-                yield TextField::new('lcName', 'Name');
-                yield SlugField::new('lcSlug', 'Slug')
-                    ->setTargetFieldName('lcName');
-                yield ChoiceField::new('lcRarity', 'Rarity')
+                yield TextField::new('name');
+                yield SlugField::new('slug')
+                    ->setTargetFieldName('name');
+                yield ChoiceField::new('rarity')
                     ->renderExpanded()
                     ->setChoices([
                         '5-star' => '5-star',
                         '4-star' => '4-star',
                         '3-star' => '3-star',
                     ]);
-                yield AssociationField::new('lcPath', 'Path');
+                yield AssociationField::new('path');
 
             yield FormField::addColumn();
-                yield AssociationField::new('lcIcons', 'Choose LC icon and splash art:');
-                yield TextEditorField::new('lcStory', 'Story');
+                yield AssociationField::new('icons')
+                    ->hideOnForm();
+                yield TextEditorField::new('story')
+                    ->hideOnIndex();
 
         yield FormField::addColumn();
-            yield BooleanField::new('lcAnnounced', 'Was the LC officially announced?');
-            yield BooleanField::new('lcReleased', 'Is the LC released in-game?');
-            yield ChoiceField::new('lcReleaseVersion', 'If announced, choose release version:')
+            yield BooleanField::new('announced', 'Announced?');
+            yield BooleanField::new('released', 'Released?');
+            yield ChoiceField::new('releaseVersion')
                 ->setChoices([
                     '1.0' => '1.0', 
                     '1.1' => '1.1', 
@@ -73,7 +75,8 @@ class LightConeCrudController extends AbstractCrudController
                     '3.0' => '3.0',
                     '3.1' => '3.1',
                 ]);
-            yield ChoiceField::new('lcObtainable', 'How can this Light Cone be obtained in game?')
+            yield ChoiceField::new('obtainable', 'How can this Light Cone be obtained in game?')
+                ->hideOnIndex()
                 ->setChoices([
                     'Brilliant Fixation Banner' => 'Brilliant Fixation Banner',
                     'Permanent Banner' => 'Permanent Banner',
@@ -82,24 +85,22 @@ class LightConeCrudController extends AbstractCrudController
                     'Battle Pass' => 'Battle Pass',
                     'Forgotten Hall' => 'Forgotten Hall',
                 ]);
-            yield IntegerField::new('lcBaseHp', 'Base HP');
-            yield IntegerField::new('lcBaseAtk', 'Base ATK');
-            yield IntegerField::new('lcBaseDef', 'Base DEF');
+            yield IntegerField::new('baseHp', 'Base HP');
+            yield IntegerField::new('baseAtk', 'Base ATK');
+            yield IntegerField::new('baseDef', 'Base DEF');
 
         yield FormField::addTab('Skill');
             yield FormField::addColumn();
-                yield TextField::new('lcSkillName', 'Skill name');
-                yield TextEditorField::new('lcSkillOne', 'Superimposition 1');
-                yield TextEditorField::new('lcSkillTwo', 'Superimposition 2');
+                yield TextField::new('skillName')->hideOnIndex();
+                yield TextEditorField::new('superimpositionOne')->hideOnIndex();
+                yield TextEditorField::new('superimpositionTwo')->hideOnIndex();
             yield FormField::addColumn();
-                yield TextEditorField::new('lcSkillThree', 'Superimposition 3');
-                yield TextEditorField::new('lcSkillFour', 'Superimposition 4');
-                yield TextEditorField::new('lcSkillFive', 'Superimposition 5');
+                yield TextEditorField::new('superimpositionThree')->hideOnIndex();
+                yield TextEditorField::new('superimpositionFour')->hideOnIndex();
+                yield TextEditorField::new('superimpositionFive')->hideOnIndex();
 
         yield FormField::addTab('Mats');
-            yield AssociationField::new('lcAscMats')
-                ->hideOnIndex();
-            yield AssociationField::new('lcTraceMats')
-                ->hideOnIndex();
+            yield AssociationField::new('ascMats')->hideOnIndex();
+            yield AssociationField::new('traceMats')->hideOnIndex();
     }    
 }
