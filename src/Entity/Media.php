@@ -14,7 +14,7 @@ class Media
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $mediaName = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $filename = null;
@@ -23,11 +23,11 @@ class Media
     private ?string $category = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $imageRole = null;
+    private ?string $role = null;
 
     public function __toString()
     {
-        return $this->mediaName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -35,15 +35,14 @@ class Media
         return $this->id;
     }
 
-    public function getMediaName(): ?string
+    public function getName(): ?string
     {
-        return $this->mediaName;
+        return $this->name;
     }
 
-    public function setMediaName(string $mediaName): static
+    public function setName(string $name): static
     {
-        $this->mediaName = $mediaName;
-
+        $this->name = $name;
         return $this;
     }
 
@@ -55,7 +54,6 @@ class Media
     public function setFilename(string $filename): static
     {
         $this->filename = $filename;
-
         return $this;
     }
 
@@ -67,19 +65,17 @@ class Media
     public function setCategory(string $category): static
     {
         $this->category = $category;
-
         return $this;
     }
 
-    public function getImageRole(): ?string
+    public function getRole(): ?string
     {
-        return $this->imageRole;
+        return $this->role;
     }
 
-    public function setImageRole(?string $imageRole): static
+    public function setRole(?string $role): static
     {
-        $this->imageRole = $imageRole;
-
+        $this->role = $role;
         return $this;
     }
 }

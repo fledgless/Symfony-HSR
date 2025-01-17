@@ -2,36 +2,36 @@
 
 {% block body %}
     <div class="s-container">
-        <div class="character-show {% if character.characterRarity == "4-star"%}four-star {% elseif character.characterRarity == "5-star" %}five-star{% endif %}">
-            <h1>{{ character.characterName }}</h1>
+        <div class="character-show {% if character.rarity == "4-star"%}four-star {% else %}five-star{% endif %}">
+            <h1>{{ character.name }}</h1>
             <div class="character-asc-mats">
-                {% if character.characterAscMats %}
-                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 4-star icon') %}
+                {% if character.ascMats %}
+                    {% for icon in character.ascMats.icons|filter(icon => icon.role == 'Ascension mat: 4-star icon') %}
                         <img src="/uploads/{{ icon.filename }}" alt="">
                     {% endfor %}
-                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 3-star icon') %}
+                    {% for icon in character.ascMats.icons|filter(icon => icon.role == 'Ascension mat: 3-star icon') %}
                         <img src="/uploads/{{ icon.filename }}" alt="">
                     {% endfor %}
-                    {% for icon in character.characterAscMats.ascMatIcons|filter(icon => icon.imageRole == 'Ascension mat: 2-star icon') %}
-                        <img src="/uploads/{{ icon.filename }}" alt="">
-                    {% endfor %}
-                {% endif %}
-                {% if character.characterBossMat %}
-                    <img src="/uploads/{{ character.characterBossMat.bossMatIcon.filename }}" alt="">
-                {% endif %}
-                {% if character.characterTraceMats %}
-                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 4-star icon') %}
-                        <img src="/uploads/{{ icon.filename }}" alt="">
-                    {% endfor %}
-                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 3-star icon') %}
-                        <img src="/uploads/{{ icon.filename }}" alt="">
-                    {% endfor %}
-                    {% for icon in character.characterTraceMats.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 2-star icon') %}
+                    {% for icon in character.ascMats.icons|filter(icon => icon.role == 'Ascension mat: 2-star icon') %}
                         <img src="/uploads/{{ icon.filename }}" alt="">
                     {% endfor %}
                 {% endif %}
-                {% if character.characterWeeklyMat %}
-                    <img src="/uploads/{{ character.characterWeeklyMat.weeklyMatIcon.filename }}" alt="">
+                {% if character.bossMat %}
+                    <img src="/uploads/{{ character.bossMat.icon.filename }}" alt="">
+                {% endif %}
+                {% if character.traceMats %}
+                    {% for icon in character.traceMats.icons|filter(icon => icon.role == 'Trace mat: 4-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.traceMats.icons|filter(icon => icon.role == 'Trace mat: 3-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                    {% for icon in character.traceMats.icons|filter(icon => icon.role == 'Trace mat: 2-star icon') %}
+                        <img src="/uploads/{{ icon.filename }}" alt="">
+                    {% endfor %}
+                {% endif %}
+                {% if character.weeklyMat %}
+                    <img src="/uploads/{{ character.weeklyMat.icon.filename }}" alt="">
                 {% endif %}
             </div>
             <div class="character-content">
@@ -52,8 +52,8 @@
                 </div>
                 <div class="section" id="eidolons">
                     <h2>Eidolons</h2>
-                    <div class="content">
-                        {% if character.eidolons %}
+                    {# <div class="content">
+                        {% if character.characterKit.eidolons %}
                             <h3>Eidolon 1</h3>
                             {% if character.eidolons.eidolonOne %}
                                 {% for medium in character.eidolons.media|filter(medium => medium.imageRole == 'E1') %}
@@ -117,7 +117,7 @@
                         {% else %}
                             <p>Eidolons to be added.</p>
                         {% endif %}
-                    </div>
+                    </div>#}
                 </div>
                 <div class="section" id="voicelines">
                     <h2>Voicelines</h2>
@@ -127,7 +127,7 @@
                         <p>Voicelines to be added.</p>
                         {% endif %}
                     </div>
-                </div>
+                </div> 
                 <div class="section" id="stories">
                     <h2>Character stories</h2>
                     <div class="content">

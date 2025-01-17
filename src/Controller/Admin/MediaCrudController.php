@@ -38,7 +38,7 @@ class MediaCrudController extends AbstractCrudController
                 'Trace mats' => 'Trace mats',
                 'Weekly mat' => 'Weekly mat'
             ]);
-        yield ChoiceField::new('imageRole')
+        yield ChoiceField::new('role')
             ->setChoices([
                 'Character: Icon' => 'Character Icon',
                 'Character: Splash art' => 'Character Splash art',
@@ -67,7 +67,7 @@ class MediaCrudController extends AbstractCrudController
         $mediaDir = $this->getParameter('medias_directory');
         $uploadDir = $this->getParameter('uploads_directory');
 
-        yield TextField::new('mediaName', 'Nom');
+        yield TextField::new('name', 'Nom');
 
         $imageField = ImageField::new('filename', 'Image')
             ->setBasePath($uploadDir)

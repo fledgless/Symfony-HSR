@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\BaseCharacterRepository;
+use App\Repository\Characters\BaseCharacterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,10 +17,10 @@ class CharactersController extends AbstractController
         ]);
     }
 
-    #[Route('/characters/{characterSlug}', name: 'character_show', methods: ['GET'])]
-    public function show(string $characterSlug, BaseCharacterRepository $characterRepo): Response
+    #[Route('/characters/{slug}', name: 'character_show', methods: ['GET'])]
+    public function show(string $slug, BaseCharacterRepository $characterRepo): Response
     {
-        $character = $characterRepo->findOneBy(['characterSlug' => $characterSlug]);
+        $character = $characterRepo->findOneBy(['slug' => $slug]);
         if (!$character) {
             return $this->redirectToRoute('app_characters');
         } else {

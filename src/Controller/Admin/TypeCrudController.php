@@ -18,7 +18,7 @@ class TypeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('typeName');
-        yield AssociationField::new('typeIcon');
+        yield TextField::new('name');
+        yield AssociationField::new('icon');
     }
 }

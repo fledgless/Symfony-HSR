@@ -1,19 +1,19 @@
-{% set character_show = path('character_show', { characterSlug: character.characterSlug }) %}
+{% set character_show = path('character_show', { slug: character.slug }) %}
 
-{% for icon in character.characterIcons|filter(icon => icon.imageRole == 'Character Icon') %} 
-    <div class="item-character {% if character.characterRarity == "4-star" %}four-star {% else %}five-star{% endif %}">
+{% for icon in character.icons|filter(icon => icon.role == 'Character Icon') %} 
+    <div class="item-character {% if character.rarity == "4-star" %}four-star {% else %}five-star{% endif %}">
         <a href="{{ character_show }}">
-            {% if character.characterReleased == 0 and character.characterAnnounced == 1 %}
-                <div class="upcoming">Upcoming in {{ character.characterReleaseVersion }}</div>
+            {% if character.released == 0 and character.announced == 1 %}
+                <div class="upcoming">Upcoming in {{ character.releaseVersion }}</div>
             {% endif %}
-            {% if character.characterReleased == 1 and character.characterReleaseVersion == "2.7" %}
-                <div class="new">New in {{ character.characterReleaseVersion }}</div>
+            {% if character.released == 1 and character.releaseVersion == "3.0" %}
+                <div class="new">New in {{ character.releaseVersion }}</div>
             {% endif %}
             <img class="character-icon" src="/uploads/{{ icon.filename }}" alt="">
-            <p>{{ character.characterName }}</p>
+            <p>{{ character.name }}</p>
             <div class="character-path-type">
-            <img class="character-path" src="/uploads/{{ character.characterPath.pathIcon.filename }}" alt="">
-            <img class="character-type" src="/uploads/{{ character.characterType.typeIcon.filename }}" alt="">
+            <img class="character-path" src="/uploads/{{ character.path.icon.filename }}" alt="">
+            <img class="character-type" src="/uploads/{{ character.type.icon.filename }}" alt="">
         </div>
         </a>
     </div>

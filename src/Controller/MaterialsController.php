@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\AscensionMatsRepository;
-use App\Repository\BossMatRepository;
-use App\Repository\TraceMatsRepository;
-use App\Repository\WeeklyMatRepository;
+use App\Repository\Materials\AscensionMatsRepository;
+use App\Repository\Materials\BossMatRepository;
+use App\Repository\Materials\TraceMatsRepository;
+use App\Repository\Materials\WeeklyMatRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

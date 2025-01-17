@@ -18,7 +18,7 @@ class PathCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('pathName');
-        yield AssociationField::new('pathIcon');
+        yield TextField::new('name');
+        yield AssociationField::new('icon');
     }
 }

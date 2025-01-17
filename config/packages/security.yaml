@@ -8,7 +8,6 @@ security:
         app_user_provider:
             entity:
                 class: App\Entity\User
-                property: email
         # used to reload user from session & other features (e.g. switch_user)
     firewalls:
         dev:
@@ -20,7 +19,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                default_target_path: "/fledgless"
+                default_target_path: "/"
                 enable_csrf: true
             logout:
                 path: app_logout

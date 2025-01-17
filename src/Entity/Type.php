@@ -2,6 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Enemies\EchosBoss;
+use App\Entity\Enemies\EliteEnemy;
+use App\Entity\Enemies\NormalEnemy;
+use App\Entity\Materials\BossMat;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,10 +21,10 @@ class Type
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $typeName = null;
+    private ?string $name = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $typeIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, BaseCharacter>
@@ -62,7 +67,7 @@ class Type
 
     public function __toString()
     {
-        return $this->typeName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -70,27 +75,25 @@ class Type
         return $this->id;
     }
 
-    public function getTypeName(): ?string
+    public function getName(): ?string
     {
-        return $this->typeName;
+        return $this->name;
     }
 
-    public function setTypeName(string $typeName): static
+    public function setName(string $name): static
     {
-        $this->typeName = $typeName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getTypeIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->typeIcon;
+        return $this->icon;
     }
 
-    public function setTypeIcon(?Media $typeIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->typeIcon = $typeIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
@@ -106,9 +109,8 @@ class Type
     {
         if (!$this->characters->contains($character)) {
             $this->characters->add($character);
-            $character->setCharacterType($this);
+            $character->setType($this);
         }
-
         return $this;
     }
 
@@ -116,11 +118,10 @@ class Type
     {
         if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($character->getCharacterType() === $this) {
-                $character->setCharacterType(null);
+            if ($character->getType() === $this) {
+                $character->setType(null);
             }
         }
-
         return $this;
     }
 
@@ -136,18 +137,16 @@ class Type
     {
         if (!$this->normalEnemies->contains($normalEnemy)) {
             $this->normalEnemies->add($normalEnemy);
-            $normalEnemy->addNormalEnemyWeakness($this);
+            $normalEnemy->addWeakness($this);
         }
-
         return $this;
     }
 
     public function removeNormalEnemy(NormalEnemy $normalEnemy): static
     {
         if ($this->normalEnemies->removeElement($normalEnemy)) {
-            $normalEnemy->removeNormalEnemyWeakness($this);
+            $normalEnemy->removeWeakness($this);
         }
-
         return $this;
     }
 
@@ -163,18 +162,16 @@ class Type
     {
         if (!$this->eliteEnemies->contains($eliteEnemy)) {
             $this->eliteEnemies->add($eliteEnemy);
-            $eliteEnemy->addEliteEnemyWeakness($this);
+            $eliteEnemy->addWeakness($this);
         }
-
         return $this;
     }
 
     public function removeEliteEnemy(EliteEnemy $eliteEnemy): static
     {
         if ($this->eliteEnemies->removeElement($eliteEnemy)) {
-            $eliteEnemy->removeEliteEnemyWeakness($this);
+            $eliteEnemy->removeWeakness($this);
         }
-
         return $this;
     }
 
@@ -190,9 +187,8 @@ class Type
     {
         if (!$this->bossMats->contains($bossMat)) {
             $this->bossMats->add($bossMat);
-            $bossMat->setBossMatType($this);
+            $bossMat->setType($this);
         }
-
         return $this;
     }
 
@@ -200,11 +196,10 @@ class Type
     {
         if ($this->bossMats->removeElement($bossMat)) {
             // set the owning side to null (unless already changed)
-            if ($bossMat->getBossMatType() === $this) {
-                $bossMat->setBossMatType(null);
+            if ($bossMat->getType() === $this) {
+                $bossMat->setType(null);
             }
         }
-
         return $this;
     }
 
@@ -220,18 +215,16 @@ class Type
     {
         if (!$this->echosBosses->contains($echosBoss)) {
             $this->echosBosses->add($echosBoss);
-            $echosBoss->addEchoBossWeakness($this);
+            $echosBoss->addWeakness($this);
         }
-
         return $this;
     }
 
     public function removeEchosBoss(EchosBoss $echosBoss): static
     {
         if ($this->echosBosses->removeElement($echosBoss)) {
-            $echosBoss->removeEchoBossWeakness($this);
+            $echosBoss->removeWeakness($this);
         }
-
         return $this;
     }
 }

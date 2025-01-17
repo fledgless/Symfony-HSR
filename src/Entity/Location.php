@@ -2,6 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CrimsonCalyx;
+use App\Entity\Domains\EchoOfWar;
+use App\Entity\Domains\GoldenCalyx;
+use App\Entity\Domains\StagnantShadow;
+use App\Entity\Enemies\NormalEnemy;
 use App\Repository\LocationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,55 +23,55 @@ class Location
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $locationName = null;
+    private ?string $name = null;
 
     #[ORM\Column]
-    private ?bool $locationReleased = false;
+    private ?bool $released = false;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $locationIcon = null;
+    private ?Media $icon = null;
 
     /**
      * @var Collection<int, NormalEnemy>
      */
-    #[ORM\ManyToMany(targetEntity: NormalEnemy::class, mappedBy: 'normalEnemyLocation')]
+    #[ORM\ManyToMany(targetEntity: NormalEnemy::class, mappedBy: 'locations')]
     private Collection $normalEnemies;
 
     #[ORM\Column(length: 255)]
-    private ?string $locationWorld = null;
+    private ?string $world = null;
 
     /**
      * @var Collection<int, StagnantShadow>
      */
-    #[ORM\OneToMany(targetEntity: StagnantShadow::class, mappedBy: 'stagnantShadowLocation')]
+    #[ORM\OneToMany(targetEntity: StagnantShadow::class, mappedBy: 'location')]
     private Collection $stagnantShadows;
 
     /**
      * @var Collection<int, GoldenCalyx>
      */
-    #[ORM\OneToMany(targetEntity: GoldenCalyx::class, mappedBy: 'goldenCalyxLocation')]
+    #[ORM\OneToMany(targetEntity: GoldenCalyx::class, mappedBy: 'location')]
     private Collection $goldenCalyxes;
 
     /**
      * @var Collection<int, CrimsonCalyx>
      */
-    #[ORM\OneToMany(targetEntity: CrimsonCalyx::class, mappedBy: 'crimsonCalyxLocation')]
+    #[ORM\OneToMany(targetEntity: CrimsonCalyx::class, mappedBy: 'location')]
     private Collection $crimsonCalyxes;
 
     /**
      * @var Collection<int, EchoOfWar>
      */
-    #[ORM\OneToMany(targetEntity: EchoOfWar::class, mappedBy: 'echoOfWarLocation')]
+    #[ORM\OneToMany(targetEntity: EchoOfWar::class, mappedBy: 'location')]
     private Collection $echoOfWars;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $locationDescription = null;
+    private ?string $description = null;
 
     /**
      * @var Collection<int, BaseCharacter>
      */
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'location')]
-    private Collection $locationCharacters;
+    private Collection $characters;
 
     public function __construct()
     {
@@ -74,12 +80,12 @@ class Location
         $this->goldenCalyxes = new ArrayCollection();
         $this->crimsonCalyxes = new ArrayCollection();
         $this->echoOfWars = new ArrayCollection();
-        $this->locationCharacters = new ArrayCollection();
+        $this->characters = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->locationName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -87,39 +93,36 @@ class Location
         return $this->id;
     }
 
-    public function getLocationName(): ?string
+    public function getName(): ?string
     {
-        return $this->locationName;
+        return $this->name;
     }
 
-    public function setLocationName(string $worldName): static
+    public function setName(string $name): static
     {
-        $this->locationName = $worldName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function isLocationReleased(): ?bool
+    public function isReleased(): ?bool
     {
-        return $this->locationReleased;
+        return $this->released;
     }
 
-    public function setLocationReleased(bool $worldReleased): static
+    public function setReleased(bool $released): static
     {
-        $this->locationReleased = $worldReleased;
-
+        $this->released = $released;
         return $this;
     }
 
-    public function getLocationIcon(): ?Media
+    public function getIcon(): ?Media
     {
-        return $this->locationIcon;
+        return $this->icon;
     }
 
-    public function setLocationIcon(?Media $worldIcon): static
+    public function setIcon(?Media $icon): static
     {
-        $this->locationIcon = $worldIcon;
-
+        $this->icon = $icon;
         return $this;
     }
 
@@ -135,30 +138,27 @@ class Location
     {
         if (!$this->normalEnemies->contains($normalEnemy)) {
             $this->normalEnemies->add($normalEnemy);
-            $normalEnemy->addNormalEnemyLocation($this);
+            $normalEnemy->addLocation($this);
         }
-
         return $this;
     }
 
     public function removeNormalEnemy(NormalEnemy $normalEnemy): static
     {
         if ($this->normalEnemies->removeElement($normalEnemy)) {
-            $normalEnemy->removeNormalEnemyLocation($this);
+            $normalEnemy->removeLocation($this);
         }
-
         return $this;
     }
 
-    public function getLocationWorld(): ?string
+    public function getWorld(): ?string
     {
-        return $this->locationWorld;
+        return $this->world;
     }
 
-    public function setLocationWorld(string $locationWorld): static
+    public function setWorld(string $world): static
     {
-        $this->locationWorld = $locationWorld;
-
+        $this->world = $world;
         return $this;
     }
 
@@ -174,9 +174,8 @@ class Location
     {
         if (!$this->stagnantShadows->contains($stagnantShadow)) {
             $this->stagnantShadows->add($stagnantShadow);
-            $stagnantShadow->setStagnantShadowLocation($this);
+            $stagnantShadow->setLocation($this);
         }
-
         return $this;
     }
 
@@ -184,11 +183,10 @@ class Location
     {
         if ($this->stagnantShadows->removeElement($stagnantShadow)) {
             // set the owning side to null (unless already changed)
-            if ($stagnantShadow->getStagnantShadowLocation() === $this) {
-                $stagnantShadow->setStagnantShadowLocation(null);
+            if ($stagnantShadow->getLocation() === $this) {
+                $stagnantShadow->setLocation(null);
             }
         }
-
         return $this;
     }
 
@@ -204,9 +202,8 @@ class Location
     {
         if (!$this->goldenCalyxes->contains($goldenCalyx)) {
             $this->goldenCalyxes->add($goldenCalyx);
-            $goldenCalyx->setGoldenCalyxLocation($this);
+            $goldenCalyx->setLocation($this);
         }
-
         return $this;
     }
 
@@ -214,11 +211,10 @@ class Location
     {
         if ($this->goldenCalyxes->removeElement($goldenCalyx)) {
             // set the owning side to null (unless already changed)
-            if ($goldenCalyx->getGoldenCalyxLocation() === $this) {
-                $goldenCalyx->setGoldenCalyxLocation(null);
+            if ($goldenCalyx->getLocation() === $this) {
+                $goldenCalyx->setLocation(null);
             }
         }
-
         return $this;
     }
 
@@ -234,9 +230,8 @@ class Location
     {
         if (!$this->crimsonCalyxes->contains($crimsonCalyx)) {
             $this->crimsonCalyxes->add($crimsonCalyx);
-            $crimsonCalyx->setCrimsonCalyxLocation($this);
+            $crimsonCalyx->setLocation($this);
         }
-
         return $this;
     }
 
@@ -244,11 +239,10 @@ class Location
     {
         if ($this->crimsonCalyxes->removeElement($crimsonCalyx)) {
             // set the owning side to null (unless already changed)
-            if ($crimsonCalyx->getCrimsonCalyxLocation() === $this) {
-                $crimsonCalyx->setCrimsonCalyxLocation(null);
+            if ($crimsonCalyx->getLocation() === $this) {
+                $crimsonCalyx->setLocation(null);
             }
         }
-
         return $this;
     }
 
@@ -264,9 +258,8 @@ class Location
     {
         if (!$this->echoOfWars->contains($echoOfWar)) {
             $this->echoOfWars->add($echoOfWar);
-            $echoOfWar->setEchoOfWarLocation($this);
+            $echoOfWar->setLocation($this);
         }
-
         return $this;
     }
 
@@ -274,22 +267,21 @@ class Location
     {
         if ($this->echoOfWars->removeElement($echoOfWar)) {
             // set the owning side to null (unless already changed)
-            if ($echoOfWar->getEchoOfWarLocation() === $this) {
-                $echoOfWar->setEchoOfWarLocation(null);
+            if ($echoOfWar->getLocation() === $this) {
+                $echoOfWar->setLocation(null);
             }
         }
-
         return $this;
     }
 
-    public function getLocationDescription(): ?string
+    public function getDescription(): ?string
     {
-        return $this->locationDescription;
+        return $this->description;
     }
 
-    public function setLocationDescription(?string $locationDescription): static
+    public function setDescription(?string $description): static
     {
-        $this->locationDescription = $locationDescription;
+        $this->description = $description;
 
         return $this;
     }
@@ -297,30 +289,28 @@ class Location
     /**
      * @return Collection<int, BaseCharacter>
      */
-    public function getLocationCharacters(): Collection
+    public function getCharacters(): Collection
     {
-        return $this->locationCharacters;
+        return $this->characters;
     }
 
-    public function addLocationCharacter(BaseCharacter $locationCharacter): static
+    public function addCharacter(BaseCharacter $character): static
     {
-        if (!$this->locationCharacters->contains($locationCharacter)) {
-            $this->locationCharacters->add($locationCharacter);
-            $locationCharacter->setLocation($this);
+        if (!$this->characters->contains($character)) {
+            $this->characters->add($character);
+            $character->setLocation($this);
         }
-
         return $this;
     }
 
-    public function removeLocationCharacter(BaseCharacter $locationCharacter): static
+    public function removeLocationCharacter(BaseCharacter $character): static
     {
-        if ($this->locationCharacters->removeElement($locationCharacter)) {
+        if ($this->characters->removeElement($character)) {
             // set the owning side to null (unless already changed)
-            if ($locationCharacter->getLocation() === $this) {
-                $locationCharacter->setLocation(null);
+            if ($character->getLocation() === $this) {
+                $character->setLocation(null);
             }
         }
-
         return $this;
     }
 }

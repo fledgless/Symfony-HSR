@@ -27,7 +27,25 @@ doctrine:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/Entity/Characters'
                 prefix: 'App\Entity\Characters'
-                alias: App
+                alias: Characters
+            Domains:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Entity/Domains'
+                prefix: 'App\Entity\Domains'
+                alias: Domains
+            Enemies:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Entity/Enemies'
+                prefix: 'App\Entity\Characters'
+                alias: Enemies
+            Materials:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Entity/Characters'
+                prefix: 'App\Entity\Characters'
+                alias: Materials
 
 when@test:
     doctrine:

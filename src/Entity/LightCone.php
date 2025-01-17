@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Materials\AscensionMats;
+use App\Entity\Materials\TraceMats;
 use App\Repository\LightConeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,79 +19,79 @@ class LightCone
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcName = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcSlug = null;
+    private ?string $slug = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcRarity = null;
+    private ?string $rarity = null;
 
     #[ORM\ManyToOne(inversedBy: 'lightCones')]
-    private ?Path $lcPath = null;
+    private ?Path $path = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $lcBaseAtk = null;
+    private ?int $baseAtk = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $lcBaseDef = null;
+    private ?int $baseDef = null;
 
     #[ORM\Column(nullable: true)]
-    private ?int $lcBaseHp = null;
+    private ?int $baseHp = null;
 
     /**
      * @var Collection<int, Media>
      */
     #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $lcIcons;
+    private Collection $icons;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcStory = null;
+    private ?string $story = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcSkillOne = null;
+    private ?string $superimpositionOne = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcSkillTwo = null;
+    private ?string $superimpositionTwo = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcSkillThree = null;
+    private ?string $superimpositionThree = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcSkillFour = null;
+    private ?string $superimpositionFour = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $lcSkillFive = null;
+    private ?string $superimpositionFive = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $lcSkillName = null;
+    private ?string $skillName = null;
 
     #[ORM\Column]
-    private ?bool $lcAnnounced = false;
+    private ?bool $announced = false;
 
     #[ORM\Column]
-    private ?bool $lcReleased = false;
+    private ?bool $released = false;
 
     #[ORM\Column(length: 255)]
-    private ?string $lcObtainable = null;
+    private ?string $obtainable = null;
 
     #[ORM\ManyToOne(inversedBy: 'lightCones')]
-    private ?AscensionMats $lcAscMats = null;
+    private ?AscensionMats $ascMats = null;
 
     #[ORM\ManyToOne(inversedBy: 'lightCones')]
-    private ?TraceMats $lcTraceMats = null;
+    private ?TraceMats $traceMats = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $lcReleaseVersion = null;
+    private ?string $releaseVersion = null;
 
     public function __construct()
     {
-        $this->lcIcons = new ArrayCollection();
+        $this->icons = new ArrayCollection();
     }
 
     public function __toString()
     {
-        return $this->lcName;
+        return $this->name;
     }
 
     public function getId(): ?int
@@ -97,267 +99,246 @@ class LightCone
         return $this->id;
     }
 
-    public function getLcName(): ?string
+    public function getName(): ?string
     {
-        return $this->lcName;
+        return $this->name;
     }
 
-    public function setLcName(string $lcName): static
+    public function setName(string $name): static
     {
-        $this->lcName = $lcName;
-
+        $this->name = $name;
         return $this;
     }
 
-    public function getLcSlug(): ?string
+    public function getSlug(): ?string
     {
-        return $this->lcSlug;
+        return $this->slug;
     }
 
-    public function setLcSlug(string $lcSlug): static
+    public function setSlug(string $slug): static
     {
-        $this->lcSlug = $lcSlug;
-
+        $this->slug = $slug;
         return $this;
     }
 
-    public function getLcRarity(): ?string
+    public function getRarity(): ?string
     {
-        return $this->lcRarity;
+        return $this->rarity;
     }
 
-    public function setLcRarity(string $lcRarity): static
+    public function setRarity(string $rarity): static
     {
-        $this->lcRarity = $lcRarity;
-
+        $this->rarity = $rarity;
         return $this;
     }
 
-    public function getLcPath(): ?Path
+    public function getPath(): ?Path
     {
-        return $this->lcPath;
+        return $this->path;
     }
 
-    public function setLcPath(?Path $lcPath): static
+    public function setPath(?Path $path): static
     {
-        $this->lcPath = $lcPath;
-
+        $this->path = $path;
         return $this;
     }
 
-    public function getLcBaseAtk(): ?int
+    public function getBaseAtk(): ?int
     {
-        return $this->lcBaseAtk;
+        return $this->baseAtk;
     }
 
-    public function setLcBaseAtk(?int $lcBaseAtk): static
+    public function setBaseAtk(?int $baseAtk): static
     {
-        $this->lcBaseAtk = $lcBaseAtk;
-
+        $this->baseAtk = $baseAtk;
         return $this;
     }
 
-    public function getLcBaseDef(): ?int
+    public function getBaseDef(): ?int
     {
-        return $this->lcBaseDef;
+        return $this->baseDef;
     }
 
-    public function setLcBaseDef(?int $lcBaseDef): static
+    public function setBaseDef(?int $baseDef): static
     {
-        $this->lcBaseDef = $lcBaseDef;
-
+        $this->baseDef = $baseDef;
         return $this;
     }
 
-    public function getLcBaseHp(): ?int
+    public function getBaseHp(): ?int
     {
-        return $this->lcBaseHp;
+        return $this->baseHp;
     }
 
-    public function setLcBaseHp(?int $lcBaseHp): static
+    public function setBaseHp(?int $baseHp): static
     {
-        $this->lcBaseHp = $lcBaseHp;
-
+        $this->baseHp = $baseHp;
         return $this;
     }
 
     /**
      * @return Collection<int, Media>
      */
-    public function getLcIcons(): Collection
+    public function getIcons(): Collection
     {
-        return $this->lcIcons;
+        return $this->icons;
     }
 
-    public function addLcIcon(Media $lcIcon): static
+    public function addLcIcon(Media $icon): static
     {
-        if (!$this->lcIcons->contains($lcIcon)) {
-            $this->lcIcons->add($lcIcon);
+        if (!$this->icons->contains($icon)) {
+            $this->icons->add($icon);
         }
+        return $this;
+    }
+
+    public function removeLcIcon(Media $icon): static
+    {
+        $this->icons->removeElement($icon);
+        return $this;
+    }
+
+    public function getStory(): ?string
+    {
+        return $this->story;
+    }
+
+    public function setStory(?string $story): static
+    {
+        $this->story = $story;
+        return $this;
+    }
+
+    public function getSuperimpositionOne(): ?string
+    {
+        return $this->superimpositionOne;
+    }
+
+    public function setSuperimpositionOne(?string $superimpositionOne): static
+    {
+        $this->superimpositionOne = $superimpositionOne;
+        return $this;
+    }
+
+    public function getSuperimpositionTwo(): ?string
+    {
+        return $this->superimpositionTwo;
+    }
+
+    public function setSuperimpositionTwo(?string $superimpositionTwo): static
+    {
+        $this->superimpositionTwo = $superimpositionTwo;
+        return $this;
+    }
+
+    public function getSuperimpositionThree(): ?string
+    {
+        return $this->superimpositionThree;
+    }
+
+    public function setSuperimpositionThree(string $superimpositionThree): static
+    {
+        $this->superimpositionThree = $superimpositionThree;
+        return $this;
+    }
+
+    public function getSuperimpositionFour(): ?string
+    {
+        return $this->superimpositionFour;
+    }
+
+    public function setSuperimpositionFour(?string $superimpositionFour): static
+    {
+        $this->superimpositionFour = $superimpositionFour;
+        return $this;
+    }
+
+    public function getSuperimpositionFive(): ?string
+    {
+        return $this->superimpositionFive;
+    }
+
+    public function setSuperimpositionFive(?string $superimpositionFive): static
+    {
+        $this->superimpositionFive = $superimpositionFive;
+        return $this;
+    }
+
+    public function getSkillName(): ?string
+    {
+        return $this->skillName;
+    }
+
+    public function setSkillName(?string $skillName): static
+    {
+        $this->skillName = $skillName;
+        return $this;
+    }
+
+    public function isAnnounced(): ?bool
+    {
+        return $this->announced;
+    }
+
+    public function setAnnounced(bool $announced): static
+    {
+        $this->announced = $announced;
+        return $this;
+    }
+
+    public function isReleased(): ?bool
+    {
+        return $this->released;
+    }
+
+    public function setReleased(bool $released): static
+    {
+        $this->released = $released;
+        return $this;
+    }
+
+    public function getObtainable(): ?string
+    {
+        return $this->obtainable;
+    }
+
+    public function setObtainable(string $obtainable): static
+    {
+        $this->obtainable = $obtainable;
+        return $this;
+    }
+
+    public function getAscMats(): ?AscensionMats
+    {
+        return $this->ascMats;
+    }
+
+    public function setAscMats(?AscensionMats $ascMats): static
+    {
+        $this->ascMats = $ascMats;
 
         return $this;
     }
 
-    public function removeLcIcon(Media $lcIcon): static
+    public function getTraceMats(): ?TraceMats
     {
-        $this->lcIcons->removeElement($lcIcon);
+        return $this->traceMats;
+    }
 
+    public function setTraceMats(?TraceMats $traceMats): static
+    {
+        $this->traceMats = $traceMats;
         return $this;
     }
 
-    public function getLcStory(): ?string
+    public function getReleaseVersion(): ?string
     {
-        return $this->lcStory;
+        return $this->releaseVersion;
     }
 
-    public function setLcStory(?string $lcStory): static
+    public function setReleaseVersion(?string $releaseVersion): static
     {
-        $this->lcStory = $lcStory;
-
-        return $this;
-    }
-
-    public function getLcSkillOne(): ?string
-    {
-        return $this->lcSkillOne;
-    }
-
-    public function setLcSkillOne(?string $lcSkillOne): static
-    {
-        $this->lcSkillOne = $lcSkillOne;
-
-        return $this;
-    }
-
-    public function getLcSkillTwo(): ?string
-    {
-        return $this->lcSkillTwo;
-    }
-
-    public function setLcSkillTwo(?string $lcSkillTwo): static
-    {
-        $this->lcSkillTwo = $lcSkillTwo;
-
-        return $this;
-    }
-
-    public function getLcSkillThree(): ?string
-    {
-        return $this->lcSkillThree;
-    }
-
-    public function setLcSkillThree(string $lcSkillThree): static
-    {
-        $this->lcSkillThree = $lcSkillThree;
-
-        return $this;
-    }
-
-    public function getLcSkillFour(): ?string
-    {
-        return $this->lcSkillFour;
-    }
-
-    public function setLcSkillFour(?string $lcSkillFour): static
-    {
-        $this->lcSkillFour = $lcSkillFour;
-
-        return $this;
-    }
-
-    public function getLcSkillFive(): ?string
-    {
-        return $this->lcSkillFive;
-    }
-
-    public function setLcSkillFive(?string $lcSkillFive): static
-    {
-        $this->lcSkillFive = $lcSkillFive;
-
-        return $this;
-    }
-
-    public function getLcSkillName(): ?string
-    {
-        return $this->lcSkillName;
-    }
-
-    public function setLcSkillName(?string $lcSkillName): static
-    {
-        $this->lcSkillName = $lcSkillName;
-
-        return $this;
-    }
-
-    public function isLcAnnounced(): ?bool
-    {
-        return $this->lcAnnounced;
-    }
-
-    public function setLcAnnounced(bool $lcAnnounced): static
-    {
-        $this->lcAnnounced = $lcAnnounced;
-
-        return $this;
-    }
-
-    public function isLcReleased(): ?bool
-    {
-        return $this->lcReleased;
-    }
-
-    public function setLcReleased(bool $lcReleased): static
-    {
-        $this->lcReleased = $lcReleased;
-
-        return $this;
-    }
-
-    public function getLcObtainable(): ?string
-    {
-        return $this->lcObtainable;
-    }
-
-    public function setLcObtainable(string $lcObtainable): static
-    {
-        $this->lcObtainable = $lcObtainable;
-
-        return $this;
-    }
-
-    public function getLcAscMats(): ?AscensionMats
-    {
-        return $this->lcAscMats;
-    }
-
-    public function setLcAscMats(?AscensionMats $lcAscMats): static
-    {
-        $this->lcAscMats = $lcAscMats;
-
-        return $this;
-    }
-
-    public function getLcTraceMats(): ?TraceMats
-    {
-        return $this->lcTraceMats;
-    }
-
-    public function setLcTraceMats(?TraceMats $lcTraceMats): static
-    {
-        $this->lcTraceMats = $lcTraceMats;
-
-        return $this;
-    }
-
-    public function getLcReleaseVersion(): ?string
-    {
-        return $this->lcReleaseVersion;
-    }
-
-    public function setLcReleaseVersion(?string $lcReleaseVersion): static
-    {
-        $this->lcReleaseVersion = $lcReleaseVersion;
-
+        $this->releaseVersion = $releaseVersion;
         return $this;
     }
 }

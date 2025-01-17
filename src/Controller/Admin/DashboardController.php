@@ -2,27 +2,28 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\AscensionMats;
-use App\Entity\BaseCharacter;
-use App\Entity\BossMat;
-use App\Entity\CharacterEidolons;
-use App\Entity\CharacterKit;
-use App\Entity\CharacterStories;
-use App\Entity\CharacterVoiceline;
-use App\Entity\CrimsonCalyx;
-use App\Entity\EchoOfWar;
-use App\Entity\EchosBoss;
-use App\Entity\EliteEnemy;
-use App\Entity\GoldenCalyx;
+use App\Entity\Characters\BaseCharacter;
+use App\Entity\Characters\CharacterBasicAtk;
+use App\Entity\Characters\CharacterEidolons;
+use App\Entity\Characters\CharacterKit;
+use App\Entity\Characters\CharacterStories;
+use App\Entity\Characters\CharacterVoiceline;
+use App\Entity\Domains\CrimsonCalyx;
+use App\Entity\Domains\EchoOfWar;
+use App\Entity\Domains\GoldenCalyx;
+use App\Entity\Domains\StagnantShadow;
+use App\Entity\Enemies\EchosBoss;
+use App\Entity\Enemies\EliteEnemy;
+use App\Entity\Enemies\NormalEnemy;
 use App\Entity\LightCone;
 use App\Entity\Location;
+use App\Entity\Materials\AscensionMats;
+use App\Entity\Materials\BossMat;
+use App\Entity\Materials\TraceMats;
+use App\Entity\Materials\WeeklyMat;
 use App\Entity\Media;
-use App\Entity\NormalEnemy;
 use App\Entity\Path;
-use App\Entity\StagnantShadow;
-use App\Entity\TraceMats;
 use App\Entity\Type;
-use App\Entity\WeeklyMat;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -50,13 +51,10 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Characters');
             yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
-                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['characterReleaseVersion' => 'DESC']),
+                MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['releaseVersion' => 'DESC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
-            yield MenuItem::subMenu('Eidolons','fas fa-star-of-life')->setSubItems([
-                MenuItem::linkToCrud('Eidolons', 'fas fa-person-burst', CharacterEidolons::class),
-                MenuItem::linkToCrud('Add eidolons', 'fas fa-cart-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
-            ]);
+            
             yield MenuItem::subMenu('Character stories','fas fa-book')->setSubItems([
                 MenuItem::linkToCrud('Character stories list', 'fas fa-book-open-reader', CharacterStories::class),
                 MenuItem::linkToCrud('New character stories', 'fas fa-user-pen', CharacterStories::class)->setAction(Crud::PAGE_NEW),
@@ -64,6 +62,12 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::subMenu('Character voicelines','fas fa-microphone-lines')->setSubItems([
                 MenuItem::linkToCrud('Voicelines', 'fas fa-comments', CharacterVoiceline::class),
                 MenuItem::linkToCrud('New voiceline', 'fas fa-circle-play', CharacterVoiceline::class)->setAction(Crud::PAGE_NEW),
+            ]);
+
+        yield MenuItem::section('Character kit');
+            yield MenuItem::subMenu('Basic ATK', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Basic ATK list', 'fas fa-people-group', CharacterBasicAtk::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New basic ATK', 'fas fa-person-circle-plus', CharacterBasicAtk::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         yield MenuItem::section('Light cones');
@@ -119,10 +123,10 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Elite enemies list', 'fas fa-people-group', EliteEnemy::class),
             MenuItem::linkToCrud('New elite enemy', 'fas fa-person-circle-plus', EliteEnemy::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Boss enemies','fas fa-skull-crossbones')->setSubItems([
-            MenuItem::linkToCrud('Boss enemies list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New boss enemy', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
+        // yield MenuItem::subMenu('Boss enemies','fas fa-skull-crossbones')->setSubItems([
+        //     MenuItem::linkToCrud('Boss enemies list', 'fas fa-people-group', BaseCharacter::class),
+        //     MenuItem::linkToCrud('New boss enemy', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        // ]);
         yield MenuItem::subMenu('Echo of War boss','fas fa-ghost')->setSubItems([
             MenuItem::linkToCrud('Echo of War boss list', 'fas fa-people-group', EchosBoss::class),
             MenuItem::linkToCrud('New Echo of War boss', 'fas fa-person-circle-plus', EchosBoss::class)->setAction(Crud::PAGE_NEW),
@@ -145,9 +149,9 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Character list', 'fas fa-people-group', GoldenCalyx::class),
             MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', GoldenCalyx::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Cavern of Corrosion','fas fa-dungeon')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
-        ]);
+        // yield MenuItem::subMenu('Cavern of Corrosion','fas fa-dungeon')->setSubItems([
+        //     MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
+        //     MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        // ]);
     }
 }
