@@ -1,26 +1,28 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Domains;
 
-use App\Entity\Enemies\EchosBoss;
+use App\Entity\Domains\EchoOfWar;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class EchosBossCrudController extends AbstractCrudController
+class EchoOfWarCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return EchosBoss::class;
+        return EchoOfWar::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('echoBossName');
-        yield AssociationField::new('echoBossIcon');
-        yield AssociationField::new('echoBossWeaknesses');
-        yield AssociationField::new('echoOfWar', 'Affiliated Echo of War:');
+        yield TextField::new('name');
+        yield AssociationField::new('location');
+        yield AssociationField::new('icon');
+        yield AssociationField::new('weeklyMat');
+        yield AssociationField::new('boss');
     }
 }
+

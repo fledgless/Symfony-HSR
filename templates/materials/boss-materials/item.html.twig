@@ -1,15 +1,15 @@
-{% if bossmat.bossMatType %} 
+{% if bossmat.type %} 
     <div class="bossmat-div">
         <a href="#" class="bossmat">
-            {% if bossmat.bossMatIcon %} 
+            {% if bossmat.icon %} 
                 <div class="item-asc-mat four-star">
-                    <img src="/uploads/{{ bossmat.bossMatIcon.filename }}" alt="">
-                    <p>{{ bossmat.bossMatName }}</p>
+                    <img src="/uploads/{{ bossmat.icon.filename }}" alt="">
+                    <p>{{ bossmat.name }}</p>
                 </div>
             {% endif %}
         </a>    
         <div class="bossmat-type">
-            <img src="/uploads/{{ bossmat.bossMatType.typeIcon.filename }}" alt="">
+            <img src="/uploads/{{ bossmat.type.icon.filename }}" alt="">
         </div>
     </div>
 {% endif %}

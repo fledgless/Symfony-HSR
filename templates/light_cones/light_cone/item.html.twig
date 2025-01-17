@@ -1,13 +1,13 @@
-{% set lc_show = path('lc_show', { lcSlug: lightcone.lcSlug }) %}
+{% set lc_show = path('lc_show', { slug: lightcone.slug }) %}
 
-<div class="item-lc {% if lightcone.lcRarity == "4-star"%}four-star {% elseif lightcone.lcRarity == "5-star" %}five-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
-    {% for icon in lightcone.lcIcons|filter(icon => icon.imageRole == 'Lc Icon') %}
+<div class="item-lc {% if lightcone.rarity == "4-star"%}four-star {% elseif lightcone.rarity == "5-star" %}five-star {% elseif lightcone.rarity == "3-star" %}three-star{% endif %}">
+    {% for icon in lightcone.icons|filter(icon => icon.role == 'Lc Icon') %}
         <a href="{{ lc_show }}">
             <img src="/uploads/{{ icon.filename }}" alt="">
-            <p>{{ lightcone.lcName }}</p>
+            <p>{{ lightcone.name }}</p>
         </a>
         <div class="lc-path-div">
-            <img class="lc-path" src="/uploads/{{ lightcone.lcPath.pathIcon.filename }}" alt="">
+            <img class="lc-path" src="/uploads/{{ lightcone.path.icon.filename }}" alt="">
         </div>
     {% endfor %}
 </div>

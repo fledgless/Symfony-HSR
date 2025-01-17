@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Enemies;
 
-use App\Entity\Domains\GoldenCalyx;
+use App\Entity\Enemies\EchosBoss;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class GoldenCalyxCrudController extends AbstractCrudController
+class EchosBossCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return GoldenCalyx::class;
+        return EchosBoss::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('goldenCalyxName');
-        yield AssociationField::new('goldenCalyxLocation');
-        yield AssociationField::new('goldenCalyxAscMats');
-        yield AssociationField::new('goldenCalyxEnemies');
+        yield TextField::new('name');
+        yield AssociationField::new('icon');
+        yield AssociationField::new('weaknesses');
+        yield AssociationField::new('echoOfWar', 'Affiliated Echo of War:');
     }
 }

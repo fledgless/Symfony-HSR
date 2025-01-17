@@ -37,25 +37,25 @@ class BaseCharacterCrudController extends AbstractCrudController
         yield FormField::addTab('Character');
             yield FormField::addColumn()
                 ->hideOnDetail();
-                yield TextField::new('characterName', 'Name');
-                yield SlugField::new('characterSlug', 'Slug')
-                    ->setTargetFieldName('characterName')
+                yield TextField::new('name');
+                yield SlugField::new('slug')
+                    ->setTargetFieldName('name')
                     ->hideOnIndex();
-                yield ChoiceField::new('characterRarity', 'Rarity')
+                yield ChoiceField::new('rarity')
                     ->renderExpanded()
                     ->setChoices([
                         '5-star' => '5-star',
                         '4-star' => '4-star',
                         'Trailblazer' => 'Trailblazer',
                     ]);
-                yield AssociationField::new('characterPath', 'Path');
-                yield AssociationField::new('characterType', 'Type');
+                yield AssociationField::new('path');
+                yield AssociationField::new('type');
 
             yield FormField::addColumn()
                     ->hideOnDetail();
-                yield BooleanField::new('characterAnnounced', 'Announced?');
-                yield BooleanField::new('characterReleased', 'Released?');
-                yield ChoiceField::new('characterReleaseVersion', 'Version')
+                yield BooleanField::new('announced', 'Announced?');
+                yield BooleanField::new('released', 'Released?');
+                yield ChoiceField::new('releaseVersion')
                     ->setChoices([
                         '1.0' => '1.0', 
                         '1.1' => '1.1', 
@@ -77,20 +77,20 @@ class BaseCharacterCrudController extends AbstractCrudController
                         '3.0' => '3.0',
                         '3.1' => '3.1',
                     ]);
-                yield DateField::new('characterReleaseDate', 'Release date');
-                yield TextField::new('characterBannerName')
+                yield DateField::new('releaseDate');
+                yield TextField::new('bannerName')
                     ->hideOnIndex();
-                yield AssociationField::new('characterIcons', 'Associate character icon and character splash art:')
+                yield AssociationField::new('icons', 'Associate character icon and character splash art:')
                     ->hideOnIndex();
 
         yield FormField::addTab('Mats');
-            yield AssociationField::new('characterAscMats')
+            yield AssociationField::new('ascMats')
                 ->hideOnIndex();
-            yield AssociationField::new('characterBossMat')
+            yield AssociationField::new('bossMat')
                 ->hideOnIndex();
-            yield AssociationField::new('characterTraceMats')
+            yield AssociationField::new('traceMats')
                 ->hideOnIndex();
-            yield AssociationField::new('characterWeeklyMat')
+            yield AssociationField::new('weeklyMat')
                 ->hideOnIndex();
     }
 }

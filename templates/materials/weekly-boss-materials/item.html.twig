@@ -1,8 +1,8 @@
 <a href="#" class="echomat">
-    {% if echomat.weeklyMatIcon %} 
+    {% if echomat.icon %} 
         <div class="item-asc-mat four-star">
-            <img src="/uploads/{{ echomat.weeklyMatIcon.filename }}" alt="">
-            <p>{{ echomat.weeklyMatName }}</p>
+            <img src="/uploads/{{ echomat.icon.filename }}" alt="">
+            <p>{{ echomat.name }}</p>
         </div>
     {% endif %}
 </a>

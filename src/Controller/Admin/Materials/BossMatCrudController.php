@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Materials;
 
 use App\Entity\Materials\BossMat;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -23,21 +23,21 @@ class BossMatCrudController extends AbstractCrudController
     {
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield TextField::new('bossMatName', 'Boss mat name');
+            yield TextField::new('name');
             yield SlugField::new('slug')
-                ->setTargetFieldName('bossMatName')
+                ->setTargetFieldName('name')
                 ->hideOnIndex();
-            yield AssociationField::new('bossMatType');
-            yield AssociationField::new('bossMatIcon', 'Choose icon for the boss mats:');
+            yield AssociationField::new('type');
+            yield AssociationField::new('icon');
     
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('bossMatAnnounced', 'Were the mats announced?')
+            yield BooleanField::new('announced', 'Announced?')
                 ->hideOnIndex();
-            yield BooleanField::new('bossMatReleased', 'Were the mats released?')
+            yield BooleanField::new('released', 'Released?')
                 ->hideOnIndex();
-            yield AssociationField::new('bossMatStagnantShadow', '(Optional) Stagnant Shadow that drops the mats:')
+            yield AssociationField::new('stagnantShadow', '(Optional) Stagnant Shadow that drops the mats:')
                 ->hideOnIndex();
     }
 }

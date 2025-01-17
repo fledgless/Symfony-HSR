@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Domains;
 
-use App\Entity\Enemies\EliteEnemy;
+use App\Entity\Domains\GoldenCalyx;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class EliteEnemyCrudController extends AbstractCrudController
+class GoldenCalyxCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return EliteEnemy::class;
+        return GoldenCalyx::class;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('eliteEnemyName');
-        yield AssociationField::new('eliteEnemyIcon');
-        yield AssociationField::new('eliteEnemyWeaknesses');
-        yield AssociationField::new('stagnantShadow', 'Affiliated Stagnant Shadow');
+        yield TextField::new('name');
+        yield AssociationField::new('location');
+        yield AssociationField::new('ascMats');
+        yield AssociationField::new('enemies');
     }
 }

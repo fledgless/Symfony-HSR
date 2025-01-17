@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Characters;
 
-use App\Entity\Enemies\NormalEnemy;
+use App\Entity\Characters\CharacterMinorTraces;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class NormalEnemyCrudController extends AbstractCrudController
+class CharacterMinorTracesCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return NormalEnemy::class;
+        return CharacterMinorTraces::class;
     }
 
     /*

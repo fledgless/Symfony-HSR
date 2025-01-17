@@ -1,25 +1,25 @@
 <div class="tracemat-div">
     <a href="#" class="tracemat">
-        {% for icon in tracemat.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 4-star icon') %} 
+        {% for icon in tracemat.icons|filter(icon => icon.role == 'Trace mat: 4-star icon') %} 
             <div class="item-trace-mat four-star">
                 <img src="/uploads/{{ icon.filename }}" alt="">
-                <p>{{ tracemat.traceMatsFourStarName }}</p>
+                <p>{{ tracemat.fourStarName }}</p>
             </div>
         {% endfor %}
-        {% for icon in tracemat.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 3-star icon') %} 
+        {% for icon in tracemat.icons|filter(icon => icon.role == 'Trace mat: 3-star icon') %} 
             <div class="item-trace-mat three-star">
                 <img src="/uploads/{{ icon.filename }}" alt="">
-                <p>{{ tracemat.traceMatsThreeStarName }}</p>
+                <p>{{ tracemat.threeStarName }}</p>
             </div>
         {% endfor %}
-        {% for icon in tracemat.traceMatsIcons|filter(icon => icon.imageRole == 'Trace mat: 2-star icon') %} 
+        {% for icon in tracemat.icons|filter(icon => icon.role == 'Trace mat: 2-star icon') %} 
             <div class="item-trace-mat two-star">
                 <img src="/uploads/{{ icon.filename }}" alt="">
-                <p>{{ tracemat.traceMatsTwoStarName }}</p>
+                <p>{{ tracemat.twoStarName }}</p>
             </div>
         {% endfor %}
     </a>
     <div class="tracemat-path">
-        <img src="/uploads/{{ tracemat.traceMatsPath.pathIcon.filename }}" alt="">
+        <img src="/uploads/{{ tracemat.path.icon.filename }}" alt="">
     </div>
 </div>

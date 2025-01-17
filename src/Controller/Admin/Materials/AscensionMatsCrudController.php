@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Materials;
 
 use App\Entity\Materials\AscensionMats;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -33,22 +33,22 @@ class AscensionMatsCrudController extends AbstractCrudController
     {
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield TextField::new('ascMatFourStarName', '4-star ascension mat');
-            yield TextField::new('ascMatThreeStarName', '3-star ascension mat');
-            yield TextField::new('ascMatTwoStarName', '2-star ascension mat');
+            yield TextField::new('fourStarName', '4-star mat');
+            yield TextField::new('threeStarName', '3-star mat');
+            yield TextField::new('twoStarName', '2-star mat');
             yield SlugField::new('slug')
-                ->setTargetFieldName('ascMatFourStarName')
+                ->setTargetFieldName('fourStarName')
                 ->hideOnIndex();
-            yield AssociationField::new('ascMatIcons', 'Choose icons for each stage of the ascension mats:')
+            yield AssociationField::new('icons', 'Choose icons for each stage of the ascension mats:')
                 ->hideOnIndex();
 
         yield FormField::addColumn()
             ->hideOnDetail();
-            yield BooleanField::new('ascMatAnnounced', 'Were the mats announced?')
+            yield BooleanField::new('announced', 'Announced?')
                 ->hideOnIndex();
-            yield BooleanField::new('ascMatReleased', 'Were the mats released?')
+            yield BooleanField::new('released', 'Released?')
                 ->hideOnIndex();
-            yield AssociationField::new('ascMatsEnemies', '(Optional) Enemies that drop the mats:')
+            yield AssociationField::new('enemies', '(Optional) Enemies that drop the mats:')
                 ->hideOnIndex();
             yield AssociationField::new('goldenCalyxes', '(Optional) Golden Calyxes that drop the mats:')
                 ->hideOnIndex();

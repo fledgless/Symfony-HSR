@@ -60,7 +60,6 @@ class CharacterBasicAtkCrudController extends AbstractCrudController
                     ->hideOnIndex();
                 yield BooleanField::new('enhanced', 'Enhanced?');
 
-
         yield FormField::addTab('Description');
             yield FormField::addRow();
                 yield TextEditorField::new('descLevelOne', 'Level 1')

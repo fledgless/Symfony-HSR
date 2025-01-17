@@ -1,21 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="lc-show {% if lightcone.lcRarity == "4-star"%}four-star {% elseif lightcone.lcRarity == "5-star" %}five-star {% elseif lightcone.lcRarity == "3-star" %}three-star{% endif %}">
+    <div class="lc-show {% if lightcone.rarity == "4-star"%}four-star {% elseif lightcone.rarity == "5-star" %}five-star {% elseif lightcone.rarity == "3-star" %}three-star{% endif %}">
         <div class="lc-basic-info">
-            {% for splash in lightcone.lcIcons|filter(splash => splash.imageRole == 'Lc Splash art') %}
+            {% for icon in lightcone.icons|filter(icon => icon.role == 'Lc Splash art') %}
                 <div class="lc-basic-info-splash-laptop">
-                    <img src="/uploads/{{ splash.filename }}" alt="">
+                    <img src="/uploads/{{ icon.filename }}" alt="">
                     <div class="lc-path-rarity">
                         <div class="lc-path-div">
-                            <img class="lc-path" src="/uploads/{{ lightcone.lcPath.pathIcon.filename }}" alt="">
+                            <img class="lc-path" src="/uploads/{{ lightcone.path.icon.filename }}" alt="">
                         </div>
                         <div class="lc-rarity-div">
-                            {% if lightcone.lcRarity == '3-star' %}
+                            {% if lightcone.rarity == '3-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_3_Stars.webp') }}" alt="icon for 3 star light cones">
-                            {% elseif lightcone.lcRarity == '4-star' %}
+                            {% elseif lightcone.rarity == '4-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_4_Stars.webp') }}" alt="icon for 4 star light cones">
-                            {% elseif lightcone.lcRarity == '5-star' %}
+                            {% elseif lightcone.rarity == '5-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_5_Stars.webp') }}" alt="icon for 3 star light cones">
                             {% endif %}
                         </div>
@@ -23,20 +23,20 @@
                 </div>
             {% endfor %} 
             <div class="lc-basic-info-text">
-                <h1>{{ lightcone.lcName }}</h1>
-                {% for splash in lightcone.lcIcons|filter(splash => splash.imageRole == 'Lc Splash art') %}
+                <h1>{{ lightcone.name }}</h1>
+                {% for icon in lightcone.icons|filter(icon => icon.imageRole == 'Lc Splash art') %}
                     <div class="lc-basic-info-splash-mobile">
-                        <img src="/uploads/{{ splash.filename }}" alt="">
+                        <img src="/uploads/{{ icon.filename }}" alt="">
                         <div class="lc-path-rarity">
                         <div class="lc-path-div">
-                            <img class="lc-path" src="/uploads/{{ lightcone.lcPath.pathIcon.filename }}" alt="">
+                            <img class="lc-path" src="/uploads/{{ lightcone.path.icon.filename }}" alt="">
                         </div>
                         <div class="lc-rarity-div">
-                            {% if lightcone.lcRarity == '3-star' %}
+                            {% if lightcone.rarity == '3-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_3_Stars.webp') }}" alt="icon for 3 star light cones">
-                            {% elseif lightcone.lcRarity == '4-star' %}
+                            {% elseif lightcone.rarity == '4-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_4_Stars.webp') }}" alt="icon for 4 star light cones">
-                            {% elseif lightcone.lcRarity == '5-star' %}
+                            {% elseif lightcone.rarity == '5-star' %}
                                 <img class="lc-rarity" src="{{ asset('images/Icon_5_Stars.webp') }}" alt="icon for 3 star light cones">
                             {% endif %}
                         </div>
@@ -48,26 +48,26 @@
                         <div class="lc-base-stats"> 
                             <div class="lc-base-hp">
                                 <p>HP</p>
-                                <p class="lc-base-stat-value">{{ lightcone.lcBaseHp }}</p>
+                                <p class="lc-base-stat-value">{{ lightcone.baseHp }}</p>
                             </div>
                             <hr>
                             <div class="lc-base-atk">
                                 <p>ATK</p>
-                                <p class="lc-base-stat-value">{{ lightcone.lcBaseAtk }}</p>
+                                <p class="lc-base-stat-value">{{ lightcone.baseAtk }}</p>
                             </div>
                             <hr>
                             <div class="lc-base-def">
                                 <p>DEF</p>
-                                <p class="lc-base-stat-value">{{ lightcone.lcBaseDef }}</p>
+                                <p class="lc-base-stat-value">{{ lightcone.baseDef }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="lc-story">{{ lightcone.lcStory|raw }}</div>
+                    <div class="lc-story">{{ lightcone.story|raw }}</div>
                 </div>
             </div>
             <div class="skill">
                 <div class="skill-superimposition">
-                    <h2>{{ lightcone.lcSkillName }}</h2>
+                    <h2>{{ lightcone.skillName }}</h2>
                     <nav>
                         <ul class="superimposition">
                             <li class="superimposition-toggle active" id="toggle-sone">S1</li>
@@ -77,11 +77,11 @@
                             <li class="superimposition-toggle" id="toggle-sfive">S5</li>
                         </ul>
                     </nav>
-                    <div class="lightcone-superimposition open" id="superimposition-one">{{ lightcone.lcSkillOne|raw }}</div>
-                    <div class="lightcone-superimposition" id="superimposition-two">{{ lightcone.lcSkillTwo|raw }}</div>
-                    <div class="lightcone-superimposition" id="superimposition-three">{{ lightcone.lcSkillThree|raw }}</div>
-                    <div class="lightcone-superimposition" id="superimposition-four">{{ lightcone.lcSkillFour|raw }}</div>
-                    <div class="lightcone-superimposition" id="superimposition-five">{{ lightcone.lcSkillFive|raw }}</div>
+                    <div class="lightcone-superimposition open" id="superimposition-one">{{ lightcone.superimpositionOne|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-two">{{ lightcone.superimpositionTwo|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-three">{{ lightcone.superimpositionThree|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-four">{{ lightcone.superimpositionFour|raw }}</div>
+                    <div class="lightcone-superimposition" id="superimposition-five">{{ lightcone.superimpositionFive|raw }}</div>
                 </div>
             </div>
         </div>

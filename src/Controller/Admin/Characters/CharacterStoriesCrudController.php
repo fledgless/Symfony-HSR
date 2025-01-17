@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Characters;
 
 use App\Entity\Characters\CharacterStories;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -19,7 +19,7 @@ class CharacterStoriesCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('characterStoriesCharacter', 'Character');
+        yield AssociationField::new('character');
         yield TextareaField::new('characterDetails');
         yield TextareaField::new('characterStoryPartOne');
         yield TextareaField::new('characterStoryPartTwo');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Characters;
 
 use App\Entity\Characters\CharacterVoiceline;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -20,10 +20,10 @@ class CharacterVoicelineCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield AssociationField::new('voicelineCharacter', 'Character associated with the voiceline:');
-        yield TextField::new('voicelineName');
-        yield TextareaField::new('voicelineContent');
-        yield ChoiceField::new('voicelineCategory')
+        yield AssociationField::new('character');
+        yield TextField::new('name');
+        yield TextareaField::new('content');
+        yield ChoiceField::new('category')
             ->setChoices([
                 'First Meeting' => 'First Meeting',
                 'Greeting' => 'Greeting',
