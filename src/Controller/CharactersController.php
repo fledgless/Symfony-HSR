@@ -18,9 +18,9 @@ class CharactersController extends AbstractController
     }
 
     #[Route('/characters/{slug}', name: 'character_show', methods: ['GET'])]
-    public function show(string $characterSlug, BaseCharacterRepository $characterRepo): Response
+    public function show(string $slug, BaseCharacterRepository $characterRepo): Response
     {
-        $character = $characterRepo->findOneBy(['characterSlug' => $characterSlug]);
+        $character = $characterRepo->findOneBy(['slug' => $slug]);
         if (!$character) {
             return $this->redirectToRoute('app_characters');
         } else {

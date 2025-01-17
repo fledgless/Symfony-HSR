@@ -18,9 +18,9 @@ class LightConesController extends AbstractController
     }
 
     #[Route('/light-cones/{slug}', name: 'lc_show', methods: ['GET'])]
-    public function show(string $lcSlug, LightConeRepository $lcRepo): Response
+    public function show(string $slug, LightConeRepository $lcRepo): Response
     {
-        $lightcone = $lcRepo->findOneBy(['lcSlug' => $lcSlug]);
+        $lightcone = $lcRepo->findOneBy(['slug' => $slug]);
         if (!$lightcone) {
             return $this->redirectToRoute('app_light_cones');
         } else {
