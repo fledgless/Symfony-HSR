@@ -82,16 +82,16 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('New path', 'fas fa-road-circle-check', Path::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Types', 'fas fa-wand-sparkles')->setSubItems([
-                MenuItem::linkToCrud('Media list', 'fas fa-hat-wizard', Type::class),
-                MenuItem::linkToCrud('New media', 'fas fa-fire-flame-curved', Type::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Type list', 'fas fa-hat-wizard', Type::class),
+                MenuItem::linkToCrud('New type', 'fas fa-fire-flame-curved', Type::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Locations', 'fas fa-globe')->setSubItems([
                 MenuItem::linkToCrud('Location list', 'fas fa-map', Location::class),
                 MenuItem::linkToCrud('New location', 'fas fa-map-pin', Location::class)->setAction(Crud::PAGE_NEW),
             ]);
-    
+
             yield MenuItem::subMenu('Icons', 'fas fa-icons')->setSubItems([
-                MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class),
+                MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class)->setDefaultSort(['role' => 'ASC']),
                 MenuItem::linkToCrud('New icon', 'fas fa-camera-retro', Media::class)->setAction(Crud::PAGE_NEW),
             ]);
         
