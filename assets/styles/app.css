@@ -253,7 +253,7 @@ header nav .main-nav li a img {
 }
 
 .character-list .item-character, .lc-list .item-lc {
-  height: 265px;
+  height: 210px;
   width: 150px;
   display: flex;
   flex-direction: column;
@@ -276,28 +276,36 @@ header nav .main-nav li a img {
 
 .character-list .item-character .character-path-type, .lc-list .item-lc .lc-path-div {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: center;
-  margin-top: 5px;
-  margin-right: 3px;
+  margin-left: 100px;
+  position: absolute;
 }
 
 .character-type, .character-path, .lc-path, .bossmat-type img, .tracemat-path img {
   height: 20px;
-  margin: 5px;
+  margin: 1px;
+  padding: 5px;
+  backdrop-filter: blur(1px);
+  border-radius: 50%;
+  background-color: #00000060;
 }
 
-.character-list .item-character .character-path-type .character-type {
-  margin-right: 10px;
+.character-name {
+  max-width: 100px;
+  position: absolute;
+  padding: 5px 10px;
+  backdrop-filter: blur(1px);
+  margin-top: 150px;
+  border-radius: 30px;
+  text-shadow: -2px 2px 2px #000000;
 }
 
-.character-list .item-character a p, .lc-list .item-lc a p {
+.character-name p, .lc-list .item-lc a p {
   display: flex;
   justify-content: center;
   text-align: center;
   font-size: 14px;
-  color: #FFFFFF;
-  margin-top: 5px;
 }
 
 .character-list .item-character a .character-icon, .lc-list .item-lc a img {
@@ -322,6 +330,16 @@ header nav .main-nav li a img {
 .character-list .item-character:hover .upcoming, .character-list .item-character:hover .new {
   font-size: 14px;
   margin-top: 180px;
+  transition: 0.4s;
+}
+
+.character-list .item-character:hover .character-name {
+  margin-top: 160px;
+  transition: 0.4s;
+}
+
+.character-list .item-character:hover .character-path-type, .lc-list .item-lc .lc-path-div {
+  margin-top: 10px;
   transition: 0.4s;
 }
 
@@ -639,11 +657,17 @@ main .s-container .lc-show {
   color: #235789;
 }
 
-.character-list .item-character:hover,
+
 .lc-list .five-star:hover,
 .five-star .superimposition-toggle:hover,
 .five-star .character-nav-link:hover {
   background: #000000;
+  font-family: DinProBold;
+  transition: 0.4s;
+}
+
+.character-list .five-star:hover {
+  background: #DBC291;
   font-family: DinProBold;
   transition: 0.4s;
 }

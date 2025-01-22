@@ -10,11 +10,13 @@
                 <div class="new">New in {{ character.releaseVersion }}</div>
             {% endif %}
             <img class="character-icon" src="/uploads/{{ icon.filename }}" alt="">
-            <p>{{ character.name }}</p>
+            <div class="character-name">
+                <p>{{ character.name }}</p>
+            </div>
             <div class="character-path-type">
-            <img class="character-path" src="/uploads/{{ character.path.icon.filename }}" alt="">
-            <img class="character-type" src="/uploads/{{ character.type.icon.filename }}" alt="">
-        </div>
+                <img class="character-path" src="/uploads/{{ character.path.icon.filename }}" alt="">
+                <img class="character-type" src="/uploads/{{ character.type.icon.filename }}" alt="">
+            </div>
         </a>
     </div>
 {% endfor %}
