@@ -6,7 +6,11 @@ use App\Entity\Characters\BaseCharacter;
 use App\Entity\Characters\CharacterBasicAtk;
 use App\Entity\Characters\CharacterEidolons;
 use App\Entity\Characters\CharacterKit;
+use App\Entity\Characters\CharacterMinorTraces;
+use App\Entity\Characters\CharacterSkill;
 use App\Entity\Characters\CharacterStories;
+use App\Entity\Characters\CharacterTalent;
+use App\Entity\Characters\CharacterUltimate;
 use App\Entity\Characters\CharacterVoiceline;
 use App\Entity\Domains\CrimsonCalyx;
 use App\Entity\Domains\EchoOfWar;
@@ -54,7 +58,6 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['releaseVersion' => 'DESC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
-            
             yield MenuItem::subMenu('Character stories','fas fa-book')->setSubItems([
                 MenuItem::linkToCrud('Character stories list', 'fas fa-book-open-reader', CharacterStories::class),
                 MenuItem::linkToCrud('New character stories', 'fas fa-user-pen', CharacterStories::class)->setAction(Crud::PAGE_NEW),
@@ -65,9 +68,47 @@ class DashboardController extends AbstractDashboardController
             ]);
 
         yield MenuItem::section('Character kit');
+            yield MenuItem::subMenu('Character kit', 'fas fa-person')->setSubItems([
+                MenuItem::linkToCrud('Character kit list', 'fas fa-people-group', CharacterKit::class)->setDefaultSort(['name' => 'ASC']),
+                MenuItem::linkToCrud('New character kit', 'fas fa-person-circle-plus', CharacterKit::class)->setAction(Crud::PAGE_NEW),
+            ]);
             yield MenuItem::subMenu('Basic ATK', 'fas fa-gun')->setSubItems([
                 MenuItem::linkToCrud('Basic ATK list', 'fas fa-people-group', CharacterBasicAtk::class)->setDefaultSort(['characterKit' => 'ASC']),
                 MenuItem::linkToCrud('New basic ATK', 'fas fa-person-circle-plus', CharacterBasicAtk::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Skill', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Skill list', 'fas fa-people-group', CharacterSkill::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New skill', 'fas fa-person-circle-plus', CharacterSkill::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Ultimate', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Ultimate list', 'fas fa-people-group', CharacterUltimate::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New ultimate', 'fas fa-person-circle-plus', CharacterUltimate::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Talent', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Talent list', 'fas fa-people-group', CharacterTalent::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New talent', 'fas fa-person-circle-plus', CharacterTalent::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Minor traces', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Minor traces list', 'fas fa-people-group', CharacterMinorTraces::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New minor traces', 'fas fa-person-circle-plus', CharacterMinorTraces::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Eidolons', 'fas fa-gun')->setSubItems([
+                MenuItem::linkToCrud('Eidolon list', 'fas fa-people-group', CharacterEidolons::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New eidolon', 'fas fa-person-circle-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
+            ]);
+
+        yield MenuItem::section('Memosprites');
+            yield MenuItem::subMenu('Memosprite','fas fa-sheet-plastic')->setSubItems([
+                MenuItem::linkToCrud('Memosprite list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New memosprite', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Memosprite skill','fas fa-sheet-plastic')->setSubItems([
+                MenuItem::linkToCrud('Memo-skill list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New memo-skill', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Memosprite talent','fas fa-sheet-plastic')->setSubItems([
+                MenuItem::linkToCrud('Memo-talent list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New memo-talent', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         yield MenuItem::section('Light cones');
@@ -89,10 +130,13 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Location list', 'fas fa-map', Location::class),
                 MenuItem::linkToCrud('New location', 'fas fa-map-pin', Location::class)->setAction(Crud::PAGE_NEW),
             ]);
-
             yield MenuItem::subMenu('Icons', 'fas fa-icons')->setSubItems([
                 MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class)->setDefaultSort(['role' => 'ASC']),
                 MenuItem::linkToCrud('New icon', 'fas fa-camera-retro', Media::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Stats','fas fa-sheet-plastic')->setSubItems([
+                MenuItem::linkToCrud('Stat list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New stat', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         // fill with the actual mats once done and crud created
