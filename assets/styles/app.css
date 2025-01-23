@@ -108,7 +108,12 @@ h1 {
   margin-top: 3vh;
   margin-bottom: 5vh;
   text-align: center;
-  text-shadow: 2px 0px 12px black;
+  text-shadow: 1px 1px 0px white;
+  background: rgb(219,194,145);
+  background: linear-gradient(129deg, rgba(219,194,145,1) 0%, rgba(147,116,56,1) 95%);
+  color: black;
+  padding: 10px 30px;
+  border-radius: 3px;
 }
 
 h2 {
@@ -132,7 +137,7 @@ li {
   list-style-type: none;
 }
 
-header, footer, h1, h2, li a {
+header, footer, h2, li a {
   color: #DBC291;
 }
 
@@ -262,14 +267,14 @@ header nav .main-nav li a img {
   overflow: hidden;
 }
 
-.character-list .item-character a {
+.lc-list .item-lc {
+  height: 175px;
+}
+
+.character-list .item-character a, .lc-list .item-lc a {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.lc-list .item-lc {
-  height: 225px;
 }
 
 .character-list .item-character .character-path-type, .lc-list .item-lc .lc-path-div {
@@ -278,7 +283,7 @@ header nav .main-nav li a img {
   justify-content: center;
   margin-left: 100px;
   position: absolute;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .character-type, .character-path, .lc-path, .bossmat-type img, .tracemat-path img {
@@ -290,7 +295,7 @@ header nav .main-nav li a img {
   background-color: #0000005e;
 }
 
-.character-name {
+.character-name, .lc-name {
   max-width: 105px;
   position: absolute;
   padding: 5px 10px;
@@ -300,36 +305,38 @@ header nav .main-nav li a img {
   text-shadow: -2px 2px 2px #000000;
 }
 
-.character-name p, .lc-list .item-lc a p {
+.lc-name {
+  margin-top: 130px;
+}
+
+.character-name p, .lc-name p {
   display: flex;
   justify-content: center;
   text-align: center;
   font-size: 14px;
 }
 
-.character-list .item-character a .character-icon, .lc-list .item-lc a img {
+.character-list .item-character a .character-icon, .lc-list .item-lc a .lc-icon {
   width: 140px;
 }
 
-.character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a img {
+.character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a .lc-icon {
   width: 170px;
   transition: 0.4s;
 }
 
 .upcoming, .new {
   position: absolute;
-  background-color: #000000a4;
+  background-color: #0000005e;
   padding: 5px;
   font-size: 12px;
   text-transform: uppercase;
   font-family: DinProBold;
-  margin-top: 170px;
-}
-
-.character-list .item-character:hover .upcoming, .character-list .item-character:hover .new {
-  font-size: 14px;
-  margin-top: 180px;
-  transition: 0.4s;
+  margin-top: 5px;
+  margin-right: 55px;
+  text-align: left;
+  text-shadow: 1px 1px 0px #000000;
+  backdrop-filter: blur(2px);
 }
 
 
@@ -338,6 +345,9 @@ header nav .main-nav li a img {
 
 main .s-container {
   margin: 2vh 5vh 2vh 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 main .s-container .lc-show {
@@ -629,40 +639,34 @@ main .s-container .lc-show {
 }
 
 .five-star strong,
-.five-star h1,
 .five-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
   color: #c9a36a;
 }
 
 .four-star strong, 
-.four-star h1,
 .four-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
   color: rgb(98,59,90);
 }
 
 .three-star strong,
-.three-star h1,
 .three-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
   color: #235789;
 }
 
-.lc-list .five-star:hover,
 .five-star .superimposition-toggle:hover,
 .five-star .character-nav-link:hover {
   background: #000000;
   font-family: DinProBold;
   transition: 0.4s;
-  
 }
 
-.character-list .five-star:hover {
+.list .five-star:hover {
   background: rgba(201,163,106,1);
   font-family: DinProBold;
   transition: 0.4s;
 }
 
-.character-list .four-star:hover,
-.lc-list .four-star:hover,
+.list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
 .ascmat:hover .four-star, .tracemat:hover .four-star,
@@ -672,7 +676,7 @@ main .s-container .lc-show {
   transition: 0.4s;
 }
 
-.lc-list .three-star:hover,
+.list .three-star:hover,
 .three-star .superimposition-toggle:hover,
 .ascmat:hover .three-star, .tracemat:hover .three-star {
   background: #235789;
@@ -686,28 +690,19 @@ main .s-container .lc-show {
   transition: 0.4s;
 }
 
-.character-list .five-star,
-.lc-list .five-star,
-.five-star h2,
-.five-star .active,
-.main-nav li a:hover {
+.list .five-star, .five-star h2, .five-star .active {
   background: rgb(201,106,106);
   background: linear-gradient(180deg, rgba(201,106,106,1) 0%, rgba(201,163,106,1) 20%, rgba(208,174,78,1) 60%, rgba(0,0,0,1) 95%);
 }
 
-.character-list .four-star,
-.lc-list .four-star,
-.four-star h2,
-.four-star .active,
+.list .four-star, .four-star h2, .four-star .active,
 .ascmat .four-star, .tracemat .four-star,
 .bossmat, .echomat {
   background: rgb(60,59,98);
   background: linear-gradient(180deg, rgba(60,59,98,1) 0%, rgba(98,59,90,1) 20%, rgba(134,58,118,1) 60%, rgba(0,0,0,1) 95%);
 }
 
-.lc-list .three-star,
-.three-star h2,
-.three-star .active,
+.list .three-star, .three-star h2, .three-star .active,
 .ascmat .three-star, .tracemat .three-star {
   background: rgb(52,35,137);
   background: linear-gradient(180deg, rgba(52,35,137,1) 0%, rgba(35,87,137,1) 20%, rgba(36,104,170,1) 50%, rgba(0,0,0,1) 95%);
@@ -716,4 +711,8 @@ main .s-container .lc-show {
 .ascmat .two-star, .tracemat .two-star {
   background: rgb(80,107,63);
   background: linear-gradient(180deg, rgba(80,107,63,1) 0%, rgba(63,107,78,1) 20%, rgba(54,139,83,1) 50%, rgba(0,0,0,1) 95%);
+}
+
+.main-nav li a:hover {
+  background: #282828;
 }

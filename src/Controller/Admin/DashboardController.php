@@ -3,14 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Characters\BaseCharacter;
-use App\Entity\Characters\CharacterBasicAtk;
-use App\Entity\Characters\CharacterEidolons;
+use App\Entity\Characters\CharacterEidolon;
 use App\Entity\Characters\CharacterKit;
 use App\Entity\Characters\CharacterMinorTraces;
 use App\Entity\Characters\CharacterSkill;
 use App\Entity\Characters\CharacterStories;
-use App\Entity\Characters\CharacterTalent;
-use App\Entity\Characters\CharacterUltimate;
 use App\Entity\Characters\CharacterVoiceline;
 use App\Entity\Domains\CrimsonCalyx;
 use App\Entity\Domains\EchoOfWar;
@@ -72,29 +69,17 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Character kit list', 'fas fa-arrows-down-to-people', CharacterKit::class)->setDefaultSort(['name' => 'ASC']),
                 MenuItem::linkToCrud('New character kit', 'fas fa-person-circle-plus', CharacterKit::class)->setAction(Crud::PAGE_NEW),
             ]);
-            yield MenuItem::subMenu('Basic ATK', 'fas fa-gun')->setSubItems([
-                MenuItem::linkToCrud('Basic ATK list', 'fas fa-arrows-down-to-people', CharacterBasicAtk::class)->setDefaultSort(['characterKit' => 'ASC']),
-                MenuItem::linkToCrud('New basic ATK', 'fas fa-person-circle-plus', CharacterBasicAtk::class)->setAction(Crud::PAGE_NEW),
-            ]);
-            yield MenuItem::subMenu('Skill', 'fas fa-person-falling-burst')->setSubItems([
+            yield MenuItem::subMenu('Skills', 'fas fa-person-dots-from-line')->setSubItems([
                 MenuItem::linkToCrud('Skill list', 'fas fa-arrows-down-to-people', CharacterSkill::class)->setDefaultSort(['characterKit' => 'ASC']),
                 MenuItem::linkToCrud('New skill', 'fas fa-person-circle-plus', CharacterSkill::class)->setAction(Crud::PAGE_NEW),
-            ]);
-            yield MenuItem::subMenu('Ultimate', 'fas fa-person-dots-from-line')->setSubItems([
-                MenuItem::linkToCrud('Ultimate list', 'fas fa-arrows-down-to-people', CharacterUltimate::class)->setDefaultSort(['characterKit' => 'ASC']),
-                MenuItem::linkToCrud('New ultimate', 'fas fa-person-circle-plus', CharacterUltimate::class)->setAction(Crud::PAGE_NEW),
-            ]);
-            yield MenuItem::subMenu('Talent', 'fas fa-hand-sparkles')->setSubItems([
-                MenuItem::linkToCrud('Talent list', 'fas fa-arrows-down-to-people', CharacterTalent::class)->setDefaultSort(['characterKit' => 'ASC']),
-                MenuItem::linkToCrud('New talent', 'fas fa-person-circle-plus', CharacterTalent::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Minor traces', 'fas fa-draw-polygon')->setSubItems([
                 MenuItem::linkToCrud('Minor traces list', 'fas fa-arrows-down-to-people', CharacterMinorTraces::class)->setDefaultSort(['characterKit' => 'ASC']),
                 MenuItem::linkToCrud('New minor traces', 'fas fa-person-circle-plus', CharacterMinorTraces::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Eidolons', 'fas fa-star')->setSubItems([
-                MenuItem::linkToCrud('Eidolon list', 'fas fa-ranking-star', CharacterEidolons::class)->setDefaultSort(['characterKit' => 'ASC']),
-                MenuItem::linkToCrud('New eidolon', 'fas fa-cart-plus', CharacterEidolons::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Eidolon list', 'fas fa-ranking-star', CharacterEidolon::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New eidolon', 'fas fa-cart-plus', CharacterEidolon::class)->setAction(Crud::PAGE_NEW),
             ]);
 
         yield MenuItem::section('Memosprites');

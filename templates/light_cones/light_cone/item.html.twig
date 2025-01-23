@@ -1,13 +1,23 @@
 {% set lc_show = path('lc_show', { slug: lightcone.slug }) %}
 
-<div class="item-lc {% if lightcone.rarity == "4-star"%}four-star {% elseif lightcone.rarity == "5-star" %}five-star {% elseif lightcone.rarity == "3-star" %}three-star{% endif %}">
-    {% for icon in lightcone.icons|filter(icon => icon.role == 'Lc Icon') %}
+{% for icon in lightcone.icons|filter(icon => icon.role == 'Lc Icon') %}
+    <div class="item-lc {% if lightcone.rarity == "4-star"%}four-star {% elseif lightcone.rarity == "5-star" %}five-star {% elseif lightcone.rarity == "3-star" %}three-star{% endif %}">
         <a href="{{ lc_show }}">
-            <img src="/uploads/{{ icon.filename }}" alt="">
-            <p>{{ lightcone.name }}</p>
+            <div class="lc-name">
+                <p>{{ lightcone.name }}</p>
+            </div>
+            <div class="lc-path-div">
+                <img class="lc-path" src="/uploads/{{ lightcone.path.icon.filename }}" alt="">
+            </div>
+            {% if lightcone.released == 0 and lightcone.announced == 1 %}
+                <div class="upcoming">Upcoming</div>
+            {% endif %}
+            {% if lightcone.released == 1 and lightcone.releaseVersion == "3.0" %}
+                <div class="new">New in {{ lightcone.releaseVersion }}</div>
+            {% endif %}
+            <div class="icon">
+                <img class="lc-icon" src="/uploads/{{ icon.filename }}" alt="">
+            </div>
         </a>
-        <div class="lc-path-div">
-            <img class="lc-path" src="/uploads/{{ lightcone.path.icon.filename }}" alt="">
-        </div>
-    {% endfor %}
-</div>
+    </div>
+{% endfor %}
