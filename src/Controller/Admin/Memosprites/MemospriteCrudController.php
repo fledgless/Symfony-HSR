@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Controller\Admin\Characters;
+namespace App\Controller\Admin\Memosprites;
 
-use App\Entity\Characters\CharacterEidolons;
+use App\Entity\Memosprites\Memosprite;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CharacterEidolonsCrudController extends AbstractCrudController
+class MemospriteCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return CharacterEidolons::class;
+        return Memosprite::class;
     }
 
     /*

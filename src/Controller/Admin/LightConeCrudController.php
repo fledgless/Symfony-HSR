@@ -45,14 +45,14 @@ class LightConeCrudController extends AbstractCrudController
                 yield AssociationField::new('path');
 
             yield FormField::addColumn();
+                yield BooleanField::new('announced', 'Announced?');
+                yield BooleanField::new('released', 'Released?');
                 yield AssociationField::new('icons')
-                    ->hideOnForm();
+                    ->hideOnIndex();
                 yield TextEditorField::new('story')
                     ->hideOnIndex();
 
         yield FormField::addColumn();
-            yield BooleanField::new('announced', 'Announced?');
-            yield BooleanField::new('released', 'Released?');
             yield ChoiceField::new('releaseVersion')
                 ->setChoices([
                     '1.0' => '1.0', 

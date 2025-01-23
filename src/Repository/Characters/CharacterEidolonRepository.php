@@ -2,18 +2,18 @@
 
 namespace App\Repository\Characters;
 
-use App\Entity\Characters\CharacterEidolons;
+use App\Entity\Characters\CharacterEidolon;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<CharacterEidolons>
  */
-class CharacterEidolonsRepository extends ServiceEntityRepository
+class CharacterEidolonRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CharacterEidolons::class);
+        parent::__construct($registry, CharacterEidolon::class);
     }
 
 //    /**

@@ -69,7 +69,7 @@ main {
     padding-bottom: 50px;
     margin-left: 100px;
     font-size: 16px;
-    min-height: 70vh;
+    min-height: 75vh;
 }
 
 #container {
@@ -78,7 +78,7 @@ main {
   
 header {
     position: fixed;
-    height: 100%;
+    height: 100vh;
     width: 100px;
 }
 
@@ -93,7 +93,7 @@ header, footer {
 footer {
     position: relative;
     bottom: 0;
-    height: 80px;
+    height: 15vh;
     padding: 5px;
     text-align: center;
 }
@@ -108,7 +108,12 @@ h1 {
   margin-top: 3vh;
   margin-bottom: 5vh;
   text-align: center;
-  text-shadow: 2px 0px 12px black;
+  text-shadow: 1px 1px 0px white;
+  background: rgb(219,194,145);
+  background: linear-gradient(129deg, rgba(219,194,145,1) 0%, rgba(147,116,56,1) 95%);
+  color: black;
+  padding: 10px 30px;
+  border-radius: 3px;
 }
 
 h2 {
@@ -132,7 +137,7 @@ li {
   list-style-type: none;
 }
 
-header, footer, h1, h2, li a {
+header, footer, h2, li a {
   color: #DBC291;
 }
 
@@ -142,6 +147,18 @@ header, footer, h1, h2, h3, li, li a, strong, button, .lc-base-stat-value {
 
 main, header .hamburger {
   background-color: #282828;
+}
+
+@media screen and (max-width: 540px) {
+  header {
+    height: 100%;
+  }
+  main {
+    min-height: 85vh;
+  }
+  footer {
+    height: 25vh;
+  }
 }
 
 
@@ -200,22 +217,22 @@ header nav .main-nav li a img {
 
 /* login form */
 
-.sign-in-form, .sign-in-form div {
+.sign-in-form, .sign-in-form div, .register form, .register form div {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.sign-in-form div input {
+.sign-in-form div input, .register form div input {
   margin: 5px 0px 10px;
   width: 300px;
   padding: 5px;
   text-align: center;
   font-family: DinPro;
-  background-color: #DBC291;
+  background-color: #c9a36a;
 }
 
-.sign-in-form button {
+.sign-in-form button, .register form button {
   background-color: #000000;
   color: #FFFFFF;
   font-size: 16px;
@@ -223,8 +240,8 @@ header nav .main-nav li a img {
   padding: 5px 10px;
 }
 
-.sign-in-form button:hover {
-  background-color: #DBC291;
+.sign-in-form button:hover, .register form button:hover {
+  background-color: #c9a36a;
   color: #282828;
   transition: 0.4s;
 }
@@ -241,76 +258,85 @@ header nav .main-nav li a img {
 }
 
 .character-list .item-character, .lc-list .item-lc {
-  height: 265px;
-  width: 150px;
+  height: 190px;
+  width: 140px;
   display: flex;
-  flex-direction: column;
-  align-content: center;
   justify-content: center;
-  flex-wrap: wrap;
   transition: 0.4s;
-  border: 2px solid #282828;
+  margin: 2px;
+  overflow: hidden;
 }
 
-.character-list .item-character a {
+.lc-list .item-lc {
+  height: 175px;
+}
+
+.character-list .item-character a, .lc-list .item-lc a {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.lc-list .item-lc {
-  height: 225px;
-}
-
 .character-list .item-character .character-path-type, .lc-list .item-lc .lc-path-div {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column-reverse;
   justify-content: center;
+  margin-left: 100px;
+  position: absolute;
   margin-top: 5px;
-  margin-right: 3px;
 }
 
 .character-type, .character-path, .lc-path, .bossmat-type img, .tracemat-path img {
   height: 20px;
-  margin: 5px;
+  margin: 1px;
+  padding: 5px;
+  backdrop-filter: blur(2px);
+  border-radius: 50%;
+  background-color: #0000005e;
 }
 
-.character-list .item-character .character-path-type .character-type {
-  margin-right: 10px;
+.character-name, .lc-name {
+  max-width: 105px;
+  position: absolute;
+  padding: 5px 10px;
+  backdrop-filter: blur(1px);
+  margin-top: 140px;
+  border-radius: 30px;
+  text-shadow: -2px 2px 2px #000000;
 }
 
-.character-list .item-character a p, .lc-list .item-lc a p {
+.lc-name {
+  margin-top: 130px;
+}
+
+.character-name p, .lc-name p {
   display: flex;
   justify-content: center;
   text-align: center;
   font-size: 14px;
-  color: #FFFFFF;
-  margin-top: 5px;
 }
 
-.character-list .item-character a .character-icon, .lc-list .item-lc a img {
+.character-list .item-character a .character-icon, .lc-list .item-lc a .lc-icon {
   width: 140px;
 }
 
-.character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a img {
-  width: 150px;
+.character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a .lc-icon {
+  width: 170px;
   transition: 0.4s;
 }
 
 .upcoming, .new {
   position: absolute;
-  background-color: #000000a4;
+  background-color: #0000005e;
   padding: 5px;
   font-size: 12px;
   text-transform: uppercase;
   font-family: DinProBold;
-  margin-top: 170px;
-}
-
-.character-list .item-character:hover .upcoming, .character-list .item-character:hover .new {
-  font-size: 14px;
-  margin-top: 180px;
-  transition: 0.4s;
+  margin-top: 5px;
+  margin-right: 55px;
+  text-align: left;
+  text-shadow: 1px 1px 0px #000000;
+  backdrop-filter: blur(2px);
 }
 
 
@@ -319,6 +345,9 @@ header nav .main-nav li a img {
 
 main .s-container {
   margin: 2vh 5vh 2vh 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 main .s-container .lc-show {
@@ -487,7 +516,7 @@ main .s-container .lc-show {
   flex-wrap: wrap;
   justify-content: center;
   background-color: #0000007e;
-  padding: 20px;
+  padding: 10px;
   margin: 20px;
 }
 
@@ -536,6 +565,32 @@ main .s-container .lc-show {
 
 .ascmat img, .bossmat img, .echomat img, .tracemat img {
   height: 75px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+
+@media screen and (max-width: 620px) {
+  .materials section {
+    margin: 5px;
+  }
+  .ascmat img, .bossmat img, .echomat img, .tracemat img {
+    height: 50px;
+    width: 50px;
+  }
+  .ascmat .item-asc-mat, .tracemat .item-trace-mat, .bossmat, .echomat {
+    width: 60px;
+    height: 60px;
+    align-items: center;
+    padding: 3px;
+    margin: 3px;
+  }
+  .ascmat .item-asc-mat p, .tracemat .item-trace-mat p, .bossmat p, .echomat p, .bossmat-type, .tracemat-path {
+    display: none;
+  }
+  .ascmat, .tracemat {
+    width: 200px;
+    margin: 0px;
+  }
 }
 
 
@@ -547,7 +602,7 @@ main .s-container .lc-show {
 .five-star .skill-superimposition,
 .five-star .character-content {
   border: 3px solid transparent;
-  border-image: linear-gradient(to right, #DBC291, black);
+  border-image: linear-gradient(to right, #c9a36a, black);
   border-image-slice: 1;
 }
 
@@ -572,7 +627,7 @@ main .s-container .lc-show {
 }
 
 .five-star .lc-story {
-  border-left: 8px solid #DBC291;
+  border-left: 8px solid #c9a36a;
 }
 
 .four-star .lc-story {
@@ -584,25 +639,20 @@ main .s-container .lc-show {
 }
 
 .five-star strong,
-.five-star h1,
 .five-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
-  color: #DBC291;
+  color: #c9a36a;
 }
 
 .four-star strong, 
-.four-star h1,
 .four-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
   color: rgb(98,59,90);
 }
 
 .three-star strong,
-.three-star h1,
 .three-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
   color: #235789;
 }
 
-.character-list .item-character:hover,
-.lc-list .five-star:hover,
 .five-star .superimposition-toggle:hover,
 .five-star .character-nav-link:hover {
   background: #000000;
@@ -610,17 +660,23 @@ main .s-container .lc-show {
   transition: 0.4s;
 }
 
-.lc-list .four-star:hover,
-.four-star .superimposition-toggle:hover,
-.four-star .character-nav-link:hover,
-.ascmat:hover .four-star, .tracemat:hover .four-star,
-.bossmat:hover, .echomat:hover {
-  background: rgba(98,59,90,1);
+.list .five-star:hover {
+  background: rgba(201,163,106,1);
   font-family: DinProBold;
   transition: 0.4s;
 }
 
-.lc-list .three-star:hover,
+.list .four-star:hover,
+.four-star .superimposition-toggle:hover,
+.four-star .character-nav-link:hover,
+.ascmat:hover .four-star, .tracemat:hover .four-star,
+.bossmat:hover, .echomat:hover {
+  background: #623b5a;
+  font-family: DinProBold;
+  transition: 0.4s;
+}
+
+.list .three-star:hover,
 .three-star .superimposition-toggle:hover,
 .ascmat:hover .three-star, .tracemat:hover .three-star {
   background: #235789;
@@ -634,35 +690,29 @@ main .s-container .lc-show {
   transition: 0.4s;
 }
 
-.character-list .five-star,
-.lc-list .five-star,
-.five-star h2,
-.five-star .active,
-.main-nav li a:hover {
-  background: rgb(0,0,0);
-  background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
+.list .five-star, .five-star h2, .five-star .active {
+  background: rgb(201,106,106);
+  background: linear-gradient(180deg, rgba(201,106,106,1) 0%, rgba(201,163,106,1) 20%, rgba(208,174,78,1) 60%, rgba(0,0,0,1) 95%);
 }
 
-.character-list .four-star,
-.lc-list .four-star,
-.four-star h2,
-.four-star .active,
+.list .four-star, .four-star h2, .four-star .active,
 .ascmat .four-star, .tracemat .four-star,
 .bossmat, .echomat {
-  background: rgb(98,59,90);
-  background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(98,59,90,1) 100%);
+  background: rgb(60,59,98);
+  background: linear-gradient(180deg, rgba(60,59,98,1) 0%, rgba(98,59,90,1) 20%, rgba(134,58,118,1) 60%, rgba(0,0,0,1) 95%);
 }
 
-.lc-list .three-star,
-.three-star h2,
-.three-star .active,
+.list .three-star, .three-star h2, .three-star .active,
 .ascmat .three-star, .tracemat .three-star {
-  background: rgb(35,87,137);
-  background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(35,87,137,1) 100%);
+  background: rgb(52,35,137);
+  background: linear-gradient(180deg, rgba(52,35,137,1) 0%, rgba(35,87,137,1) 20%, rgba(36,104,170,1) 50%, rgba(0,0,0,1) 95%);
 }
 
 .ascmat .two-star, .tracemat .two-star {
-  background: rgb(63,107,78);
-  background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
+  background: rgb(80,107,63);
+  background: linear-gradient(180deg, rgba(80,107,63,1) 0%, rgba(63,107,78,1) 20%, rgba(54,139,83,1) 50%, rgba(0,0,0,1) 95%);
 }
 
+.main-nav li a:hover {
+  background: #282828;
+}

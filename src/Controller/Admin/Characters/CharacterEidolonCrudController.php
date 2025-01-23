@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin\Characters;
 
-use App\Entity\Characters\CharacterTalent;
+use App\Entity\Characters\CharacterEidolon;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class CharacterTalentCrudController extends AbstractCrudController
+class CharacterEidolonCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return CharacterTalent::class;
+        return CharacterEidolon::class;
     }
 
     /*

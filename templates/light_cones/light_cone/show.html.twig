@@ -24,7 +24,7 @@
             {% endfor %} 
             <div class="lc-basic-info-text">
                 <h1>{{ lightcone.name }}</h1>
-                {% for icon in lightcone.icons|filter(icon => icon.imageRole == 'Lc Splash art') %}
+                {% for icon in lightcone.icons|filter(icon => icon.role == 'Lc Splash art') %}
                     <div class="lc-basic-info-splash-mobile">
                         <img src="/uploads/{{ icon.filename }}" alt="">
                         <div class="lc-path-rarity">

@@ -3,9 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Characters\BaseCharacter;
-use App\Entity\Characters\CharacterBasicAtk;
-use App\Entity\Characters\CharacterEidolons;
+use App\Entity\Characters\CharacterEidolon;
 use App\Entity\Characters\CharacterKit;
+use App\Entity\Characters\CharacterMinorTraces;
+use App\Entity\Characters\CharacterSkill;
 use App\Entity\Characters\CharacterStories;
 use App\Entity\Characters\CharacterVoiceline;
 use App\Entity\Domains\CrimsonCalyx;
@@ -50,11 +51,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         
         yield MenuItem::section('Characters');
-            yield MenuItem::subMenu('Characters','fas fa-person')->setSubItems([
+            yield MenuItem::subMenu('Characters','fas fa-id-card')->setSubItems([
                 MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class)->setDefaultSort(['releaseVersion' => 'DESC']),
                 MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
             ]);
-            
             yield MenuItem::subMenu('Character stories','fas fa-book')->setSubItems([
                 MenuItem::linkToCrud('Character stories list', 'fas fa-book-open-reader', CharacterStories::class),
                 MenuItem::linkToCrud('New character stories', 'fas fa-user-pen', CharacterStories::class)->setAction(Crud::PAGE_NEW),
@@ -65,9 +65,35 @@ class DashboardController extends AbstractDashboardController
             ]);
 
         yield MenuItem::section('Character kit');
-            yield MenuItem::subMenu('Basic ATK', 'fas fa-gun')->setSubItems([
-                MenuItem::linkToCrud('Basic ATK list', 'fas fa-people-group', CharacterBasicAtk::class)->setDefaultSort(['characterKit' => 'ASC']),
-                MenuItem::linkToCrud('New basic ATK', 'fas fa-person-circle-plus', CharacterBasicAtk::class)->setAction(Crud::PAGE_NEW),
+            yield MenuItem::subMenu('Character kit', 'fas fa-person-rays')->setSubItems([
+                MenuItem::linkToCrud('Character kit list', 'fas fa-arrows-down-to-people', CharacterKit::class)->setDefaultSort(['name' => 'ASC']),
+                MenuItem::linkToCrud('New character kit', 'fas fa-person-circle-plus', CharacterKit::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Skills', 'fas fa-person-dots-from-line')->setSubItems([
+                MenuItem::linkToCrud('Skill list', 'fas fa-arrows-down-to-people', CharacterSkill::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New skill', 'fas fa-person-circle-plus', CharacterSkill::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Minor traces', 'fas fa-draw-polygon')->setSubItems([
+                MenuItem::linkToCrud('Minor traces list', 'fas fa-arrows-down-to-people', CharacterMinorTraces::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New minor traces', 'fas fa-person-circle-plus', CharacterMinorTraces::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Eidolons', 'fas fa-star')->setSubItems([
+                MenuItem::linkToCrud('Eidolon list', 'fas fa-ranking-star', CharacterEidolon::class)->setDefaultSort(['characterKit' => 'ASC']),
+                MenuItem::linkToCrud('New eidolon', 'fas fa-cart-plus', CharacterEidolon::class)->setAction(Crud::PAGE_NEW),
+            ]);
+
+        yield MenuItem::section('Memosprites');
+            yield MenuItem::subMenu('Memosprite','fas fa-cat')->setSubItems([
+                MenuItem::linkToCrud('Memosprite list', 'fas fa-dragon', LightCone::class),
+                MenuItem::linkToCrud('New memosprite', 'fas fa-feather', LightCone::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Memosprite skill','fas fa-shield-cat')->setSubItems([
+                MenuItem::linkToCrud('Memo-skill list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New memo-skill', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Memosprite talent','fas fa-paw')->setSubItems([
+                MenuItem::linkToCrud('Memo-talent list', 'fas fa-folder-open', LightCone::class),
+                MenuItem::linkToCrud('New memo-talent', 'fas fa-file-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         yield MenuItem::section('Light cones');
@@ -82,17 +108,20 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('New path', 'fas fa-road-circle-check', Path::class)->setAction(Crud::PAGE_NEW),
             ]);
             yield MenuItem::subMenu('Types', 'fas fa-wand-sparkles')->setSubItems([
-                MenuItem::linkToCrud('Media list', 'fas fa-hat-wizard', Type::class),
-                MenuItem::linkToCrud('New media', 'fas fa-fire-flame-curved', Type::class)->setAction(Crud::PAGE_NEW),
+                MenuItem::linkToCrud('Type list', 'fas fa-hat-wizard', Type::class),
+                MenuItem::linkToCrud('New type', 'fas fa-fire-flame-curved', Type::class)->setAction(Crud::PAGE_NEW),
             ]);
-            yield MenuItem::subMenu('Locations', 'fas fa-globe')->setSubItems([
-                MenuItem::linkToCrud('Location list', 'fas fa-map', Location::class),
+            yield MenuItem::subMenu('Locations', 'fas fa-landmark')->setSubItems([
+                MenuItem::linkToCrud('Location list', 'fas fa-globe', Location::class),
                 MenuItem::linkToCrud('New location', 'fas fa-map-pin', Location::class)->setAction(Crud::PAGE_NEW),
             ]);
-    
             yield MenuItem::subMenu('Icons', 'fas fa-icons')->setSubItems([
-                MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class),
+                MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class)->setDefaultSort(['role' => 'ASC']),
                 MenuItem::linkToCrud('New icon', 'fas fa-camera-retro', Media::class)->setAction(Crud::PAGE_NEW),
+            ]);
+            yield MenuItem::subMenu('Stats','fas fa-chart-column')->setSubItems([
+                MenuItem::linkToCrud('Stat list', 'fas fa-list-check', LightCone::class),
+                MenuItem::linkToCrud('New stat', 'fas fa-heart-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),
             ]);
         
         // fill with the actual mats once done and crud created
@@ -115,43 +144,43 @@ class DashboardController extends AbstractDashboardController
             ]);
 
         yield MenuItem::section('Enemies');
-        yield MenuItem::subMenu('Normal enemies','fas fa-gun')->setSubItems([
-            MenuItem::linkToCrud('Normal enemies list', 'fas fa-people-group', NormalEnemy::class),
-            MenuItem::linkToCrud('New normal enemy', 'fas fa-person-circle-plus', NormalEnemy::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Normal enemies','fas fa-skull')->setSubItems([
+            MenuItem::linkToCrud('Normal enemies list', 'fas fa-list', NormalEnemy::class),
+            MenuItem::linkToCrud('New normal enemy', 'fas fa-circle-plus', NormalEnemy::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Elite enemies','fas fa-skull')->setSubItems([
-            MenuItem::linkToCrud('Elite enemies list', 'fas fa-people-group', EliteEnemy::class),
-            MenuItem::linkToCrud('New elite enemy', 'fas fa-person-circle-plus', EliteEnemy::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Elite enemies','fas fa-skull-crossbones')->setSubItems([
+            MenuItem::linkToCrud('Elite enemies list', 'fas fa-list', EliteEnemy::class),
+            MenuItem::linkToCrud('New elite enemy', 'fas fa-circle-plus', EliteEnemy::class)->setAction(Crud::PAGE_NEW),
         ]);
-        // yield MenuItem::subMenu('Boss enemies','fas fa-skull-crossbones')->setSubItems([
+        // yield MenuItem::subMenu('Boss enemies','fas fa-book-skull')->setSubItems([
         //     MenuItem::linkToCrud('Boss enemies list', 'fas fa-people-group', BaseCharacter::class),
         //     MenuItem::linkToCrud('New boss enemy', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
         // ]);
         yield MenuItem::subMenu('Echo of War boss','fas fa-ghost')->setSubItems([
-            MenuItem::linkToCrud('Echo of War boss list', 'fas fa-people-group', EchosBoss::class),
-            MenuItem::linkToCrud('New Echo of War boss', 'fas fa-person-circle-plus', EchosBoss::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Echo of War boss list', 'fas fa-list', EchosBoss::class),
+            MenuItem::linkToCrud('New Echo of War boss', 'fas fa-circle-plus', EchosBoss::class)->setAction(Crud::PAGE_NEW),
         ]);
 
         yield MenuItem::section('Domains');
         yield MenuItem::subMenu('Stagnant Shadow','fas fa-dungeon')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', StagnantShadow::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', StagnantShadow::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Shadow list', 'fas fa-list', StagnantShadow::class),
+            MenuItem::linkToCrud('New shadow', 'fas fa-circle-plus', StagnantShadow::class)->setAction(Crud::PAGE_NEW),
         ]);
         yield MenuItem::subMenu('Echo of War','fas fa-dungeon')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', EchoOfWar::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', EchoOfWar::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Echo list', 'fas fa-list', EchoOfWar::class),
+            MenuItem::linkToCrud('New echo', 'fas fa-circle-plus', EchoOfWar::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Crimson Calyx','fas fa-dungeon')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', CrimsonCalyx::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', CrimsonCalyx::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Crimson Calyx','fas fa-plant-wilt')->setSubItems([
+            MenuItem::linkToCrud('Calyx list', 'fas fa-seedling', CrimsonCalyx::class),
+            MenuItem::linkToCrud('New calyx', 'fas fa-circle-plus', CrimsonCalyx::class)->setAction(Crud::PAGE_NEW),
         ]);
-        yield MenuItem::subMenu('Golden Calyx','fas fa-dungeon')->setSubItems([
-            MenuItem::linkToCrud('Character list', 'fas fa-people-group', GoldenCalyx::class),
-            MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', GoldenCalyx::class)->setAction(Crud::PAGE_NEW),
+        yield MenuItem::subMenu('Golden Calyx','fas fa-plant-wilt')->setSubItems([
+            MenuItem::linkToCrud('Calyx list', 'fas fa-seedling', GoldenCalyx::class),
+            MenuItem::linkToCrud('New calyx', 'fas fa-circle-plus', GoldenCalyx::class)->setAction(Crud::PAGE_NEW),
         ]);
         // yield MenuItem::subMenu('Cavern of Corrosion','fas fa-dungeon')->setSubItems([
         //     MenuItem::linkToCrud('Character list', 'fas fa-people-group', BaseCharacter::class),
-        //     MenuItem::linkToCrud('New character', 'fas fa-person-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
+        //     MenuItem::linkToCrud('New character', 'fas fa-circle-plus', BaseCharacter::class)->setAction(Crud::PAGE_NEW),
         // ]);
     }
 }
