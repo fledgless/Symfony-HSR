@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ character.name }}{% endblock %}
+
 {% block body %}
     <div class="s-container">
         <div class="character-show {% if character.rarity == "4-star"%}four-star {% else %}five-star{% endif %}">
@@ -45,13 +47,11 @@
                     </ul>
                 </nav>
                 <div class="section open" id="traces">
-                    <h2>Traces</h2>
                     <div class="content">
                         <p>Traces to be added.</p>
                     </div>
                 </div>
                 <div class="section" id="eidolons">
-                    <h2>Eidolons</h2>
                     {# <div class="content">
                         {% if character.characterKit.eidolons %}
                             <h3>Eidolon 1</h3>
@@ -120,7 +120,6 @@
                     </div>#}
                 </div>
                 <div class="section" id="voicelines">
-                    <h2>Voicelines</h2>
                     <div class="content">
                         {% if character.voicelines %}
                         {% else %}
@@ -129,7 +128,6 @@
                     </div>
                 </div> 
                 <div class="section" id="stories">
-                    <h2>Character stories</h2>
                     <div class="content">
                         {% if character.characterStories %}
                         {% else %}

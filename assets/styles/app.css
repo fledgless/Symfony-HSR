@@ -224,7 +224,7 @@ header nav .main-nav li a img {
   padding: 5px;
   text-align: center;
   font-family: DinPro;
-  background-color: #DBC291;
+  background-color: #c9a36a;
 }
 
 .sign-in-form button, .register form button {
@@ -236,7 +236,7 @@ header nav .main-nav li a img {
 }
 
 .sign-in-form button:hover, .register form button:hover {
-  background-color: #DBC291;
+  background-color: #c9a36a;
   color: #282828;
   transition: 0.4s;
 }
@@ -253,15 +253,13 @@ header nav .main-nav li a img {
 }
 
 .character-list .item-character, .lc-list .item-lc {
-  height: 210px;
-  width: 150px;
+  height: 200px;
+  width: 140px;
   display: flex;
-  flex-direction: column;
-  align-content: center;
   justify-content: center;
-  flex-wrap: wrap;
   transition: 0.4s;
-  border: 2px solid #282828;
+  margin: 2px;
+  overflow: hidden;
 }
 
 .character-list .item-character a {
@@ -280,19 +278,20 @@ header nav .main-nav li a img {
   justify-content: center;
   margin-left: 100px;
   position: absolute;
+  margin-top: 10px;
 }
 
 .character-type, .character-path, .lc-path, .bossmat-type img, .tracemat-path img {
   height: 20px;
   margin: 1px;
   padding: 5px;
-  backdrop-filter: blur(1px);
+  backdrop-filter: blur(2px);
   border-radius: 50%;
-  background-color: #00000060;
+  background-color: #0000005e;
 }
 
 .character-name {
-  max-width: 100px;
+  max-width: 105px;
   position: absolute;
   padding: 5px 10px;
   backdrop-filter: blur(1px);
@@ -313,7 +312,7 @@ header nav .main-nav li a img {
 }
 
 .character-list .item-character:hover a .character-icon, .lc-list .item-lc:hover a img {
-  width: 150px;
+  width: 170px;
   transition: 0.4s;
 }
 
@@ -330,16 +329,6 @@ header nav .main-nav li a img {
 .character-list .item-character:hover .upcoming, .character-list .item-character:hover .new {
   font-size: 14px;
   margin-top: 180px;
-  transition: 0.4s;
-}
-
-.character-list .item-character:hover .character-name {
-  margin-top: 160px;
-  transition: 0.4s;
-}
-
-.character-list .item-character:hover .character-path-type, .lc-list .item-lc .lc-path-div {
-  margin-top: 10px;
   transition: 0.4s;
 }
 
@@ -603,7 +592,7 @@ main .s-container .lc-show {
 .five-star .skill-superimposition,
 .five-star .character-content {
   border: 3px solid transparent;
-  border-image: linear-gradient(to right, #DBC291, black);
+  border-image: linear-gradient(to right, #c9a36a, black);
   border-image-slice: 1;
 }
 
@@ -628,7 +617,7 @@ main .s-container .lc-show {
 }
 
 .five-star .lc-story {
-  border-left: 8px solid #DBC291;
+  border-left: 8px solid #c9a36a;
 }
 
 .four-star .lc-story {
@@ -642,7 +631,7 @@ main .s-container .lc-show {
 .five-star strong,
 .five-star h1,
 .five-star .lc-basic-info-base-stats .lc-base-stats .lc-base-stat-value {
-  color: #DBC291;
+  color: #c9a36a;
 }
 
 .four-star strong, 
@@ -657,21 +646,22 @@ main .s-container .lc-show {
   color: #235789;
 }
 
-
 .lc-list .five-star:hover,
 .five-star .superimposition-toggle:hover,
 .five-star .character-nav-link:hover {
   background: #000000;
   font-family: DinProBold;
   transition: 0.4s;
+  
 }
 
 .character-list .five-star:hover {
-  background: #DBC291;
+  background: #c9a36a;
   font-family: DinProBold;
   transition: 0.4s;
 }
 
+.character-list .four-star:hover,
 .lc-list .four-star:hover,
 .four-star .superimposition-toggle:hover,
 .four-star .character-nav-link:hover,
@@ -702,7 +692,7 @@ main .s-container .lc-show {
 .five-star .active,
 .main-nav li a:hover {
   background: rgb(0,0,0);
-  background: linear-gradient(320deg, rgba(0,0,0,1) 0%, rgba(219,194,145,1) 100%);
+  background: linear-gradient(320deg,#000000, #c9a36a 100%);
 }
 
 .character-list .four-star,
@@ -727,4 +717,3 @@ main .s-container .lc-show {
   background: rgb(63,107,78);
   background: linear-gradient(320deg, rgba(0,0,0,1) 5%, rgba(63,107,78,1) 95%);
 }
-
