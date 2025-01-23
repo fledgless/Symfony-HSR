@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\MakerBundle\Str;
 
 #[ORM\Entity(repositoryClass: CharacterKitRepository::class)]
 class CharacterKit
@@ -35,17 +36,29 @@ class CharacterKit
     #[ORM\Column(nullable: true)]
     private ?int $baseSpd = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $mainTraceOne = null;
+    #[ORM\Column(length: 255)]
+    private ?string $mainTraceOneName = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $mainTraceTwo = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $mainTraceOneDesc = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $mainTraceThree = null;
+    #[ORM\Column(length: 255)]
+    private ?string $mainTraceTwoName = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?array $technique = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $mainTraceTwoDesc = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $mainTraceThreeName = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $mainTraceThreeDesc = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $techniqueName = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $techniqueDesc = null;
 
     /**
      * @var Collection<int, Media>
@@ -53,26 +66,12 @@ class CharacterKit
     #[ORM\ManyToMany(targetEntity: Media::class)]
     private Collection $icons;
 
-    /**
-     * @var Collection<int, CharacterBasicAtk>
-     */
-    #[ORM\OneToMany(targetEntity: CharacterBasicAtk::class, mappedBy: 'characterKit')]
-    private Collection $basicAtks;
-
+    
     /**
      * @var Collection<int, CharacterSkill>
      */
     #[ORM\OneToMany(targetEntity: CharacterSkill::class, mappedBy: 'characterKit')]
     private Collection $skills;
-
-    /**
-     * @var Collection<int, CharacterUltimate>
-     */
-    #[ORM\OneToMany(targetEntity: CharacterUltimate::class, mappedBy: 'characterKit')]
-    private Collection $ultimates;
-
-    #[ORM\OneToOne(inversedBy: 'characterKit')]
-    private ?CharacterTalent $talent = null;
 
     #[ORM\OneToOne(mappedBy: 'characterName', cascade: ['persist', 'remove'])]
     private ?CharacterMinorTraces $minorTraces = null;
@@ -80,7 +79,7 @@ class CharacterKit
     /**
      * @var Collection<int, CharacterEidolons>
      */
-    #[ORM\OneToMany(targetEntity: CharacterEidolons::class, mappedBy: 'characterKit')]
+    #[ORM\OneToMany(targetEntity: CharacterEidolon::class, mappedBy: 'characterKit')]
     private Collection $eidolons;
 
     /**
@@ -110,7 +109,6 @@ class CharacterKit
     public function __construct()
     {
         $this->icons = new ArrayCollection();
-        $this->basicAtks = new ArrayCollection();
         $this->skills = new ArrayCollection();
         $this->stats = new ArrayCollection();
     }
@@ -203,75 +201,91 @@ class CharacterKit
         return $this;
     }
 
-    public function getMainTraceOne(): ?array
+    public function getMainTraceOneName(): ?string
     {
-        return $this->mainTraceOne;
+        return $this->mainTraceOneName;
     }
 
-    public function setMainTraceOne(?array $mainTraceOne): static
+    public function setMainTraceOneName(?string $mainTraceOneName): static
     {
-        $this->mainTraceOne = $mainTraceOne;
+        $this->mainTraceOneName = $mainTraceOneName;
         return $this;
     }
 
-    public function getMainTraceTwo(): ?array
+    public function getMainTraceOneDesc(): ?string
     {
-        return $this->mainTraceTwo;
+        return $this->mainTraceOneDesc;
     }
 
-    public function setMainTraceTwo(?array $mainTraceTwo): static
+    public function setMainTraceOneDesc(?string $mainTraceOneDesc): static
     {
-        $this->mainTraceTwo = $mainTraceTwo;
+        $this->mainTraceOneDesc = $mainTraceOneDesc;
         return $this;
     }
 
-    public function getMainTraceThree(): ?array
+    public function getMainTraceTwoName(): ?string
     {
-        return $this->mainTraceThree;
+        return $this->mainTraceTwoName;
     }
 
-    public function setMainTraceThree(?array $mainTraceThree): static
+    public function setMainTraceTwoName(?string $mainTraceTwoName): static
     {
-        $this->mainTraceThree = $mainTraceThree;
+        $this->mainTraceTwoName = $mainTraceTwoName;
         return $this;
     }
 
-    public function getTechnique(): ?array
+    public function getMainTraceTwoDesc(): ?string
     {
-        return $this->technique;
+        return $this->mainTraceTwoDesc;
     }
 
-    public function setTechnique(?array $technique): static
+    public function setMainTraceTwoDesc(?string $mainTraceTwoDesc): static
     {
-        $this->technique = $technique;
+        $this->mainTraceTwoDesc = $mainTraceTwoDesc;
         return $this;
     }
 
-    /**
-     * @return Collection<int, CharacterBasicAtk>
-     */
-    public function getBasicAtks(): Collection
+    public function getMainTraceThreeName(): ?string
     {
-        return $this->basicAtks;
+        return $this->mainTraceThreeName;
     }
 
-    public function addBasicAtk(CharacterBasicAtk $basicAtk): static
+    public function setMainTraceThreeName(?string $mainTraceThreeName): static
     {
-        if (!$this->basicAtks->contains($basicAtk)) {
-            $this->basicAtks->add($basicAtk);
-            $basicAtk->setCharacterKit($this);
-        }
+        $this->mainTraceThreeName = $mainTraceThreeName;
         return $this;
     }
 
-    public function removeBasicAtk(CharacterBasicAtk $basicAtk): static
+    public function getMainTraceThreeDesc(): ?string
     {
-        if ($this->basicAtks->removeElement($basicAtk)) {
-            // set the owning side to null (unless already changed)
-            if ($basicAtk->getCharacterKit() === $this) {
-                $basicAtk->setCharacterKit(null);
-            }
-        }
+        return $this->mainTraceThreeDesc;
+    }
+
+    public function setMainTraceThreeDesc(?string $mainTraceThreeDesc): static
+    {
+        $this->mainTraceThreeDesc = $mainTraceThreeDesc;
+        return $this;
+    }
+
+    public function getTechniqueName(): ?string
+    {
+        return $this->techniqueName;
+    }
+
+    public function setTechniqueName(?string $techniqueName): static
+    {
+        $this->techniqueName = $techniqueName;
+        return $this;
+    }
+
+    public function getTechniqueDesc(): ?string
+    {
+        return $this->techniqueDesc;
+    }
+
+    public function setTechniqueDesc(?string $techniqueDesc): static
+    {
+        $this->techniqueDesc = $techniqueDesc;
         return $this;
     }
 
@@ -303,45 +317,6 @@ class CharacterKit
         return $this;
     }
 
-    /**
-     * @return Collection<int, CharacterUltimate>
-     */
-    public function getUltimates(): Collection
-    {
-        return $this->ultimates;
-    }
-
-    public function addUltimate(CharacterUltimate $ultimate): static
-    {
-        if (!$this->ultimates->contains($ultimate)) {
-            $this->ultimates->add($ultimate);
-            $ultimate->setCharacterKit($this);
-        }
-        return $this;
-    }
-
-    public function removeUltimate(CharacterUltimate $ultimate): static
-    {
-        if ($this->ultimates->removeElement($ultimate)) {
-            // set the owning side to null (unless already changed)
-            if ($ultimate->getCharacterKit() === $this) {
-                $ultimate->setCharacterKit(null);
-            }
-        }
-        return $this;
-    }
-
-    public function getTalent(): ?CharacterTalent
-    {
-        return $this->talent;
-    }
-
-    public function setTalent(?CharacterTalent $talent): static
-    {
-        $this->talent = $talent;
-        return $this;
-    }
-
     public function getMinorTraces(): ?CharacterMinorTraces
     {
         return $this->minorTraces;
@@ -365,7 +340,7 @@ class CharacterKit
         return $this->eidolons;
     }
 
-    public function addEidolon(CharacterEidolons $eidolon): static
+    public function addEidolon(CharacterEidolon $eidolon): static
     {
         if (!$this->eidolons->contains($eidolon)) {
             $this->eidolons->add($eidolon);
@@ -374,7 +349,7 @@ class CharacterKit
         return $this;
     }
 
-    public function removeEidolon(CharacterEidolons $eidolon): static
+    public function removeEidolon(CharacterEidolon $eidolon): static
     {
         if ($this->eidolons->removeElement($eidolon)) {
             // set the owning side to null (unless already changed)

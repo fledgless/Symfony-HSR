@@ -23,6 +23,9 @@ class CharacterSkill
     #[ORM\Column(length: 255)]
     private ?string $type = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $tag = null;
+
     #[ORM\Column(nullable: true)]
     private ?int $energyGain = null;
 
@@ -107,6 +110,17 @@ class CharacterSkill
     public function setType(string $type): static
     {
         $this->type = $type;
+        return $this;
+    }
+
+    public function getTag(): ?string
+    {
+        return $this->tag;
+    }
+
+    public function setTag(string $tag): static
+    {
+        $this->tag = $tag;
         return $this;
     }
 
