@@ -68,6 +68,18 @@ class Type
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $debuffFilename = null;
 
+    /**
+     * @var Collection<int, CavernOfCorrosion>
+     */
+    #[ORM\ManyToMany(targetEntity: CavernOfCorrosion::class, mappedBy: 'recommendedTypes')]
+    private Collection $cavernOfCorrosions;
+
+    /**
+     * @var Collection<int, BossEnemy>
+     */
+    #[ORM\ManyToMany(targetEntity: BossEnemy::class, mappedBy: 'weaknesses')]
+    private Collection $bossEnemies;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -75,6 +87,8 @@ class Type
         $this->eliteEnemies = new ArrayCollection();
         $this->bossMats = new ArrayCollection();
         $this->echosBosses = new ArrayCollection();
+        $this->cavernOfCorrosions = new ArrayCollection();
+        $this->bossEnemies = new ArrayCollection();
     }
 
     public function __toString()
@@ -285,6 +299,60 @@ class Type
     public function setDebuffFilename(?string $debuffFilename): static
     {
         $this->debuffFilename = $debuffFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CavernOfCorrosion>
+     */
+    public function getCavernOfCorrosions(): Collection
+    {
+        return $this->cavernOfCorrosions;
+    }
+
+    public function addCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if (!$this->cavernOfCorrosions->contains($cavernOfCorrosion)) {
+            $this->cavernOfCorrosions->add($cavernOfCorrosion);
+            $cavernOfCorrosion->addRecommendedType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if ($this->cavernOfCorrosions->removeElement($cavernOfCorrosion)) {
+            $cavernOfCorrosion->removeRecommendedType($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BossEnemy>
+     */
+    public function getBossEnemies(): Collection
+    {
+        return $this->bossEnemies;
+    }
+
+    public function addBossEnemy(BossEnemy $bossEnemy): static
+    {
+        if (!$this->bossEnemies->contains($bossEnemy)) {
+            $this->bossEnemies->add($bossEnemy);
+            $bossEnemy->addWeakness($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBossEnemy(BossEnemy $bossEnemy): static
+    {
+        if ($this->bossEnemies->removeElement($bossEnemy)) {
+            $bossEnemy->removeWeakness($this);
+        }
 
         return $this;
     }

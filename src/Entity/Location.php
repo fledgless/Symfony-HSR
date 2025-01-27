@@ -73,6 +73,12 @@ class Location
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
+    /**
+     * @var Collection<int, CavernOfCorrosion>
+     */
+    #[ORM\OneToMany(targetEntity: CavernOfCorrosion::class, mappedBy: 'location')]
+    private Collection $cavernOfCorrosions;
+
     public function __construct()
     {
         $this->normalEnemies = new ArrayCollection();
@@ -81,6 +87,7 @@ class Location
         $this->crimsonCalyxes = new ArrayCollection();
         $this->echoOfWars = new ArrayCollection();
         $this->characters = new ArrayCollection();
+        $this->cavernOfCorrosions = new ArrayCollection();
     }
 
     public function __toString()
@@ -311,6 +318,36 @@ class Location
     public function setFilename(?string $filename): static
     {
         $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CavernOfCorrosion>
+     */
+    public function getCavernOfCorrosions(): Collection
+    {
+        return $this->cavernOfCorrosions;
+    }
+
+    public function addCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if (!$this->cavernOfCorrosions->contains($cavernOfCorrosion)) {
+            $this->cavernOfCorrosions->add($cavernOfCorrosion);
+            $cavernOfCorrosion->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if ($this->cavernOfCorrosions->removeElement($cavernOfCorrosion)) {
+            // set the owning side to null (unless already changed)
+            if ($cavernOfCorrosion->getLocation() === $this) {
+                $cavernOfCorrosion->setLocation(null);
+            }
+        }
 
         return $this;
     }
