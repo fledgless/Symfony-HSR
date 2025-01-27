@@ -42,6 +42,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $server = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $pfpFilename = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -133,6 +139,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+        return $this;
+    }
+
+    public function getServer(): ?string
+    {
+        return $this->server;
+    }
+
+    public function setServer(?string $server): static
+    {
+        $this->server = $server;
+
+        return $this;
+    }
+
+    public function getPfpFilename(): ?string
+    {
+        return $this->pfpFilename;
+    }
+
+    public function setPfpFilename(?string $pfpFilename): static
+    {
+        $this->pfpFilename = $pfpFilename;
+
         return $this;
     }
 }

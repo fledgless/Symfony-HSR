@@ -24,10 +24,19 @@ class TraceMats
     private ?string $fourStarName = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $fourStarFilename = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $threeStarName = null;
 
     #[ORM\Column(length: 255)]
+    private ?string $threeStarFilename = null;
+
+    #[ORM\Column(length: 255)]
     private ?string $twoStarName = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $twoStarFilename = null;
 
     #[ORM\Column]
     private ?bool $released = null;
@@ -35,11 +44,6 @@ class TraceMats
     #[ORM\Column]
     private ?bool $announced = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
 
     #[ORM\ManyToOne(inversedBy: 'traceMats')]
     private ?Path $path = null;
@@ -64,7 +68,6 @@ class TraceMats
 
     public function __construct()
     {
-        $this->icons = new ArrayCollection();
         $this->lightCones = new ArrayCollection();
         $this->characters = new ArrayCollection();
     }
@@ -90,6 +93,17 @@ class TraceMats
         return $this;
     }
 
+    public function getFourStarFilename(): ?string
+    {
+        return $this->fourStarFilename;
+    }
+
+    public function setFourStarFilename(?string $fourStarFilename): static
+    {
+        $this->fourStarFilename = $fourStarFilename;
+        return $this;
+    }
+
     public function getThreeStarName(): ?string
     {
         return $this->threeStarName;
@@ -101,6 +115,17 @@ class TraceMats
         return $this;
     }
 
+    public function getThreeStarFilename(): ?string
+    {
+        return $this->threeStarFilename;
+    }
+
+    public function setThreeStarFilename(?string $threeStarFilename): static
+    {
+        $this->threeStarFilename = $threeStarFilename;
+        return $this;
+    }
+
     public function getTwoStarName(): ?string
     {
         return $this->twoStarName;
@@ -109,6 +134,17 @@ class TraceMats
     public function setTwoStarName(string $twoStarName): static
     {
         $this->twoStarName = $twoStarName;
+        return $this;
+    }
+
+    public function getTwoStarFilename(): ?string
+    {
+        return $this->twoStarFilename;
+    }
+
+    public function setTwoStarFilename(?string $twoStarFilename): static
+    {
+        $this->twoStarFilename = $twoStarFilename;
         return $this;
     }
 
@@ -131,28 +167,6 @@ class TraceMats
     public function setAnnounced(bool $announced): static
     {
         $this->announced = $announced;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
-    {
-        return $this->icons;
-    }
-
-    public function addIcon(Media $icon): static
-    {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
         return $this;
     }
 

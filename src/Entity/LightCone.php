@@ -39,12 +39,6 @@ class LightCone
     #[ORM\Column(nullable: true)]
     private ?int $baseHp = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $story = null;
 
@@ -84,10 +78,14 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $releaseVersion = null;
 
-    public function __construct()
-    {
-        $this->icons = new ArrayCollection();
-    }
+    #[ORM\Column(length: 255)]
+    private ?string $iconFilename = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $splashFilename = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $fullArtFilename = null;
 
     public function __toString()
     {
@@ -173,28 +171,6 @@ class LightCone
     public function setBaseHp(?int $baseHp): static
     {
         $this->baseHp = $baseHp;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
-    {
-        return $this->icons;
-    }
-
-    public function addLcIcon(Media $icon): static
-    {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-        return $this;
-    }
-
-    public function removeLcIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
         return $this;
     }
 
@@ -339,6 +315,39 @@ class LightCone
     public function setReleaseVersion(?string $releaseVersion): static
     {
         $this->releaseVersion = $releaseVersion;
+        return $this;
+    }
+
+    public function getIconFilename(): ?string
+    {
+        return $this->iconFilename;
+    }
+
+    public function setIconFilename(?string $iconFilename): static
+    {
+        $this->iconFilename = $iconFilename;
+        return $this;
+    }
+
+    public function getSplashFilename(): ?string
+    {
+        return $this->splashFilename;
+    }
+
+    public function setSplashFilename(?string $splashFilename): static
+    {
+        $this->splashFilename = $splashFilename;
+        return $this;
+    }
+
+    public function getFullArtFilename(): ?string
+    {
+        return $this->fullArtFilename;
+    }
+
+    public function setFullArtFilename(?string $fullArtFilename): static
+    {
+        $this->fullArtFilename = $fullArtFilename;
         return $this;
     }
 }

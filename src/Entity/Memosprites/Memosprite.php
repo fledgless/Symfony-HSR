@@ -20,14 +20,11 @@ class Memosprite
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $filename = null;
+
     #[ORM\OneToOne(inversedBy: 'memosprite', cascade: ['persist', 'remove'])]
     private ?CharacterKit $memomaster = null;
-
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
 
     /**
      * @var Collection<int, MemospriteSkill>
@@ -35,15 +32,8 @@ class Memosprite
     #[ORM\OneToMany(targetEntity: MemospriteSkill::class, mappedBy: 'memosprite')]
     private Collection $skills;
 
-    /**
-     * @var Collection<int, MemospriteTalent>
-     */
-    #[ORM\OneToMany(targetEntity: MemospriteTalent::class, mappedBy: 'memosprite')]
-    private Collection $talents;
-
     public function __construct()
     {
-        $this->icons = new ArrayCollection();
         $this->skills = new ArrayCollection();
     }
 
@@ -79,26 +69,14 @@ class Memosprite
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
+    public function getFilename(): ?string
     {
-        return $this->icons;
+        return $this->filename;
     }
 
-    public function addIcon(Media $icon): static
+    public function setFilename(?string $filename): static
     {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
+        $this->filename = $filename;
         return $this;
     }
 
@@ -126,34 +104,6 @@ class Memosprite
             // set the owning side to null (unless already changed)
             if ($skill->getMemosprite() === $this) {
                 $skill->setMemosprite(null);
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, MemospriteTalent>
-     */
-    public function getTalents(): Collection
-    {
-        return $this->talents;
-    }
-
-    public function addTalent(MemospriteTalent $talent): static
-    {
-        if (!$this->talents->contains($talent)) {
-            $this->talents->add($talent);
-            $talent->setMemosprite($this);
-        }
-        return $this;
-    }
-
-    public function removeTalent(MemospriteTalent $talent): static
-    {
-        if ($this->talents->removeElement($talent)) {
-            // set the owning side to null (unless already changed)
-            if ($talent->getMemosprite() === $this) {
-                $talent->setMemosprite(null);
             }
         }
         return $this;

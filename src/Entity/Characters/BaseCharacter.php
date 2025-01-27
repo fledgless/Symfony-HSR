@@ -40,11 +40,11 @@ class BaseCharacter
     #[ORM\ManyToOne(inversedBy: 'characters')]
     private ?Type $type = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
+    #[ORM\Column(length: 255)]
+    private ?string $iconFilename = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $splashFilename = null;
 
     #[ORM\Column]
     private ?bool $released = false;
@@ -87,7 +87,6 @@ class BaseCharacter
 
     public function __construct()
     {
-        $this->icons = new ArrayCollection();
         $this->voicelines = new ArrayCollection();
     }
 
@@ -156,25 +155,25 @@ class BaseCharacter
         return $this;
     }
 
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
+    public function getIconFilename(): ?string
     {
-        return $this->icons;
+        return $this->iconFilename;
     }
 
-    public function addIcon(Media $icon): static
+    public function setIconFilename(?string $iconFilename): static
     {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
+        $this->iconFilename = $iconFilename;
         return $this;
     }
 
-    public function removeIcon(Media $icon): static
+    public function getSplashFilename(): ?string
     {
-        $this->icons->removeElement($icon);
+        return $this->splashFilename;
+    }
+
+    public function setSplashFilename(?string $splashFilename): static
+    {
+        $this->splashFilename = $splashFilename;
         return $this;
     }
 

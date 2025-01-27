@@ -23,9 +23,6 @@ class Type
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
     /**
      * @var Collection<int, BaseCharacter>
      */
@@ -56,6 +53,21 @@ class Type
     #[ORM\ManyToMany(targetEntity: EchosBoss::class, mappedBy: 'echoBossWeaknesses')]
     private Collection $echosBosses;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $elementalDebuff = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $breakMultiplier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeFilename = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $debuffFilename = null;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -83,17 +95,6 @@ class Type
     public function setName(string $name): static
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
         return $this;
     }
 
@@ -225,6 +226,66 @@ class Type
         if ($this->echosBosses->removeElement($echosBoss)) {
             $echosBoss->removeWeakness($this);
         }
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getElementalDebuff(): ?string
+    {
+        return $this->elementalDebuff;
+    }
+
+    public function setElementalDebuff(?string $elementalDebuff): static
+    {
+        $this->elementalDebuff = $elementalDebuff;
+
+        return $this;
+    }
+
+    public function getBreakMultiplier(): ?int
+    {
+        return $this->breakMultiplier;
+    }
+
+    public function setBreakMultiplier(?int $breakMultiplier): static
+    {
+        $this->breakMultiplier = $breakMultiplier;
+
+        return $this;
+    }
+
+    public function getTypeFilename(): ?string
+    {
+        return $this->typeFilename;
+    }
+
+    public function setTypeFilename(?string $typeFilename): static
+    {
+        $this->typeFilename = $typeFilename;
+
+        return $this;
+    }
+
+    public function getDebuffFilename(): ?string
+    {
+        return $this->debuffFilename;
+    }
+
+    public function setDebuffFilename(?string $debuffFilename): static
+    {
+        $this->debuffFilename = $debuffFilename;
+
         return $this;
     }
 }

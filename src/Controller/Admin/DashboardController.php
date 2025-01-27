@@ -115,10 +115,6 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('Location list', 'fas fa-globe', Location::class),
                 MenuItem::linkToCrud('New location', 'fas fa-map-pin', Location::class)->setAction(Crud::PAGE_NEW),
             ]);
-            yield MenuItem::subMenu('Icons', 'fas fa-icons')->setSubItems([
-                MenuItem::linkToCrud('Icon list', 'fas fa-image', Media::class)->setDefaultSort(['role' => 'ASC']),
-                MenuItem::linkToCrud('New icon', 'fas fa-camera-retro', Media::class)->setAction(Crud::PAGE_NEW),
-            ]);
             yield MenuItem::subMenu('Stats','fas fa-chart-column')->setSubItems([
                 MenuItem::linkToCrud('Stat list', 'fas fa-list-check', LightCone::class),
                 MenuItem::linkToCrud('New stat', 'fas fa-heart-circle-plus', LightCone::class)->setAction(Crud::PAGE_NEW),

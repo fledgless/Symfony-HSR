@@ -28,9 +28,6 @@ class Location
     #[ORM\Column]
     private ?bool $released = false;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
     /**
      * @var Collection<int, NormalEnemy>
      */
@@ -73,6 +70,9 @@ class Location
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'location')]
     private Collection $characters;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
+
     public function __construct()
     {
         $this->normalEnemies = new ArrayCollection();
@@ -112,17 +112,6 @@ class Location
     public function setReleased(bool $released): static
     {
         $this->released = $released;
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
         return $this;
     }
 
@@ -311,6 +300,18 @@ class Location
                 $character->setLocation(null);
             }
         }
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): static
+    {
+        $this->filename = $filename;
+
         return $this;
     }
 }

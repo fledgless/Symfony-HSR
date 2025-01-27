@@ -20,8 +20,8 @@ class EchoOfWar
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
+    #[ORM\Column(length: 255)]
+    private ?string $filename = null;
 
     #[ORM\OneToOne(inversedBy: 'echoOfWar', cascade: ['persist', 'remove'])]
     private ?EchosBoss $boss = null;
@@ -54,14 +54,14 @@ class EchoOfWar
         return $this;
     }
 
-    public function getIcon(): ?Media
+    public function getFilename(): ?string
     {
-        return $this->icon;
+        return $this->filename;
     }
 
-    public function setIcon(?Media $icon): static
+    public function setFilename(?string $filename): static
     {
-        $this->icon = $icon;
+        $this->filename = $filename;
         return $this;
     }
 
