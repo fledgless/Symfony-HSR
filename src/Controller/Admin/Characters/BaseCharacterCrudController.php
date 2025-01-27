@@ -88,14 +88,12 @@ class BaseCharacterCrudController extends AbstractCrudController
                 yield ImageField::new('iconFilename', 'Icon')
                     ->setBasePath($uploadDir)
                     ->setUploadDir($mediaDir)
-                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
-                    ->setRequired(false);
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
 
                 yield ImageField::new('splashFilename', 'Splash art')
                     ->setBasePath($uploadDir)
                     ->setUploadDir($mediaDir)
-                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
-                    ->setRequired(false);
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
             
 
 

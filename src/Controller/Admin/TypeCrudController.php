@@ -6,6 +6,7 @@ use App\Entity\Type;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -20,5 +21,13 @@ class TypeCrudController extends AbstractCrudController
     {
         yield TextField::new('name');
         yield AssociationField::new('icon');
+
+        $mediaDir = $this->getParameter('medias_directory');
+        $uploadDir = $this->getParameter('uploads_directory'); 
+
+        yield ImageField::new('typeFilename', 'Icon')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
     }
 }

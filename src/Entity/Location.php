@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CavernOfCorrosion;
 use App\Entity\Domains\CrimsonCalyx;
 use App\Entity\Domains\EchoOfWar;
 use App\Entity\Domains\GoldenCalyx;
