@@ -42,7 +42,7 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceOneDesc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainTraceOneFilename = null;
 
     #[ORM\Column(length: 255)]
@@ -51,7 +51,7 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceTwoDesc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainTraceTwoFilename = null;
 
     #[ORM\Column(length: 255)]
@@ -60,7 +60,7 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceThreeDesc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $mainTraceThreeFilename = null;
 
     #[ORM\Column(length: 255)]
@@ -69,7 +69,7 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $techniqueDesc = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $techniqueFilename = null;
 
     

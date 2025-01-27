@@ -27,7 +27,7 @@ class WeeklyMat
     #[ORM\Column]
     private ?bool $announced = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     #[ORM\OneToOne(inversedBy: 'weeklyMat', cascade: ['persist', 'remove'])]

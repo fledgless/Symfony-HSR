@@ -20,7 +20,7 @@ class EchoOfWar
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     #[ORM\OneToOne(inversedBy: 'echoOfWar', cascade: ['persist', 'remove'])]

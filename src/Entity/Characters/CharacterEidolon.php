@@ -33,7 +33,7 @@ class CharacterEidolon
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $recommendation = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     public function getId(): ?int

@@ -23,19 +23,19 @@ class TraceMats
     #[ORM\Column(length: 255)]
     private ?string $fourStarName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $fourStarFilename = null;
 
     #[ORM\Column(length: 255)]
     private ?string $threeStarName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $threeStarFilename = null;
 
     #[ORM\Column(length: 255)]
     private ?string $twoStarName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $twoStarFilename = null;
 
     #[ORM\Column]

@@ -85,23 +85,18 @@ class BaseCharacterCrudController extends AbstractCrudController
                 $mediaDir = $this->getParameter('medias_directory');
                 $uploadDir = $this->getParameter('uploads_directory');  
 
-                $iconField = ImageField::new('iconFilename', 'Image')
+                yield ImageField::new('iconFilename', 'Icon')
                     ->setBasePath($uploadDir)
                     ->setUploadDir($mediaDir)
-                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
-                if (Crud::PAGE_EDIT == $pageName) {
-                    $iconField->setRequired(false);
-                }
-                yield $iconField;
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
+                    ->setRequired(false);
 
-                $splashField = ImageField::new('splashFilename', 'Image')
+                yield ImageField::new('splashFilename', 'Splash art')
                     ->setBasePath($uploadDir)
                     ->setUploadDir($mediaDir)
-                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
-                if (Crud::PAGE_EDIT == $pageName) {
-                    $splashField->setRequired(false);
-                }
-                yield $splashField;
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]')
+                    ->setRequired(false);
+            
 
 
         yield FormField::addTab('Mats');

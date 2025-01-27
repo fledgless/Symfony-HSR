@@ -28,7 +28,7 @@ class BossMat
     #[ORM\Column]
     private ?bool $announced = false;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     #[ORM\OneToOne(inversedBy: 'bossMat', cascade: ['persist', 'remove'])]

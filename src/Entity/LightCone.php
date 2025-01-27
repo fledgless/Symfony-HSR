@@ -78,13 +78,13 @@ class LightCone
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $releaseVersion = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $iconFilename = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $splashFilename = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $fullArtFilename = null;
 
     public function __toString()

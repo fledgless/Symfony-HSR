@@ -1,14 +1,14 @@
 {% set character_show = path('character_show', { slug: character.slug }) %}
 
-{% for icon in character.icons|filter(icon => icon.role == 'Character Icon') %} 
+{% if character.iconFilename %} 
     <div class="item-character {% if character.rarity == "4-star" %}four-star {% else %}five-star{% endif %}">
         <a href="{{ character_show }}">
             <div class="character-name">
                 <p>{{ character.name }}</p>
             </div>
             <div class="character-path-type">
-                <img class="character-path" src="/uploads/{{ character.path.icon.filename }}" alt="">
-                <img class="character-type" src="/uploads/{{ character.type.icon.filename }}" alt="">
+                <img class="character-path" src="/uploads/{{ character.path.pathFilename }}" alt="">
+                <img class="character-type" src="/uploads/{{ character.type.typeFilename }}" alt="">
             </div>
             {% if character.released == 0 and character.announced == 1 %}
                 <div class="upcoming">Upcoming</div>
@@ -17,8 +17,8 @@
                 <div class="new">New in {{ character.releaseVersion }}</div>
             {% endif %}
             <div class="icon">
-                <img class="character-icon" src="/uploads/{{ icon.filename }}" alt="">
+                <img class="character-icon" src="/uploads/{{ character.iconFilename }}" alt="">
             </div>
         </a>
     </div>
-{% endfor %}
+{% endif %}

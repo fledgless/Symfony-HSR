@@ -40,10 +40,10 @@ class BaseCharacter
     #[ORM\ManyToOne(inversedBy: 'characters')]
     private ?Type $type = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $iconFilename = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $splashFilename = null;
 
     #[ORM\Column]

@@ -60,7 +60,7 @@ class MemospriteSkill
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     #[ORM\ManyToOne(inversedBy: 'skills')]

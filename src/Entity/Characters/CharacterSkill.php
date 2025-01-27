@@ -80,7 +80,7 @@ class CharacterSkill
     #[ORM\ManyToOne(inversedBy: 'skills')]
     private ?CharacterKit $characterKit = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
 
     public function __toString()
@@ -135,6 +135,17 @@ class CharacterSkill
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
+        return $this;
+    }
+
+    public function getEnergyCost(): ?int
+    {
+        return $this->energyCost;
+    }
+
+    public function setEnergyCost(?int $energyCost): static
+    {
+        $this->energyCost = $energyCost;
         return $this;
     }
 
