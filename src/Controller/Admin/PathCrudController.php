@@ -20,7 +20,6 @@ class PathCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield TextField::new('name');
-        yield AssociationField::new('icon');
 
         $mediaDir = $this->getParameter('medias_directory');
         $uploadDir = $this->getParameter('uploads_directory'); 
