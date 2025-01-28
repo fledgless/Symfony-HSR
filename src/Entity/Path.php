@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Build\LightCone;
 use App\Entity\Characters\BaseCharacter;
 use App\Entity\Materials\TraceMats;
 use App\Repository\PathRepository;

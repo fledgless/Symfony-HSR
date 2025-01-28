@@ -4,8 +4,7 @@ namespace App\Entity\Materials;
 
 use App\Entity\Characters\BaseCharacter;
 use App\Entity\Domains\CrimsonCalyx;
-use App\Entity\LightCone;
-use App\Entity\Media;
+use App\Entity\Build\LightCone;
 use App\Entity\Path;
 use App\Repository\Materials\TraceMatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CavernOfCorrosion;
+use App\Entity\Enemies\BossEnemy;
 use App\Entity\Enemies\EchosBoss;
 use App\Entity\Enemies\EliteEnemy;
 use App\Entity\Enemies\NormalEnemy;

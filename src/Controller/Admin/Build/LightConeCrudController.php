@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller\Admin;
+namespace App\Controller\Admin\Build;
 
-use App\Entity\LightCone;
+use App\Entity\Build\LightCone;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -47,8 +48,25 @@ class LightConeCrudController extends AbstractCrudController
             yield FormField::addColumn();
                 yield BooleanField::new('announced', 'Announced?');
                 yield BooleanField::new('released', 'Released?');
-                yield AssociationField::new('icons')
-                    ->hideOnIndex();
+
+                $mediaDir = $this->getParameter('medias_directory');
+                $uploadDir = $this->getParameter('uploads_directory');  
+
+                yield ImageField::new('iconFilename', 'Icon')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
+                yield ImageField::new('splashFilename', 'Splash art')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
+                yield ImageField::new('fullArtFilename', 'Icon')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
                 yield TextEditorField::new('story')
                     ->hideOnIndex();
 

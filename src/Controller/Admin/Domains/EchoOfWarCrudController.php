@@ -6,6 +6,7 @@ use App\Entity\Domains\EchoOfWar;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
@@ -20,7 +21,15 @@ class EchoOfWarCrudController extends AbstractCrudController
     {
         yield TextField::new('name');
         yield AssociationField::new('location');
-        yield AssociationField::new('icon');
+
+        $mediaDir = $this->getParameter('medias_directory');
+        $uploadDir = $this->getParameter('uploads_directory'); 
+
+        yield ImageField::new('filename', 'Icon')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
         yield AssociationField::new('weeklyMat');
         yield AssociationField::new('boss');
     }
