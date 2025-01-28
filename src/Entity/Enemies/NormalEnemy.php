@@ -24,8 +24,8 @@ class NormalEnemy
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
 
     /**
      * @var Collection<int, World>
@@ -87,14 +87,14 @@ class NormalEnemy
         return $this;
     }
 
-    public function getIcon(): ?Media
+    public function getFilename(): ?string
     {
-        return $this->icon;
+        return $this->filename;
     }
 
-    public function setIcon(?Media $icon): static
+    public function setFilename(?string $filename): static
     {
-        $this->icon = $icon;
+        $this->filename = $filename;
         return $this;
     }
 

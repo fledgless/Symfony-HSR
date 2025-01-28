@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -27,7 +28,14 @@ class WeeklyMatCrudController extends AbstractCrudController
             yield SlugField::new('slug')
                 ->setTargetFieldName('name')
                 ->hideOnIndex();
-            yield AssociationField::new('icon');
+
+            $mediaDir = $this->getParameter('medias_directory');
+            $uploadDir = $this->getParameter('uploads_directory'); 
+    
+            yield ImageField::new('filename', 'Icon')
+                ->setBasePath($uploadDir)
+                ->setUploadDir($mediaDir)
+                ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
 
         yield FormField::addColumn()
             ->hideOnDetail();

@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\FormField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -80,8 +81,21 @@ class BaseCharacterCrudController extends AbstractCrudController
                 yield DateField::new('releaseDate');
                 yield TextField::new('bannerName')
                     ->hideOnIndex();
-                yield AssociationField::new('icons', 'Associate character icon and character splash art:')
-                    ->hideOnIndex();
+
+                $mediaDir = $this->getParameter('medias_directory');
+                $uploadDir = $this->getParameter('uploads_directory');  
+
+                yield ImageField::new('iconFilename', 'Icon')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
+                yield ImageField::new('splashFilename', 'Splash art')
+                    ->setBasePath($uploadDir)
+                    ->setUploadDir($mediaDir)
+                    ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+            
+
 
         yield FormField::addTab('Mats');
             yield AssociationField::new('ascMats')

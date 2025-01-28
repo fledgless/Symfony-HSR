@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CavernOfCorrosion;
 use App\Entity\Domains\CrimsonCalyx;
 use App\Entity\Domains\EchoOfWar;
 use App\Entity\Domains\GoldenCalyx;
@@ -27,9 +28,6 @@ class Location
 
     #[ORM\Column]
     private ?bool $released = false;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
 
     /**
      * @var Collection<int, NormalEnemy>
@@ -73,6 +71,15 @@ class Location
     #[ORM\OneToMany(targetEntity: BaseCharacter::class, mappedBy: 'location')]
     private Collection $characters;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
+
+    /**
+     * @var Collection<int, CavernOfCorrosion>
+     */
+    #[ORM\OneToMany(targetEntity: CavernOfCorrosion::class, mappedBy: 'location')]
+    private Collection $cavernOfCorrosions;
+
     public function __construct()
     {
         $this->normalEnemies = new ArrayCollection();
@@ -81,6 +88,7 @@ class Location
         $this->crimsonCalyxes = new ArrayCollection();
         $this->echoOfWars = new ArrayCollection();
         $this->characters = new ArrayCollection();
+        $this->cavernOfCorrosions = new ArrayCollection();
     }
 
     public function __toString()
@@ -112,17 +120,6 @@ class Location
     public function setReleased(bool $released): static
     {
         $this->released = $released;
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
         return $this;
     }
 
@@ -311,6 +308,48 @@ class Location
                 $character->setLocation(null);
             }
         }
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): static
+    {
+        $this->filename = $filename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CavernOfCorrosion>
+     */
+    public function getCavernOfCorrosions(): Collection
+    {
+        return $this->cavernOfCorrosions;
+    }
+
+    public function addCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if (!$this->cavernOfCorrosions->contains($cavernOfCorrosion)) {
+            $this->cavernOfCorrosions->add($cavernOfCorrosion);
+            $cavernOfCorrosion->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if ($this->cavernOfCorrosions->removeElement($cavernOfCorrosion)) {
+            // set the owning side to null (unless already changed)
+            if ($cavernOfCorrosion->getLocation() === $this) {
+                $cavernOfCorrosion->setLocation(null);
+            }
+        }
+
         return $this;
     }
 }

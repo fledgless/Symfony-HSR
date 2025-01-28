@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -23,7 +24,15 @@ class LocationCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield TextField::new('world');
         yield TextareaField::new('description');
-        yield AssociationField::new('icon');
+
+        $mediaDir = $this->getParameter('medias_directory');
+        $uploadDir = $this->getParameter('uploads_directory'); 
+    
+        yield ImageField::new('filename', 'Icon')
+            ->setBasePath($uploadDir)
+            ->setUploadDir($mediaDir)
+            ->setUploadedFileNamePattern('[slug]-[uuid].[extension]');
+
         yield BooleanField::new('released', 'Released?');
         yield AssociationField::new('characters', 'Playable characters that can be found in this area:')->hideOnIndex();
     }

@@ -2,11 +2,10 @@
 
 namespace App\Entity\Materials;
 
+use App\Entity\Build\LightCone;
 use App\Entity\Characters\BaseCharacter;
 use App\Entity\Domains\GoldenCalyx;
 use App\Entity\Enemies\NormalEnemy;
-use App\Entity\LightCone;
-use App\Entity\Media;
 use App\Repository\Materials\AscensionMatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -23,23 +22,26 @@ class AscensionMats
     #[ORM\Column(length: 255)]
     private ?string $fourStarName = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $fourStarFilename = null;
+
     #[ORM\Column(length: 255)]
     private ?string $threeStarName = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $threeStarFilename = null;
+
     #[ORM\Column(length: 255)]
     private ?string $twoStarName = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $twoStarFilename = null;
 
     #[ORM\Column]
     private ?bool $released = false;
 
     #[ORM\Column]
     private ?bool $announced = false;
-
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
 
     /**
      * @var Collection<int, NormalEnemy>
@@ -70,7 +72,6 @@ class AscensionMats
 
     public function __construct()
     {
-        $this->icons = new ArrayCollection();
         $this->enemies = new ArrayCollection();
         $this->goldenCalyxes = new ArrayCollection();
         $this->lightCones = new ArrayCollection();
@@ -98,6 +99,17 @@ class AscensionMats
         return $this;
     }
 
+    public function getFourStarFilename(): ?string
+    {
+        return $this->fourStarFilename;
+    }
+
+    public function setFourStarFilename(?string $fourStarFilename): static
+    {
+        $this->fourStarFilename = $fourStarFilename;
+        return $this;
+    }
+
     public function getThreeStarName(): ?string
     {
         return $this->threeStarName;
@@ -109,6 +121,17 @@ class AscensionMats
         return $this;
     }
 
+    public function getThreeStarFilename(): ?string
+    {
+        return $this->threeStarFilename;
+    }
+
+    public function setThreeStarFilename(?string $threeStarFilename): static
+    {
+        $this->threeStarFilename = $threeStarFilename;
+        return $this;
+    }
+
     public function getTwoStarName(): ?string
     {
         return $this->twoStarName;
@@ -117,6 +140,17 @@ class AscensionMats
     public function setTwoStarName(string $twoStarName): static
     {
         $this->twoStarName = $twoStarName;
+        return $this;
+    }
+
+    public function getTwoStarFilename(): ?string
+    {
+        return $this->twoStarFilename;
+    }
+
+    public function setTwoStarFilename(?string $twoStarFilename): static
+    {
+        $this->twoStarFilename = $twoStarFilename;
         return $this;
     }
 
@@ -139,28 +173,6 @@ class AscensionMats
     public function setAnnounced(bool $announced): static
     {
         $this->announced = $announced;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
-    {
-        return $this->icons;
-    }
-
-    public function addIcon(Media $icon): static
-    {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
         return $this;
     }
 

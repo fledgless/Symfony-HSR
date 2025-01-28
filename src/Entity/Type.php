@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Entity\Characters\BaseCharacter;
+use App\Entity\Domains\CavernOfCorrosion;
+use App\Entity\Enemies\BossEnemy;
 use App\Entity\Enemies\EchosBoss;
 use App\Entity\Enemies\EliteEnemy;
 use App\Entity\Enemies\NormalEnemy;
@@ -22,9 +24,6 @@ class Type
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
-
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
 
     /**
      * @var Collection<int, BaseCharacter>
@@ -56,6 +55,33 @@ class Type
     #[ORM\ManyToMany(targetEntity: EchosBoss::class, mappedBy: 'echoBossWeaknesses')]
     private Collection $echosBosses;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $elementalDebuff = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $breakMultiplier = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $typeFilename = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $debuffFilename = null;
+
+    /**
+     * @var Collection<int, CavernOfCorrosion>
+     */
+    #[ORM\ManyToMany(targetEntity: CavernOfCorrosion::class, mappedBy: 'recommendedTypes')]
+    private Collection $cavernOfCorrosions;
+
+    /**
+     * @var Collection<int, BossEnemy>
+     */
+    #[ORM\ManyToMany(targetEntity: BossEnemy::class, mappedBy: 'weaknesses')]
+    private Collection $bossEnemies;
+
     public function __construct()
     {
         $this->characters = new ArrayCollection();
@@ -63,6 +89,8 @@ class Type
         $this->eliteEnemies = new ArrayCollection();
         $this->bossMats = new ArrayCollection();
         $this->echosBosses = new ArrayCollection();
+        $this->cavernOfCorrosions = new ArrayCollection();
+        $this->bossEnemies = new ArrayCollection();
     }
 
     public function __toString()
@@ -83,17 +111,6 @@ class Type
     public function setName(string $name): static
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
         return $this;
     }
 
@@ -225,6 +242,120 @@ class Type
         if ($this->echosBosses->removeElement($echosBoss)) {
             $echosBoss->removeWeakness($this);
         }
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getElementalDebuff(): ?string
+    {
+        return $this->elementalDebuff;
+    }
+
+    public function setElementalDebuff(?string $elementalDebuff): static
+    {
+        $this->elementalDebuff = $elementalDebuff;
+
+        return $this;
+    }
+
+    public function getBreakMultiplier(): ?int
+    {
+        return $this->breakMultiplier;
+    }
+
+    public function setBreakMultiplier(?int $breakMultiplier): static
+    {
+        $this->breakMultiplier = $breakMultiplier;
+
+        return $this;
+    }
+
+    public function getTypeFilename(): ?string
+    {
+        return $this->typeFilename;
+    }
+
+    public function setTypeFilename(?string $typeFilename): static
+    {
+        $this->typeFilename = $typeFilename;
+
+        return $this;
+    }
+
+    public function getDebuffFilename(): ?string
+    {
+        return $this->debuffFilename;
+    }
+
+    public function setDebuffFilename(?string $debuffFilename): static
+    {
+        $this->debuffFilename = $debuffFilename;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CavernOfCorrosion>
+     */
+    public function getCavernOfCorrosions(): Collection
+    {
+        return $this->cavernOfCorrosions;
+    }
+
+    public function addCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if (!$this->cavernOfCorrosions->contains($cavernOfCorrosion)) {
+            $this->cavernOfCorrosions->add($cavernOfCorrosion);
+            $cavernOfCorrosion->addRecommendedType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCavernOfCorrosion(CavernOfCorrosion $cavernOfCorrosion): static
+    {
+        if ($this->cavernOfCorrosions->removeElement($cavernOfCorrosion)) {
+            $cavernOfCorrosion->removeRecommendedType($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BossEnemy>
+     */
+    public function getBossEnemies(): Collection
+    {
+        return $this->bossEnemies;
+    }
+
+    public function addBossEnemy(BossEnemy $bossEnemy): static
+    {
+        if (!$this->bossEnemies->contains($bossEnemy)) {
+            $this->bossEnemies->add($bossEnemy);
+            $bossEnemy->addWeakness($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBossEnemy(BossEnemy $bossEnemy): static
+    {
+        if ($this->bossEnemies->removeElement($bossEnemy)) {
+            $bossEnemy->removeWeakness($this);
+        }
+
         return $this;
     }
 }

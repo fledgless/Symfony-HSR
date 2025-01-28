@@ -18,11 +18,11 @@ class MemospriteSkill
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $tag = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $energyGain = null;
@@ -60,6 +60,9 @@ class MemospriteSkill
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descLevelSeven = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
+
     #[ORM\ManyToOne(inversedBy: 'skills')]
     private ?Memosprite $memosprite = null;
 
@@ -82,17 +85,6 @@ class MemospriteSkill
     public function setName(string $name): static
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getIcon(): ?Media
-    {
-        return $this->icon;
-    }
-
-    public function setIcon(?Media $icon): static
-    {
-        $this->icon = $icon;
         return $this;
     }
 
@@ -247,6 +239,17 @@ class MemospriteSkill
     public function setMemosprite(?Memosprite $memosprite): static
     {
         $this->memosprite = $memosprite;
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): static
+    {
+        $this->filename = $filename;
         return $this;
     }
 }

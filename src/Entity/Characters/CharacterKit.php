@@ -42,11 +42,17 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceOneDesc = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mainTraceOneFilename = null;
+
     #[ORM\Column(length: 255)]
     private ?string $mainTraceTwoName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceTwoDesc = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mainTraceTwoFilename = null;
 
     #[ORM\Column(length: 255)]
     private ?string $mainTraceThreeName = null;
@@ -54,17 +60,17 @@ class CharacterKit
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $mainTraceThreeDesc = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $mainTraceThreeFilename = null;
+
     #[ORM\Column(length: 255)]
     private ?string $techniqueName = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $techniqueDesc = null;
 
-    /**
-     * @var Collection<int, Media>
-     */
-    #[ORM\ManyToMany(targetEntity: Media::class)]
-    private Collection $icons;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $techniqueFilename = null;
 
     
     /**
@@ -108,7 +114,6 @@ class CharacterKit
 
     public function __construct()
     {
-        $this->icons = new ArrayCollection();
         $this->skills = new ArrayCollection();
         $this->stats = new ArrayCollection();
     }
@@ -178,28 +183,6 @@ class CharacterKit
         $this->baseSpd = $baseSpd;
         return $this;
     }
-    
-    /**
-     * @return Collection<int, Media>
-     */
-    public function getIcons(): Collection
-    {
-        return $this->icons;
-    }
-
-    public function addIcon(Media $icon): static
-    {
-        if (!$this->icons->contains($icon)) {
-            $this->icons->add($icon);
-        }
-        return $this;
-    }
-
-    public function removeIcon(Media $icon): static
-    {
-        $this->icons->removeElement($icon);
-        return $this;
-    }
 
     public function getMainTraceOneName(): ?string
     {
@@ -220,6 +203,17 @@ class CharacterKit
     public function setMainTraceOneDesc(?string $mainTraceOneDesc): static
     {
         $this->mainTraceOneDesc = $mainTraceOneDesc;
+        return $this;
+    }
+
+    public function getMainTraceOneFilename(): ?string
+    {
+        return $this->mainTraceOneFilename;
+    }
+
+    public function setMainTraceOneFilename(?string $mainTraceOneFilename): static
+    {
+        $this->mainTraceOneFilename = $mainTraceOneFilename;
         return $this;
     }
 
@@ -245,6 +239,17 @@ class CharacterKit
         return $this;
     }
 
+    public function getMainTraceTwoFilename(): ?string
+    {
+        return $this->mainTraceTwoFilename;
+    }
+
+    public function setMainTraceTwoFilename(?string $mainTraceTwoFilename): static
+    {
+        $this->mainTraceTwoFilename = $mainTraceTwoFilename;
+        return $this;
+    }
+
     public function getMainTraceThreeName(): ?string
     {
         return $this->mainTraceThreeName;
@@ -267,6 +272,17 @@ class CharacterKit
         return $this;
     }
 
+    public function getMainTraceThreeFilename(): ?string
+    {
+        return $this->mainTraceThreeFilename;
+    }
+
+    public function setMainTraceThreeFilename(?string $mainTraceThreeFilename): static
+    {
+        $this->mainTraceThreeFilename = $mainTraceThreeFilename;
+        return $this;
+    }
+
     public function getTechniqueName(): ?string
     {
         return $this->techniqueName;
@@ -286,6 +302,17 @@ class CharacterKit
     public function setTechniqueDesc(?string $techniqueDesc): static
     {
         $this->techniqueDesc = $techniqueDesc;
+        return $this;
+    }
+
+    public function getTechniqueFilename(): ?string
+    {
+        return $this->techniqueFilename;
+    }
+
+    public function setFilename(?string $techniqueFilename): static
+    {
+        $this->techniqueFilename = $techniqueFilename;
         return $this;
     }
 

@@ -30,6 +30,9 @@ class CharacterSkill
     private ?int $energyGain = null;
 
     #[ORM\Column(nullable: true)]
+    private ?int $energyCost = null;
+
+    #[ORM\Column(nullable: true)]
     private ?int $breakMainTarget = null;
 
     #[ORM\Column(nullable: true)]
@@ -77,8 +80,8 @@ class CharacterSkill
     #[ORM\ManyToOne(inversedBy: 'skills')]
     private ?CharacterKit $characterKit = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Media $icon = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $filename = null;
 
     public function __toString()
     {
@@ -132,6 +135,17 @@ class CharacterSkill
     public function setEnergyGain(?int $energyGain): static
     {
         $this->energyGain = $energyGain;
+        return $this;
+    }
+
+    public function getEnergyCost(): ?int
+    {
+        return $this->energyCost;
+    }
+
+    public function setEnergyCost(?int $energyCost): static
+    {
+        $this->energyCost = $energyCost;
         return $this;
     }
 
@@ -311,14 +325,14 @@ class CharacterSkill
         return $this;
     }
 
-    public function getIcon(): ?Media
+    public function getFilename(): ?string
     {
-        return $this->icon;
+        return $this->filename;
     }
 
-    public function setIcon(?Media $icon): static
+    public function setFilename(?string $filename): static
     {
-        $this->icon = $icon;
+        $this->filename = $filename;
         return $this;
     }
 }
